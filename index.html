@@ -259,6 +259,89 @@ input[type="range"]::-moz-range-thumb{width:18px;height:18px;border-radius:50%;b
 .sb-b2b{background:#E5E4DC;color:#444441}
 .sb-b2b .b-dot{background:#888780}
 
+/* ===== BUYER PERSONA ===== */
+.persona-wrap{display:flex;flex-direction:column;gap:2px;margin-top:0}
+.persona-card{background:var(--bg);border:1px solid var(--rule);border-radius:4px;overflow:hidden;border-top:4px solid var(--magenta)}
+.persona-card.p2{border-top-color:var(--blue)}
+.persona-card.p3{border-top-color:var(--coral)}
+.persona-header{display:grid;grid-template-columns:64px 1fr auto;gap:24px;align-items:center;padding:28px 32px;background:var(--bg-alt);border-bottom:1px solid var(--rule)}
+@media(max-width:760px){.persona-header{grid-template-columns:48px 1fr;gap:14px}.p-stats{display:none}}
+.p-avatar{width:56px;height:56px;border-radius:50%;background:var(--magenta);display:flex;align-items:center;justify-content:center;font-family:var(--f-d);font-size:26px;color:#fff;font-weight:400;line-height:1;flex-shrink:0}
+.persona-card.p2 .p-avatar{background:var(--blue)}
+.persona-card.p3 .p-avatar{background:var(--coral)}
+.p-name{font-family:var(--f-d);font-size:24px;font-weight:400;color:var(--ink);letter-spacing:-.01em;text-transform:uppercase;line-height:1;margin-bottom:5px}
+.p-role{font-size:14px;font-weight:600;color:var(--ink);margin-bottom:4px}
+.p-company{font-family:var(--f-m);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-60)}
+.p-stats{display:flex;gap:32px;flex-shrink:0}
+.p-stat{text-align:center}
+.p-stat strong{display:block;font-family:var(--f-d);font-size:22px;font-weight:400;color:var(--ink);letter-spacing:-.01em;line-height:1}
+.p-stat span{font-family:var(--f-m);font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-40);margin-top:4px;display:block}
+.persona-body{padding:32px;display:flex;flex-direction:column;gap:28px}
+@media(max-width:760px){.persona-body{padding:20px;gap:20px}}
+.pb-section{border-top:1px solid var(--rule);padding-top:24px}
+.pb-section:first-child{border-top:none;padding-top:0}
+.pb-label{font-family:var(--f-m);font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:var(--magenta-dark);margin-bottom:12px;display:flex;align-items:center;gap:8px}
+.persona-card.p2 .pb-label{color:var(--blue)}
+.persona-card.p3 .pb-label{color:var(--coral-dark)}
+.pb-label::after{content:'';flex:1;height:1px;background:var(--rule)}
+.pb-title{font-size:16px;font-weight:600;color:var(--ink);margin-bottom:10px;line-height:1.4}
+.jtbd-list{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+@media(max-width:680px){.jtbd-list{grid-template-columns:1fr}}
+.jtbd-item{padding:12px 14px;background:var(--bg-alt);border-left:3px solid var(--magenta);font-size:13px;color:var(--ink-60);line-height:1.55}
+.persona-card.p2 .jtbd-item{border-left-color:var(--blue)}
+.persona-card.p3 .jtbd-item{border-left-color:var(--coral)}
+.jtbd-item strong{color:var(--ink);font-weight:500;display:block;margin-bottom:4px;font-size:12.5px}
+.empathy-quad{display:grid;grid-template-columns:1fr 1fr;gap:2px}
+@media(max-width:640px){.empathy-quad{grid-template-columns:1fr}}
+.eq-cell{padding:16px;background:var(--bg-alt)}
+.eq-cell:nth-child(1){background:var(--magenta-soft)}
+.eq-cell:nth-child(2){background:var(--blue-soft)}
+.eq-cell:nth-child(3){background:var(--turquoise-soft)}
+.eq-cell:nth-child(4){background:var(--coral-soft)}
+.persona-card.p2 .eq-cell:nth-child(1){background:var(--blue-soft)}
+.persona-card.p2 .eq-cell:nth-child(2){background:var(--magenta-soft)}
+.persona-card.p3 .eq-cell:nth-child(1){background:var(--coral-soft)}
+.eq-h{font-family:var(--f-m);font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-60);margin-bottom:8px;font-weight:500}
+.eq-body{font-size:12.5px;color:var(--ink-60);line-height:1.6;font-style:italic}
+.eq-body strong{color:var(--ink);font-style:normal;font-weight:500}
+.journey-track{display:grid;grid-template-columns:repeat(4,1fr);gap:2px;margin-top:4px}
+@media(max-width:640px){.journey-track{grid-template-columns:1fr 1fr}}
+.jt-step{padding:14px 16px;background:var(--bg-alt);position:relative}
+.jt-step::before{content:attr(data-n);font-family:var(--f-d);font-size:36px;color:var(--ink-10);position:absolute;top:8px;right:10px;line-height:1;font-weight:400}
+.jt-phase{font-family:var(--f-m);font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-40);margin-bottom:6px}
+.jt-title{font-size:13px;font-weight:600;color:var(--ink);margin-bottom:6px;line-height:1.3}
+.jt-body{font-size:12px;color:var(--ink-60);line-height:1.55}
+.jt-touch{margin-top:8px;font-family:var(--f-m);font-size:9px;color:var(--magenta-dark);letter-spacing:.06em}
+.persona-card.p2 .jt-touch{color:var(--blue)}
+.persona-card.p3 .jt-touch{color:var(--coral-dark)}
+.pgr-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:2px}
+@media(max-width:680px){.pgr-grid{grid-template-columns:1fr}}
+.pgr-col{padding:16px}
+.pgr-col.pain{background:var(--coral-soft)}
+.pgr-col.gain{background:var(--turquoise-soft)}
+.pgr-col.red{background:#FFF0F0;border-top:2px solid #E53E3E}
+.pgr-h{font-family:var(--f-m);font-size:9px;letter-spacing:.12em;text-transform:uppercase;margin-bottom:10px;font-weight:500}
+.pgr-col.pain .pgr-h{color:var(--coral-dark)}
+.pgr-col.gain .pgr-h{color:var(--turquoise-dark)}
+.pgr-col.red .pgr-h{color:#C53030}
+.pgr-list{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:6px}
+.pgr-list li{font-size:12.5px;color:var(--ink-60);line-height:1.5;padding-left:14px;position:relative}
+.pgr-list li::before{content:'·';position:absolute;left:4px;color:inherit;font-weight:700}
+.pgr-col.pain .pgr-list li{color:var(--coral-dark)}
+.pgr-col.gain .pgr-list li{color:var(--turquoise-dark)}
+.pgr-col.red .pgr-list li{color:#C53030}
+.key-msg{padding:20px 24px;background:var(--ink);color:#fff;border-radius:4px;margin-top:4px}
+.km-label{font-family:var(--f-m);font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.5);margin-bottom:10px}
+.km-text{font-size:15px;color:rgba(255,255,255,.92);line-height:1.6;font-style:italic}
+.km-text em{color:var(--turquoise);font-style:normal;font-weight:500}
+.persona-card.p2 .km-text em{color:#5DAFFF}
+.persona-card.p3 .km-text em{color:var(--coral)}
+.bc-table{width:100%;border-collapse:collapse;font-size:13px;margin-top:4px}
+.bc-table th{text-align:left;font-family:var(--f-m);font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-60);padding:10px 14px 10px 0;border-bottom:1px solid var(--ink-20);font-weight:500}
+.bc-table td{padding:14px 14px 14px 0;border-bottom:1px solid var(--rule);color:var(--ink-60);vertical-align:top;line-height:1.5}
+.bc-table td:first-child{font-weight:600;color:var(--ink);white-space:nowrap}
+.bc-table tr.main td{background:var(--magenta-soft)}
+.bc-table tr.main td:first-child{color:var(--magenta-dark)}
 /* ===== UTILITY ===== */
 .spacer-l{height:48px}
 .spacer-m{height:24px}
@@ -513,39 +596,235 @@ body.nav-open{overflow:hidden}
   </div>
 </section>
 
-<!-- ===== M2 · ICP ===== -->
+<!-- ===== M2 · BUYER PERSONA ===== -->
 <section class="section" id="m2">
   <div class="wrap">
     <div class="s-head">
-      <span class="s-mod" style="color:var(--magenta-dark);border-color:var(--magenta);background:var(--magenta-soft)"><span class="s-mod-num">M2</span> · Cliente Ideale</span>
-      <h2 class="s-h2">Il cliente ha un nome,<br><span class="accent" style="color:var(--magenta)">un volto, un trigger.</span></h2>
-      <p class="s-intro">Non "azienda food italiana" — troppo vago. Il target preciso è <strong>l'imprenditore di seconda generazione</strong> di una PMI 8–40M€, con un marketing manager interno sotto-organico, che sta entrando in GDO o lanciando un nuovo SKU. Sa che il prodotto è buono ma sente che il mercato non lo riconosce abbastanza. Ha già investito in marketing una volta e ci si è bruciato.</p>
+      <span class="s-mod" style="color:var(--magenta-dark);border-color:var(--magenta);background:var(--magenta-soft)"><span class="s-mod-num">M2</span> · Buyer Persona</span>
+      <h2 class="s-h2">3 persone reali.<br><span class="accent" style="color:var(--magenta)">Non segmenti. Persone.</span></h2>
+      <p class="s-intro">I dati vengono dai clienti Ribrain degli ultimi 7 anni: <strong>età 40–50 anni</strong>, arrivano quasi sempre da <strong>referral o passaparola</strong>, firmano quando sentono di essere guidati con competenza, e spariscono per prezzo o perché preferiscono la "sicurezza" di una struttura più grande. Questi tre profili coprono il 90% dei clienti attivi — ogni proposta, ogni contenuto LinkedIn, ogni copy Meta deve risuonare con uno di loro.</p>
     </div>
 
-    <div class="ig ig--2" style="margin-bottom:2px">
-      <div class="ic ic--magenta">
-        <span class="ic-eyebrow">Profilo · Azienda target</span>
-        <div class="ic-title">8–40M€ · 20–50 dipendenti · marketing interno sotto-organico</div>
-        <p class="ic-body">Geografia primaria: <strong>Lombardia, Veneto, Emilia-Romagna</strong> — massima concentrazione + pagano prezzi di mercato nazionale. ATECO 10.x/11.x (alimentari, bevande). Hanno già un'agenzia o l'hanno avuta — sanno cosa vogliono e il ciclo di vendita è più corto.</p>
-        <div class="ic-stat"><strong>20–50k€</strong>budget marketing annuale tipico</div>
-      </div>
-      <div class="ic ic--magenta">
-        <span class="ic-eyebrow">Profilo · Decisore</span>
-        <div class="ic-title">CEO firma · Marketing Manager apre · CFO frena</div>
-        <p class="ic-body">Buying committee a 4 figure. Il <strong>Marketing Manager interno è il vero alleato</strong> — ma ha paura di fare brutta figura. Se la proposta lo fa sembrare brillante davanti al CEO, hai vinto. Se lo scavalchi, hai perso anche con la proposta migliore.</p>
-        <div class="ic-stat"><strong>4–12 sett.</strong>ciclo di vendita medio mid-market</div>
+    <!-- BUYING COMMITTEE -->
+    <div style="margin-bottom:48px">
+      <div class="pb-label" style="font-family:var(--f-m);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--magenta-dark);display:flex;align-items:center;gap:10px;margin-bottom:16px">Buying Committee · chi è nella stanza quando si decide<span style="flex:1;height:1px;background:var(--rule);display:block"></span></div>
+      <div style="overflow-x:auto">
+        <table class="bc-table">
+          <thead><tr><th>Ruolo</th><th>Funzione nel processo</th><th>Driver psicologico</th><th>Come sbloccarla</th></tr></thead>
+          <tbody>
+            <tr class="main"><td>CEO / Imprenditore</td><td>Decisore finale. Firma il contratto. Spesso è la stessa persona che ti ha cercato.</td><td>ROI, fiducia "a pelle", controllo. Non vuole sentire parlare di KPI — vuole vedere risultati concreti e avere qualcuno di cui fidarsi.</td><td>Mostragli un caso studio con numeri reali vicino al suo settore. La fiducia si costruisce nel processo commerciale, non dopo la firma.</td></tr>
+            <tr><td>Marketing Manager interno</td><td>Influencer strategico. Filtra le opzioni e presenta al CEO. È il vero alleato.</td><td>Non vuole fare brutta figura. Vuole un partner che lo faccia sembrare bravo davanti alla proprietà. Ha già avuto esperienze negative con agenzie.</td><td>Fallo sentire protagonista della proposta. Se lo scavalchi per andare diretto al CEO, hai perso. Se la proposta lo fa brillare, sei dentro.</td></tr>
+            <tr><td>CFO / Resp. Amministrativo</td><td>Bloccante e revisore. Non partecipa alla discovery ma può fermare tutto in fase di firma.</td><td>Rispetto del budget, solidità finanziaria del fornitore. "Queste agenzie durano 2 anni e poi spariscono."</td><td>Includi nella proposta una nota sulla stabilità (7 anni di attività, clienti multi-anno). Il CFO vuole certezze, non entusiasmo.</td></tr>
+            <tr><td>Direttore Vendite</td><td>Validatore operativo. Raramente presente, ma ha voce in capitolo sulle campagne lead gen.</td><td>"Questa agenzia mi porterà lead che chiudono davvero?" Diffida del marketing che non si misura.</td><td>Parla di conversion rate, non di reach. Mostra ROAS e costo per lead di campagne reali su clienti simili.</td></tr>
+          </tbody>
+        </table>
       </div>
     </div>
 
+    <!-- PERSONA 1 -->
+    <div class="persona-wrap">
+      <div class="persona-card">
+        <div class="persona-header">
+          <div class="p-avatar">M</div>
+          <div class="p-bio">
+            <div class="p-name">Marco R.</div>
+            <div class="p-role">CEO · Seconda generazione · PMI food/packaging</div>
+            <div class="p-company">Produzione alimentare · 8–25M€ · Nord o Centro Italia · 20–60 dipendenti</div>
+          </div>
+          <div class="p-stats">
+            <div class="p-stat"><strong>44</strong><span>età media</span></div>
+            <div class="p-stat"><strong>Referral</strong><span>come arriva</span></div>
+            <div class="p-stat"><strong>16–24k€</strong><span>ticket annuo</span></div>
+          </div>
+        </div>
+        <div class="persona-body">
+
+          <div class="pb-section">
+            <div class="pb-label">Jobs To Be Done · cosa compra davvero</div>
+            <div class="jtbd-list">
+              <div class="jtbd-item"><strong>Job funzionale</strong>Modernizzare la comunicazione dell'azienda di famiglia senza perdere i valori identitari costruiti dal padre in 30 anni.</div>
+              <div class="jtbd-item"><strong>Job sociale</strong>Dimostrare all'imprenditore della vecchia guardia (suo padre, il CDA) che l'investimento in marketing porta risultati concreti — non solo like.</div>
+              <div class="jtbd-item"><strong>Job emotivo</strong>Sentirsi guidato da qualcuno che conosce il settore. Non vuole dover spiegare ogni volta cos'è la GDO o perché il packaging conta.</div>
+              <div class="jtbd-item"><strong>Job strategico</strong>Trovare un'agenzia che duri nel tempo — ha già cambiato 2-3 partner e non vuole ricominciare da zero ogni anno.</div>
+            </div>
+          </div>
+
+          <div class="pb-section">
+            <div class="pb-label">Empathy Map · cosa vede, pensa, sente e fa</div>
+            <div class="empathy-quad">
+              <div class="eq-cell"><div class="eq-h">🔍 Vede</div><div class="eq-body">Competitor più piccoli che su Instagram sembrano più professionali di lui. <strong>Il buyer di Esselunga gli ha detto che il packaging "non comunica".</strong> Il mercato GDO che si stringe e le private label che mangiano quote.</div></div>
+              <div class="eq-cell"><div class="eq-h">💭 Pensa</div><div class="eq-body">"Il prodotto è ottimo, siamo noi che non lo sappiamo raccontare." <strong>"L'ultima agenzia ci ha fatto spendere 30k€ e non abbiamo visto nulla."</strong> "Devo fare qualcosa, ma non voglio sbagliare di nuovo."</div></div>
+              <div class="eq-cell"><div class="eq-h">❤️ Sente</div><div class="eq-body">Frustrazione per il gap tra qualità del prodotto e percezione del mercato. <strong>Orgoglio per quello che ha costruito.</strong> Ansia da performance: ogni euro investito deve giustificarsi davanti alla proprietà.</div></div>
+              <div class="eq-cell"><div class="eq-h">🎯 Fa</div><div class="eq-body">Chiede a colleghi imprenditori "chi usate per la comunicazione?". Guarda cosa fanno i competitor sui social. <strong>Va alle fiere di settore</strong> (TuttoFood, Cibus). Legge Il Sole 24 Ore, Mark Up, riviste di settore.</div></div>
+            </div>
+          </div>
+
+          <div class="pb-section">
+            <div class="pb-label">Decision Journey · come arriva alla firma</div>
+            <div class="journey-track">
+              <div class="jt-step" data-n="1"><div class="jt-phase">Awareness</div><div class="jt-title">Il trigger apre il problema</div><div class="jt-body">Il buyer GDO boccia il packaging. Un competitor lancia una campagna forte. Un suo contatto gli dice "abbiamo cambiato agenzia e i risultati si vedono".</div><div class="jt-touch">→ Ribrain: post LinkedIn CEO su packaging GDO</div></div>
+              <div class="jt-step" data-n="2"><div class="jt-phase">Consideration</div><div class="jt-title">Cerca chi capisce il suo mondo</div><div class="jt-body">Chiede referral a 2-3 colleghi. Guarda i siti web delle agenzie. Valuta se hanno fatto cose nel food. <strong>Non va su Google — si fida del passaparola.</strong></div><div class="jt-touch">→ Ribrain: caso studio food visibile, referral attivo</div></div>
+              <div class="jt-step" data-n="3"><div class="jt-phase">Decision</div><div class="jt-title">La discovery è il prodotto</div><div class="jt-body">Nella prima call valuta quanto lo capisci senza che lui debba spiegare il settore. <strong>Firma perché si sente guidato.</strong> "Entusiasma come mi stai seguendo" — questa è la firma.</div><div class="jt-touch">→ Ribrain: pre-qualifica + discovery preparata</div></div>
+              <div class="jt-step" data-n="4"><div class="jt-phase">Retention</div><div class="jt-title">Rimane se vede movimento</div><div class="jt-body">Non ha tempo per leggere report lunghissimi. Vuole vedere cose che succedono. <strong>La retention si costruisce nella proattività</strong> — se aspetti che chieda, è già a metà uscita.</div><div class="jt-touch">→ Ribrain: report mensile + iniziativa spontanea</div></div>
+            </div>
+          </div>
+
+          <div class="pb-section">
+            <div class="pb-label">Pain · Gain · Red Flags</div>
+            <div class="pgr-grid">
+              <div class="pgr-col pain"><div class="pgr-h">😤 Pain Points</div><ul class="pgr-list"><li>Ha già bruciato soldi con un'agenzia precedente senza risultati</li><li>Deve giustificare ogni euro investito davanti alla proprietà/CFO</li><li>Teme che l'agenzia non capisca le logiche GDO e del settore food</li><li>Ha paura di cambiare agenzia e perdere continuità</li><li>Il tempo è un lusso: non può seguire troppo il processo</li></ul></div>
+              <div class="pgr-col gain"><div class="pgr-h">✅ Gain Creators</div><ul class="pgr-list"><li>Mostragli dati reali di un cliente simile nel food (sell-out, ROAS)</li><li>Parla il linguaggio GDO/scaffale, non quello del marketing digitale</li><li>Semplifica il processo — lui non vuole fare riunioni ogni settimana</li><li>Dai proattività: proponi prima che chieda</li><li>Fallo sentire l'unico cliente food che capisce davvero</li></ul></div>
+              <div class="pgr-col red"><div class="pgr-h">🚩 Red Flags · non chiuderai se…</div><ul class="pgr-list"><li>Chiede "quanto costa?" nei primi 5 minuti — non è ancora dentro</li><li>Vuole un progetto "piccolo per testare" — mindset da commodity</li><li>Confronta il tuo prezzo con agenzie generaliste da 800€/mese</li><li>Non ha un decisore libero di firmare senza approvazione esterna</li></ul></div>
+            </div>
+          </div>
+
+          <div class="key-msg">
+            <div class="km-label">Messaggio chiave · cosa dire in discovery</div>
+            <p class="km-text">"Lavoriamo con produttori food da anni — conosciamo le logiche del buyer GDO, le tempistiche del packaging e cosa serve per far rotare un prodotto a scaffale. <em>Non ti chiediamo di spiegarci il settore: siamo già dentro.</em> Il nostro obiettivo è che tu debba pensare meno al marketing e più al prodotto."</p>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- PERSONA 2 -->
+      <div class="persona-card p2">
+        <div class="persona-header">
+          <div class="p-avatar">C</div>
+          <div class="p-bio">
+            <div class="p-name">Claudia M.</div>
+            <div class="p-role">Marketing Manager · Azienda strutturata · multi-settore</div>
+            <div class="p-company">PMI 10–40M€ · nord o centro Italia · 30–80 dipendenti · ha già un budget marketing dedicato</div>
+          </div>
+          <div class="p-stats">
+            <div class="p-stat"><strong>38</strong><span>età media</span></div>
+            <div class="p-stat"><strong>Referral</strong><span>come arriva</span></div>
+            <div class="p-stat"><strong>20–30k€</strong><span>ticket annuo</span></div>
+          </div>
+        </div>
+        <div class="persona-body">
+
+          <div class="pb-section">
+            <div class="pb-label">Jobs To Be Done · cosa compra davvero</div>
+            <div class="jtbd-list">
+              <div class="jtbd-item"><strong>Job funzionale</strong>Trovare un'agenzia che esegua in modo autonomo — ha troppo da fare per dover seguire ogni dettaglio operativo.</div>
+              <div class="jtbd-item"><strong>Job sociale</strong>Sembrare brillante davanti al CEO e alla proprietà. Se l'agenzia produce risultati visibili, lei prende il merito. Se fallisce, è colpa dell'agenzia.</div>
+              <div class="jtbd-item"><strong>Job emotivo</strong>Ridurre lo stress operativo. È sovraccarica — ha bisogno di un partner che non la carichi di ulteriori decisioni ma che risolva.</div>
+              <div class="jtbd-item"><strong>Job strategico</strong>Avere un braccio destro specializzato che colmi le competenze che internamente non ha (ads avanzate, packaging, contenuti verticali).</div>
+            </div>
+          </div>
+
+          <div class="pb-section">
+            <div class="pb-label">Empathy Map · cosa vede, pensa, sente e fa</div>
+            <div class="empathy-quad">
+              <div class="eq-cell"><div class="eq-h">🔍 Vede</div><div class="eq-body">Il CEO che pretende risultati immediati da investimenti di lungo periodo. <strong>Colleghi di altre aziende che postano case study con numeri impressionanti.</strong> Agenzie che promettono molto e consegnano report pieni di vanity metrics.</div></div>
+              <div class="eq-cell"><div class="eq-h">💭 Pensa</div><div class="eq-body">"Ho bisogno di qualcuno che esegua senza che io debba spiegare ogni cosa." <strong>"Il CEO vuole vedere risultati entro Q2."</strong> "Non voglio un'altra agenzia che mi sommerge di riunioni."</div></div>
+              <div class="eq-cell"><div class="eq-h">❤️ Sente</div><div class="eq-body">Pressione costante dal basso e dall'alto. <strong>Solitudine decisionale</strong> — è l'unica che capisce il marketing nell'azienda. Paura di sbagliare la scelta dell'agenzia e perdere credibilità.</div></div>
+              <div class="eq-cell"><div class="eq-h">🎯 Fa</div><div class="eq-body"><strong>Chiede referral a colleghi di settore.</strong> Legge LinkedIn con attenzione. Confronta 2-3 agenzie in parallelo. Prepara una shortlist da presentare al CEO con pro/contro.</div></div>
+            </div>
+          </div>
+
+          <div class="pb-section">
+            <div class="pb-label">Decision Journey · come arriva alla firma</div>
+            <div class="journey-track">
+              <div class="jt-step" data-n="1"><div class="jt-phase">Awareness</div><div class="jt-title">Cerca su LinkedIn e referral</div><div class="jt-body">Segue founder di agenzie su LinkedIn. Legge i post con dati e casi studio. Chiede a colleghi HR e marketing di altre aziende chi usano.</div><div class="jt-touch">→ Ribrain: content CEO con dati + caso studio</div></div>
+              <div class="jt-step" data-n="2"><div class="jt-phase">Consideration</div><div class="jt-title">Valuta competenza tecnica</div><div class="jt-body">Guarda il portfolio, cerca i clienti simili, valuta il tone of voice. <strong>Vuole capire se l'agenzia sa eseguire senza essere guidata</strong> — non vuole babysitter.</div><div class="jt-touch">→ Ribrain: portfolio organizzato + casi studio con KPI</div></div>
+              <div class="jt-step" data-n="3"><div class="jt-phase">Decision</div><div class="jt-title">La proposta la fa brillare</div><div class="jt-body">Porta la proposta al CEO. <strong>Se la proposta è già strutturata come una presentazione che lei può mostrare</strong>, il lavoro di vendita è già fatto. La forma conta quanto il contenuto.</div><div class="jt-touch">→ Ribrain: proposta PDF presentabile al board</div></div>
+              <div class="jt-step" data-n="4"><div class="jt-phase">Retention</div><div class="jt-title">Rimane se risparmia tempo</div><div class="jt-body"><strong>La retention dipende da quanto le togli stress operativo.</strong> Se ogni settimana deve inseguire l'agenzia per deliverable, cambia. Se i report arrivano prima che li chieda, è fidelizzata.</div><div class="jt-touch">→ Ribrain: processi proattivi + report automatici</div></div>
+            </div>
+          </div>
+
+          <div class="pb-section">
+            <div class="pb-label">Pain · Gain · Red Flags</div>
+            <div class="pgr-grid">
+              <div class="pgr-col pain"><div class="pgr-h">😤 Pain Points</div><ul class="pgr-list"><li>Sovraccarica operativamente — non può seguire l'agenzia ogni giorno</li><li>Paura di fare brutta figura con il CEO se l'agenzia non performa</li><li>Ha già gestito agenzie che la sommergevano di riunioni inutili</li><li>Deve giustificare ogni spesa con KPI concreti alla proprietà</li><li>Ha bisogno che l'agenzia capisca il settore senza essere formata</li></ul></div>
+              <div class="pgr-col gain"><div class="pgr-h">✅ Gain Creators</div><ul class="pgr-list"><li>Proposta già pronta da presentare al CEO, senza che lei debba rielaborarla</li><li>Report mensile con KPI leggibili, non fogli Excel da interpretare</li><li>Risposta entro 4 ore — niente "ci sentiamo la settimana prossima"</li><li>Proattività: proporre senza aspettare che chieda</li><li>Falla sembrare l'unica MM che ha trovato il partner giusto</li></ul></div>
+              <div class="pgr-col red"><div class="pgr-h">🚩 Red Flags · non chiuderai se…</div><ul class="pgr-list"><li>Non la includi nella presentazione al CEO — la scavalchi</li><li>Proposta lunga 30 pagine che non può riassumere in 5 minuti</li><li>Richiedi troppe riunioni di onboarding prima di partire</li><li>Non hai casi studio presentabili con numeri leggibili</li></ul></div>
+            </div>
+          </div>
+
+          <div class="key-msg">
+            <div class="km-label">Messaggio chiave · cosa dire in discovery</div>
+            <p class="km-text">"Lavoriamo come un'estensione del tuo team interno — eseguiamo in autonomia, ti aggiorniamo con un report mensile chiaro e ti proponiamo iniziative prima che tu debba chiederle. <em>Non aggiungiamo riunioni alla tua settimana: ti togliamo lavoro.</em>"</p>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- PERSONA 3 -->
+      <div class="persona-card p3">
+        <div class="persona-header">
+          <div class="p-avatar">R</div>
+          <div class="p-bio">
+            <div class="p-name">Roberto F.</div>
+            <div class="p-role">CEO / Founder · Azienda in fase di scaling</div>
+            <div class="p-company">Settore vario (food, luxury, B2B servizi) · 5–20M€ · prima o seconda generazione · vuole crescere velocemente</div>
+          </div>
+          <div class="p-stats">
+            <div class="p-stat"><strong>47</strong><span>età media</span></div>
+            <div class="p-stat"><strong>Referral</strong><span>come arriva</span></div>
+            <div class="p-stat"><strong>22–35k€</strong><span>ticket annuo</span></div>
+          </div>
+        </div>
+        <div class="persona-body">
+
+          <div class="pb-section">
+            <div class="pb-label">Jobs To Be Done · cosa compra davvero</div>
+            <div class="jtbd-list">
+              <div class="jtbd-item"><strong>Job funzionale</strong>Costruire una presenza digitale e un brand coerente mentre scala — senza dover assumere un team marketing interno che non può ancora permettersi.</div>
+              <div class="jtbd-item"><strong>Job sociale</strong>Essere visto come un'azienda professionale e affidabile da buyer GDO, distributori, partner internazionali e investitori.</div>
+              <div class="jtbd-item"><strong>Job emotivo</strong>Avere qualcuno di fiducia che capisce dove vuole arrivare e lo accompagna — un partner, non un fornitore. La relazione conta quanto il servizio.</div>
+              <div class="jtbd-item"><strong>Job strategico</strong>Scalare il business senza perdere identità — crescere dal mercato locale al nazionale, poi all'estero, mantenendo il posizionamento premium.</div>
+            </div>
+          </div>
+
+          <div class="pb-section">
+            <div class="pb-label">Empathy Map · cosa vede, pensa, sente e fa</div>
+            <div class="empathy-quad">
+              <div class="eq-cell"><div class="eq-h">🔍 Vede</div><div class="eq-body">Competitor che si posizionano meglio di lui sui canali digitali nonostante prodotti inferiori. <strong>Opportunità di mercato nei canali che non ha ancora presidiato.</strong> Agenzie che non capiscono le dinamiche del suo settore specifico.</div></div>
+              <div class="eq-cell"><div class="eq-h">💭 Pensa</div><div class="eq-body"><strong>"Ho bisogno di un partner che mi segua nel lungo periodo, non di un fornitore."</strong> "Le agenzie grandi mi trattano come un cliente piccolo." "Voglio qualcuno che mi capisca davvero prima ancora di iniziare."</div></div>
+              <div class="eq-cell"><div class="eq-h">❤️ Sente</div><div class="eq-body">Entusiasmo per le opportunità di crescita. <strong>Impatience</strong> — vuole vedere risultati in tempi ragionevoli. Diffidenza verso chi ha "venduto fumo" in passato. Bisogno di fiducia reciproca.</div></div>
+              <div class="eq-cell"><div class="eq-h">🎯 Fa</div><div class="eq-body"><strong>Chiede direttamente a colleghi imprenditori</strong> ("chi usi tu?"). Fa 2-3 call esplorative prima di decidere. Va alle fiere di settore. Legge pochissimo — preferisce il confronto diretto.</div></div>
+            </div>
+          </div>
+
+          <div class="pb-section">
+            <div class="pb-label">Decision Journey · come arriva alla firma</div>
+            <div class="journey-track">
+              <div class="jt-step" data-n="1"><div class="jt-phase">Awareness</div><div class="jt-title">Passaparola diretto</div><div class="jt-body">Un collega imprenditore che stima gli dice "usa Ribrain, li ho usati io". Oppure incontra il CEO di Ribrain in un contesto di settore e scatta la connessione umana.</div><div class="jt-touch">→ Ribrain: presenza fiera + post CEO con storia</div></div>
+              <div class="jt-step" data-n="2"><div class="jt-phase">Consideration</div><div class="jt-title">Valuta il fit culturale</div><div class="jt-body">Non guarda solo il portfolio — <strong>vuole capire se "ci siamo capiti"</strong>. Fa una call esplorativa per vedere come ragioni, se conosci il suo settore, se sei diretto.</div><div class="jt-touch">→ Ribrain: discovery conversazionale, non pitch</div></div>
+              <div class="jt-step" data-n="3"><div class="jt-phase">Decision</div><div class="jt-title">Decide con l'istinto + dati</div><div class="jt-body">Firma perché si fida di te come persona prima che come agenzia. <strong>I dati e la proposta confermano l'istinto</strong>, non lo sostituiscono. Un caso studio simile al suo settore chiude la decisione.</div><div class="jt-touch">→ Ribrain: caso studio + call personale CEO</div></div>
+              <div class="jt-step" data-n="4"><div class="jt-phase">Retention</div><div class="jt-title">Rimane se cresce con te</div><div class="jt-body">Alta fedeltà se percepisce che l'agenzia cresce con lui — <strong>upsell naturale</strong> quando aprono nuovi canali o lanciano nuovi prodotti. La relazione personale è l'ancora principale.</div><div class="jt-touch">→ Ribrain: check-in strategici trimestrali</div></div>
+            </div>
+          </div>
+
+          <div class="pb-section">
+            <div class="pb-label">Pain · Gain · Red Flags</div>
+            <div class="pgr-grid">
+              <div class="pgr-col pain"><div class="pgr-h">😤 Pain Points</div><ul class="pgr-list"><li>Le agenzie grandi lo trattano come cliente piccolo — account junior, poca attenzione</li><li>Vuole crescere velocemente ma non sa a chi delegare la comunicazione</li><li>Ha bruciato soldi con agenzie che non capivano il suo settore</li><li>Fatica a trovare un partner che pensi strategicamente, non solo esegua</li><li>Non ha tempo per formare un'agenzia dal zero ogni anno</li></ul></div>
+              <div class="pgr-col gain"><div class="pgr-h">✅ Gain Creators</div><ul class="pgr-list"><li>Accesso diretto ai fondatori — parla con chi decide, non con un account</li><li>Proposta che mostra visione a 12 mesi, non solo il primo mese</li><li>Caso studio di un'azienda simile che ha scalato con Ribrain</li><li>Flessibilità: capisce quando la situazione cambia e si adatta</li><li>Chimica personale nella discovery — deve piacersi come persone</li></ul></div>
+              <div class="pgr-col red"><div class="pgr-h">🚩 Red Flags · non chiuderai se…</div><ul class="pgr-list"><li>Mandi un account junior alla call invece di andarci tu</li><li>La proposta è troppo rigida — non mostra flessibilità</li><li>Parli solo di execution, non di strategia e direzione</li><li>Non conosci il suo settore e si sente il primo cliente di quel verticale</li></ul></div>
+            </div>
+          </div>
+
+          <div class="key-msg">
+            <div class="km-label">Messaggio chiave · cosa dire in discovery</div>
+            <p class="km-text">"Lavoriamo con imprenditori che vogliono costruire un brand nel lungo periodo, non solo fare campagne. <em>Con noi parli direttamente con chi decide, non con un account che fa da intermediario.</em> Siamo piccoli abbastanza da curarti come cliente principale, grandi abbastanza da gestire qualsiasi canale hai bisogno."</p>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <!-- I 5 TRIGGER -->
     <div style="margin-top:48px">
-      <div style="font-family:var(--f-m);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-60);margin-bottom:16px">I 5 trigger d'acquisto · quando il cliente apre il portafoglio</div>
+      <div style="font-family:var(--f-m);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-60);margin-bottom:16px;display:flex;align-items:center;gap:10px">I 5 trigger d'acquisto · quando il cliente apre il portafoglio<span style="flex:1;height:1px;background:var(--rule);display:block"></span></div>
       <div class="ig ig--3">
-        <div class="ic ic--magenta" style="padding:24px 22px"><span class="ic-eyebrow">Trigger 1 · GDO</span><div class="ic-title" style="font-size:17px">Ingresso o consolidamento in GDO</div><p class="ic-body" style="font-size:13px">"Il buyer di Esselunga ci ha detto che il packaging non funziona a scaffale."</p></div>
-        <div class="ic ic--magenta" style="padding:24px 22px"><span class="ic-eyebrow">Trigger 2 · Lancio</span><div class="ic-title" style="font-size:17px">Nuovo prodotto o SKU</div><p class="ic-body" style="font-size:13px">Serve tutto insieme — naming, packaging, digital launch. Budget concentrato.</p></div>
-        <div class="ic ic--magenta" style="padding:24px 22px"><span class="ic-eyebrow">Trigger 3 · Rebranding</span><div class="ic-title" style="font-size:17px">Cambio generazionale o posizionamento</div><p class="ic-body" style="font-size:13px">Tipico delle PMI familiari quando entra la seconda generazione in azienda.</p></div>
-        <div class="ic ic--magenta" style="padding:24px 22px"><span class="ic-eyebrow">Trigger 4 · Performance</span><div class="ic-title" style="font-size:17px">Calo vendite improvviso</div><p class="ic-body" style="font-size:13px">"Le ads non portano più nulla, qualcosa non va." Crisi = opening.</p></div>
-        <div class="ic ic--magenta" style="padding:24px 22px"><span class="ic-eyebrow">Trigger 5 · Export</span><div class="ic-title" style="font-size:17px">Internazionalizzazione</div><p class="ic-body" style="font-size:13px">"Vogliamo entrare in Germania ma non sappiamo come presentarci." Alto ticket.</p></div>
-        <div class="ic ic--ink" style="padding:24px 22px;background:var(--bg-alt)"><span class="ic-eyebrow" style="color:var(--ink)">Regola d'oro</span><div class="ic-title" style="font-size:17px">Non vendere "marketing"</div><p class="ic-body" style="font-size:13px">Il cliente non compra marketing. Compra la soluzione al suo trigger. <strong>Il pitch deve parlare al trigger</strong>, non al servizio.</p></div>
+        <div class="ic ic--magenta" style="padding:24px 22px"><span class="ic-eyebrow">Trigger 1 · GDO</span><div class="ic-title" style="font-size:17px">Ingresso o consolidamento in GDO</div><p class="ic-body" style="font-size:13px">"Il buyer di Esselunga ci ha detto che il packaging non funziona a scaffale." Massimo intent d'acquisto — vuole tutto subito.</p></div>
+        <div class="ic ic--magenta" style="padding:24px 22px"><span class="ic-eyebrow">Trigger 2 · Lancio</span><div class="ic-title" style="font-size:17px">Nuovo prodotto o SKU</div><p class="ic-body" style="font-size:13px">Serve naming, packaging, digital launch integrati. Budget concentrato, decisioni rapide, alta urgenza.</p></div>
+        <div class="ic ic--magenta" style="padding:24px 22px"><span class="ic-eyebrow">Trigger 3 · Passaggio generazionale</span><div class="ic-title" style="font-size:17px">Nuova generazione in azienda</div><p class="ic-body" style="font-size:13px">Il figlio/nipote prende le redini e vuole modernizzare. Momento di massima apertura al cambiamento — e al primo referral giusto.</p></div>
+        <div class="ic ic--magenta" style="padding:24px 22px"><span class="ic-eyebrow">Trigger 4 · Performance</span><div class="ic-title" style="font-size:17px">Calo vendite o ads che non funzionano</div><p class="ic-body" style="font-size:13px">"Le ads non portano più nulla." Crisi = finestra di apertura. Il cliente è già motivato a cambiare — basta arrivare prima degli altri.</p></div>
+        <div class="ic ic--magenta" style="padding:24px 22px"><span class="ic-eyebrow">Trigger 5 · Export</span><div class="ic-title" style="font-size:17px">Internazionalizzazione</div><p class="ic-body" style="font-size:13px">"Vogliamo entrare in Germania ma non sappiamo come presentarci." Alto ticket, alta complessità, alta disponibilità a spendere.</p></div>
+        <div class="ic ic--ink" style="padding:24px 22px;background:var(--bg-alt)"><span class="ic-eyebrow" style="color:var(--ink)">Regola d'oro</span><div class="ic-title" style="font-size:17px">Non vendere "marketing"</div><p class="ic-body" style="font-size:13px">Il cliente non compra marketing. Compra la soluzione al suo trigger. <strong>Il pitch deve parlare al trigger specifico</strong>, non al servizio generico.</p></div>
       </div>
     </div>
   </div>

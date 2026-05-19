@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>M5 · Calendario Commerciale · Ribrain 2026–2027</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Anton&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<style>
+:root{--bg:#FFFFFF;--bg-alt:#FAFAF8;--bg-dark:#0A0A0A;--ink:#0A0A0A;--ink-80:#2C2C2A;--ink-60:rgba(10,10,10,.6);--ink-40:rgba(10,10,10,.4);--ink-20:rgba(10,10,10,.18);--ink-10:rgba(10,10,10,.08);--ink-05:rgba(10,10,10,.04);--rule:rgba(10,10,10,.1);--turquoise:#46FFDD;--turquoise-soft:#D4FFF7;--turquoise-dark:#0DAB8E;--blue:#006BFF;--blue-soft:#D6E7FF;--blue-dark:#0047B3;--magenta:#DE2BD9;--magenta-soft:#FBDDFA;--magenta-dark:#9C1A98;--coral:#F76143;--coral-soft:#FED9CF;--coral-dark:#B33A1F;--lux:#7F77DD;--lux-soft:#EEEDFE;--lux-dark:#3C3489;--foodbb:#0F6E56;--foodbb-soft:#C8F7E8;--b2b:#888780;--b2b-soft:#E5E4DC;--f-d:'Anton',Impact,sans-serif;--f-s:'Inter',system-ui,-apple-system,sans-serif;--f-m:'JetBrains Mono',monospace;--ease:cubic-bezier(0.16,1,0.3,1)}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{font-size:16px;scroll-behavior:smooth}
+body{background:var(--bg);color:var(--ink);font-family:var(--f-s);font-weight:400;line-height:1.6;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+body.nav-open{overflow:hidden}
+.wrap{max-width:1280px;margin:0 auto;padding:0 56px}
+@media(max-width:760px){.wrap{padding:0 24px}}
+.topbar{display:flex;align-items:center;justify-content:space-between;padding:18px 56px;border-bottom:1px solid var(--rule);position:sticky;top:0;z-index:100;background:rgba(255,255,255,.94);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px)}
+@media(max-width:760px){.topbar{padding:14px 24px}}
+.tb-left{display:flex;align-items:center;gap:18px}
+.tb-logo{font-family:var(--f-s);font-weight:700;font-size:15px;letter-spacing:-.02em;color:var(--ink);text-decoration:none}
+.tb-logo .dot{color:var(--turquoise)}
+.tb-sep{width:1px;height:14px;background:var(--ink-20)}
+.tb-label{font-family:var(--f-m);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-60)}
+@media(max-width:680px){.tb-label{display:none}}
+.tb-right{display:flex;align-items:center;gap:14px}
+.tb-back{font-family:var(--f-m);font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-60);text-decoration:none;display:flex;align-items:center;gap:6px;transition:color .2s}
+.tb-back:hover{color:var(--ink)}
+@media(max-width:680px){.tb-back span:not(.arr){display:none}}
+.nav-trigger{display:flex;align-items:center;gap:10px;background:none;border:1px solid var(--ink-20);padding:7px 14px 7px 12px;border-radius:24px;cursor:pointer;font-family:var(--f-m);font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-80);transition:all .2s}
+.nav-trigger:hover{background:var(--ink-05);border-color:var(--ink-40)}
+.nav-trigger .nt-lines{display:flex;flex-direction:column;gap:3px}
+.nav-trigger .nt-lines span{display:block;width:14px;height:1.5px;background:var(--ink);border-radius:1px}
+.nav-trigger .nt-lines span:nth-child(2){width:10px}
+.nav-overlay{position:fixed;inset:0;background:rgba(10,10,10,.7);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);opacity:0;visibility:hidden;transition:opacity .35s var(--ease),visibility .35s var(--ease);z-index:200}
+.nav-overlay.open{opacity:1;visibility:visible}
+.nav-drawer{position:fixed;top:0;right:0;width:480px;max-width:92vw;height:100vh;background:var(--bg);z-index:300;transform:translateX(100%);transition:transform .45s var(--ease);overflow-y:auto;display:flex;flex-direction:column;padding:32px 40px 40px}
+@media(max-width:560px){.nav-drawer{padding:24px 24px 32px}}
+.nav-drawer.open{transform:translateX(0)}
+.nav-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:28px;padding-bottom:18px;border-bottom:1px solid var(--rule)}
+.nav-title{font-family:var(--f-m);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-60)}
+.nav-close{background:none;border:none;cursor:pointer;color:var(--ink);padding:4px;display:flex}
+.nav-close svg{width:22px;height:22px}
+.nav-list{display:flex;flex-direction:column}
+.nav-item{display:grid;grid-template-columns:40px 1fr 20px;gap:14px;align-items:start;padding:14px 0;border-bottom:1px solid var(--rule);text-decoration:none;color:var(--ink);transition:background .2s,padding .2s}
+.nav-item:hover{background:var(--bg-alt);padding-left:8px;padding-right:8px}
+.nav-item.current{background:var(--turquoise-soft);padding-left:12px;padding-right:12px;border-bottom-color:var(--turquoise)}
+.nav-item.external{color:var(--coral-dark)}
+.nav-num{font-family:var(--f-d);font-size:22px;font-weight:400;color:var(--ink-40);line-height:1;padding-top:2px}
+.nav-item.external .nav-num{color:var(--coral)}
+.nav-item.current .nav-num{color:var(--turquoise-dark)}
+.nav-text{display:flex;flex-direction:column;gap:3px}
+.nav-label{font-family:var(--f-m);font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-40)}
+.nav-item.external .nav-label{color:var(--coral)}
+.nav-item.current .nav-label{color:var(--turquoise-dark)}
+.nav-headline{font-size:14.5px;font-weight:600;color:var(--ink);line-height:1.3}
+.nav-desc{font-size:11.5px;color:var(--ink-60);line-height:1.5}
+.nav-arrow{font-family:var(--f-d);font-size:18px;color:var(--ink-40);align-self:center}
+.hero{padding:88px 56px 56px;position:relative;overflow:hidden;border-bottom:1px solid var(--rule)}
+@media(max-width:760px){.hero{padding:56px 24px 40px}}
+.h-eyebrow{display:flex;align-items:center;gap:14px;margin-bottom:24px;opacity:0;transform:translateY(10px)}
+.h-line{width:36px;height:2px;background:var(--turquoise)}
+.h-tag{font-family:var(--f-m);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-60)}
+.h-h1{font-family:var(--f-d);font-weight:400;font-size:clamp(48px,7.5vw,108px);line-height:.96;margin-bottom:16px;opacity:0;transform:translateY(28px);letter-spacing:-.02em;text-transform:uppercase}
+.h-h1 .accent{color:var(--turquoise-dark)}
+.h-sub{font-size:15.5px;line-height:1.75;margin-bottom:0;max-width:780px;color:var(--ink-60);opacity:0;transform:translateY(16px)}
+.h-sub strong{color:var(--ink);font-weight:500}
+.section{padding:80px 0;border-top:1px solid var(--rule)}
+.section--alt{background:var(--bg-alt)}
+@media(max-width:760px){.section{padding:60px 0}}
+.s-head{margin-bottom:40px;max-width:920px}
+.s-mod{display:inline-flex;align-items:center;gap:8px;font-family:var(--f-m);font-size:10px;letter-spacing:.14em;text-transform:uppercase;padding:5px 12px;border:1px solid;border-radius:2px;margin-bottom:18px}
+.s-h2{font-family:var(--f-d);font-weight:400;font-size:clamp(32px,4.5vw,60px);line-height:1.02;letter-spacing:-.01em;text-transform:uppercase}
+.s-h2 .accent{display:block}
+.s-intro{font-size:14.5px;color:var(--ink-60);max-width:760px;line-height:1.75;margin-top:18px}
+.s-intro strong{color:var(--ink);font-weight:500}
+.filter-bar{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:24px}
+.fbtn{font-family:var(--f-m);font-size:10px;letter-spacing:.12em;text-transform:uppercase;padding:8px 14px;border:1px solid var(--ink-20);background:var(--bg);color:var(--ink-60);cursor:pointer;border-radius:24px;transition:all .2s;display:flex;align-items:center;gap:6px}
+.fbtn:hover{border-color:var(--ink-40);color:var(--ink)}
+.fbtn .dot{width:8px;height:8px;border-radius:50%}
+.fbtn.active{background:var(--ink);color:#fff;border-color:var(--ink)}
+.month-block{border:1px solid var(--rule);margin-bottom:14px;background:var(--bg);border-radius:4px;overflow:hidden}
+.month-block.hidden{display:none}
+.month-header{display:grid;grid-template-columns:180px 1fr auto;gap:16px;align-items:center;padding:18px 24px;background:var(--bg-alt);border-bottom:1px solid var(--rule)}
+@media(max-width:680px){.month-header{grid-template-columns:1fr;gap:8px;padding:16px 18px}}
+.month-name{font-family:var(--f-d);font-size:24px;font-weight:400;color:var(--ink);letter-spacing:-.01em;text-transform:uppercase;line-height:1}
+.month-events{font-size:12.5px;color:var(--ink-60);line-height:1.5}
+.month-events strong{color:var(--ink);font-weight:500}
+.month-temp{font-family:var(--f-m);font-size:10px;letter-spacing:.12em;text-transform:uppercase;padding:5px 12px;border-radius:20px;white-space:nowrap}
+.t-low{background:var(--ink-05);color:var(--ink-40)}
+.t-med{background:var(--blue-soft);color:var(--blue)}
+.t-hi{background:var(--coral-soft);color:var(--coral-dark)}
+.t-max{background:var(--turquoise);color:#0A4A3F}
+.sector-rows{padding:6px 24px 14px}
+@media(max-width:680px){.sector-rows{padding:6px 18px 14px}}
+.s-row{display:grid;grid-template-columns:110px 1fr 1fr 1.2fr;gap:16px;padding:14px 0;border-bottom:1px solid var(--rule);align-items:start}
+.s-row.hidden{display:none}
+.s-row:last-child{border-bottom:none}
+@media(max-width:880px){.s-row{grid-template-columns:1fr;gap:6px;padding:12px 0}}
+.sr-tag{font-family:var(--f-m);font-size:9.5px;letter-spacing:.1em;text-transform:uppercase;padding:4px 10px;border-radius:20px;display:inline-flex;align-items:center;gap:5px;width:fit-content;font-weight:500}
+.sr-tag .dot{width:6px;height:6px;border-radius:50%}
+.sr-content{display:flex;flex-direction:column;gap:6px}
+.sr-trigger{font-size:12.5px;color:var(--ink-60);font-style:italic;line-height:1.5}
+.sr-action{font-size:13.5px;font-weight:500;color:var(--ink);line-height:1.45}
+.sr-detail{font-size:12.5px;color:var(--ink-60);line-height:1.55}
+.sr-detail strong{color:var(--ink);font-weight:500}
+.sr-channel{font-family:var(--f-m);font-size:9.5px;letter-spacing:.06em;color:var(--ink-40);margin-top:4px}
+.sb-foodbc{background:var(--turquoise-soft);color:var(--turquoise-dark)}.sb-foodbc .dot{background:var(--turquoise-dark)}
+.sb-foodbb{background:var(--foodbb-soft);color:var(--foodbb)}.sb-foodbb .dot{background:var(--foodbb)}
+.sb-lux{background:var(--lux-soft);color:var(--lux-dark)}.sb-lux .dot{background:var(--lux)}
+.sb-beauty{background:var(--magenta-soft);color:var(--magenta-dark)}.sb-beauty .dot{background:var(--magenta)}
+.sb-tur{background:var(--blue-soft);color:var(--blue-dark)}.sb-tur .dot{background:var(--blue)}
+.sb-b2b{background:var(--b2b-soft);color:#444441}.sb-b2b .dot{background:var(--b2b)}
+.info-box{padding:32px;background:var(--bg);border:1px solid var(--rule);border-left:3px solid var(--turquoise-dark);border-radius:4px;margin-top:24px}
+.info-title{font-size:18px;font-weight:600;color:var(--ink);margin-bottom:12px}
+.info-body{font-size:14px;color:var(--ink-60);line-height:1.75}
+.info-body strong{color:var(--ink);font-weight:500}
+.info-body p{margin-bottom:12px}
+.focus-block{padding:36px 32px;background:var(--bg);border:1px solid var(--rule);border-radius:4px;margin-top:24px;border-top:4px solid var(--turquoise-dark)}
+.focus-block.b2b{border-top-color:var(--foodbb)}
+.focus-tag{font-family:var(--f-m);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--turquoise-dark);margin-bottom:8px}
+.focus-block.b2b .focus-tag{color:var(--foodbb)}
+.focus-title{font-family:var(--f-d);font-size:30px;font-weight:400;line-height:1.05;color:var(--ink);margin-bottom:12px;letter-spacing:-.01em;text-transform:uppercase}
+.focus-lead{font-size:14px;color:var(--ink-60);line-height:1.75;margin-bottom:24px}
+.focus-lead strong{color:var(--ink);font-weight:500}
+.focus-table{width:100%;border-collapse:collapse;font-size:13px;overflow-x:auto;display:block;-webkit-overflow-scrolling:touch}
+.focus-table thead,.focus-table tbody{display:table;width:100%;min-width:760px}
+.focus-table th{text-align:left;font-family:var(--f-m);font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-60);padding:10px 14px 10px 0;border-bottom:1px solid var(--ink-20);font-weight:500;vertical-align:bottom;white-space:nowrap}
+.focus-table td{padding:14px 14px 14px 0;border-bottom:1px solid var(--rule);vertical-align:top;line-height:1.5;color:var(--ink-60)}
+.focus-table td:first-child{font-weight:500;color:var(--ink);white-space:nowrap}
+.focus-table tr.peak td{background:var(--turquoise-soft)}
+.focus-block.b2b .focus-table tr.peak td{background:var(--foodbb-soft)}
+.meta-box{padding:40px;background:var(--bg-dark);color:rgba(255,255,255,.92);border-radius:4px;margin-top:32px;position:relative;overflow:hidden}
+@media(max-width:680px){.meta-box{padding:28px 20px}}
+.meta-box::before{content:"";position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--turquoise),var(--blue),var(--coral))}
+.meta-tag{font-family:var(--f-m);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--turquoise);margin-bottom:10px}
+.meta-title{font-family:var(--f-d);font-size:clamp(28px,3.5vw,42px);font-weight:400;line-height:1.05;letter-spacing:-.01em;text-transform:uppercase;margin-bottom:16px}
+.meta-body{font-size:14px;color:rgba(255,255,255,.6);line-height:1.75;max-width:760px}
+.meta-body strong{color:rgba(255,255,255,.95);font-weight:500}
+.meta-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:2px;margin-top:24px}
+@media(max-width:760px){.meta-grid{grid-template-columns:1fr}}
+.meta-cell{padding:20px;background:rgba(255,255,255,.04)}
+.meta-cell-month{font-family:var(--f-d);font-size:22px;color:var(--turquoise);letter-spacing:-.01em;text-transform:uppercase;line-height:1;margin-bottom:8px}
+.meta-cell-sector{font-family:var(--f-m);font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.5);margin-bottom:12px}
+.meta-cell-copy{font-size:12.5px;color:rgba(255,255,255,.85);line-height:1.55;font-style:italic;padding-left:12px;border-left:2px solid rgba(255,255,255,.15)}
+.footer{padding:40px 0 24px;border-top:1px solid var(--rule);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px}
+.f-left{display:flex;align-items:center;gap:12px;font-family:var(--f-s);font-weight:700;font-size:15px;color:var(--ink)}
+.f-left .dot{color:var(--turquoise)}
+.f-sep{width:1px;height:14px;background:var(--ink-20)}
+.f-tag{font-family:var(--f-m);font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-40)}
+.f-right{font-family:var(--f-m);font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-40)}
+</style>
+</head>
+<body>
+
+<header class="topbar">
+  <div class="tb-left">
+    <a href="index.html" class="tb-logo">ribrain<span class="dot">.</span></a>
+    <span class="tb-sep"></span>
+    <span class="tb-label">M5 · Calendario Commerciale</span>
+  </div>
+  <div class="tb-right">
+    <a href="index.html" class="tb-back"><span class="arr">←</span><span>Torna a M0</span></a>
+    <button class="nav-trigger" onclick="openNav()" aria-label="Apri navigazione">
+      <span class="nt-lines"><span></span><span></span></span><span>Indice</span>
+    </button>
+  </div>
+</header>
+
+<div class="nav-overlay" id="navOverlay" onclick="closeNav()"></div>
+<aside class="nav-drawer" id="navDrawer">
+  <div class="nav-head">
+    <div class="nav-title">Indice · 9 moduli + decision box</div>
+    <button class="nav-close" onclick="closeNav()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6L6 18M6 6l12 12"/></svg></button>
+  </div>
+  <nav class="nav-list">
+    <a href="index.html" class="nav-item"><div class="nav-num">00</div><div class="nav-text"><div class="nav-label">Cover · Executive</div><div class="nav-headline">Find your why</div><div class="nav-desc">Executive summary completo</div></div><span class="nav-arrow">←</span></a>
+    <a href="index.html#m1" class="nav-item"><div class="nav-num">01</div><div class="nav-text"><div class="nav-label">Quadro mercato</div><div class="nav-headline">Terra di mezzo</div><div class="nav-desc">Commodity trap, gap operativo</div></div><span class="nav-arrow">←</span></a>
+    <a href="index.html#m2" class="nav-item"><div class="nav-num">02</div><div class="nav-text"><div class="nav-label">Cliente ideale</div><div class="nav-headline">Nome, volto, trigger</div><div class="nav-desc">ICP, buying committee, 5 trigger</div></div><span class="nav-arrow">←</span></a>
+    <a href="index.html#m3" class="nav-item"><div class="nav-num">03</div><div class="nav-text"><div class="nav-label">Posizionamento</div><div class="nav-headline">3 strade, 1 imboccata</div><div class="nav-desc">Brand unico + landing verticali</div></div><span class="nav-arrow">←</span></a>
+    <a href="index.html#m4" class="nav-item"><div class="nav-num">04</div><div class="nav-text"><div class="nav-label">Acquisizione</div><div class="nav-headline">Meta · Referral · LinkedIn</div><div class="nav-desc">Mix B+C, budget 1.5–2k€/mese</div></div><span class="nav-arrow">←</span></a>
+    <a href="#top" class="nav-item current" onclick="closeNav()"><div class="nav-num">05</div><div class="nav-text"><div class="nav-label">Calendario · qui</div><div class="nav-headline">12 mesi · 6 settori</div><div class="nav-desc">Heatmap, trigger, finestre outreach</div></div><span class="nav-arrow">↓</span></a>
+    <a href="m6.html" class="nav-item external"><div class="nav-num">06</div><div class="nav-text"><div class="nav-label">Economics</div><div class="nav-headline">Da 600k a 750k</div><div class="nav-desc">Configuratori, proiezioni 18 mesi</div></div><span class="nav-arrow">→</span></a>
+    <a href="index.html#m7" class="nav-item"><div class="nav-num">07</div><div class="nav-text"><div class="nav-label">Operations</div><div class="nav-headline">Il bottleneck siamo noi</div><div class="nav-desc">Flow, Co-work, capacity</div></div><span class="nav-arrow">←</span></a>
+    <a href="index.html#m8" class="nav-item"><div class="nav-num">08</div><div class="nav-text"><div class="nav-label">Mid-term</div><div class="nav-headline">Adattivi non profetici</div><div class="nav-desc">Decision tree 4 step</div></div><span class="nav-arrow">←</span></a>
+    <a href="index.html#m9" class="nav-item"><div class="nav-num">09</div><div class="nav-text"><div class="nav-label">Roadmap 90gg</div><div class="nav-headline">Prime 12 settimane</div><div class="nav-desc">Setup · Activation · Optimize · Scale</div></div><span class="nav-arrow">←</span></a>
+    <a href="index.html#decision" class="nav-item"><div class="nav-num">⊕</div><div class="nav-text"><div class="nav-label">Decision box</div><div class="nav-headline">Primo euro</div><div class="nav-desc">3 azioni leva massima</div></div><span class="nav-arrow">←</span></a>
+  </nav>
+</aside>
+
+<section class="hero" id="top">
+  <div class="h-eyebrow" id="he">
+    <span class="h-line"></span>
+    <span class="h-tag">M5 · Calendario commerciale · deep-dive</span>
+  </div>
+  <h1 class="h-h1" id="hh">12 mesi.<br>6 settori.<br><span class="accent">Mese per mese.</span></h1>
+  <p class="h-sub" id="hs">Il calendario commerciale esploso. Per ogni mese di <strong>Giugno 2026 → Maggio 2027</strong>, per ogni settore, vedi il trigger che apre l'opportunità, l'azione concreta che Ribrain deve fare, il servizio con più intent di acquisto e il canale dove muoverti. Sotto, il <strong>focus approfondito su Food B2C e Food B2B</strong> e una sezione finale dedicata a <strong>come tradurre il calendario in piano Meta Ads</strong>.</p>
+</section>
+
+<section class="section">
+  <div class="wrap">
+    <div class="s-head">
+      <span class="s-mod" style="color:var(--turquoise-dark);border-color:var(--turquoise-dark);background:var(--turquoise-soft)"><span style="opacity:.5">§1</span> · Come leggere il calendario</span>
+      <h2 class="s-h2">Non è cosa <em style="font-style:normal;color:var(--ink-40)">facciamo</em>.<br><span class="accent" style="color:var(--turquoise-dark)">È cosa pensa il prospect.</span></h2>
+    </div>
+    <div class="info-box">
+      <div class="info-title">Il calendario non descrive le campagne di Ribrain. Descrive lo stato d'animo del cliente.</div>
+      <div class="info-body">
+        <p>Quando leggi "Beauty · giugno · ADV summer skin-care" non significa che Ribrain debba fare quella campagna. Significa che a giugno <strong>le aziende beauty hanno in testa quella campagna come priorità interna</strong> — e quindi sono particolarmente ricettive a sentire un'agenzia che le può aiutare a farla bene.</p>
+        <p>La logica è: <strong>il tuo prospect ha un trigger aperto in quel mese</strong>. Se arrivi con un messaggio o un contenuto LinkedIn che parla esattamente di quel trigger, sei rilevante. Se arrivi a parlare d'altro, sei rumore.</p>
+        <p>Quindi il calendario ti dice due cose insieme: <strong>cosa sta pensando il tuo prospect</strong> mese per mese, e <strong>come devi comunicare per essere nella sua testa al momento giusto</strong>. È la mappa per allineare contenuti LinkedIn, copy Meta Ads, oggetti email e tempistiche dei partner referral.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section section--alt">
+  <div class="wrap">
+    <div class="s-head">
+      <span class="s-mod" style="color:var(--coral-dark);border-color:var(--coral);background:var(--coral-soft)"><span style="opacity:.5">§2</span> · Calendario esploso</span>
+      <h2 class="s-h2">12 mesi.<br><span class="accent" style="color:var(--coral)">Filtra per settore.</span></h2>
+      <p class="s-intro">Usa i filtri qui sotto per isolare un singolo settore o vedere tutti insieme. Per ogni mese trovi l'evento o il contesto che apre l'opportunità, l'azione che Ribrain deve fare in quel momento, il servizio con più intent e il canale di outreach più efficace.</p>
+    </div>
+
+    <div class="filter-bar" id="filterBar">
+      <button class="fbtn active" data-sec="all">Tutti i settori</button>
+      <button class="fbtn" data-sec="foodbc"><span class="dot" style="background:var(--turquoise-dark)"></span>Food B2C</button>
+      <button class="fbtn" data-sec="foodbb"><span class="dot" style="background:var(--foodbb)"></span>Food B2B</button>
+      <button class="fbtn" data-sec="lux"><span class="dot" style="background:var(--lux)"></span>Luxury</button>
+      <button class="fbtn" data-sec="beauty"><span class="dot" style="background:var(--magenta)"></span>Beauty</button>
+      <button class="fbtn" data-sec="tur"><span class="dot" style="background:var(--blue)"></span>Turismo</button>
+      <button class="fbtn" data-sec="b2b"><span class="dot" style="background:var(--b2b)"></span>B2B Servizi</button>
+    </div>
+
+    <div id="monthList"></div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap">
+    <div class="s-head">
+      <span class="s-mod" style="color:var(--turquoise-dark);border-color:var(--turquoise-dark);background:var(--turquoise-soft)"><span style="opacity:.5">§3</span> · Focus approfondito</span>
+      <h2 class="s-h2">Food B2C +<br><span class="accent" style="color:var(--turquoise-dark)">Food B2B.</span></h2>
+      <p class="s-intro">Il food è il settore con il <strong>ciclo di fiere più strutturato e prevedibile</strong> in Italia. Tre eventi chiave: <strong>TuttoFood Milano (maggio)</strong> è il picco assoluto dell'anno, <strong>SIAL Paris (ottobre)</strong> per l'export, <strong>Marca Bologna (gennaio)</strong> per il private label. Qui sotto, le finestre di outreach mese per mese — per B2C e B2B in modo differenziato perché i decisori, i messaggi e i tempi sono diversi.</p>
+    </div>
+
+    <div class="focus-block">
+      <div class="focus-tag">Food B2C · finestre prioritarie</div>
+      <div class="focus-title">Aziende food con canali B2C, GDO, retail.</div>
+      <p class="focus-lead">Il messaggio chiave per la landing food B2C deve parlare a UN problema: <strong>"Il prodotto è buono. Perché non vende abbastanza a scaffale?"</strong>. È il pain point centrale che accomuna tutti i clienti food B2C — il packaging sbagliato, la presenza digitale assente, il sell-out stagnante sono sintomi dello stesso problema. Ribrain risolve con metodo integrato: packaging che vende + digital che porta il consumatore a scaffale.</p>
+      <table class="focus-table">
+        <thead><tr><th>Mese</th><th>Calore</th><th>Trigger</th><th>Azione Ribrain</th><th>Messaggio chiave</th></tr></thead>
+        <tbody>
+          <tr><td>Giugno 2026</td><td>Alta</td><td>Post-TuttoFood — decisori caldi</td><td>Follow-up lead fiera, case study GDO</td><td>"Dati di sell-out reali di clienti simili"</td></tr>
+          <tr><td>Settembre</td><td>Massima</td><td>Back-to-school + lancio autunno GDO</td><td>Pitch packaging autunnale + ADV stagionale</td><td>"Come far ruotare il prodotto nei mesi chiave"</td></tr>
+          <tr><td>Ottobre</td><td>Massima</td><td>SIAL Paris — internazionalizzazione</td><td>Outreach export + packaging multilingue</td><td>"Il packaging che vende anche fuori dall'Italia"</td></tr>
+          <tr><td>Novembre</td><td>Alta</td><td>Pre-Natale GDO — gifting food</td><td>Campagne gifting + design limited edition</td><td>"Confezioni regalo che moltiplicano il ticket medio"</td></tr>
+          <tr><td>Gennaio 2027</td><td>Alta</td><td>Marca Bologna — private label</td><td>Outreach aziende PL + packaging rebrand</td><td>"Il packaging PL che si distingue dalla marea grigia"</td></tr>
+          <tr><td>Marzo</td><td>Alta</td><td>Pre-TuttoFood — buyer GDO attivi</td><td>LinkedIn outbound buyer e marketing manager</td><td>"Essere nella short-list prima che apra la fiera"</td></tr>
+          <tr><td>Aprile</td><td>Alta</td><td>Sprint finale pre-TuttoFood</td><td>Meta Ads su aziende food che cercano agenzia</td><td>"Pronti per TuttoFood? Scopri come ci siamo preparati"</td></tr>
+          <tr class="peak"><td>Maggio</td><td>Massima</td><td>TuttoFood 11–14/5 · picco assoluto</td><td>Networking + chiusura contratti post-fiera</td><td>"Il momento con il massimo intent dell'anno"</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="focus-block b2b">
+      <div class="focus-tag">Food B2B · finestre prioritarie</div>
+      <div class="focus-title">HoReCa, ingredienti, private label, food service.</div>
+      <p class="focus-lead">La landing food B2B di Ribrain deve essere <strong>diversa da quella B2C</strong>. Non immagini di piatti — <strong>dati, benchmark, logica</strong>. Il claim: <em>"Aiutiamo le aziende food B2B a diventare la prima scelta nei database dei buyer GDO e HoReCa"</em>. Casi studio con numeri reali, lead generati, contratti chiusi. Il decisore tecnico non si convince con la creatività — si convince con la competenza dimostrata.</p>
+      <table class="focus-table">
+        <thead><tr><th>Mese</th><th>Calore</th><th>Trigger</th><th>Azione Ribrain</th><th>Messaggio chiave</th></tr></thead>
+        <tbody>
+          <tr><td>Giugno 2026</td><td>Alta</td><td>Post-TuttoFood — HoReCa e ingredienti</td><td>Nurturing buyer HoReCa con contenuto tecnico</td><td>"ROI digitale misurabile nel B2B food"</td></tr>
+          <tr><td>Settembre</td><td>Massima</td><td>Pre-SIAL Paris — buyer internazionali</td><td>LinkedIn outbound su buyer e importatori</td><td>"Intercettare il decisore prima della fiera"</td></tr>
+          <tr><td>Ottobre</td><td>Massima</td><td>SIAL Paris + Cibus Connect</td><td>Presenza fiera + follow-up aggressivo</td><td>"Contenuto tecnico che giustifica il premium"</td></tr>
+          <tr><td>Novembre</td><td>Alta</td><td>Fi Europe Frankfurt 17–19/11</td><td>Outreach R&D + ingredienti + food tech</td><td>"Il brand B2B food che i buyer cercano online"</td></tr>
+          <tr><td>Gennaio 2027</td><td>Media-Alta</td><td>Marca Bologna — private label B2B</td><td>Pipeline contratti annuali con produttori PL</td><td>"Come abbiamo aiutato X a diventare fornitore GDO"</td></tr>
+          <tr><td>Marzo</td><td>Alta</td><td>Pre-TuttoFood — pianificazione buyer</td><td>Case study + LinkedIn thought leadership</td><td>"L'agenzia che capisce il marketing B2B del food"</td></tr>
+          <tr class="peak"><td>Maggio</td><td>Massima</td><td>TuttoFood · massimo intent B2B</td><td>Closing lead + attivazione nuovi contratti</td><td>"Conversion rate più alto dell'anno"</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<section class="section section--alt">
+  <div class="wrap">
+    <div class="s-head">
+      <span class="s-mod" style="color:var(--coral-dark);border-color:var(--coral);background:var(--coral-soft)"><span style="opacity:.5">§4</span> · Calendario → piano Meta Ads</span>
+      <h2 class="s-h2">Stesso budget,<br><span class="accent" style="color:var(--coral)">10× più rilevante.</span></h2>
+      <p class="s-intro">Il calendario non serve solo per outreach manuale. Serve a <strong>tarare i copy di Meta Ads mese per mese</strong>. Invece di una campagna generica "Ribrain — agenzia marketing", fai campagne con messaggi specifici per settore <strong>nel momento in cui quel settore è caldo</strong>. Budget piccolo per ogni copy, ma iper-pertinente per chi la vede. Sotto, 6 esempi di copy mensili tarati sul calendario.</p>
+    </div>
+
+    <div class="meta-box">
+      <div class="meta-tag">Esempi di copy Meta Ads calati sul calendario</div>
+      <div class="meta-title">6 campagne, 6 mesi, 6 trigger diversi.</div>
+      <p class="meta-body">Stesso budget complessivo (~1.200€/mese), ma diviso in 1–2 angoli per mese tarati sul momento del settore. Targeting Meta: <strong>fatturato 1–10M€</strong>, <strong>codici ATECO settore</strong>, <strong>job title decisori</strong> (CEO, Marketing Manager, Brand Manager). I copy qui sono esempi base — vanno A/B testati su titolo + immagine, mantenendo il messaggio centrale.</p>
+
+      <div class="meta-grid">
+        <div class="meta-cell">
+          <div class="meta-cell-month">Settembre</div>
+          <div class="meta-cell-sector">Food B2C · autunno GDO</div>
+          <p class="meta-cell-copy">"Settembre è il momento dell'anno in cui i buyer GDO selezionano le novità autunnali. Il tuo packaging è pronto a competere?"</p>
+        </div>
+        <div class="meta-cell">
+          <div class="meta-cell-month">Ottobre</div>
+          <div class="meta-cell-sector">Food export · post-SIAL</div>
+          <p class="meta-cell-copy">"Tornati da SIAL con i contatti giusti ma senza materiale che vende davvero? Trasformiamo i lead in contratti."</p>
+        </div>
+        <div class="meta-cell">
+          <div class="meta-cell-month">Novembre</div>
+          <div class="meta-cell-sector">Beauty · gifting natalizio</div>
+          <p class="meta-cell-copy">"Le campagne natalizie del beauty si chiudono in 4 settimane. Hai il packaging gift e i contenuti pronti?"</p>
+        </div>
+        <div class="meta-cell">
+          <div class="meta-cell-month">Gennaio</div>
+          <div class="meta-cell-sector">Food PL · pre-Marca</div>
+          <p class="meta-cell-copy">"Stai presentando un private label a Marca Bologna? Il design del pack vale il 60% della decisione del buyer."</p>
+        </div>
+        <div class="meta-cell">
+          <div class="meta-cell-month">Marzo</div>
+          <div class="meta-cell-sector">Food B2B · pre-TuttoFood</div>
+          <p class="meta-cell-copy">"6 settimane a TuttoFood. Hai un piano digital coerente con lo stand o stai ancora ragionando solo offline?"</p>
+        </div>
+        <div class="meta-cell">
+          <div class="meta-cell-month">Aprile</div>
+          <div class="meta-cell-sector">Generalista · evergreen</div>
+          <p class="meta-cell-copy">"3+ anni di retention media coi nostri clienti. Non vendiamo campagne — costruiamo brand che durano."</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="info-box" style="margin-top:32px">
+      <div class="info-title">Regola operativa · 1 campagna verticale + 1 brand evergreen</div>
+      <div class="info-body">
+        <p>Ogni mese, due campagne attive in parallelo: <strong>una "stagionale verticale"</strong> sul settore caldo del mese (copy + immagine tarate, ~70% del budget) + <strong>una "brand evergreen"</strong> generalista che gira tutto l'anno (~30% del budget). Quella stagionale cambia ogni 4–6 settimane. Quella evergreen resta stabile e accumula segnale algoritmico.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="wrap">
+  <div class="footer">
+    <div class="f-left">
+      <span>ribrain<span class="dot">.</span></span>
+      <span class="f-sep"></span>
+      <span class="f-tag">Piano strategico interno</span>
+    </div>
+    <div class="f-right">M5 · Calendario commerciale · Maggio 2026 · Confidenziale soci</div>
+  </div>
+</div>
+
+<script>
+gsap.registerPlugin(ScrollTrigger);
+
+// Nav drawer
+function openNav(){document.getElementById('navOverlay').classList.add('open');document.getElementById('navDrawer').classList.add('open');document.body.classList.add('nav-open')}
+function closeNav(){document.getElementById('navOverlay').classList.remove('open');document.getElementById('navDrawer').classList.remove('open');document.body.classList.remove('nav-open')}
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeNav()});
+
+// Hero anim
+gsap.to('#he',{opacity:1,y:0,duration:.8,ease:'power3.out',delay:.15});
+gsap.to('#hh',{opacity:1,y:0,duration:1,ease:'power3.out',delay:.3});
+gsap.to('#hs',{opacity:1,y:0,duration:.8,ease:'power3.out',delay:.6});
+
+// ===== CALENDAR DATA =====
+const SECTORS=[
+  {id:'foodbc',label:'Food B2C',cls:'sb-foodbc'},
+  {id:'foodbb',label:'Food B2B',cls:'sb-foodbb'},
+  {id:'lux',label:'Luxury',cls:'sb-lux'},
+  {id:'beauty',label:'Beauty',cls:'sb-beauty'},
+  {id:'tur',label:'Turismo',cls:'sb-tur'},
+  {id:'b2b',label:'B2B Servizi',cls:'sb-b2b'},
+];
+
+const MONTHS=[
+  {n:'Giugno 2026',ev:'<strong>Post-TuttoFood</strong> — finestra follow-up · alta stagione turismo avviata',temp:'Alta',tcls:'t-hi',rows:{
+    foodbc:{trigger:'Post-TuttoFood — decisori caldi dopo la fiera',action:'Follow-up lead da fiera, case study GDO',detail:'ADV social + packaging stagionale per autunno in pipeline',channel:'Email diretta · LinkedIn · call'},
+    foodbb:{trigger:'Post-TuttoFood — HoReCa e ingredienti',action:'Nurturing contatti buyer HoReCa',detail:'Contenuto tecnico LinkedIn, case study ROI digitale',channel:'LinkedIn outbound · email'},
+    lux:{trigger:'Summer collection già live — campagne estate',action:'Lifestyle estivo, contenuti aspirazionali',detail:'ADV social + Google su collezioni stagionali',channel:'Instagram · Meta · Google'},
+    beauty:{trigger:'Picco campagne solari (skin-care + sun protection)',action:'ADV summer skin-care, influencer marketing',detail:'Social ADV + content stagionale tarato sui solari',channel:'Social · e-commerce · influencer'},
+    tur:{trigger:'Alta stagione avviata — pressione last-minute',action:'Boost last-minute + remarketing prenotazioni',detail:'Meta Ads last-minute + Google Hotel Ads',channel:'Meta · Google Ads'},
+    b2b:{trigger:'Revisione semestrale budget marketing',action:'Audit mid-year, proposte ottimizzazione H2',detail:'Rebranding/web audit, consulenza riallocazione spend',channel:'LinkedIn · incontri diretti'}
+  }},
+  {n:'Luglio 2026',ev:'Picco estivo · pianificazione autunno · alta stagione',temp:'Media',tcls:'t-med',rows:{
+    foodbc:{trigger:'Picco estivo GDO (BBQ, gelato, bevande)',action:'Campagne griglia/estate, lanci specifici',detail:'Social + ADV stagionale, packaging summer edition',channel:'Meta · Instagram'},
+    foodbb:{trigger:'Pianificazione autunno — buyer iniziano brief',action:'Outreach per contratti Q4',detail:'LinkedIn content tecnico, white paper su trend autunnali',channel:'LinkedIn outbound · webinar B2B'},
+    lux:{trigger:'Stagione turismo lusso + escape vacanze',action:'Contenuti aspirazionali vacanza, lifestyle',detail:'Social brand content + storie premium',channel:'Instagram Stories · Reels'},
+    beauty:{trigger:'Analisi Q2 + progettualità Q4',action:'Brief campagne autunno + Cosmoprof Bologna',detail:'Consulenza strategica, calendar editoriale H2',channel:'Direct contact · call strategiche'},
+    tur:{trigger:'Alta stagione piena — bisogno content live',action:'Contenuti live + UGC + gestione community',detail:'Social management intensivo + reputation',channel:'Instagram · TikTok · TripAdvisor'},
+    b2b:{trigger:'Avvio Q3, pianificazione H2 in corso',action:'Proposte obiettivi Q4 + chiusura anno',detail:'Strategia integrata, account-based marketing',channel:'LinkedIn · eventi B2B'}
+  }},
+  {n:'Agosto 2026',ev:'Mercato in pausa · solo turismo attivo',temp:'Bassa',tcls:'t-low',rows:{
+    foodbc:{trigger:'Mercato B2B fermo, B2C attivo (acquisti estate)',action:'Brand awareness consumer, no outbound',detail:'Social content + video estivi, niente pitch nuovi',channel:'Instagram · TikTok organico'},
+    foodbb:{trigger:'Pausa decisori — preparazione interna',action:'Produzione case study e materiali per settembre',detail:'Nessun outreach attivo. Costruzione asset.',channel:'—'},
+    lux:{trigger:'Ferie aziendali, remarketing leggero',action:'Email brand awareness, nurturing soft',detail:'Newsletter, contenuti evergreen luxury',channel:'Email marketing · social'},
+    beauty:{trigger:'Pianificazione 2027 nelle big company',action:'Strategia annuale beauty, brief Q1',detail:'Consulenza, webinar, content thought leadership',channel:'Email · webinar'},
+    tur:{trigger:'Massimo della stagione — engagement live',action:'Post live + engagement, no outreach commerciale',detail:'Solo social management su clienti attivi',channel:'Social organico'},
+    b2b:{trigger:'Pausa totale, nessun outreach',action:'Preparazione setembre + case study + content',detail:'Costruzione asset, no nuove proposte',channel:'—'}
+  }},
+  {n:'Settembre 2026',ev:'<strong>Bimestre più denso dell\'anno</strong> · back-to-school + budget Q4 in definizione',temp:'Massima',tcls:'t-max',rows:{
+    foodbc:{trigger:'Back-to-school + autunno GDO + nuovi SKU',action:'Lanci prodotto autunnali, pitch packaging',detail:'ADV + packaging autunno, case study sell-out',channel:'Meta · Display · LinkedIn'},
+    foodbb:{trigger:'Pre-SIAL Paris (ottobre) — buyer attivi',action:'Outreach pre-fiera buyer e marketing manager',detail:'LinkedIn + contenuto tecnico per export',channel:'LinkedIn outbound · email'},
+    lux:{trigger:'MFW Settembre + Vicenzaoro + back-to-business',action:'Lancio collezioni FW, pitch luxury',detail:'ADV Meta/Google collezione + content social premium',channel:'Social · Paid media'},
+    beauty:{trigger:'Milano Beauty Week 17–21/9 + MCB Paris',action:'Lancio linee autunno, pitch packaging',detail:'Social ADV + PR + influencer mid-tier',channel:'Social · stampa · influencer'},
+    tur:{trigger:'Chiusura stagione + early booking inverno/estate',action:'Campagne inverno/montagna + estate 2027',detail:'ADV early booking, partnership tour operator',channel:'Google · Meta · newsletter'},
+    b2b:{trigger:'Ritorno ferie + avvio Q4 + budget 2027',action:'Outreach campagne autunno + brief 2027',detail:'ADV digitale + blog SEO, proposte pluriennali',channel:'LinkedIn · email · webinar'}
+  }},
+  {n:'Ottobre 2026',ev:'<strong>SIAL Paris 17–21</strong> · TTG Travel · Beautyworld ME · budget 2027 in approvazione',temp:'Massima',tcls:'t-max',rows:{
+    foodbc:{trigger:'SIAL Paris 17–21/10 — internazionalizzazione',action:'Follow-up fiera + outreach export',detail:'ADV international + packaging multilingue',channel:'Email · LinkedIn · stand SIAL'},
+    foodbb:{trigger:'SIAL + Cibus Connect — buyer internazionali',action:'Lead gen buyer + ABM su importatori',detail:'Contenuto tecnico + CRM nurturing post-fiera',channel:'On-site · LinkedIn · email'},
+    lux:{trigger:'Salone Nautico + Vicenzaoro + pre-Natale lusso',action:'Campagne pre-Natale gift luxury',detail:'ADV + storytelling brand + content premium',channel:'Instagram · LinkedIn · Google'},
+    beauty:{trigger:'Beautyworld ME Dubai 27–29/10 — export ME',action:'Export beauty Medio Oriente, branding locale',detail:'Branding + packaging localizzato + trade PR',channel:'Trade press · LinkedIn'},
+    tur:{trigger:'TTG Travel Experience Rimini 14–16/10',action:'Partnership tour operator + brand redesign',detail:'Branding/web per operatori turismo',channel:'Fiera · LinkedIn'},
+    b2b:{trigger:'Budget 2027 in definizione, ultime call',action:'Proposte pluriennali + closing 2026',detail:'Branding + web per progetti 2027 + ABM',channel:'Email · LinkedIn · meeting'}
+  }},
+  {n:'Novembre 2026',ev:'Fi Europe · Black Friday · pre-Natale · ultime approvazioni budget',temp:'Alta',tcls:'t-hi',rows:{
+    foodbc:{trigger:'Pre-Natale GDO + Black Friday food gifting',action:'Campagne gifting + packaging limited edition',detail:'ADV social + packaging gift natalizio',channel:'Meta · Google · Instagram'},
+    foodbb:{trigger:'Fi Europe Frankfurt 17–19/11 — ingredienti R&D',action:'Lead gen ingredienti + food tech',detail:'Content tecnico + networking fieristico',channel:'On-site · LinkedIn · trade press'},
+    lux:{trigger:'Countdown natalizio luxury + gift campaign',action:'Gift campaign premium + content storytelling',detail:'ADV Google + social premium + email VIP',channel:'Instagram · Google · email'},
+    beauty:{trigger:'Gift set natalizi + ultime ad spend Q4',action:'Campagne gifting beauty + influencer push',detail:'Social ADV + influencer mid+top + content',channel:'Social · influencer'},
+    tur:{trigger:'Black Friday viaggi + Natale + capodanno',action:'Offerte pacchetti natalizi/capodanno',detail:'Meta Ads + Google + newsletter offerte',channel:'Meta · Google · email'},
+    b2b:{trigger:'Ultime approvazioni budget 2027 + closing 2026',action:'Closing deal 2026 + proposte 2027',detail:'Lead gen ADV + ABM su grandi prospect',channel:'LinkedIn · fiere · meeting'}
+  }},
+  {n:'Dicembre 2026',ev:'Chiusura anno · pianificazione 2027 · pausa festività',temp:'Bassa',tcls:'t-low',rows:{
+    foodbc:{trigger:'Natale + pianificazione Q1 2027',action:'Recap anno cliente + brief Q1 2027',detail:'Strategia 2027 + packaging primavera',channel:'Call diretta clienti · email'},
+    foodbb:{trigger:'Fi Europe 2–4/12 + chiusura anno',action:'Pipeline 2027 + consolidamento contratti',detail:'Consulenza strategica + roadmap annuale',channel:'Email · 1:1 con decisori'},
+    lux:{trigger:'Natale/Capodanno luxury + last push vendite',action:'Last push + recap performance anno',detail:'SEM + email marketing + remarketing',channel:'Google · email · social'},
+    beauty:{trigger:'Natale + planning 2027 + brief lanci',action:'Brief collezioni primavera + lanci Q2',detail:'Consulenza strategica annuale',channel:'Direct contact · email'},
+    tur:{trigger:'Capodanno + early booking estate 2027',action:'Lancio offerte estate 2027 + ski season',detail:'ADV early booking + remarketing',channel:'Google · Meta · email'},
+    b2b:{trigger:'Chiusura conti + setup contratti 2027',action:'Gap analysis + setup contratti 2027',detail:'Consulenza strategica + 1:1 con decisori',channel:'Email · meeting'}
+  }},
+  {n:'Gennaio 2027',ev:'<strong>Marca Bologna 14–15/1</strong> · FITUR Madrid · apertura nuovi budget',temp:'Media',tcls:'t-med',rows:{
+    foodbc:{trigger:'Marca Bologna 14–15/1 — private label',action:'Outreach packaging private label',detail:'Packaging + branding PL + restyling',channel:'On-site Marca · LinkedIn'},
+    foodbb:{trigger:'Marca + avvio budget Q1 + brief annuali',action:'Pipeline Q1 contratti annuali B2B',detail:'Content + LinkedIn outbound buyer',channel:'LinkedIn · email · on-site'},
+    lux:{trigger:'Vicenzaoro + saldi invernali + piano SS',action:'Piano annuale + lancio collezione SS',detail:'Content marketing + storytelling SS',channel:'Social · PR · magazine'},
+    beauty:{trigger:'Pianificazione anno + Cosmo NA + brief lanci',action:'Brief lanci Q2 + PR trade beauty',detail:'ADV B2B + PR trade + content',channel:'Email · LinkedIn · trade press'},
+    tur:{trigger:'FITUR Madrid 21–25/1 — partnership int.',action:'Partnership internazionali + early booking',detail:'ADV Meta/Google early booking estate',channel:'LinkedIn · newsletter settore'},
+    b2b:{trigger:'Apertura esercizio + nuovo budget approvato',action:'Piano marketing annuale + setup Q1',detail:'Branding + LinkedIn strategy + content plan',channel:'Email · LinkedIn · meeting'}
+  }},
+  {n:'Febbraio 2027',ev:'<strong>BIT Milano 10–12/2</strong> · San Valentino · MFW · avvio progetti Q1',temp:'Media-Alta',tcls:'t-hi',rows:{
+    foodbc:{trigger:'Post-Marca + San Valentino food gifting',action:'Campagne gifting food + post-fiera',detail:'ADV Social + packaging gift + retargeting Marca',channel:'Meta · Instagram · email'},
+    foodbb:{trigger:'Follow-up accordi PL e HoReCa post-Marca',action:'Conversione lead Marca in contratti',detail:'Email nurturing + ADV B2B mirate',channel:'Email · LinkedIn · 1:1'},
+    lux:{trigger:'MFW Milano + San Valentino + lancio SS',action:'Lancio campagna SS + gifting San Valentino',detail:'ADV Meta/Google + social premium',channel:'Instagram · Meta · email VIP'},
+    beauty:{trigger:'San Valentino beauty + gift set love-edition',action:'Gift set love-edition + influencer push',detail:'Social ADV + influencer + content stagionale',channel:'Social · influencer'},
+    tur:{trigger:'BIT Milano 10–12/2 — networking B2B',action:'Networking BIT + visibilità B2B',detail:'Branding/web per fiera + content B2B',channel:'Fiera · LinkedIn · trade'},
+    b2b:{trigger:'Avvio progetti Q1 — primi risultati cercati',action:'Campagne lead gen + primi report ROI',detail:'Social LinkedIn + ADV lead gen mirate',channel:'LinkedIn · webinar · content'}
+  }},
+  {n:'Marzo 2027',ev:'<strong>Cosmoprof Bologna 26–29/3</strong> · ITB Berlino · pre-TuttoFood · primavera',temp:'Alta',tcls:'t-hi',rows:{
+    foodbc:{trigger:'Pianificazione TuttoFood maggio + primavera GDO',action:'Preparazione stand TuttoFood + brief pre-fiera',detail:'Packaging + ADV pre-fiera + content',channel:'LinkedIn · email · 1:1'},
+    foodbb:{trigger:'Pre-TuttoFood — buyer attivi + brief pre-fiera',action:'Outreach buyer GDO e HoReCa + case study',detail:'Contenuto tecnico + LinkedIn outbound',channel:'LinkedIn outbound · email · meeting'},
+    lux:{trigger:'Primavera + lancio SS + Easter campaign',action:'Campagne primavera luxury + Easter gift',detail:'Social ADV + packaging Easter + storytelling',channel:'Social · magazine · email'},
+    beauty:{trigger:'Cosmoprof Bologna 26–29/3 — picco beauty',action:'Debutto novità + packaging Cosmoprof',detail:'Packaging design + branding + PR fiera',channel:'Evento · LinkedIn · trade press'},
+    tur:{trigger:'ITB Berlino 3–5/3 — partnership internazionali',action:'Rafforzamento online + pre-summer push',detail:'Social + ADV pre-summer + content trend',channel:'Social media · LinkedIn'},
+    b2b:{trigger:'Fiere primavera (SPS, logistica, IT)',action:'Visibilità in fiera + ABM su espositori',detail:'ADV banner + LinkedIn Ads su fiere',channel:'LinkedIn · Direct email · banner'}
+  }},
+  {n:'Aprile 2027',ev:'Watches&Wonders · Vinitaly · sprint pre-TuttoFood · alta stagione in arrivo',temp:'Alta',tcls:'t-hi',rows:{
+    foodbc:{trigger:'Pre-TuttoFood — ultimo sprint + inviti stand',action:'Inviti stand + comunicazione pre-fiera',detail:'ADV + social pre-fiera + email targetate',channel:'Email · Meta · LinkedIn'},
+    foodbb:{trigger:'Ultimi preparativi TuttoFood — pipeline buyer',action:'Pipeline buyer da finalizzare + agenda meeting',detail:'CRM + lead nurturing + appuntamenti fiera',channel:'Email · call · LinkedIn'},
+    lux:{trigger:'Watches&Wonders 1–7/4 + Vinitaly',action:'Supporto lanci orologi + niche wine',detail:'ADV Google + PR + content premium',channel:'LinkedIn · Instagram · trade'},
+    beauty:{trigger:'Primavera + campagne solari pre-estate',action:'Pre-lancio estate skin-care + solari',detail:'Social ADV + content + influencer',channel:'Social · influencer · e-comm'},
+    tur:{trigger:'Alta stagione in arrivo — boost prenotazioni',action:'Boost prenotazioni primavera + early summer',detail:'Google Ads + Meta + Hotel Ads',channel:'Google · Meta'},
+    b2b:{trigger:'Budget Q2 a regime — accelerazione vendite',action:'Accelerazione Q2 + closing pipeline',detail:'LinkedIn + social mgmt + ADV lead gen',channel:'LinkedIn · newsletter · webinar'}
+  }},
+  {n:'Maggio 2027',ev:'<strong>TuttoFood Milano 11–14/5</strong> · Cosmofarma · Cannes · alta stagione · PICCO ANNUALE',temp:'Massima',tcls:'t-max',rows:{
+    foodbc:{trigger:'TuttoFood Milano 11–14/5 — PICCO ASSOLUTO',action:'Networking fieristico + chiusura lead',detail:'All-in: packaging + ADV + social + presenza',channel:'On-site · digital · LinkedIn'},
+    foodbb:{trigger:'TuttoFood — buyer HoReCa massimi',action:'Chiusura contratti + partenariati B2B',detail:'All-in: contenuto tecnico + lead gen aggressiva',channel:'On-site · CRM · email follow-up'},
+    lux:{trigger:'Summer collection finale + Cannes Festival',action:'ADV lifestyle estivo + festival content',detail:'Social ADV + video + lifestyle premium',channel:'Instagram · YouTube · Google'},
+    beauty:{trigger:'Cosmofarma 8–10/5 + lancio estate solari',action:'ADV solari + compliance packaging',detail:'Packaging etichette + ADV salute + content',channel:'Trade press · digital · social'},
+    tur:{trigger:'Alta stagione: picco prenotazioni estate',action:'Last-minute + upsell + remarketing',detail:'Meta Ads last-minute + email + Hotel Ads',channel:'Meta · email · Google'},
+    b2b:{trigger:'Fiere settoriali + lead nurturing post-eventi',action:'Conversione lead da fiere + case study',detail:'ADV + content case study + ABM',channel:'Email · eventi · LinkedIn'}
+  }}
+];
+
+// ===== RENDER =====
+function renderMonths(activeSec){
+  const list=document.getElementById('monthList');
+  list.innerHTML='';
+  MONTHS.forEach(m=>{
+    const block=document.createElement('div');
+    block.className='month-block';
+    block.innerHTML=`
+      <div class="month-header">
+        <div class="month-name">${m.n}</div>
+        <div class="month-events">${m.ev}</div>
+        <div class="month-temp ${m.tcls}">${m.temp}</div>
+      </div>
+      <div class="sector-rows">
+        ${SECTORS.map(s=>{
+          const r=m.rows[s.id]||{trigger:'—',action:'—',detail:'—',channel:'—'};
+          const hidden=(activeSec!=='all'&&activeSec!==s.id)?'hidden':'';
+          return `<div class="s-row ${hidden}" data-sec="${s.id}">
+            <span class="sr-tag ${s.cls}"><span class="dot"></span>${s.label}</span>
+            <div class="sr-content">
+              <div class="sr-trigger"><strong>Trigger</strong> · ${r.trigger}</div>
+              <div class="sr-action">${r.action}</div>
+            </div>
+            <div class="sr-content">
+              <div class="sr-detail">${r.detail}</div>
+            </div>
+            <div class="sr-channel">${r.channel}</div>
+          </div>`;
+        }).join('')}
+      </div>
+    `;
+    list.appendChild(block);
+  });
+}
+
+renderMonths('all');
+
+// Filter
+document.querySelectorAll('.fbtn').forEach(btn=>{
+  btn.addEventListener('click',()=>{
+    document.querySelectorAll('.fbtn').forEach(b=>b.classList.remove('active'));
+    btn.classList.add('active');
+    renderMonths(btn.dataset.sec);
+  });
+});
+</script>
+</body>
+</html>

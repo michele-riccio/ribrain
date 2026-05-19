@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>M6 · Economics · Ribrain 2026–2027</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Anton&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+<style>
+:root{--bg:#FFFFFF;--bg-alt:#FAFAF8;--bg-dark:#0A0A0A;--ink:#0A0A0A;--ink-80:#2C2C2A;--ink-60:rgba(10,10,10,.6);--ink-40:rgba(10,10,10,.4);--ink-20:rgba(10,10,10,.18);--ink-10:rgba(10,10,10,.08);--ink-05:rgba(10,10,10,.04);--rule:rgba(10,10,10,.1);--turquoise:#46FFDD;--turquoise-soft:#D4FFF7;--turquoise-dark:#0DAB8E;--blue:#006BFF;--blue-soft:#D6E7FF;--blue-dark:#0047B3;--magenta:#DE2BD9;--magenta-soft:#FBDDFA;--magenta-dark:#9C1A98;--coral:#F76143;--coral-soft:#FED9CF;--coral-dark:#B33A1F;--f-d:'Anton',Impact,sans-serif;--f-s:'Inter',system-ui,-apple-system,sans-serif;--f-m:'JetBrains Mono',monospace;--ease:cubic-bezier(0.16,1,0.3,1)}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{font-size:16px;scroll-behavior:smooth}
+body{background:var(--bg);color:var(--ink);font-family:var(--f-s);font-weight:400;line-height:1.6;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+body.nav-open{overflow:hidden}
+.wrap{max-width:1280px;margin:0 auto;padding:0 56px}
+@media(max-width:760px){.wrap{padding:0 24px}}
+.topbar{display:flex;align-items:center;justify-content:space-between;padding:18px 56px;border-bottom:1px solid var(--rule);position:sticky;top:0;z-index:100;background:rgba(255,255,255,.94);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px)}
+@media(max-width:760px){.topbar{padding:14px 24px}}
+.tb-left{display:flex;align-items:center;gap:18px}
+.tb-logo{font-family:var(--f-s);font-weight:700;font-size:15px;letter-spacing:-.02em;color:var(--ink);text-decoration:none}
+.tb-logo .dot{color:var(--turquoise)}
+.tb-sep{width:1px;height:14px;background:var(--ink-20)}
+.tb-label{font-family:var(--f-m);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-60)}
+@media(max-width:680px){.tb-label{display:none}}
+.tb-right{display:flex;align-items:center;gap:14px}
+.tb-back{font-family:var(--f-m);font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-60);text-decoration:none;display:flex;align-items:center;gap:6px;transition:color .2s}
+.tb-back:hover{color:var(--ink)}
+@media(max-width:680px){.tb-back span:not(.arr){display:none}}
+.nav-trigger{display:flex;align-items:center;gap:10px;background:none;border:1px solid var(--ink-20);padding:7px 14px 7px 12px;border-radius:24px;cursor:pointer;font-family:var(--f-m);font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-80);transition:all .2s}
+.nav-trigger:hover{background:var(--ink-05);border-color:var(--ink-40)}
+.nav-trigger .nt-lines{display:flex;flex-direction:column;gap:3px}
+.nav-trigger .nt-lines span{display:block;width:14px;height:1.5px;background:var(--ink);border-radius:1px}
+.nav-trigger .nt-lines span:nth-child(2){width:10px}
+.nav-overlay{position:fixed;inset:0;background:rgba(10,10,10,.7);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);opacity:0;visibility:hidden;transition:opacity .35s var(--ease),visibility .35s var(--ease);z-index:200}
+.nav-overlay.open{opacity:1;visibility:visible}
+.nav-drawer{position:fixed;top:0;right:0;width:480px;max-width:92vw;height:100vh;background:var(--bg);z-index:300;transform:translateX(100%);transition:transform .45s var(--ease);overflow-y:auto;display:flex;flex-direction:column;padding:32px 40px 40px}
+@media(max-width:560px){.nav-drawer{padding:24px 24px 32px}}
+.nav-drawer.open{transform:translateX(0)}
+.nav-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:28px;padding-bottom:18px;border-bottom:1px solid var(--rule)}
+.nav-title{font-family:var(--f-m);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-60)}
+.nav-close{background:none;border:none;cursor:pointer;color:var(--ink);padding:4px;display:flex}
+.nav-close svg{width:22px;height:22px}
+.nav-list{display:flex;flex-direction:column}
+.nav-item{display:grid;grid-template-columns:40px 1fr 20px;gap:14px;align-items:start;padding:14px 0;border-bottom:1px solid var(--rule);text-decoration:none;color:var(--ink);transition:background .2s,padding .2s}
+.nav-item:hover{background:var(--bg-alt);padding-left:8px;padding-right:8px}
+.nav-item.current{background:var(--coral-soft);padding-left:12px;padding-right:12px;border-bottom-color:var(--coral)}
+.nav-item.external{color:var(--turquoise-dark)}
+.nav-num{font-family:var(--f-d);font-size:22px;font-weight:400;color:var(--ink-40);line-height:1;padding-top:2px}
+.nav-item.external .nav-num{color:var(--turquoise-dark)}
+.nav-item.current .nav-num{color:var(--coral-dark)}
+.nav-text{display:flex;flex-direction:column;gap:3px}
+.nav-label{font-family:var(--f-m);font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-40)}
+.nav-item.external .nav-label{color:var(--turquoise-dark)}
+.nav-item.current .nav-label{color:var(--coral-dark)}
+.nav-headline{font-size:14.5px;font-weight:600;color:var(--ink);line-height:1.3}
+.nav-desc{font-size:11.5px;color:var(--ink-60);line-height:1.5}
+.nav-arrow{font-family:var(--f-d);font-size:18px;color:var(--ink-40);align-self:center}
+.hero{padding:88px 56px 56px;position:relative;overflow:hidden;border-bottom:1px solid var(--rule)}
+@media(max-width:760px){.hero{padding:56px 24px 40px}}
+.h-eyebrow{display:flex;align-items:center;gap:14px;margin-bottom:24px;opacity:0;transform:translateY(10px)}
+.h-line{width:36px;height:2px;background:var(--coral)}
+.h-tag{font-family:var(--f-m);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-60)}
+.h-h1{font-family:var(--f-d);font-weight:400;font-size:clamp(48px,7.5vw,108px);line-height:.96;margin-bottom:16px;opacity:0;transform:translateY(28px);letter-spacing:-.02em;text-transform:uppercase}
+.h-h1 .accent{color:var(--coral)}
+.h-sub{font-size:15.5px;line-height:1.75;margin-bottom:0;max-width:780px;color:var(--ink-60);opacity:0;transform:translateY(16px)}
+.h-sub strong{color:var(--ink);font-weight:500}
+.section{padding:80px 0;border-top:1px solid var(--rule)}
+.section--alt{background:var(--bg-alt)}
+@media(max-width:760px){.section{padding:60px 0}}
+.s-head{margin-bottom:40px;max-width:920px}
+.s-mod{display:inline-flex;align-items:center;gap:8px;font-family:var(--f-m);font-size:10px;letter-spacing:.14em;text-transform:uppercase;padding:5px 12px;border:1px solid;border-radius:2px;margin-bottom:18px}
+.s-h2{font-family:var(--f-d);font-weight:400;font-size:clamp(32px,4.5vw,60px);line-height:1.02;letter-spacing:-.01em;text-transform:uppercase}
+.s-h2 .accent{display:block}
+.s-intro{font-size:14.5px;color:var(--ink-60);max-width:760px;line-height:1.75;margin-top:18px}
+.s-intro strong{color:var(--ink);font-weight:500}
+
+/* CONFIGURATOR BIG */
+.cfg-big{padding:36px 32px;background:var(--bg);border:1px solid var(--rule);border-radius:4px;margin-top:0;border-top:4px solid var(--coral)}
+.cfg-big.t1{border-top-color:var(--coral)}
+.cfg-big.t2{border-top-color:var(--blue)}
+.cfg-big.t3{border-top-color:var(--turquoise-dark)}
+.cfg-tag{font-family:var(--f-m);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--coral-dark);margin-bottom:8px}
+.cfg-big.t2 .cfg-tag{color:var(--blue)}
+.cfg-big.t3 .cfg-tag{color:var(--turquoise-dark)}
+.cfg-title{font-family:var(--f-d);font-size:32px;font-weight:400;line-height:1.05;color:var(--ink);margin-bottom:8px;letter-spacing:-.01em;text-transform:uppercase}
+.cfg-lead{font-size:13.5px;color:var(--ink-60);line-height:1.75;margin-bottom:24px;max-width:760px}
+.cfg-lead strong{color:var(--ink);font-weight:500}
+
+.cfg-controls{display:grid;grid-template-columns:1fr 1fr 1fr;gap:24px;margin-bottom:28px}
+@media(max-width:760px){.cfg-controls{grid-template-columns:1fr;gap:16px}}
+.cfg-slider{padding:18px 20px;background:var(--bg-alt);border-radius:4px}
+.cfg-row{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px;font-size:12.5px;color:var(--ink-80);gap:8px}
+.cfg-row span{flex:1}
+.cfg-row strong{font-family:var(--f-d);font-size:22px;color:var(--coral-dark);font-weight:400;letter-spacing:-.01em;white-space:nowrap}
+.cfg-big.t2 .cfg-row strong{color:var(--blue)}
+.cfg-big.t3 .cfg-row strong{color:var(--turquoise-dark)}
+input[type="range"]{-webkit-appearance:none;appearance:none;width:100%;height:4px;background:var(--ink-10);border-radius:2px;outline:none}
+input[type="range"]::-webkit-slider-thumb{-webkit-appearance:none;appearance:none;width:18px;height:18px;border-radius:50%;background:var(--coral-dark);cursor:pointer;border:2px solid var(--bg)}
+input[type="range"]::-moz-range-thumb{width:18px;height:18px;border-radius:50%;background:var(--coral-dark);cursor:pointer;border:2px solid var(--bg)}
+.cfg-big.t2 input[type="range"]::-webkit-slider-thumb,.cfg-big.t2 input[type="range"]::-moz-range-thumb{background:var(--blue)}
+.cfg-big.t3 input[type="range"]::-webkit-slider-thumb,.cfg-big.t3 input[type="range"]::-moz-range-thumb{background:var(--turquoise-dark)}
+.cfg-result{display:grid;grid-template-columns:repeat(4,1fr);gap:2px;padding:24px;background:var(--ink);color:#fff;border-radius:4px}
+@media(max-width:760px){.cfg-result{grid-template-columns:1fr 1fr;gap:16px;padding:20px}}
+.cfg-res-item{padding:8px 12px;border-right:1px solid rgba(255,255,255,.12)}
+.cfg-res-item:last-child{border-right:none}
+@media(max-width:760px){.cfg-res-item{border-right:none}}
+.cfg-res-v{font-family:var(--f-d);font-size:36px;font-weight:400;color:#fff;line-height:1;letter-spacing:-.01em;margin-bottom:6px}
+.cfg-res-v.tq{color:var(--turquoise)}
+.cfg-res-v.cor{color:var(--coral)}
+.cfg-res-v.bl{color:#5DAFFF}
+.cfg-res-l{font-family:var(--f-m);font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.55);line-height:1.4}
+.cfg-note{font-size:12px;color:var(--ink-40);margin-top:16px;font-style:italic;line-height:1.6;padding:12px 16px;background:var(--ink-05);border-radius:4px}
+
+/* SCENARIO TOGGLE */
+.scenario-bar{display:flex;gap:8px;margin-bottom:24px}
+.scn-btn{font-family:var(--f-m);font-size:10px;letter-spacing:.12em;text-transform:uppercase;padding:10px 18px;border:1px solid var(--ink-20);background:var(--bg);color:var(--ink-60);cursor:pointer;border-radius:24px;transition:all .2s}
+.scn-btn:hover{border-color:var(--ink-40);color:var(--ink)}
+.scn-btn.active{background:var(--ink);color:#fff;border-color:var(--ink)}
+
+/* PROJECTION CHART */
+.chart-wrap{padding:32px;background:var(--bg);border:1px solid var(--rule);border-radius:4px;margin-top:24px}
+@media(max-width:680px){.chart-wrap{padding:20px}}
+.chart-header{margin-bottom:20px}
+.chart-title{font-family:var(--f-d);font-size:24px;font-weight:400;color:var(--ink);letter-spacing:-.01em;text-transform:uppercase;line-height:1;margin-bottom:8px}
+.chart-sub{font-size:13px;color:var(--ink-60);line-height:1.6}
+.chart-container{position:relative;height:340px;margin-top:16px}
+.legend-custom{display:flex;flex-wrap:wrap;gap:18px;margin-bottom:12px;font-size:12px;color:var(--ink-60);font-family:var(--f-m);letter-spacing:.04em}
+.legend-custom span.dot-sq{display:inline-block;width:10px;height:10px;border-radius:2px;margin-right:6px;vertical-align:middle}
+
+/* KPI GRID */
+.kpi-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:2px;margin-top:24px;border:1px solid var(--rule);border-radius:4px;overflow:hidden}
+@media(max-width:760px){.kpi-grid{grid-template-columns:1fr 1fr}}
+.kpi-cell{padding:20px 22px;background:var(--bg)}
+.kpi-cell-v{font-family:var(--f-d);font-size:32px;font-weight:400;line-height:1;letter-spacing:-.01em;margin-bottom:6px}
+.kpi-cell-v.cor{color:var(--coral-dark)}
+.kpi-cell-v.bl{color:var(--blue)}
+.kpi-cell-v.tq{color:var(--turquoise-dark)}
+.kpi-cell-l{font-family:var(--f-m);font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-60);line-height:1.4}
+
+/* BREAK-EVEN BOX */
+.be-box{padding:36px;background:linear-gradient(135deg,var(--coral-soft) 0%,#fff 100%);border:1px solid var(--coral);border-radius:4px;margin-top:24px}
+.be-title{font-family:var(--f-d);font-size:28px;font-weight:400;color:var(--coral-dark);letter-spacing:-.01em;text-transform:uppercase;line-height:1.05;margin-bottom:14px}
+.be-body{font-size:14px;color:var(--ink-60);line-height:1.75;max-width:680px}
+.be-body strong{color:var(--ink);font-weight:500}
+
+/* SCENARIOS COMPARISON */
+.scn-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;margin-top:24px}
+@media(max-width:880px){.scn-grid{grid-template-columns:1fr}}
+.scn-card{padding:28px 24px;background:var(--bg);border:1px solid var(--rule);position:relative}
+.scn-card.cons{border-top:3px solid var(--ink-40)}
+.scn-card.real{border-top:3px solid var(--coral)}
+.scn-card.opt{border-top:3px solid var(--turquoise-dark)}
+.scn-name{font-family:var(--f-m);font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-60);margin-bottom:8px}
+.scn-h{font-family:var(--f-d);font-size:24px;font-weight:400;color:var(--ink);line-height:1.05;letter-spacing:-.01em;text-transform:uppercase;margin-bottom:18px}
+.scn-list{list-style:none;padding:0;font-size:13px;line-height:1.7;color:var(--ink-60)}
+.scn-list li{padding:8px 0;border-bottom:1px solid var(--rule);display:flex;justify-content:space-between;gap:12px}
+.scn-list li:last-child{border-bottom:none}
+.scn-list strong{font-family:var(--f-d);font-size:18px;color:var(--ink);font-weight:400;letter-spacing:-.01em}
+.scn-card.cons .scn-list strong{color:var(--ink-60)}
+.scn-card.real .scn-list strong{color:var(--coral-dark)}
+.scn-card.opt .scn-list strong{color:var(--turquoise-dark)}
+
+/* FOOTER */
+.footer{padding:40px 0 24px;border-top:1px solid var(--rule);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px}
+.f-left{display:flex;align-items:center;gap:12px;font-family:var(--f-s);font-weight:700;font-size:15px;color:var(--ink)}
+.f-left .dot{color:var(--turquoise)}
+.f-sep{width:1px;height:14px;background:var(--ink-20)}
+.f-tag{font-family:var(--f-m);font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-40)}
+.f-right{font-family:var(--f-m);font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-40)}
+</style>
+</head>
+<body>
+
+<header class="topbar">
+  <div class="tb-left">
+    <a href="index.html" class="tb-logo">ribrain<span class="dot">.</span></a>
+    <span class="tb-sep"></span>
+    <span class="tb-label">M6 · Economics & Proiezioni</span>
+  </div>
+  <div class="tb-right">
+    <a href="index.html" class="tb-back"><span class="arr">←</span><span>Torna a M0</span></a>
+    <button class="nav-trigger" onclick="openNav()" aria-label="Apri navigazione">
+      <span class="nt-lines"><span></span><span></span></span><span>Indice</span>
+    </button>
+  </div>
+</header>
+
+<div class="nav-overlay" id="navOverlay" onclick="closeNav()"></div>
+<aside class="nav-drawer" id="navDrawer">
+  <div class="nav-head">
+    <div class="nav-title">Indice · 9 moduli + decision box</div>
+    <button class="nav-close" onclick="closeNav()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6L6 18M6 6l12 12"/></svg></button>
+  </div>
+  <nav class="nav-list">
+    <a href="index.html" class="nav-item"><div class="nav-num">00</div><div class="nav-text"><div class="nav-label">Cover · Executive</div><div class="nav-headline">Find your why</div><div class="nav-desc">Executive summary completo</div></div><span class="nav-arrow">←</span></a>
+    <a href="index.html#m1" class="nav-item"><div class="nav-num">01</div><div class="nav-text"><div class="nav-label">Quadro mercato</div><div class="nav-headline">Terra di mezzo</div><div class="nav-desc">Commodity trap, gap operativo</div></div><span class="nav-arrow">←</span></a>
+    <a href="index.html#m2" class="nav-item"><div class="nav-num">02</div><div class="nav-text"><div class="nav-label">Cliente ideale</div><div class="nav-headline">Nome, volto, trigger</div><div class="nav-desc">ICP, buying committee, 5 trigger</div></div><span class="nav-arrow">←</span></a>
+    <a href="index.html#m3" class="nav-item"><div class="nav-num">03</div><div class="nav-text"><div class="nav-label">Posizionamento</div><div class="nav-headline">3 strade, 1 imboccata</div><div class="nav-desc">Brand unico + landing verticali</div></div><span class="nav-arrow">←</span></a>
+    <a href="index.html#m4" class="nav-item"><div class="nav-num">04</div><div class="nav-text"><div class="nav-label">Acquisizione</div><div class="nav-headline">Meta · Referral · LinkedIn</div><div class="nav-desc">Mix B+C, budget 1.5–2k€/mese</div></div><span class="nav-arrow">←</span></a>
+    <a href="m5.html" class="nav-item external"><div class="nav-num">05</div><div class="nav-text"><div class="nav-label">Calendario</div><div class="nav-headline">12 mesi · 6 settori</div><div class="nav-desc">Heatmap, trigger, finestre outreach</div></div><span class="nav-arrow">→</span></a>
+    <a href="#top" class="nav-item current" onclick="closeNav()"><div class="nav-num">06</div><div class="nav-text"><div class="nav-label">Economics · qui</div><div class="nav-headline">Da 600k a 750k</div><div class="nav-desc">3 configuratori, proiezioni, scenari</div></div><span class="nav-arrow">↓</span></a>
+    <a href="index.html#m7" class="nav-item"><div class="nav-num">07</div><div class="nav-text"><div class="nav-label">Operations</div><div class="nav-headline">Il bottleneck siamo noi</div><div class="nav-desc">Flow, Co-work, capacity</div></div><span class="nav-arrow">←</span></a>
+    <a href="index.html#m8" class="nav-item"><div class="nav-num">08</div><div class="nav-text"><div class="nav-label">Mid-term</div><div class="nav-headline">Adattivi non profetici</div><div class="nav-desc">Decision tree 4 step</div></div><span class="nav-arrow">←</span></a>
+    <a href="index.html#m9" class="nav-item"><div class="nav-num">09</div><div class="nav-text"><div class="nav-label">Roadmap 90gg</div><div class="nav-headline">Prime 12 settimane</div><div class="nav-desc">Setup · Activation · Optimize · Scale</div></div><span class="nav-arrow">←</span></a>
+    <a href="index.html#decision" class="nav-item"><div class="nav-num">⊕</div><div class="nav-text"><div class="nav-label">Decision box</div><div class="nav-headline">Primo euro</div><div class="nav-desc">3 azioni leva massima</div></div><span class="nav-arrow">←</span></a>
+  </nav>
+</aside>
+
+<section class="hero" id="top">
+  <div class="h-eyebrow" id="he">
+    <span class="h-line"></span>
+    <span class="h-tag">M6 · Economics & Proiezioni · deep-dive</span>
+  </div>
+  <h1 class="h-h1" id="hh">Da 600k a 750k.<br><span class="accent">Numeri, non promesse.</span></h1>
+  <p class="h-sub" id="hs">Tre configuratori interattivi (Meta · Pricing · Mix canali) con default conservativi che <strong>puoi regolare in tempo reale</strong>. Sotto, le proiezioni a 18 mesi divise in tre scenari (conservativo · realistico · ottimistico), il break-even point del budget acquisizione, e i KPI di salute del sistema. Tutti i numeri qui sono <strong>stime basate su benchmark di mercato B2B mid-market</strong>. Quando avrai i dati reali del primo trimestre, sostituiscili. La struttura del modello rimane valida.</p>
+</section>
+
+<!-- §1 CONFIGURATORE 1 -->
+<section class="section">
+  <div class="wrap">
+    <div class="s-head">
+      <span class="s-mod" style="color:var(--coral-dark);border-color:var(--coral);background:var(--coral-soft)"><span style="opacity:.5">§1</span> · Configuratore Meta Ads</span>
+      <h2 class="s-h2">Budget Meta →<br><span class="accent" style="color:var(--coral)">lead → contratti.</span></h2>
+      <p class="s-intro">Il primo motore del breve termine. Default: budget mensile <strong>1.500€</strong>, CPL Meta <strong>100€</strong> (range B2B Italia 60–200€), close rate <strong>25%</strong> dopo discovery. Regola in base ai dati reali del test storico.</p>
+    </div>
+
+    <div class="cfg-big t1">
+      <div class="cfg-tag">Configuratore 1 · Budget → Lead → Contratti</div>
+      <div class="cfg-title">Quanti contratti chiudo con questo budget Meta?</div>
+      <p class="cfg-lead">Modello a 3 leve: <strong>budget mensile</strong> (quanto investo), <strong>CPL Meta</strong> (quanto mi costa generare un lead qualificato), <strong>close rate</strong> (quanti lead diventano contratti). Il sistema calcola lead/mese e contratti/mese a regime — assumendo 3 mesi di ramp-up iniziale.</p>
+
+      <div class="cfg-controls">
+        <div class="cfg-slider">
+          <div class="cfg-row"><span>Budget mensile</span><strong id="m1v">1.500€</strong></div>
+          <input type="range" id="m1s" min="500" max="3000" value="1500" step="100">
+        </div>
+        <div class="cfg-slider">
+          <div class="cfg-row"><span>CPL Meta (€/lead)</span><strong id="m2v">100€</strong></div>
+          <input type="range" id="m2s" min="50" max="250" value="100" step="10">
+        </div>
+        <div class="cfg-slider">
+          <div class="cfg-row"><span>Close rate post-discovery</span><strong id="m3v">25%</strong></div>
+          <input type="range" id="m3s" min="10" max="50" value="25" step="1">
+        </div>
+      </div>
+
+      <div class="cfg-result">
+        <div class="cfg-res-item"><div class="cfg-res-v" id="r1">15</div><div class="cfg-res-l">Lead qualificati / mese</div></div>
+        <div class="cfg-res-item"><div class="cfg-res-v cor" id="r2">3.8</div><div class="cfg-res-l">Contratti chiusi / mese</div></div>
+        <div class="cfg-res-item"><div class="cfg-res-v bl" id="r3">400€</div><div class="cfg-res-l">CAC per contratto</div></div>
+        <div class="cfg-res-item"><div class="cfg-res-v tq" id="r4">45</div><div class="cfg-res-l">Contratti / anno teorici</div></div>
+      </div>
+
+      <p class="cfg-note">⚠ <strong>Lead Meta su clienti piccoli (1–5M€)</strong>, ticket medio ~10k€/anno. Il close rate effettivo dipende dalla qualità delle creatività e dell'audience: A/B test mensili sono critici. Il primo trimestre la realtà sarà la metà di questi numeri (ramp-up). Da mese 4 in poi, valori a regime.</p>
+    </div>
+  </div>
+</section>
+
+<!-- §2 CONFIGURATORE 2 -->
+<section class="section section--alt">
+  <div class="wrap">
+    <div class="s-head">
+      <span class="s-mod" style="color:var(--blue);border-color:var(--blue);background:var(--blue-soft)"><span style="opacity:.5">§2</span> · Configuratore Pricing</span>
+      <h2 class="s-h2">Nuovi clienti →<br><span class="accent" style="color:var(--blue)">fatturato annuo.</span></h2>
+      <p class="s-intro">Il ticket medio attuale Ribrain è <strong>~1.330€/mese</strong>, sotto benchmark mid-market (3–8k€/mese). Sui rinnovi esistenti il margine di manovra è stretto. <strong>Sui nuovi clienti puoi e devi partire più alto</strong>: 2.000–2.500€/mese minimum + setup fee. Questo configuratore mostra l'impatto del pricing sul run-rate annuo.</p>
+    </div>
+
+    <div class="cfg-big t2">
+      <div class="cfg-tag">Configuratore 2 · Nuovi clienti → Fatturato</div>
+      <div class="cfg-title">Quanto fatturato genero coi nuovi clienti?</div>
+      <p class="cfg-lead">Modello a 3 leve: <strong>numero di nuovi clienti</strong> nei prossimi 12 mesi (target ufficiale: 10–14), <strong>ticket medio mensile</strong>, <strong>setup fee iniziale</strong>. Il sistema calcola il run-rate annuo a regime e il totale setup fee come revenue una-tantum.</p>
+
+      <div class="cfg-controls">
+        <div class="cfg-slider">
+          <div class="cfg-row"><span>Nuovi clienti in 12 mesi</span><strong id="p1v">12</strong></div>
+          <input type="range" id="p1s" min="5" max="25" value="12" step="1">
+        </div>
+        <div class="cfg-slider">
+          <div class="cfg-row"><span>Ticket medio mensile</span><strong id="p2v">2.000€</strong></div>
+          <input type="range" id="p2s" min="800" max="5000" value="2000" step="100">
+        </div>
+        <div class="cfg-slider">
+          <div class="cfg-row"><span>Setup fee iniziale</span><strong id="p3v">5.000€</strong></div>
+          <input type="range" id="p3s" min="0" max="15000" value="5000" step="500">
+        </div>
+      </div>
+
+      <div class="cfg-result">
+        <div class="cfg-res-item"><div class="cfg-res-v cor" id="rp1">+288k</div><div class="cfg-res-l">€ run-rate annuo</div></div>
+        <div class="cfg-res-item"><div class="cfg-res-v bl" id="rp2">60k</div><div class="cfg-res-l">€ setup fee tot.</div></div>
+        <div class="cfg-res-item"><div class="cfg-res-v tq" id="rp3">28k</div><div class="cfg-res-l">€ ticket annuo medio</div></div>
+        <div class="cfg-res-item"><div class="cfg-res-v" id="rp4">86k</div><div class="cfg-res-l">€ LTV per cliente (3 anni)</div></div>
+      </div>
+
+      <p class="cfg-note">⚠ Il <strong>LTV a 3 anni</strong> assume la retention attuale Ribrain (3+ anni). Se sale a 4 anni di retention (con upsell efficaci), il LTV cresce in proporzione. Il <strong>setup fee è leva critica</strong>: oltre a generare cash immediato, comunica autorevolezza e filtra clienti che cercano solo il prezzo basso.</p>
+    </div>
+  </div>
+</section>
+
+<!-- §3 CONFIGURATORE 3 -->
+<section class="section">
+  <div class="wrap">
+    <div class="s-head">
+      <span class="s-mod" style="color:var(--turquoise-dark);border-color:var(--turquoise-dark);background:var(--turquoise-soft)"><span style="opacity:.5">§3</span> · Configuratore Mix canali</span>
+      <h2 class="s-h2">3 canali, ticket diversi,<br><span class="accent" style="color:var(--turquoise-dark)">un solo fatturato.</span></h2>
+      <p class="s-intro">Referral, Meta e LinkedIn portano clienti con <strong>ticket molto diversi</strong>. Referral ~20-22k€/anno, Meta ~10k€/anno, LinkedIn inbound ~22k€/anno. Questo configuratore mostra l'impatto sul fatturato totale a regime (mese 6-12), considerando che il ticket medio pesato cambia in base alla composizione del mix.</p>
+    </div>
+
+    <div class="cfg-big t3">
+      <div class="cfg-tag">Configuratore 3 · Mix canali → Run-rate</div>
+      <div class="cfg-title">Quale mix canali porta più fatturato a regime?</div>
+      <p class="cfg-lead">Modello a 3 canali: <strong>Referral</strong> (lead caldi, ticket alto), <strong>Meta</strong> (volume, ticket basso), <strong>LinkedIn inbound</strong> (alto valore, lento). Imposta i contratti/mese attesi per canale e vedi il run-rate annuo composto e il ticket medio pesato.</p>
+
+      <div class="cfg-controls">
+        <div class="cfg-slider">
+          <div class="cfg-row"><span>Referral (~20k€/anno)</span><strong id="x1v">2.0</strong></div>
+          <input type="range" id="x1s" min="0" max="5" value="2" step="0.1">
+        </div>
+        <div class="cfg-slider">
+          <div class="cfg-row"><span>Meta Ads (~10k€/anno)</span><strong id="x2v">3.5</strong></div>
+          <input type="range" id="x2s" min="0" max="6" value="3.5" step="0.1">
+        </div>
+        <div class="cfg-slider">
+          <div class="cfg-row"><span>LinkedIn inbound (~22k€/anno)</span><strong id="x3v">1.0</strong></div>
+          <input type="range" id="x3s" min="0" max="4" value="1" step="0.1">
+        </div>
+      </div>
+
+      <div class="cfg-result">
+        <div class="cfg-res-item"><div class="cfg-res-v cor" id="tot1">6.5</div><div class="cfg-res-l">Contratti / mese tot.</div></div>
+        <div class="cfg-res-item"><div class="cfg-res-v bl" id="tot2">78</div><div class="cfg-res-l">Contratti / anno</div></div>
+        <div class="cfg-res-item"><div class="cfg-res-v tq" id="tot3">~14k</div><div class="cfg-res-l">€ ticket medio pesato</div></div>
+        <div class="cfg-res-item"><div class="cfg-res-v" id="tot4">+90k</div><div class="cfg-res-l">€ run-rate annuo</div></div>
+      </div>
+
+      <p class="cfg-note">⚠ Stima a regime (mese 6–12). I primi 3 mesi i numeri saranno circa metà — il sistema deve scaldarsi. <strong>Il close rate medio pesato per canale è 25%</strong>: referral chiude più alto (~40%), Meta più basso (~15-20%), LinkedIn medio. Il tuo flow attuale regge ~3-4 lead nuovi/settimana — oltre serve assumere o automatizzare proposte con Co-work.</p>
+    </div>
+  </div>
+</section>
+
+<!-- §4 PROIEZIONI -->
+<section class="section section--alt">
+  <div class="wrap">
+    <div class="s-head">
+      <span class="s-mod" style="color:var(--coral-dark);border-color:var(--coral);background:var(--coral-soft)"><span style="opacity:.5">§4</span> · Proiezioni 18 mesi</span>
+      <h2 class="s-h2">Da giugno 2026<br><span class="accent" style="color:var(--coral)">a novembre 2027.</span></h2>
+      <p class="s-intro">Tre scenari sovrapposti: <strong>conservativo</strong> (meno della metà delle stime base), <strong>realistico</strong> (allineato ai default dei configuratori), <strong>ottimistico</strong> (mix canali pieno + setup fee massimo). La curva mostra il <strong>fatturato annualizzato run-rate</strong> mese per mese — non il fatturato del mese, ma quanto faresti se quel mese fosse il regime stabile.</p>
+    </div>
+
+    <div class="scenario-bar">
+      <button class="scn-btn active" data-scn="all">Tutti gli scenari</button>
+      <button class="scn-btn" data-scn="real">Solo realistico</button>
+    </div>
+
+    <div class="chart-wrap">
+      <div class="chart-header">
+        <div class="chart-title">Run-rate fatturato annualizzato · 18 mesi</div>
+        <div class="chart-sub">Linea base 600k€ (oggi) → target 750k€ (12 mesi). La curva include ramp-up iniziale di 3 mesi.</div>
+      </div>
+      <div class="legend-custom" id="legend">
+        <span><span class="dot-sq" style="background:#0DAB8E"></span>Ottimistico</span>
+        <span><span class="dot-sq" style="background:#F76143"></span>Realistico</span>
+        <span><span class="dot-sq" style="background:#888780"></span>Conservativo</span>
+        <span><span class="dot-sq" style="background:rgba(10,10,10,.18)"></span>Baseline (600k)</span>
+      </div>
+      <div class="chart-container">
+        <canvas id="projChart" role="img" aria-label="Grafico proiezione fatturato 18 mesi su 3 scenari"></canvas>
+      </div>
+    </div>
+
+    <div class="kpi-grid">
+      <div class="kpi-cell"><div class="kpi-cell-v cor">€720k</div><div class="kpi-cell-l">Realistico · run-rate 12 mesi</div></div>
+      <div class="kpi-cell"><div class="kpi-cell-v tq">€820k</div><div class="kpi-cell-l">Ottimistico · run-rate 18 mesi</div></div>
+      <div class="kpi-cell"><div class="kpi-cell-v bl">€660k</div><div class="kpi-cell-l">Conservativo · run-rate 12 mesi</div></div>
+      <div class="kpi-cell"><div class="kpi-cell-v">Mese 4</div><div class="kpi-cell-l">Break-even sul budget acquisizione</div></div>
+    </div>
+
+    <div class="be-box">
+      <div class="be-title">Break-even del budget acquisizione</div>
+      <p class="be-body">Investimento 12 mesi: <strong>~18k€</strong> (Meta 1.5k×12) + <strong>~5k€</strong> (LinkedIn content + tooling). Totale <strong>~23k€</strong>. Con close rate 25% e ticket medio 14k€/anno pesato, ogni contratto netto chiuso rientra il budget di <strong>60% del costo totale</strong>. Break-even atteso al <strong>4° contratto chiuso</strong>, realisticamente al mese 4-5 dal lancio. Tutto quello che chiudi dopo è margine.</p>
+    </div>
+  </div>
+</section>
+
+<!-- §5 SCENARI -->
+<section class="section">
+  <div class="wrap">
+    <div class="s-head">
+      <span class="s-mod" style="color:var(--blue);border-color:var(--blue);background:var(--blue-soft)"><span style="opacity:.5">§5</span> · 3 Scenari · cosa significa ognuno</span>
+      <h2 class="s-h2">Stesso budget,<br><span class="accent" style="color:var(--blue)">3 risultati possibili.</span></h2>
+      <p class="s-intro">Cosa cambia tra i 3 scenari? Le stesse leve, ma settate in modo diverso. <strong>Il realistico è il numero su cui pianificare</strong>. Il conservativo è il "worst case che sopporta il cash flow" — se siamo qui, va aggiustato il messaggio o il targeting. L'ottimistico è il "tutto va bene" — non programmare le assunzioni su questo.</p>
+    </div>
+
+    <div class="scn-grid">
+      <div class="scn-card cons">
+        <div class="scn-name">Conservativo</div>
+        <div class="scn-h">"Va lento."</div>
+        <ul class="scn-list">
+          <li>Nuovi contratti / anno<strong>7</strong></li>
+          <li>Ticket medio<strong>12k€</strong></li>
+          <li>CPL Meta<strong>180€</strong></li>
+          <li>Close rate<strong>18%</strong></li>
+          <li>Setup fee<strong>3k€</strong></li>
+          <li>Run-rate 12 mesi<strong>€660k</strong></li>
+        </ul>
+      </div>
+      <div class="scn-card real">
+        <div class="scn-name">Realistico · scenario base</div>
+        <div class="scn-h">"Funziona."</div>
+        <ul class="scn-list">
+          <li>Nuovi contratti / anno<strong>12</strong></li>
+          <li>Ticket medio<strong>16k€</strong></li>
+          <li>CPL Meta<strong>100€</strong></li>
+          <li>Close rate<strong>25%</strong></li>
+          <li>Setup fee<strong>5k€</strong></li>
+          <li>Run-rate 12 mesi<strong>€720k</strong></li>
+        </ul>
+      </div>
+      <div class="scn-card opt">
+        <div class="scn-name">Ottimistico</div>
+        <div class="scn-h">"Esplode."</div>
+        <ul class="scn-list">
+          <li>Nuovi contratti / anno<strong>16</strong></li>
+          <li>Ticket medio<strong>22k€</strong></li>
+          <li>CPL Meta<strong>70€</strong></li>
+          <li>Close rate<strong>32%</strong></li>
+          <li>Setup fee<strong>8k€</strong></li>
+          <li>Run-rate 12 mesi<strong>€820k</strong></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="be-box" style="background:linear-gradient(135deg,var(--turquoise-soft) 0%,#fff 100%);border-color:var(--turquoise-dark)">
+      <div class="be-title" style="color:var(--turquoise-dark)">Regola decisionale</div>
+      <p class="be-body">Pianifica le spese sul <strong>conservativo</strong>. Pianifica le risorse di team sul <strong>realistico</strong>. Pianifica le assunzioni sul <strong>realistico verificato dai dati</strong> (non sull'ottimistico). L'errore più comune in queste fasi è confondere <em>"può succedere"</em> con <em>"sta succedendo"</em>. Il modello qui è uno strumento, non una promessa — gli unici numeri veri saranno quelli del primo trimestre reale.</p>
+    </div>
+  </div>
+</section>
+
+<div class="wrap">
+  <div class="footer">
+    <div class="f-left">
+      <span>ribrain<span class="dot">.</span></span>
+      <span class="f-sep"></span>
+      <span class="f-tag">Piano strategico interno</span>
+    </div>
+    <div class="f-right">M6 · Economics & Proiezioni · Maggio 2026 · Confidenziale soci</div>
+  </div>
+</div>
+
+<script>
+gsap.registerPlugin(ScrollTrigger);
+
+function openNav(){document.getElementById('navOverlay').classList.add('open');document.getElementById('navDrawer').classList.add('open');document.body.classList.add('nav-open')}
+function closeNav(){document.getElementById('navOverlay').classList.remove('open');document.getElementById('navDrawer').classList.remove('open');document.body.classList.remove('nav-open')}
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeNav()});
+
+gsap.to('#he',{opacity:1,y:0,duration:.8,ease:'power3.out',delay:.15});
+gsap.to('#hh',{opacity:1,y:0,duration:1,ease:'power3.out',delay:.3});
+gsap.to('#hs',{opacity:1,y:0,duration:.8,ease:'power3.out',delay:.6});
+
+function fmt(n){return new Intl.NumberFormat('it-IT').format(Math.round(n))}
+function fmtK(n){return n>=1000?(n/1000).toFixed(0)+'k':Math.round(n)}
+
+// CFG 1: Meta
+const m1s=document.getElementById('m1s'),m2s=document.getElementById('m2s'),m3s=document.getElementById('m3s');
+function uM(){
+  const b=+m1s.value,c=+m2s.value,cr=+m3s.value/100;
+  document.getElementById('m1v').textContent=fmt(b)+'€';
+  document.getElementById('m2v').textContent=c+'€';
+  document.getElementById('m3v').textContent=m3s.value+'%';
+  const leads=b/c,contr=leads*cr,cac=contr>0?b/contr:0;
+  document.getElementById('r1').textContent=Math.round(leads);
+  document.getElementById('r2').textContent=contr.toFixed(1);
+  document.getElementById('r3').textContent=Math.round(cac)+'€';
+  document.getElementById('r4').textContent=Math.round(contr*12);
+}
+[m1s,m2s,m3s].forEach(el=>el.addEventListener('input',uM));uM();
+
+// CFG 2: Pricing
+const p1s=document.getElementById('p1s'),p2s=document.getElementById('p2s'),p3s=document.getElementById('p3s');
+function uP(){
+  const cl=+p1s.value,tk=+p2s.value,su=+p3s.value;
+  document.getElementById('p1v').textContent=cl;
+  document.getElementById('p2v').textContent=fmt(tk)+'€';
+  document.getElementById('p3v').textContent=fmt(su)+'€';
+  const rr=cl*tk*12,st=cl*su,ann=tk*12,ltv=tk*12*3+su;
+  document.getElementById('rp1').textContent='+'+fmtK(rr);
+  document.getElementById('rp2').textContent=fmtK(st);
+  document.getElementById('rp3').textContent=fmtK(ann);
+  document.getElementById('rp4').textContent=fmtK(ltv);
+}
+[p1s,p2s,p3s].forEach(el=>el.addEventListener('input',uP));uP();
+
+// CFG 3: Mix
+const x1s=document.getElementById('x1s'),x2s=document.getElementById('x2s'),x3s=document.getElementById('x3s');
+function uX(){
+  const r=+x1s.value,m=+x2s.value,l=+x3s.value;
+  document.getElementById('x1v').textContent=r.toFixed(1);
+  document.getElementById('x2v').textContent=m.toFixed(1);
+  document.getElementById('x3v').textContent=l.toFixed(1);
+  const tot=r+m+l,year=tot*12;
+  const tkR=20000,tkM=10000,tkL=22000;
+  const avg=tot>0?(r*tkR+m*tkM+l*tkL)/tot:0;
+  const rr=year*avg;
+  document.getElementById('tot1').textContent=tot.toFixed(1);
+  document.getElementById('tot2').textContent=Math.round(year);
+  document.getElementById('tot3').textContent='~'+fmtK(avg);
+  document.getElementById('tot4').textContent='+'+fmtK(rr);
+}
+[x1s,x2s,x3s].forEach(el=>el.addEventListener('input',uX));uX();
+
+// CHART
+const months=['Giu 26','Lug 26','Ago 26','Set 26','Ott 26','Nov 26','Dic 26','Gen 27','Feb 27','Mar 27','Apr 27','Mag 27','Giu 27','Lug 27','Ago 27','Set 27','Ott 27','Nov 27'];
+const baseline=Array(18).fill(600);
+// Realistico: ramp-up 3 mesi → cresce lineare verso 720 a mese 12 → 750 a mese 18
+const real=[605,615,625,640,660,680,695,705,712,718,722,725,732,738,742,746,748,750];
+const cons=[600,605,610,615,625,635,640,648,655,660,663,665,668,670,672,675,677,680];
+const opt=[615,635,660,685,710,735,755,770,785,800,810,820,830,835,838,840,842,845];
+
+const ctx=document.getElementById('projChart');
+let chart;
+function buildChart(mode){
+  if(chart)chart.destroy();
+  const datasets=[];
+  if(mode==='all'){
+    datasets.push({label:'Ottimistico',data:opt,borderColor:'#0DAB8E',backgroundColor:'rgba(13,171,142,.08)',borderWidth:2,fill:false,tension:.35,pointRadius:0,pointHoverRadius:5,borderDash:[6,4]});
+    datasets.push({label:'Realistico',data:real,borderColor:'#F76143',backgroundColor:'rgba(247,97,67,.1)',borderWidth:3,fill:true,tension:.35,pointRadius:0,pointHoverRadius:6});
+    datasets.push({label:'Conservativo',data:cons,borderColor:'#888780',backgroundColor:'rgba(136,135,128,.05)',borderWidth:2,fill:false,tension:.35,pointRadius:0,pointHoverRadius:5,borderDash:[3,3]});
+  } else {
+    datasets.push({label:'Realistico',data:real,borderColor:'#F76143',backgroundColor:'rgba(247,97,67,.12)',borderWidth:3,fill:true,tension:.35,pointRadius:0,pointHoverRadius:6});
+  }
+  datasets.push({label:'Baseline 600k',data:baseline,borderColor:'rgba(10,10,10,.18)',borderWidth:1.5,borderDash:[2,4],fill:false,pointRadius:0,pointHoverRadius:0});
+
+  chart=new Chart(ctx,{
+    type:'line',
+    data:{labels:months,datasets},
+    options:{
+      responsive:true,maintainAspectRatio:false,
+      interaction:{mode:'index',intersect:false},
+      plugins:{legend:{display:false},tooltip:{backgroundColor:'#0A0A0A',padding:12,titleFont:{size:11,family:'JetBrains Mono'},bodyFont:{size:13,family:'Inter'},callbacks:{label:c=>c.dataset.label+': €'+c.parsed.y+'k'}}},
+      scales:{
+        y:{min:550,max:870,ticks:{font:{family:'JetBrains Mono',size:10},color:'rgba(10,10,10,.5)',callback:v=>'€'+v+'k'},grid:{color:'rgba(10,10,10,.06)'},border:{display:false}},
+        x:{ticks:{font:{family:'JetBrains Mono',size:10},color:'rgba(10,10,10,.5)',maxRotation:0,autoSkip:true,maxTicksLimit:9},grid:{display:false},border:{color:'rgba(10,10,10,.1)'}}
+      }
+    }
+  });
+}
+buildChart('all');
+
+document.querySelectorAll('.scn-btn').forEach(b=>{
+  b.addEventListener('click',()=>{
+    document.querySelectorAll('.scn-btn').forEach(x=>x.classList.remove('active'));
+    b.classList.add('active');
+    buildChart(b.dataset.scn);
+  });
+});
+</script>
+</body>
+</html>

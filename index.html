@@ -1,0 +1,1165 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>M0 · Piano Strategico Ribrain 2026–2027</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Anton&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<style>
+:root{
+  --bg:#FFFFFF;--bg-alt:#FAFAF8;--bg-dark:#0A0A0A;
+  --ink:#0A0A0A;--ink-80:#2C2C2A;--ink-60:rgba(10,10,10,.6);--ink-40:rgba(10,10,10,.4);--ink-20:rgba(10,10,10,.18);--ink-10:rgba(10,10,10,.08);--ink-05:rgba(10,10,10,.04);
+  --rule:rgba(10,10,10,.1);
+  --turquoise:#46FFDD;--turquoise-soft:#D4FFF7;--turquoise-dark:#0DAB8E;
+  --blue:#006BFF;--blue-soft:#D6E7FF;--blue-dark:#0047B3;
+  --magenta:#DE2BD9;--magenta-soft:#FBDDFA;--magenta-dark:#9C1A98;
+  --coral:#F76143;--coral-soft:#FED9CF;--coral-dark:#B33A1F;
+  --warn:#C0572A;--ok:#0DAB8E;
+  --f-d:'Anton',Impact,sans-serif;
+  --f-s:'Inter',system-ui,-apple-system,sans-serif;
+  --f-m:'JetBrains Mono',monospace;
+  --ease:cubic-bezier(0.16,1,0.3,1);
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{font-size:16px;scroll-behavior:smooth}
+body{background:var(--bg);color:var(--ink);font-family:var(--f-s);font-weight:400;line-height:1.6;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1280px;margin:0 auto;padding:0 56px}
+@media(max-width:760px){.wrap{padding:0 24px}}
+
+/* ===== TOPBAR ===== */
+.topbar{display:flex;align-items:center;justify-content:space-between;padding:18px 56px;border-bottom:1px solid var(--rule);position:sticky;top:0;z-index:100;background:rgba(255,255,255,.94);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px)}
+@media(max-width:760px){.topbar{padding:14px 24px}}
+.tb-left{display:flex;align-items:center;gap:18px}
+.tb-logo{font-family:var(--f-s);font-weight:700;font-size:15px;letter-spacing:-.02em;color:var(--ink);position:relative;padding-right:8px}
+.tb-logo::after{content:".";color:var(--turquoise);font-weight:700;position:absolute;right:-2px}
+.tb-sep{width:1px;height:14px;background:var(--ink-20)}
+.tb-label{font-family:var(--f-m);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-60)}
+@media(max-width:680px){.tb-label{display:none}}
+.tb-right{display:flex;align-items:center;gap:14px}
+.tb-date{font-family:var(--f-m);font-size:10px;color:var(--ink-40)}
+@media(max-width:680px){.tb-date{display:none}}
+.tb-conf{font-family:var(--f-m);font-size:9px;letter-spacing:.12em;text-transform:uppercase;padding:4px 10px;border:1px solid var(--ink-20);color:var(--ink-60);border-radius:2px}
+
+/* ===== HERO COVER ===== */
+.hero{min-height:78vh;display:flex;flex-direction:column;justify-content:center;padding:96px 56px 80px;position:relative;overflow:hidden;border-bottom:1px solid var(--rule)}
+@media(max-width:760px){.hero{padding:72px 24px 64px;min-height:auto}}
+.hero-bg-road{position:absolute;right:-100px;top:80px;width:520px;height:520px;opacity:.06;pointer-events:none}
+@media(max-width:880px){.hero-bg-road{display:none}}
+.h-eyebrow{display:flex;align-items:center;gap:14px;margin-bottom:32px;opacity:0;transform:translateY(10px)}
+.h-line{width:36px;height:2px;background:var(--turquoise)}
+.h-tag{font-family:var(--f-m);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-60)}
+.h-h1{font-family:var(--f-d);font-weight:400;font-size:clamp(64px,11vw,156px);line-height:.92;margin-bottom:16px;opacity:0;transform:translateY(28px);letter-spacing:-.02em;text-transform:uppercase}
+.h-h1 .dot{color:var(--turquoise)}
+.h-sub-1{font-family:var(--f-s);font-weight:500;font-size:clamp(20px,2.2vw,28px);line-height:1.3;margin-bottom:32px;max-width:780px;color:var(--ink-80);opacity:0;transform:translateY(16px)}
+.h-sub-1 em{color:var(--coral);font-style:normal;font-weight:600}
+.h-sub-2{font-size:16px;color:var(--ink-60);max-width:680px;line-height:1.7;opacity:0;transform:translateY(16px)}
+.h-sub-2 strong{color:var(--ink);font-weight:500}
+
+/* KPI BAND */
+.kpi-band{display:grid;grid-template-columns:repeat(6,1fr);gap:0;border-top:1px solid var(--rule);border-bottom:1px solid var(--rule);opacity:0}
+@media(max-width:880px){.kpi-band{grid-template-columns:repeat(3,1fr)}}
+@media(max-width:480px){.kpi-band{grid-template-columns:repeat(2,1fr)}}
+.kpi-item{padding:22px 20px;border-right:1px solid var(--rule);position:relative;overflow:hidden}
+.kpi-item:nth-child(3n){border-right:none}
+@media(min-width:881px){.kpi-item:nth-child(3n){border-right:1px solid var(--rule)}.kpi-item:last-child{border-right:none}}
+.kpi-item::after{content:'';position:absolute;bottom:0;left:0;width:0%;height:2px;transition:width .5s var(--ease)}
+.kpi-item:hover::after{width:100%}
+.kpi-item:nth-child(1)::after{background:var(--turquoise)}
+.kpi-item:nth-child(2)::after{background:var(--blue)}
+.kpi-item:nth-child(3)::after{background:var(--magenta)}
+.kpi-item:nth-child(4)::after{background:var(--coral)}
+.kpi-item:nth-child(5)::after{background:var(--turquoise-dark)}
+.kpi-item:nth-child(6)::after{background:var(--blue-dark)}
+.kpi-n{font-family:var(--f-d);font-size:clamp(28px,3vw,42px);font-weight:400;line-height:1;margin-bottom:6px;letter-spacing:-.01em}
+.kpi-arrow{font-family:var(--f-m);font-size:11px;color:var(--ink-40);margin:0 4px}
+.kpi-l{font-family:var(--f-m);font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-60);line-height:1.5}
+
+/* ===== SECTION BASE ===== */
+.section{padding:96px 0;border-top:1px solid var(--rule);position:relative}
+.section--alt{background:var(--bg-alt)}
+.section--dark{background:var(--bg-dark);color:rgba(255,255,255,.92);border-top:none}
+@media(max-width:760px){.section{padding:72px 0}}
+.s-head{margin-bottom:56px;max-width:880px}
+.s-mod{display:inline-flex;align-items:center;gap:8px;font-family:var(--f-m);font-size:10px;letter-spacing:.14em;text-transform:uppercase;padding:5px 12px;border:1px solid;border-radius:2px;margin-bottom:20px}
+.s-mod-num{opacity:.5}
+.s-h2{font-family:var(--f-d);font-weight:400;font-size:clamp(40px,6vw,80px);line-height:.98;letter-spacing:-.01em;text-transform:uppercase}
+.section--dark .s-h2{color:rgba(255,255,255,.94)}
+.s-h2 .accent{display:block}
+.s-intro{font-size:16px;color:var(--ink-60);max-width:720px;line-height:1.8;margin-top:20px;font-weight:400}
+.section--dark .s-intro{color:rgba(255,255,255,.6)}
+.s-intro strong{color:var(--ink);font-weight:500}
+.section--dark .s-intro strong{color:rgba(255,255,255,.95)}
+
+/* ===== INSIGHT CARDS ===== */
+.ig{display:grid;gap:2px}
+.ig--2{grid-template-columns:1fr 1fr}
+.ig--3{grid-template-columns:1fr 1fr 1fr}
+.ig--1{grid-template-columns:1fr}
+@media(max-width:880px){.ig--3,.ig--2{grid-template-columns:1fr}}
+
+.ic{padding:36px 32px;background:var(--bg);border:1px solid var(--rule);opacity:0;transform:translateY(16px);position:relative;overflow:hidden;transition:background .25s,border-color .25s}
+.section--alt .ic{background:var(--bg)}
+.section--dark .ic{background:rgba(255,255,255,.03);border-color:rgba(255,255,255,.08)}
+.ic:hover{background:var(--bg-alt);border-color:var(--ink-20)}
+.section--dark .ic:hover{background:rgba(255,255,255,.06);border-color:rgba(255,255,255,.15)}
+.ic::before{content:'';position:absolute;top:0;left:0;right:0;height:3px}
+.ic--turquoise::before{background:var(--turquoise)}
+.ic--blue::before{background:var(--blue)}
+.ic--magenta::before{background:var(--magenta)}
+.ic--coral::before{background:var(--coral)}
+.ic--ink::before{background:var(--ink)}
+.ic-eyebrow{font-family:var(--f-m);font-size:9px;letter-spacing:.14em;text-transform:uppercase;margin-bottom:14px;display:block}
+.ic--turquoise .ic-eyebrow{color:var(--turquoise-dark)}
+.ic--blue .ic-eyebrow{color:var(--blue)}
+.ic--magenta .ic-eyebrow{color:var(--magenta-dark)}
+.ic--coral .ic-eyebrow{color:var(--coral-dark)}
+.ic--ink .ic-eyebrow{color:var(--ink-60)}
+.ic-title{font-family:var(--f-s);font-size:22px;font-weight:600;line-height:1.25;margin-bottom:14px;color:var(--ink);letter-spacing:-.01em}
+.section--dark .ic-title{color:rgba(255,255,255,.95)}
+.ic-body{font-size:14px;color:var(--ink-60);line-height:1.75}
+.section--dark .ic-body{color:rgba(255,255,255,.6)}
+.ic-body strong{color:var(--ink);font-weight:500}
+.section--dark .ic-body strong{color:rgba(255,255,255,.92)}
+.ic-stat{margin-top:18px;padding-top:14px;border-top:1px solid var(--rule);display:flex;align-items:baseline;gap:8px;font-family:var(--f-m);font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-40)}
+.ic-stat strong{font-family:var(--f-d);font-size:24px;color:var(--ink);font-weight:400;letter-spacing:-.01em;text-transform:none;letter-spacing:0}
+
+/* ===== PULL QUOTE ===== */
+.pq{padding:64px 0;border-top:1px solid var(--rule);border-bottom:1px solid var(--rule);position:relative;opacity:0;transform:translateY(12px)}
+.pq-text{font-family:var(--f-d);font-weight:400;font-size:clamp(28px,4vw,52px);line-height:1.1;color:var(--ink);max-width:1040px;letter-spacing:-.01em;text-transform:uppercase}
+.pq-text .strike{color:var(--ink-40);text-decoration:line-through;text-decoration-color:var(--coral);text-decoration-thickness:3px}
+.pq-text .hl{color:var(--turquoise-dark)}
+.pq-source{margin-top:24px;font-family:var(--f-m);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-40)}
+
+/* ===== TABLE ROWS — for comparisons / phases ===== */
+.tbl{margin-top:8px}
+.tbl-head{display:grid;padding:14px 0;border-bottom:1px solid var(--ink-20);font-family:var(--f-m);font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-60)}
+.tbl-row{display:grid;padding:18px 0;border-bottom:1px solid var(--rule);align-items:center}
+.tbl-row.chosen{background:linear-gradient(90deg,var(--turquoise-soft) 0%,rgba(212,255,247,0) 100%);padding-left:16px;border-bottom-color:var(--turquoise)}
+.tr-label{font-weight:500;color:var(--ink);font-size:15px}
+.tr-pro,.tr-con{font-size:13px;color:var(--ink-60);line-height:1.6}
+.tr-pro strong,.tr-con strong{color:var(--ink);font-weight:500}
+.tr-badge{font-family:var(--f-m);font-size:9px;letter-spacing:.1em;text-transform:uppercase;padding:4px 8px;border-radius:2px;text-align:center;white-space:nowrap;display:inline-block}
+.b-yes{background:var(--turquoise);color:#0A4A3F}
+.b-no{background:var(--ink-10);color:var(--ink-60)}
+.b-warn{background:var(--coral-soft);color:var(--coral-dark)}
+
+/* ===== STRATEGY BLOCKS — channels ===== */
+.chan-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:2px;margin-top:32px}
+@media(max-width:880px){.chan-grid{grid-template-columns:1fr}}
+.chan{padding:28px 24px;background:var(--bg);border:1px solid var(--rule);position:relative}
+.chan-num{font-family:var(--f-d);font-size:48px;font-weight:400;line-height:1;color:var(--ink-20);margin-bottom:8px;letter-spacing:-.02em}
+.chan--turq{border-top:3px solid var(--turquoise)}
+.chan--blue{border-top:3px solid var(--blue)}
+.chan--coral{border-top:3px solid var(--coral)}
+.chan-tag{font-family:var(--f-m);font-size:9px;letter-spacing:.14em;text-transform:uppercase;margin-bottom:6px;color:var(--ink-60)}
+.chan-title{font-size:18px;font-weight:600;color:var(--ink);margin-bottom:12px;line-height:1.3}
+.chan-desc{font-size:13px;color:var(--ink-60);line-height:1.7;margin-bottom:18px}
+.chan-stats{display:grid;grid-template-columns:1fr 1fr;gap:8px;padding-top:14px;border-top:1px solid var(--rule)}
+.cs-item{}
+.cs-v{font-family:var(--f-d);font-size:22px;font-weight:400;color:var(--ink);line-height:1;letter-spacing:-.01em}
+.chan--turq .cs-v{color:var(--turquoise-dark)}
+.chan--blue .cs-v{color:var(--blue)}
+.chan--coral .cs-v{color:var(--coral-dark)}
+.cs-l{font-family:var(--f-m);font-size:8px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-40);margin-top:4px;line-height:1.4}
+
+/* ===== CALENDAR HEATMAP ===== */
+.cal-wrap{margin-top:32px;overflow-x:auto;-webkit-overflow-scrolling:touch}
+.cal-table{width:100%;min-width:880px;border-collapse:collapse}
+.cal-table th{font-family:var(--f-m);font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-60);padding:12px 8px;text-align:center;border-bottom:1px solid var(--ink-20);font-weight:500}
+.cal-table th:first-child{text-align:left;width:120px}
+.cal-table td{padding:10px 8px;text-align:center;border-bottom:1px solid var(--rule);font-size:13px;vertical-align:middle}
+.cal-table td:first-child{text-align:left;font-weight:500;color:var(--ink);font-size:13px}
+.cal-cell{width:24px;height:24px;display:inline-block;border-radius:3px}
+.heat-0{background:var(--ink-05)}
+.heat-1{background:var(--ink-10)}
+.heat-2{background:var(--turquoise-soft);opacity:.7}
+.heat-3{background:var(--turquoise);opacity:.85}
+.heat-4{background:var(--turquoise-dark)}
+.cal-legend{display:flex;align-items:center;gap:14px;margin-top:20px;font-family:var(--f-m);font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-40);flex-wrap:wrap}
+.cal-leg-item{display:flex;align-items:center;gap:6px}
+
+/* ===== CONFIG MINI ===== */
+.cfg-grid{display:grid;grid-template-columns:1fr 1fr;gap:32px;margin-top:32px}
+@media(max-width:760px){.cfg-grid{grid-template-columns:1fr}}
+.cfg-box{padding:28px;background:var(--bg);border:1px solid var(--rule);border-radius:4px;position:relative}
+.cfg-tag{font-family:var(--f-m);font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-60);margin-bottom:8px}
+.cfg-title{font-size:18px;font-weight:600;color:var(--ink);margin-bottom:20px;line-height:1.3}
+.cfg-slider{margin:18px 0}
+.cfg-row{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px;font-size:13px;color:var(--ink-80)}
+.cfg-row strong{font-family:var(--f-d);font-size:22px;color:var(--turquoise-dark);font-weight:400;letter-spacing:-.01em}
+input[type="range"]{-webkit-appearance:none;appearance:none;width:100%;height:4px;background:var(--ink-10);border-radius:2px;outline:none}
+input[type="range"]::-webkit-slider-thumb{-webkit-appearance:none;appearance:none;width:18px;height:18px;border-radius:50%;background:var(--turquoise-dark);cursor:pointer;border:2px solid var(--bg)}
+input[type="range"]::-moz-range-thumb{width:18px;height:18px;border-radius:50%;background:var(--turquoise-dark);cursor:pointer;border:2px solid var(--bg)}
+.cfg-result{margin-top:20px;padding-top:18px;border-top:1px solid var(--rule);display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.cfg-res-item{}
+.cfg-res-v{font-family:var(--f-d);font-size:32px;font-weight:400;color:var(--ink);line-height:1;letter-spacing:-.01em}
+.cfg-res-v.coral{color:var(--coral-dark)}
+.cfg-res-v.blue{color:var(--blue)}
+.cfg-res-l{font-family:var(--f-m);font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-40);margin-top:4px}
+.cfg-note{font-size:11px;color:var(--ink-40);margin-top:14px;font-style:italic;line-height:1.5}
+
+/* ===== TIMELINE / ROADMAP STRIP ===== */
+.tl-strip{display:grid;grid-template-columns:repeat(4,1fr);gap:0;margin-top:32px;border:1px solid var(--rule)}
+@media(max-width:880px){.tl-strip{grid-template-columns:1fr 1fr}}
+@media(max-width:480px){.tl-strip{grid-template-columns:1fr}}
+.tl-cell{padding:24px 20px;border-right:1px solid var(--rule);position:relative}
+.tl-cell:last-child{border-right:none}
+@media(max-width:880px){.tl-cell:nth-child(2){border-right:none}.tl-cell:nth-child(1),.tl-cell:nth-child(2){border-bottom:1px solid var(--rule)}}
+.tl-num{font-family:var(--f-d);font-size:48px;font-weight:400;color:var(--ink-20);line-height:1;letter-spacing:-.02em}
+.tl-period{font-family:var(--f-m);font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:var(--turquoise-dark);margin:8px 0 12px}
+.tl-title{font-size:16px;font-weight:600;color:var(--ink);margin-bottom:8px;line-height:1.3}
+.tl-desc{font-size:12.5px;color:var(--ink-60);line-height:1.65}
+
+/* ===== DECISION BOX ===== */
+.dec-box{padding:56px 48px;border:1px solid var(--ink-20);position:relative;background:var(--bg);margin-top:24px;opacity:0;transform:translateY(16px)}
+@media(max-width:760px){.dec-box{padding:36px 24px}}
+.dec-box::before{content:'';position:absolute;top:0;left:0;right:0;height:4px;background:linear-gradient(90deg,var(--turquoise) 0%,var(--blue) 50%,var(--coral) 100%)}
+.dec-title{font-family:var(--f-d);font-size:clamp(36px,5vw,64px);font-weight:400;line-height:.98;margin-bottom:24px;letter-spacing:-.01em;text-transform:uppercase}
+.dec-title .accent{color:var(--turquoise-dark)}
+.dec-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:2px;margin-top:32px}
+@media(max-width:880px){.dec-grid{grid-template-columns:1fr}}
+.dec-col{padding:24px;background:var(--bg-alt)}
+.dec-num{font-family:var(--f-d);font-size:44px;font-weight:400;line-height:1;margin-bottom:10px;letter-spacing:-.01em}
+.dec-num.t{color:var(--turquoise-dark)}
+.dec-num.b{color:var(--blue)}
+.dec-num.c{color:var(--coral-dark)}
+.dec-col-title{font-size:13px;font-weight:600;text-transform:uppercase;letter-spacing:.06em;color:var(--ink);margin-bottom:10px}
+.dec-col-body{font-size:13px;color:var(--ink-60);line-height:1.7}
+.dec-col-body strong{color:var(--ink);font-weight:500}
+
+/* ===== FOOTER ===== */
+.footer{padding:40px 0 24px;border-top:1px solid var(--rule);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px}
+.f-left{display:flex;align-items:center;gap:12px;font-family:var(--f-s);font-weight:700;font-size:15px;color:var(--ink)}
+.f-left .dot{color:var(--turquoise)}
+.f-sep{width:1px;height:14px;background:var(--ink-20)}
+.f-tag{font-family:var(--f-m);font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-40)}
+.f-right{font-family:var(--f-m);font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-40)}
+
+/* ===== RIBRAIN ROAD DECORATION ===== */
+.road-svg{display:block;width:100%;height:auto}
+.road-dot{fill:var(--turquoise)}
+
+/* ===== SECTOR BADGES ===== */
+.sec-badge{display:inline-flex;align-items:center;gap:6px;font-family:var(--f-m);font-size:9px;letter-spacing:.1em;text-transform:uppercase;padding:4px 10px;border-radius:20px;margin-right:4px;margin-bottom:4px}
+.sec-badge .b-dot{width:7px;height:7px;border-radius:50%}
+.sb-foodbc{background:var(--turquoise-soft);color:var(--turquoise-dark)}
+.sb-foodbc .b-dot{background:var(--turquoise-dark)}
+.sb-foodbb{background:#C8F7E8;color:#085040}
+.sb-foodbb .b-dot{background:#0F6E56}
+.sb-lux{background:#EEEDFE;color:#3C3489}
+.sb-lux .b-dot{background:#7F77DD}
+.sb-beauty{background:var(--magenta-soft);color:var(--magenta-dark)}
+.sb-beauty .b-dot{background:var(--magenta)}
+.sb-tur{background:var(--blue-soft);color:var(--blue-dark)}
+.sb-tur .b-dot{background:var(--blue)}
+.sb-b2b{background:#E5E4DC;color:#444441}
+.sb-b2b .b-dot{background:#888780}
+
+/* ===== UTILITY ===== */
+.spacer-l{height:48px}
+.spacer-m{height:24px}
+
+/* ===== NAV DRAWER ===== */
+.nav-trigger{display:flex;align-items:center;gap:10px;background:none;border:1px solid var(--ink-20);padding:7px 14px 7px 12px;border-radius:24px;cursor:pointer;font-family:var(--f-m);font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-80);transition:all .2s}
+.nav-trigger:hover{background:var(--ink-05);border-color:var(--ink-40)}
+.nav-trigger .nt-lines{display:flex;flex-direction:column;gap:3px}
+.nav-trigger .nt-lines span{display:block;width:14px;height:1.5px;background:var(--ink);border-radius:1px;transition:all .3s var(--ease)}
+.nav-trigger .nt-lines span:nth-child(2){width:10px}
+.nav-overlay{position:fixed;inset:0;background:rgba(10,10,10,.7);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);opacity:0;visibility:hidden;transition:opacity .35s var(--ease),visibility .35s var(--ease);z-index:200}
+.nav-overlay.open{opacity:1;visibility:visible}
+.nav-drawer{position:fixed;top:0;right:0;width:480px;max-width:92vw;height:100vh;background:var(--bg);z-index:300;transform:translateX(100%);transition:transform .45s var(--ease);overflow-y:auto;display:flex;flex-direction:column;padding:32px 40px 40px}
+@media(max-width:560px){.nav-drawer{padding:24px 24px 32px}}
+.nav-drawer.open{transform:translateX(0)}
+.nav-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:32px}
+.nav-title{font-family:var(--f-m);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-60)}
+.nav-close{background:none;border:1px solid var(--ink-20);width:36px;height:36px;border-radius:50%;cursor:pointer;display:flex;align-items:center;justify-content:center;color:var(--ink);transition:all .2s}
+.nav-close:hover{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.nav-close svg{width:14px;height:14px}
+.nav-list{display:flex;flex-direction:column;gap:0;margin-top:8px}
+.nav-item{display:flex;align-items:flex-start;gap:18px;padding:18px 0;border-bottom:1px solid var(--rule);text-decoration:none;color:var(--ink);cursor:pointer;transition:all .25s var(--ease);position:relative}
+.nav-item:hover{padding-left:8px}
+.nav-item:hover .nav-num{color:var(--turquoise-dark)}
+.nav-item:hover .nav-arrow{transform:translateX(4px);opacity:1}
+.nav-num{font-family:var(--f-d);font-size:24px;font-weight:400;color:var(--ink-40);line-height:1;width:48px;flex-shrink:0;transition:color .25s;letter-spacing:-.01em}
+.nav-text{flex:1}
+.nav-label{font-family:var(--f-m);font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-40);margin-bottom:4px}
+.nav-headline{font-size:16px;font-weight:600;color:var(--ink);line-height:1.3;margin-bottom:4px;letter-spacing:-.01em}
+.nav-desc{font-size:12px;color:var(--ink-60);line-height:1.5}
+.nav-arrow{font-family:var(--f-m);align-self:center;color:var(--ink-40);transition:all .25s var(--ease);opacity:.5;font-size:14px}
+.nav-item.external{}
+.nav-item.external .nav-num{color:var(--turquoise-dark)}
+.nav-item.external .nav-label{color:var(--turquoise-dark)}
+.nav-footer{margin-top:auto;padding-top:32px;border-top:1px solid var(--rule);display:flex;align-items:center;justify-content:space-between;font-family:var(--f-m);font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-40)}
+.nav-footer .dot{color:var(--turquoise)}
+body.nav-open{overflow:hidden}
+
+/* ===== DEEP DIVE LINK ===== */
+.dd-link{display:inline-flex;align-items:center;gap:12px;margin-top:32px;padding:14px 22px;background:var(--ink);color:var(--bg);font-family:var(--f-m);font-size:11px;letter-spacing:.14em;text-transform:uppercase;font-weight:500;border-radius:2px;text-decoration:none;transition:all .25s var(--ease);border:1px solid var(--ink)}
+.dd-link:hover{background:var(--bg);color:var(--ink);transform:translateX(4px)}
+.dd-link .dd-arrow{font-family:var(--f-m);font-size:14px;transition:transform .25s var(--ease)}
+.dd-link:hover .dd-arrow{transform:translateX(4px)}
+.dd-link--turq{background:var(--turquoise-dark);border-color:var(--turquoise-dark)}
+.dd-link--turq:hover{background:var(--bg);color:var(--turquoise-dark)}
+.dd-link--coral{background:var(--coral-dark);border-color:var(--coral-dark)}
+.dd-link--coral:hover{background:var(--bg);color:var(--coral-dark)}
+</style>
+</head>
+<body>
+
+<!-- ===== TOPBAR ===== -->
+<header class="topbar">
+  <div class="tb-left">
+    <span class="tb-logo">ribrain<span style="color:var(--turquoise)">.</span></span>
+    <span class="tb-sep"></span>
+    <span class="tb-label">M0 · Piano Strategico Crescita</span>
+  </div>
+  <div class="tb-right">
+    <span class="tb-date">2026–2027</span>
+    <span class="tb-conf">Confidenziale soci</span>
+    <button class="nav-trigger" onclick="openNav()" aria-label="Apri navigazione">
+      <span class="nt-lines"><span></span><span></span></span>
+      <span>Indice</span>
+    </button>
+  </div>
+</header>
+
+<!-- ===== NAV DRAWER ===== -->
+<div class="nav-overlay" id="navOverlay" onclick="closeNav()"></div>
+<aside class="nav-drawer" id="navDrawer" aria-label="Indice del documento">
+  <div class="nav-head">
+    <div class="nav-title">Indice · 9 moduli + decision box</div>
+    <button class="nav-close" onclick="closeNav()" aria-label="Chiudi navigazione">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6L6 18M6 6l12 12"/></svg>
+    </button>
+  </div>
+  <nav class="nav-list">
+    <a href="#hero" class="nav-item" onclick="closeNav()">
+      <div class="nav-num">00</div>
+      <div class="nav-text">
+        <div class="nav-label">Cover</div>
+        <div class="nav-headline">Find your why</div>
+        <div class="nav-desc">Da agenzia generalista a partner di crescita</div>
+      </div>
+      <span class="nav-arrow">↓</span>
+    </a>
+    <a href="#m1" class="nav-item" onclick="closeNav()">
+      <div class="nav-num">01</div>
+      <div class="nav-text">
+        <div class="nav-label">Quadro di mercato</div>
+        <div class="nav-headline">Siamo nella terra di mezzo</div>
+        <div class="nav-desc">Commodity trap, gap operativo, packaging come fossato</div>
+      </div>
+      <span class="nav-arrow">↓</span>
+    </a>
+    <a href="#m2" class="nav-item" onclick="closeNav()">
+      <div class="nav-num">02</div>
+      <div class="nav-text">
+        <div class="nav-label">Cliente ideale</div>
+        <div class="nav-headline">Il cliente ha un nome, un volto, un trigger</div>
+        <div class="nav-desc">ICP 8–40M€ · buying committee · 5 trigger d'acquisto</div>
+      </div>
+      <span class="nav-arrow">↓</span>
+    </a>
+    <a href="#m3" class="nav-item" onclick="closeNav()">
+      <div class="nav-num">03</div>
+      <div class="nav-text">
+        <div class="nav-label">Posizionamento</div>
+        <div class="nav-headline">3 strade considerate, 1 imboccata</div>
+        <div class="nav-desc">Brand unico + landing verticali per settore</div>
+      </div>
+      <span class="nav-arrow">↓</span>
+    </a>
+    <a href="#m4" class="nav-item" onclick="closeNav()">
+      <div class="nav-num">04</div>
+      <div class="nav-text">
+        <div class="nav-label">Strategia acquisizione</div>
+        <div class="nav-headline">Meta · Referral · LinkedIn</div>
+        <div class="nav-desc">Mix canali B+C, budget 1.5–2k€/mese, cosa NON facciamo</div>
+      </div>
+      <span class="nav-arrow">↓</span>
+    </a>
+    <a href="m5.html" class="nav-item external">
+      <div class="nav-num">05</div>
+      <div class="nav-text">
+        <div class="nav-label">Calendario commerciale → deep-dive</div>
+        <div class="nav-headline">12 mesi · 6 settori · timeline esplosa</div>
+        <div class="nav-desc">Heatmap interattiva, trigger per cella, finestre outreach</div>
+      </div>
+      <span class="nav-arrow">→</span>
+    </a>
+    <a href="m6.html" class="nav-item external">
+      <div class="nav-num">06</div>
+      <div class="nav-text">
+        <div class="nav-label">Economics → deep-dive</div>
+        <div class="nav-headline">Da 600k a 750k · come ci arriviamo</div>
+        <div class="nav-desc">Configuratori completi, proiezioni 18 mesi, scenari</div>
+      </div>
+      <span class="nav-arrow">→</span>
+    </a>
+    <a href="#m7" class="nav-item" onclick="closeNav()">
+      <div class="nav-num">07</div>
+      <div class="nav-text">
+        <div class="nav-label">Operations</div>
+        <div class="nav-headline">Il bottleneck siamo noi</div>
+        <div class="nav-desc">Filtro pre-qualifica, tieratura proposte, Co-work</div>
+      </div>
+      <span class="nav-arrow">↓</span>
+    </a>
+    <a href="#m8" class="nav-item" onclick="closeNav()">
+      <div class="nav-num">08</div>
+      <div class="nav-text">
+        <div class="nav-label">Strategia mid-term</div>
+        <div class="nav-headline">Adattivi, non profetici</div>
+        <div class="nav-desc">Decision tree 4 step, decision point gennaio 2027</div>
+      </div>
+      <span class="nav-arrow">↓</span>
+    </a>
+    <a href="#m9" class="nav-item" onclick="closeNav()">
+      <div class="nav-num">09</div>
+      <div class="nav-text">
+        <div class="nav-label">Roadmap 90 giorni · preview</div>
+        <div class="nav-headline">Le prime 12 settimane</div>
+        <div class="nav-desc">Setup · Activation · Optimize · Scale</div>
+      </div>
+      <span class="nav-arrow">↓</span>
+    </a>
+    <a href="#decision" class="nav-item" onclick="closeNav()">
+      <div class="nav-num">→</div>
+      <div class="nav-text">
+        <div class="nav-label">Decision box finale</div>
+        <div class="nav-headline">Dove mettere il primo euro</div>
+        <div class="nav-desc">3 azioni da fare nelle prime 4 settimane</div>
+      </div>
+      <span class="nav-arrow">↓</span>
+    </a>
+  </nav>
+  <div class="nav-footer">
+    <span>ribrain<span class="dot">.</span></span>
+    <span>M0 · Maggio 2026</span>
+  </div>
+</aside>
+
+<!-- ===== HERO ===== -->
+<section class="hero" id="hero">
+  <svg class="hero-bg-road" viewBox="0 0 520 520" fill="none">
+    <path d="M50 100 Q 150 100 200 200 T 350 320 Q 420 400 480 380" stroke="var(--turquoise-dark)" stroke-width="50" stroke-linecap="round" fill="none" opacity=".5"/>
+    <path d="M50 100 Q 150 100 200 200 T 350 320 Q 420 400 480 380" stroke="var(--coral)" stroke-width="50" stroke-linecap="round" fill="none" opacity=".5" transform="translate(40,40)"/>
+    <circle cx="280" cy="270" r="22" fill="var(--turquoise-dark)"/>
+  </svg>
+  <div style="position:relative">
+    <div class="h-eyebrow" id="he">
+      <span class="h-line"></span>
+      <span class="h-tag">Piano strategico interno · Maggio 2026</span>
+    </div>
+    <h1 class="h-h1" id="hh">FIND YOUR<br>WHY<span class="dot">.</span></h1>
+    <p class="h-sub-1" id="hs1">Anche per noi è arrivato <em>il momento.</em></p>
+    <p class="h-sub-2" id="hs2">Da agenzia <strong>generalista a partner di crescita</strong> per le PMI italiane.<br>La strada dei <strong>prossimi 12 mesi</strong>: dove siamo, dove vogliamo arrivare, come ci arriviamo davvero.</p>
+  </div>
+</section>
+
+<!-- ===== KPI BAND ===== -->
+<div class="kpi-band" id="kpi">
+  <div class="kpi-item"><div class="kpi-n">26<span class="kpi-arrow">→</span>40</div><div class="kpi-l">Clienti attivi · 12 mesi</div></div>
+  <div class="kpi-item"><div class="kpi-n">600<span class="kpi-arrow">→</span>750k</div><div class="kpi-l">Fatturato · €/anno</div></div>
+  <div class="kpi-item"><div class="kpi-n">1.330<span class="kpi-arrow">→</span>2.5k</div><div class="kpi-l">Ticket medio · €/mese</div></div>
+  <div class="kpi-item"><div class="kpi-n">3+</div><div class="kpi-l">Anni retention media</div></div>
+  <div class="kpi-item"><div class="kpi-n">9</div><div class="kpi-l">Persone in team</div></div>
+  <div class="kpi-item"><div class="kpi-n">6</div><div class="kpi-l">Settori monitorati</div></div>
+</div>
+
+<!-- ===== M1 · QUADRO DI MERCATO ===== -->
+<section class="section" id="m1">
+  <div class="wrap">
+    <div class="s-head">
+      <span class="s-mod" style="color:var(--blue);border-color:var(--blue);background:var(--blue-soft)"><span class="s-mod-num">M1</span> · Quadro di mercato</span>
+      <h2 class="s-h2">Siamo nella<br><span class="accent" style="color:var(--blue)">terra di mezzo.</span></h2>
+      <p class="s-intro">Il mercato italiano delle agenzie marketing conta <strong>43.453 realtà attive</strong>, ma la metà non supera i 120k€ di fatturato. Ribrain è nella fascia che il mercato chiama "Boutique Mid-Size" — <strong>quella più pericolosa</strong>, schiacciata tra micro-agenzie che distruggono i prezzi dal basso e strutture grandi che attraggono i clienti più sofisticati dall'alto. Qui sopravvive solo chi sceglie un posizionamento difendibile.</p>
+    </div>
+
+    <div class="ig ig--3">
+      <div class="ic ic--blue">
+        <span class="ic-eyebrow">Insight 1.1 · Commodity trap</span>
+        <div class="ic-title">Il 53% del mercato distrugge il prezzo del social.</div>
+        <p class="ic-body">Migliaia di micro-agenzie offrono "social management" a 500–1.000€/mese. Pacchetti che <strong>sporcano la percezione del valore</strong> e trascinano al ribasso anche chi offre servizi seri. Non si compete con loro sul prezzo — si compete altrove.</p>
+        <div class="ic-stat"><strong>53%</strong>fatturato &lt; 120k€/anno</div>
+      </div>
+      <div class="ic ic--blue">
+        <span class="ic-eyebrow">Insight 1.2 · Il gap operativo</span>
+        <div class="ic-title">Serviamo clienti Livello 3, con struttura Livello 4.</div>
+        <p class="ic-body">I clienti Ribrain sono PMI da 6–50M€ — il segmento che il mercato chiama "Boutique Mid-Size", normalmente servito da agenzie 10–50 persone. <strong>Noi siamo 9.</strong> O industrializziamo i processi, o i prossimi 14 contratti ci affogano.</p>
+        <div class="ic-stat"><strong>+55%</strong>clienti vs team in 12 mesi</div>
+      </div>
+      <div class="ic ic--blue">
+        <span class="ic-eyebrow">Insight 1.3 · La leva difendibile</span>
+        <div class="ic-title">L'AI uccide il social commodity. Salva il packaging.</div>
+        <p class="ic-body">Entro il 2027 il <strong>79% della spesa adv sarà guidata dall'AI</strong>. Social management e ADV standard subiranno una compressione brutale. Il packaging — competenza GDO, logistica, posizionamento a scaffale — l'AI non lo replica. È il nostro fossato.</p>
+        <div class="ic-stat"><strong>79%</strong>adv spend AI-driven entro 2027</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== PULL QUOTE 1 ===== -->
+<section class="section section--alt">
+  <div class="wrap">
+    <div class="pq" id="pq1">
+      <p class="pq-text">Non vinciamo perché facciamo cose diverse.<br>Vinciamo perché <span class="hl">le raccontiamo meglio.</span></p>
+      <p class="pq-source">— principio operativo del piano</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===== M2 · ICP ===== -->
+<section class="section" id="m2">
+  <div class="wrap">
+    <div class="s-head">
+      <span class="s-mod" style="color:var(--magenta-dark);border-color:var(--magenta);background:var(--magenta-soft)"><span class="s-mod-num">M2</span> · Cliente Ideale</span>
+      <h2 class="s-h2">Il cliente ha un nome,<br><span class="accent" style="color:var(--magenta)">un volto, un trigger.</span></h2>
+      <p class="s-intro">Non "azienda food italiana" — troppo vago. Il target preciso è <strong>l'imprenditore di seconda generazione</strong> di una PMI 8–40M€, con un marketing manager interno sotto-organico, che sta entrando in GDO o lanciando un nuovo SKU. Sa che il prodotto è buono ma sente che il mercato non lo riconosce abbastanza. Ha già investito in marketing una volta e ci si è bruciato.</p>
+    </div>
+
+    <div class="ig ig--2" style="margin-bottom:2px">
+      <div class="ic ic--magenta">
+        <span class="ic-eyebrow">Profilo · Azienda target</span>
+        <div class="ic-title">8–40M€ · 20–50 dipendenti · marketing interno sotto-organico</div>
+        <p class="ic-body">Geografia primaria: <strong>Lombardia, Veneto, Emilia-Romagna</strong> — massima concentrazione + pagano prezzi di mercato nazionale. ATECO 10.x/11.x (alimentari, bevande). Hanno già un'agenzia o l'hanno avuta — sanno cosa vogliono e il ciclo di vendita è più corto.</p>
+        <div class="ic-stat"><strong>20–50k€</strong>budget marketing annuale tipico</div>
+      </div>
+      <div class="ic ic--magenta">
+        <span class="ic-eyebrow">Profilo · Decisore</span>
+        <div class="ic-title">CEO firma · Marketing Manager apre · CFO frena</div>
+        <p class="ic-body">Buying committee a 4 figure. Il <strong>Marketing Manager interno è il vero alleato</strong> — ma ha paura di fare brutta figura. Se la proposta lo fa sembrare brillante davanti al CEO, hai vinto. Se lo scavalchi, hai perso anche con la proposta migliore.</p>
+        <div class="ic-stat"><strong>4–12 sett.</strong>ciclo di vendita medio mid-market</div>
+      </div>
+    </div>
+
+    <div style="margin-top:48px">
+      <div style="font-family:var(--f-m);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-60);margin-bottom:16px">I 5 trigger d'acquisto · quando il cliente apre il portafoglio</div>
+      <div class="ig ig--3">
+        <div class="ic ic--magenta" style="padding:24px 22px"><span class="ic-eyebrow">Trigger 1 · GDO</span><div class="ic-title" style="font-size:17px">Ingresso o consolidamento in GDO</div><p class="ic-body" style="font-size:13px">"Il buyer di Esselunga ci ha detto che il packaging non funziona a scaffale."</p></div>
+        <div class="ic ic--magenta" style="padding:24px 22px"><span class="ic-eyebrow">Trigger 2 · Lancio</span><div class="ic-title" style="font-size:17px">Nuovo prodotto o SKU</div><p class="ic-body" style="font-size:13px">Serve tutto insieme — naming, packaging, digital launch. Budget concentrato.</p></div>
+        <div class="ic ic--magenta" style="padding:24px 22px"><span class="ic-eyebrow">Trigger 3 · Rebranding</span><div class="ic-title" style="font-size:17px">Cambio generazionale o posizionamento</div><p class="ic-body" style="font-size:13px">Tipico delle PMI familiari quando entra la seconda generazione in azienda.</p></div>
+        <div class="ic ic--magenta" style="padding:24px 22px"><span class="ic-eyebrow">Trigger 4 · Performance</span><div class="ic-title" style="font-size:17px">Calo vendite improvviso</div><p class="ic-body" style="font-size:13px">"Le ads non portano più nulla, qualcosa non va." Crisi = opening.</p></div>
+        <div class="ic ic--magenta" style="padding:24px 22px"><span class="ic-eyebrow">Trigger 5 · Export</span><div class="ic-title" style="font-size:17px">Internazionalizzazione</div><p class="ic-body" style="font-size:13px">"Vogliamo entrare in Germania ma non sappiamo come presentarci." Alto ticket.</p></div>
+        <div class="ic ic--ink" style="padding:24px 22px;background:var(--bg-alt)"><span class="ic-eyebrow" style="color:var(--ink)">Regola d'oro</span><div class="ic-title" style="font-size:17px">Non vendere "marketing"</div><p class="ic-body" style="font-size:13px">Il cliente non compra marketing. Compra la soluzione al suo trigger. <strong>Il pitch deve parlare al trigger</strong>, non al servizio.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== M3 · POSIZIONAMENTO ===== -->
+<section class="section section--alt" id="m3">
+  <div class="wrap">
+    <div class="s-head">
+      <span class="s-mod" style="color:var(--turquoise-dark);border-color:var(--turquoise-dark);background:var(--turquoise-soft)"><span class="s-mod-num">M3</span> · Posizionamento</span>
+      <h2 class="s-h2">3 strade considerate.<br><span class="accent" style="color:var(--turquoise-dark)">1 imboccata.</span></h2>
+      <p class="s-intro">Posizionarsi sul food in modo verticale al 100% sarebbe coerente con i casi studio storici, ma <strong>perderemmo Lemon, Nuvola, Multibit e tutti gli altri clienti non-food</strong> che pagano da 3+ anni. Non sostenibile. Posizionarsi solo sul packaging è ancora più stretto. La via percorribile è la terza: brand unico, landing verticali per settore, accelerazione sul food in base ai segnali del mercato.</p>
+    </div>
+
+    <div class="tbl">
+      <div class="tbl-head" style="grid-template-columns:200px 1fr 1fr 120px">
+        <div>Strada</div>
+        <div>Pro</div>
+        <div>Contro</div>
+        <div style="text-align:center">Scelta</div>
+      </div>
+      <div class="tbl-row" style="grid-template-columns:200px 1fr 1fr 120px;gap:24px">
+        <div class="tr-label">A · Generalista puro</div>
+        <div class="tr-pro">Massima flessibilità. <strong>Protegge gli attuali 26 clienti.</strong></div>
+        <div class="tr-con">Indistinguibile da 43.000 agenzie. Bloccato sul prezzo. <strong>Status quo.</strong></div>
+        <div style="text-align:center"><span class="tr-badge b-no">No</span></div>
+      </div>
+      <div class="tbl-row" style="grid-template-columns:200px 1fr 1fr 120px;gap:24px">
+        <div class="tr-label">B · Verticale food al 100%</div>
+        <div class="tr-pro">Massima autorità. Ticket medio più alto. <strong>Cicli di vendita più corti.</strong></div>
+        <div class="tr-con"><strong>Perdiamo Lemon, Nuvola, Multibit e altri.</strong> Latte Berna e Molino non bastano da soli.</div>
+        <div style="text-align:center"><span class="tr-badge b-warn">Rischioso</span></div>
+      </div>
+      <div class="tbl-row chosen" style="grid-template-columns:200px 1fr 1fr 120px;gap:24px">
+        <div class="tr-label">C · Brand unico + landing verticali</div>
+        <div class="tr-pro">Manteniamo tutti i clienti. <strong>Comunicazione verticale per settore.</strong> Scalabile a luxury, beauty, B2B se il mercato risponde.</div>
+        <div class="tr-con">Richiede investimento in landing e contenuti differenziati. Più complesso da raccontare internamente.</div>
+        <div style="text-align:center"><span class="tr-badge b-yes">Scelta</span></div>
+      </div>
+    </div>
+
+    <div class="spacer-l"></div>
+
+    <div class="ig ig--1">
+      <div class="ic ic--turquoise" style="background:var(--turquoise-soft)">
+        <span class="ic-eyebrow">Claim definitivo · esterno food</span>
+        <div class="ic-title" style="font-size:28px;line-height:1.2">"L'agenzia che porta i brand food italiani <em style="font-style:normal;color:var(--turquoise-dark);font-weight:700">dalla produzione allo scaffale</em> — packaging, digital e performance integrate."</div>
+        <p class="ic-body" style="margin-top:12px">Il packaging è la porta d'ingresso e il differenziatore visibile, ma il contratto è un retainer continuativo che include social e ADV. Il cliente sceglie perché capisci il food meglio degli altri, <strong>rimane perché gli gestisci tutto in modo coerente</strong>.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== M4 · ACQUISIZIONE ===== -->
+<section class="section" id="m4">
+  <div class="wrap">
+    <div class="s-head">
+      <span class="s-mod" style="color:var(--coral-dark);border-color:var(--coral);background:var(--coral-soft)"><span class="s-mod-num">M4</span> · Strategia di acquisizione</span>
+      <h2 class="s-h2">Meta per il cash.<br>Referral per la velocità.<br><span class="accent" style="color:var(--coral)">LinkedIn per il futuro.</span></h2>
+      <p class="s-intro">Budget test: <strong>1.5–2k€/mese per 6 mesi</strong>. Cold email massiva esclusa — rischio brand equity troppo alto. La macchina si appoggia su 3 canali con tempi e funzioni diversi: <strong>il referral porta cash subito, Meta porta lead in 3–6 settimane, LinkedIn costruisce inbound a 6 mesi</strong>. Insieme creano ridondanza: se uno va peggio, gli altri compensano.</p>
+    </div>
+
+    <div class="chan-grid">
+      <div class="chan chan--coral">
+        <div class="chan-num">01</div>
+        <div class="chan-tag">Priorità · IMMEDIATA</div>
+        <div class="chan-title">Referral strutturato</div>
+        <p class="chan-desc">Caffeina + Secret Key già formalizzati. Da attivare: <strong>1 case study/mese</strong> inviato ai partner per stare in cima alla loro mente. Aggiungere 3–5 partner: agenzie complementari + consulenti filiera food.</p>
+        <div class="chan-stats">
+          <div class="cs-item"><div class="cs-v">€0</div><div class="cs-l">costo attivazione</div></div>
+          <div class="cs-item"><div class="cs-v">2–4 sett.</div><div class="cs-l">tempo al lead</div></div>
+        </div>
+      </div>
+      <div class="chan chan--turq">
+        <div class="chan-num">02</div>
+        <div class="chan-tag">Priorità · BREVE TERMINE</div>
+        <div class="chan-title">Meta Ads su clienti piccoli</div>
+        <p class="chan-desc">Aziende 1–5M€ che cercano un'agenzia competente ma non possono permettersi le grandi strutture. <strong>Cicli di vendita corti, casi studio rapidi</strong>, materiale per scalare verso il mid-market. Test già fatto l'anno scorso con risultati.</p>
+        <div class="chan-stats">
+          <div class="cs-item"><div class="cs-v">€1.2–1.5k</div><div class="cs-l">budget mensile</div></div>
+          <div class="cs-item"><div class="cs-v">3–6 sett.</div><div class="cs-l">tempo al contratto</div></div>
+        </div>
+      </div>
+      <div class="chan chan--blue">
+        <div class="chan-num">03</div>
+        <div class="chan-tag">Priorità · MEDIO TERMINE</div>
+        <div class="chan-title">LinkedIn content founder</div>
+        <p class="chan-desc">CEO già pubblica 1–2 post/sett da ~1.5 mesi. Sistematizzare a <strong>3–4 post/sett</strong> con piano editoriale: trend GDO, casi studio narrati, dati di mercato food. Inbound qualificato a 6 mesi senza budget.</p>
+        <div class="chan-stats">
+          <div class="cs-item"><div class="cs-v">€300–500</div><div class="cs-l">produzione/mese</div></div>
+          <div class="cs-item"><div class="cs-v">90–180 g.</div><div class="cs-l">tempo all'inbound</div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="spacer-l"></div>
+
+    <div class="ig ig--2">
+      <div class="ic ic--coral">
+        <span class="ic-eyebrow">Cosa NON facciamo</span>
+        <div class="ic-title">No cold email massiva, no Apollo-style</div>
+        <p class="ic-body">L'invio massivo abbassa la percezione del brand. <strong>Ribrain non è Apollo.</strong> Outreach manuale chirurgico via Gmail/LinkedIn solo quando abbiamo un case study fortissimo da portare. Selezione a mano della lista. Qualità sopra quantità.</p>
+      </div>
+      <div class="ic ic--coral">
+        <span class="ic-eyebrow">Cosa NON facciamo · ancora</span>
+        <div class="ic-title">No TikTok come canale acquisition</div>
+        <p class="ic-body">Il decisore food 8–40M€ non sceglie agenzie su TikTok. <strong>Rimane uno skill da offrire ai clienti</strong>, non un canale per Ribrain. Eventualmente sì come personal branding del CEO — ma solo se diventa secondario, non strategico.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== M5 PREVIEW · CALENDARIO ===== -->
+<section class="section section--alt" id="m5">
+  <div class="wrap">
+    <div class="s-head">
+      <span class="s-mod" style="color:var(--turquoise-dark);border-color:var(--turquoise-dark);background:var(--turquoise-soft)"><span class="s-mod-num">M5</span> · Calendario commerciale · preview</span>
+      <h2 class="s-h2">12 mesi · 6 settori<br><span class="accent" style="color:var(--turquoise-dark)">1 timeline.</span></h2>
+      <p class="s-intro">Quando il prospect ha un trigger aperto, Ribrain deve essere già nella sua testa. La heatmap qui sotto mostra la <strong>temperatura mensile per settore</strong> — quando il decisore è ricettivo e quando è freddo. <strong>Settembre-ottobre 2026</strong> sono il bimestre più denso dell'anno: tutti i settori caldi insieme. <strong>Agosto va in stand-by.</strong> Per il deep-dive completo con trigger, azioni e canali per ogni cella, vai a M5.</p>
+    </div>
+
+    <div style="margin-top:16px">
+      <div style="font-family:var(--f-m);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-60);margin-bottom:14px">Heatmap · Temperatura del mercato per settore</div>
+      <div style="margin-bottom:14px">
+        <span class="sec-badge sb-foodbc"><span class="b-dot"></span>Food B2C</span>
+        <span class="sec-badge sb-foodbb"><span class="b-dot"></span>Food B2B</span>
+        <span class="sec-badge sb-lux"><span class="b-dot"></span>Luxury</span>
+        <span class="sec-badge sb-beauty"><span class="b-dot"></span>Beauty</span>
+        <span class="sec-badge sb-tur"><span class="b-dot"></span>Turismo</span>
+        <span class="sec-badge sb-b2b"><span class="b-dot"></span>B2B Servizi</span>
+      </div>
+      <div class="cal-wrap">
+        <table class="cal-table">
+          <thead>
+            <tr>
+              <th>Settore</th>
+              <th>Giu</th><th>Lug</th><th>Ago</th><th>Set</th><th>Ott</th><th>Nov</th><th>Dic</th><th>Gen</th><th>Feb</th><th>Mar</th><th>Apr</th><th>Mag</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><span class="sec-badge sb-foodbc"><span class="b-dot"></span>Food B2C</span></td>
+              <td><span class="cal-cell heat-3"></span></td>
+              <td><span class="cal-cell heat-2"></span></td>
+              <td><span class="cal-cell heat-1"></span></td>
+              <td><span class="cal-cell heat-4"></span></td>
+              <td><span class="cal-cell heat-4"></span></td>
+              <td><span class="cal-cell heat-3"></span></td>
+              <td><span class="cal-cell heat-1"></span></td>
+              <td><span class="cal-cell heat-3"></span></td>
+              <td><span class="cal-cell heat-2"></span></td>
+              <td><span class="cal-cell heat-3"></span></td>
+              <td><span class="cal-cell heat-3"></span></td>
+              <td><span class="cal-cell heat-4"></span></td>
+            </tr>
+            <tr>
+              <td><span class="sec-badge sb-foodbb"><span class="b-dot"></span>Food B2B</span></td>
+              <td><span class="cal-cell heat-3"></span></td>
+              <td><span class="cal-cell heat-2"></span></td>
+              <td><span class="cal-cell heat-0"></span></td>
+              <td><span class="cal-cell heat-4"></span></td>
+              <td><span class="cal-cell heat-4"></span></td>
+              <td><span class="cal-cell heat-3"></span></td>
+              <td><span class="cal-cell heat-1"></span></td>
+              <td><span class="cal-cell heat-2"></span></td>
+              <td><span class="cal-cell heat-2"></span></td>
+              <td><span class="cal-cell heat-3"></span></td>
+              <td><span class="cal-cell heat-3"></span></td>
+              <td><span class="cal-cell heat-4"></span></td>
+            </tr>
+            <tr>
+              <td><span class="sec-badge sb-lux"><span class="b-dot"></span>Luxury</span></td>
+              <td><span class="cal-cell heat-3"></span></td>
+              <td><span class="cal-cell heat-2"></span></td>
+              <td><span class="cal-cell heat-1"></span></td>
+              <td><span class="cal-cell heat-4"></span></td>
+              <td><span class="cal-cell heat-3"></span></td>
+              <td><span class="cal-cell heat-3"></span></td>
+              <td><span class="cal-cell heat-2"></span></td>
+              <td><span class="cal-cell heat-2"></span></td>
+              <td><span class="cal-cell heat-3"></span></td>
+              <td><span class="cal-cell heat-3"></span></td>
+              <td><span class="cal-cell heat-2"></span></td>
+              <td><span class="cal-cell heat-3"></span></td>
+            </tr>
+            <tr>
+              <td><span class="sec-badge sb-beauty"><span class="b-dot"></span>Beauty</span></td>
+              <td><span class="cal-cell heat-3"></span></td>
+              <td><span class="cal-cell heat-2"></span></td>
+              <td><span class="cal-cell heat-1"></span></td>
+              <td><span class="cal-cell heat-4"></span></td>
+              <td><span class="cal-cell heat-3"></span></td>
+              <td><span class="cal-cell heat-3"></span></td>
+              <td><span class="cal-cell heat-2"></span></td>
+              <td><span class="cal-cell heat-2"></span></td>
+              <td><span class="cal-cell heat-2"></span></td>
+              <td><span class="cal-cell heat-4"></span></td>
+              <td><span class="cal-cell heat-3"></span></td>
+              <td><span class="cal-cell heat-3"></span></td>
+            </tr>
+            <tr>
+              <td><span class="sec-badge sb-tur"><span class="b-dot"></span>Turismo</span></td>
+              <td><span class="cal-cell heat-3"></span></td>
+              <td><span class="cal-cell heat-3"></span></td>
+              <td><span class="cal-cell heat-2"></span></td>
+              <td><span class="cal-cell heat-3"></span></td>
+              <td><span class="cal-cell heat-4"></span></td>
+              <td><span class="cal-cell heat-3"></span></td>
+              <td><span class="cal-cell heat-2"></span></td>
+              <td><span class="cal-cell heat-2"></span></td>
+              <td><span class="cal-cell heat-3"></span></td>
+              <td><span class="cal-cell heat-3"></span></td>
+              <td><span class="cal-cell heat-3"></span></td>
+              <td><span class="cal-cell heat-3"></span></td>
+            </tr>
+            <tr>
+              <td><span class="sec-badge sb-b2b"><span class="b-dot"></span>B2B Servizi</span></td>
+              <td><span class="cal-cell heat-2"></span></td>
+              <td><span class="cal-cell heat-1"></span></td>
+              <td><span class="cal-cell heat-0"></span></td>
+              <td><span class="cal-cell heat-3"></span></td>
+              <td><span class="cal-cell heat-3"></span></td>
+              <td><span class="cal-cell heat-3"></span></td>
+              <td><span class="cal-cell heat-1"></span></td>
+              <td><span class="cal-cell heat-2"></span></td>
+              <td><span class="cal-cell heat-2"></span></td>
+              <td><span class="cal-cell heat-3"></span></td>
+              <td><span class="cal-cell heat-2"></span></td>
+              <td><span class="cal-cell heat-3"></span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="cal-legend">
+        <div class="cal-leg-item"><span class="cal-cell heat-0"></span>Stand-by</div>
+        <div class="cal-leg-item"><span class="cal-cell heat-1"></span>Bassa</div>
+        <div class="cal-leg-item"><span class="cal-cell heat-2"></span>Media</div>
+        <div class="cal-leg-item"><span class="cal-cell heat-3"></span>Alta</div>
+        <div class="cal-leg-item"><span class="cal-cell heat-4"></span>Massima</div>
+      </div>
+    </div>
+
+    <div class="spacer-l"></div>
+
+    <div class="ig ig--2">
+      <div class="ic ic--turquoise">
+        <span class="ic-eyebrow">Pattern · Bimestre denso</span>
+        <div class="ic-title">Settembre–ottobre 2026: tutti i settori caldi insieme.</div>
+        <p class="ic-body">Back-to-school food, MFW + Vicenzaoro luxury, Milano Beauty Week, SIAL Paris, TTG Travel Experience, budget 2027 in definizione B2B. <strong>Se hai contenuti pronti e Meta attiva in quel bimestre, vale metà anno.</strong></p>
+      </div>
+      <div class="ic ic--turquoise">
+        <span class="ic-eyebrow">Pattern · Picco assoluto</span>
+        <div class="ic-title">Maggio 2027: TuttoFood Milano 11–14/5.</div>
+        <p class="ic-body">Il momento dell'anno con il <strong>massimo intent di acquisto food</strong>. Networking diretto + chiusura contratti post-fiera. La pipeline dei 60 giorni precedenti va costruita pensando a questa scadenza. Aprile e marzo sono lo sprint finale.</p>
+      </div>
+    </div>
+
+    <a href="m5.html" class="dd-link dd-link--turq">
+      <span>Vai al deep-dive M5 · Calendario esploso</span>
+      <span class="dd-arrow">→</span>
+    </a>
+  </div>
+</section>
+
+<!-- ===== M6 PREVIEW · ECONOMICS ===== -->
+<section class="section" id="m6">
+  <div class="wrap">
+    <div class="s-head">
+      <span class="s-mod" style="color:var(--coral-dark);border-color:var(--coral);background:var(--coral-soft)"><span class="s-mod-num">M6</span> · Economics · preview</span>
+      <h2 class="s-h2">Da 600k a 750k.<br><span class="accent" style="color:var(--coral)">Come ci arriviamo davvero.</span></h2>
+      <p class="s-intro">I tre configuratori qui sotto sono <strong>versioni semplificate</strong> dei modelli del deep-dive M6. Default conservativi: close rate 25%, CPL Meta 100€, sales cycle 8 sett. <strong>Regolali con la mano sui valori reali Ribrain</strong> — gli output cambiano in tempo reale. Lo scenario base porta a ~10-14 nuovi contratti netti in 12 mesi se la macchina funziona come previsto.</p>
+    </div>
+
+    <div class="cfg-grid">
+      <div class="cfg-box">
+        <div class="cfg-tag">Configuratore 1 · Meta Ads</div>
+        <div class="cfg-title">Budget Meta → lead → contratti chiusi</div>
+        <div class="cfg-slider">
+          <div class="cfg-row"><span>Budget mensile</span><strong id="m1v">1.500€</strong></div>
+          <input type="range" id="m1s" min="500" max="3000" value="1500" step="100">
+        </div>
+        <div class="cfg-slider">
+          <div class="cfg-row"><span>CPL Meta (€/lead)</span><strong id="m2v">100€</strong></div>
+          <input type="range" id="m2s" min="50" max="250" value="100" step="10">
+        </div>
+        <div class="cfg-slider">
+          <div class="cfg-row"><span>Close rate</span><strong id="m3v">25%</strong></div>
+          <input type="range" id="m3s" min="10" max="50" value="25" step="1">
+        </div>
+        <div class="cfg-result">
+          <div class="cfg-res-item"><div class="cfg-res-v" id="r1">15</div><div class="cfg-res-l">lead / mese</div></div>
+          <div class="cfg-res-item"><div class="cfg-res-v coral" id="r2">3.8</div><div class="cfg-res-l">contratti / mese</div></div>
+        </div>
+        <p class="cfg-note">⚠ Lead Meta su clienti piccoli (1–5M€), ticket medio stimato ~10k€/anno. CPL e close rate vanno aggiornati con i dati reali del test storico.</p>
+      </div>
+
+      <div class="cfg-box">
+        <div class="cfg-tag">Configuratore 2 · Pricing</div>
+        <div class="cfg-title">Nuovi clienti → fatturato annuo proiettato</div>
+        <div class="cfg-slider">
+          <div class="cfg-row"><span>Nuovi clienti / 12 mesi</span><strong id="p1v">12</strong></div>
+          <input type="range" id="p1s" min="5" max="25" value="12" step="1">
+        </div>
+        <div class="cfg-slider">
+          <div class="cfg-row"><span>Ticket medio mensile</span><strong id="p2v">2.000€</strong></div>
+          <input type="range" id="p2s" min="800" max="5000" value="2000" step="100">
+        </div>
+        <div class="cfg-slider">
+          <div class="cfg-row"><span>Setup fee iniziale</span><strong id="p3v">5.000€</strong></div>
+          <input type="range" id="p3s" min="0" max="15000" value="5000" step="500">
+        </div>
+        <div class="cfg-result">
+          <div class="cfg-res-item"><div class="cfg-res-v" id="rp1">+288k</div><div class="cfg-res-l">€ run-rate annuo</div></div>
+          <div class="cfg-res-item"><div class="cfg-res-v coral" id="rp2">60k</div><div class="cfg-res-l">€ setup fee</div></div>
+        </div>
+        <p class="cfg-note">⚠ Il ticket medio attuale Ribrain è ~1.330€/mese. Alzarlo a 2.000€ richiede nuovi clienti — sui rinnovi esistenti il margine è stretto. Setup fee è una leva ad alto impatto.</p>
+      </div>
+    </div>
+
+    <div style="margin-top:32px">
+      <div class="cfg-box" style="grid-column:1/-1">
+        <div class="cfg-tag">Configuratore 3 · Mix canali a regime</div>
+        <div class="cfg-title">Contratti/mese previsti per canale (a 6 mesi)</div>
+        <div class="ig ig--3" style="gap:24px;margin-top:20px">
+          <div>
+            <div class="cfg-row"><span>Referral (Caffeina + Secret Key + altri)</span><strong id="x1v">2.0</strong></div>
+            <input type="range" id="x1s" min="0" max="5" value="2" step="0.1">
+            <div class="cfg-note" style="margin-top:8px">Lead più caldi, ticket medio più alto (~18-22k€/anno)</div>
+          </div>
+          <div>
+            <div class="cfg-row"><span>Meta Ads (clienti piccoli)</span><strong id="x2v">3.5</strong></div>
+            <input type="range" id="x2s" min="0" max="6" value="3.5" step="0.1">
+            <div class="cfg-note" style="margin-top:8px">Cash flow rapido, ticket medio basso (~10k€/anno)</div>
+          </div>
+          <div>
+            <div class="cfg-row"><span>LinkedIn inbound (founder)</span><strong id="x3v">1.0</strong></div>
+            <input type="range" id="x3s" min="0" max="4" value="1" step="0.1">
+            <div class="cfg-note" style="margin-top:8px">Lentissimo a partire ma alto valore (~20-25k€/anno)</div>
+          </div>
+        </div>
+        <div class="cfg-result" style="grid-template-columns:repeat(4,1fr);margin-top:24px">
+          <div class="cfg-res-item"><div class="cfg-res-v" id="tot1">6.5</div><div class="cfg-res-l">contratti / mese tot.</div></div>
+          <div class="cfg-res-item"><div class="cfg-res-v coral" id="tot2">78</div><div class="cfg-res-l">contratti / anno</div></div>
+          <div class="cfg-res-item"><div class="cfg-res-v blue" id="tot3">~14k€</div><div class="cfg-res-l">ticket medio annuo</div></div>
+          <div class="cfg-res-item"><div class="cfg-res-v" id="tot4">+90k</div><div class="cfg-res-l">€/anno run-rate</div></div>
+        </div>
+        <p class="cfg-note" style="margin-top:16px">⚠ Stima ottimistica a regime (mese 6-12). I primi 3 mesi le cifre saranno la metà. Il close rate medio pesato per canale è 25% — referral chiude più alto, Meta più basso.</p>
+      </div>
+    </div>
+
+    <a href="m6.html" class="dd-link dd-link--coral">
+      <span>Vai al deep-dive M6 · Economics completo</span>
+      <span class="dd-arrow">→</span>
+    </a>
+  </div>
+</section>
+
+<!-- ===== PULL QUOTE 2 ===== -->
+<section class="section section--alt">
+  <div class="wrap">
+    <div class="pq">
+      <p class="pq-text">Il bottleneck <span class="strike">non è</span> il mercato.<br><span class="hl">Siamo noi.</span></p>
+      <p class="pq-source">— diagnosi onesta · operations</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===== M7 · OPERATIONS ===== -->
+<section class="section" id="m7">
+  <div class="wrap">
+    <div class="s-head">
+      <span class="s-mod" style="color:var(--magenta-dark);border-color:var(--magenta);background:var(--magenta-soft)"><span class="s-mod-num">M7</span> · Operations</span>
+      <h2 class="s-h2">Il bottleneck siamo noi.<br><span class="accent" style="color:var(--magenta)">Ecco come liberarsi.</span></h2>
+      <p class="s-intro">Il flow commerciale attuale regge 2–3 lead/settimana. Con Meta a regime servono 3–4. Il punto critico è la <strong>proposta deep da una settimana</strong>: a 4–5 proposte/mese diventa 4–5 settimane di lavoro/mese. Insostenibile. Due interventi: <strong>tieratura</strong> delle proposte (light vs deep per fascia di ticket) + <strong>Co-work</strong> con libreria di template, brief strutturato e moduli riusabili. Riduzione attesa: da 40h a 15–18h per proposta deep.</p>
+    </div>
+
+    <div class="ig ig--3">
+      <div class="ic ic--magenta">
+        <span class="ic-eyebrow">Intervento 1 · Filtro</span>
+        <div class="ic-title">Pre-qualifica in 15 minuti</div>
+        <p class="ic-body">Prima di ogni discovery, telefonata di 15 minuti con 4 domande secche: fatturato, budget approssimativo, decisore presente al meeting, timeline. <strong>Risparmia ore quando il lead è fuori target.</strong> Crea un filtro per dire "no" in 2 messaggi.</p>
+        <div class="ic-stat"><strong>-30%</strong>tempo speso su lead non chiusi</div>
+      </div>
+      <div class="ic ic--magenta">
+        <span class="ic-eyebrow">Intervento 2 · Tieratura</span>
+        <div class="ic-title">Proposta light vs deep</div>
+        <p class="ic-body"><strong>Light (1 giorno)</strong> per deal &lt;18k€/anno. <strong>Deep (1 sett, con Co-work 15-18h)</strong> solo &gt;25k€/anno. Sotto soglia, il tempo investito non si ripaga. Soglia chiara, niente eccezioni.</p>
+        <div class="ic-stat"><strong>4–5</strong>proposte/mese gestibili</div>
+      </div>
+      <div class="ic ic--magenta">
+        <span class="ic-eyebrow">Intervento 3 · Co-work</span>
+        <div class="ic-title">Libreria + agenti tarati</div>
+        <p class="ic-body">3 asset prima di iniziare: <strong>libreria proposte vincenti</strong> (ultime 8-10), <strong>moduli riusabili</strong> (metodologia, sezioni contratto, analisi settore), <strong>brief discovery strutturato</strong> (6 domande dopo ogni call). Setup 2–3 sett. Ripaga dal mese 2.</p>
+        <div class="ic-stat"><strong>-50%</strong>tempo proposta deep</div>
+      </div>
+    </div>
+
+    <div class="spacer-l"></div>
+
+    <div class="ig ig--1">
+      <div class="ic ic--ink" style="background:var(--bg-alt)">
+        <span class="ic-eyebrow" style="color:var(--ink-60)">Capacity check · team a 9 persone</span>
+        <div class="ic-title">Da 26 a 40 clienti: la roadmap operativa del team</div>
+        <p class="ic-body">A 9 persone, ~3 clienti/persona è la soglia di sostenibilità della qualità. <strong>A 30 clienti siamo pieni</strong>, a 35 c'è tensione, a 40 va assunto. Le figure da inserire per prime: account senior (gestione cliente), poi ads specialist. Il timing dipende dal mix di nuovi contratti — quelli da retainer richiedono delivery continuativa, quelli da progetto sono più assorbibili. La capacity è "happy problem" finché la gestione del fatturato non scivola sotto i 65k€/persona.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== M8 · MID-TERM ===== -->
+<section class="section section--alt" id="m8">
+  <div class="wrap">
+    <div class="s-head">
+      <span class="s-mod" style="color:var(--blue);border-color:var(--blue);background:var(--blue-soft)"><span class="s-mod-num">M8</span> · Strategia mid-term</span>
+      <h2 class="s-h2">Adattivi, non profetici.<br><span class="accent" style="color:var(--blue)">Decidiamo a step.</span></h2>
+      <p class="s-intro">Non scegliamo oggi il posizionamento dei prossimi 3 anni. Scegliamo i prossimi 6 mesi e <strong>impostiamo i punti di decisione</strong>. Se il food risponde bene tra giugno e dicembre, accelera. Se rispondono altri settori, valuta landing parallele (max 2 contemporanee per budget). Il timing degli step di decisione è fissato — il contenuto delle decisioni dipende dai dati.</p>
+    </div>
+
+    <div class="tl-strip">
+      <div class="tl-cell">
+        <div class="tl-num">01</div>
+        <div class="tl-period">Giu–Ago 2026</div>
+        <div class="tl-title">Test + Setup</div>
+        <p class="tl-desc">Landing food online, Meta riattivata, referral attivati, content LinkedIn sistematizzato. <strong>Misuriamo</strong>: CPL, close rate, qualità lead per canale.</p>
+      </div>
+      <div class="tl-cell">
+        <div class="tl-num">02</div>
+        <div class="tl-period">Set–Nov 2026</div>
+        <div class="tl-title">Sprint autunno</div>
+        <p class="tl-desc">Bimestre denso di tutti i settori. <strong>Test parallelo max 1 secondo settore</strong> (luxury o beauty in base a domanda). Raccogliamo i primi 3-5 casi studio nuovi.</p>
+      </div>
+      <div class="tl-cell">
+        <div class="tl-num">03</div>
+        <div class="tl-period">Dic 2026 – Feb 2027</div>
+        <div class="tl-title">Decision point</div>
+        <p class="tl-desc">Review dati 6 mesi. <strong>Se food &gt;60% pipeline</strong> → spinta verticale anche sul brand. Se balance → mantieni landing parallele. Se altro settore esplode → ribilancia.</p>
+      </div>
+      <div class="tl-cell">
+        <div class="tl-num">04</div>
+        <div class="tl-period">Mar–Mag 2027</div>
+        <div class="tl-title">Sprint TuttoFood</div>
+        <p class="tl-desc">Pipeline massima sull'anno food. <strong>Se decisione era "verticale food"</strong>, rebrand light. Se no, capitalizzare comunque la fiera ma con strategia multi-settore.</p>
+      </div>
+    </div>
+
+    <div class="spacer-l"></div>
+
+    <div class="ig ig--2">
+      <div class="ic ic--blue">
+        <span class="ic-eyebrow">Cosa NON facciamo ora</span>
+        <div class="ic-title">No brand satellite tipo "Ribrain Food"</div>
+        <p class="ic-body">Tentazione comprensibile (vedi Snacky come precedente). Ma a 9 persone <strong>gestire due brand significa dividere attenzione, budget e energia</strong>. Costoso e rischioso prima di avere conferma del mercato. Landing verticale dentro Ribrain è sufficiente per testare la domanda. Riapriremo il tema solo dopo il decision point di gennaio.</p>
+      </div>
+      <div class="ic ic--blue">
+        <span class="ic-eyebrow">Cosa NON facciamo ora</span>
+        <div class="ic-title">No assunzioni in anticipo</div>
+        <p class="ic-body">Assumiamo a problema confermato, non in attesa di problema. La prima figura — account senior — si valuta <strong>quando la pipeline supera i 32 clienti attivi e il team è stressato</strong>. Probabile finestra: Q4 2026 o Q1 2027 in base al ritmo di chiusura. Co-work nel frattempo libera capacità.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== M9 PREVIEW · ROADMAP 90 GG ===== -->
+<section class="section" id="m9">
+  <div class="wrap">
+    <div class="s-head">
+      <span class="s-mod" style="color:var(--coral-dark);border-color:var(--coral);background:var(--coral-soft)"><span class="s-mod-num">M9</span> · Roadmap 90 giorni · preview</span>
+      <h2 class="s-h2">Le prime 12 settimane.<br><span class="accent" style="color:var(--coral)">Cosa, chi, quando.</span></h2>
+      <p class="s-intro">Start: <strong>1 giugno 2026</strong>. Le 12 settimane successive sono il <strong>setup della macchina</strong>: infrastruttura, prima lista di lead, prime campagne, primi referral attivati. Non è ancora la fase di scaling — è la fase in cui dimostriamo che tutti i pezzi funzionano. Il deep-dive con Gantt completo, owner per azione e milestone settimanali è in M9. Sotto, le 4 fasi macro.</p>
+    </div>
+
+    <div class="tl-strip">
+      <div class="tl-cell">
+        <div class="tl-num">01</div>
+        <div class="tl-period">Sett. 1–3 · Setup</div>
+        <div class="tl-title">Foundation</div>
+        <p class="tl-desc">Landing food online. Profili LinkedIn ottimizzati. CRM scelto (folk o Pipedrive). Pricing nuovo cliente codificato. <strong>Co-work libreria + brief strutturato preparati.</strong></p>
+      </div>
+      <div class="tl-cell">
+        <div class="tl-num">02</div>
+        <div class="tl-period">Sett. 4–6 · Activation</div>
+        <div class="tl-title">Macchina accesa</div>
+        <p class="tl-desc">Meta Ads live. Referral formalizzato con Caffeina + Secret Key (1° case study inviato). LinkedIn 3 post/sett. <strong>Pre-qualifica telefonica attiva.</strong></p>
+      </div>
+      <div class="tl-cell">
+        <div class="tl-num">03</div>
+        <div class="tl-period">Sett. 7–9 · Optimize</div>
+        <div class="tl-title">Tarature</div>
+        <p class="tl-desc">A/B test Meta (creatività + audience). Review primi lead → quale canale converte meglio. <strong>Apertura partner referral n.3</strong> (es. consulente filiera food).</p>
+      </div>
+      <div class="tl-cell">
+        <div class="tl-num">04</div>
+        <div class="tl-period">Sett. 10–12 · Scale</div>
+        <div class="tl-title">Vai a regime</div>
+        <p class="tl-desc">Primi contratti in chiusura. Capacity check: <strong>il flow regge?</strong> Co-work effettivamente operativo. Decisione su test 2° settore in autunno.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== DECISION BOX FINALE ===== -->
+<section class="section section--alt" id="decision">
+  <div class="wrap">
+    <div class="dec-box" id="decbox">
+      <h2 class="dec-title">Dove mettere<br>il <span class="accent">primo euro.</span></h2>
+      <p style="font-size:16px;color:var(--ink-60);max-width:760px;line-height:1.7">Tre azioni con leva massima e ritorno verificabile entro 90 giorni. <strong style="color:var(--ink);font-weight:500">Da fare nelle prime 4 settimane</strong> — il resto della roadmap si appoggia su queste fondamenta.</p>
+      <div class="dec-grid">
+        <div class="dec-col">
+          <div class="dec-num t">01</div>
+          <div class="dec-col-title">Referral attivati</div>
+          <p class="dec-col-body">Chiamata a Caffeina e Secret Key questa settimana. <strong>Formalizzare l'accordo + inviare il primo case study aggiornato.</strong> Aggiungere 3 partner: 1 agenzia complementare + 2 consulenti filiera food. Costo: 0€. Ritorno: 1–2 lead/mese qualificati in 2–4 settimane.</p>
+        </div>
+        <div class="dec-col">
+          <div class="dec-num b">02</div>
+          <div class="dec-col-title">Landing food + Meta live</div>
+          <p class="dec-col-body">Landing food online entro fine giugno. <strong>Meta Ads riattivata con 1.200€/mese su clienti 1-5M€.</strong> Casi studio Latte Berna + Molino + American Uncle in evidenza. Setup CRM (folk o Pipedrive) per non perdere i lead.</p>
+        </div>
+        <div class="dec-col">
+          <div class="dec-num c">03</div>
+          <div class="dec-col-title">Pricing + flow commerciale</div>
+          <p class="dec-col-body">Pricing nuovo cliente con <strong>setup fee 5k€ + retainer da 2k€/mese minimum</strong>. Pre-qualifica telefonica 15 minuti prima di ogni discovery. Tieratura proposte: light &lt;18k, deep &gt;25k. Setup Co-work in parallelo (libreria + brief).</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FOOTER ===== -->
+<div class="wrap">
+  <div class="footer">
+    <div class="f-left">
+      <span>ribrain<span class="dot">.</span></span>
+      <span class="f-sep"></span>
+      <span class="f-tag">Piano strategico interno</span>
+    </div>
+    <div class="f-right">M0 · Executive Summary · Maggio 2026 · Uso confidenziale soci</div>
+  </div>
+</div>
+
+<script>
+// Nav drawer
+function openNav(){document.getElementById('navOverlay').classList.add('open');document.getElementById('navDrawer').classList.add('open');document.body.classList.add('nav-open')}
+function closeNav(){document.getElementById('navOverlay').classList.remove('open');document.getElementById('navDrawer').classList.remove('open');document.body.classList.remove('nav-open')}
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeNav()});
+
+gsap.registerPlugin(ScrollTrigger);
+
+// Hero animations
+gsap.to('#he',{opacity:1,y:0,duration:.8,ease:'power3.out',delay:.2});
+gsap.to('#hh',{opacity:1,y:0,duration:1.1,ease:'power3.out',delay:.35});
+gsap.to('#hs1',{opacity:1,y:0,duration:.8,ease:'power3.out',delay:.7});
+gsap.to('#hs2',{opacity:1,y:0,duration:.8,ease:'power3.out',delay:.95});
+gsap.to('#kpi',{opacity:1,duration:1,ease:'power2.out',delay:1.1});
+
+// Insight cards stagger on scroll
+gsap.utils.toArray('.ic').forEach((el)=>{
+  gsap.to(el,{opacity:1,y:0,duration:.7,ease:'power3.out',scrollTrigger:{trigger:el,start:'top 88%'}});
+});
+
+// Pull quotes
+gsap.utils.toArray('.pq').forEach((el)=>{
+  gsap.to(el,{opacity:1,y:0,duration:.9,ease:'power3.out',scrollTrigger:{trigger:el,start:'top 80%'}});
+});
+
+// Decision box
+gsap.to('#decbox',{opacity:1,y:0,duration:1,ease:'power3.out',scrollTrigger:{trigger:'#decbox',start:'top 80%'}});
+
+// CONFIGURATORS
+function fmt(n){return new Intl.NumberFormat('it-IT').format(Math.round(n));}
+function fmtK(n){return n>=1000?(n/1000).toFixed(0)+'k':Math.round(n);}
+
+// Config 1: Meta budget -> leads -> contracts
+const m1s=document.getElementById('m1s'),m2s=document.getElementById('m2s'),m3s=document.getElementById('m3s');
+const m1v=document.getElementById('m1v'),m2v=document.getElementById('m2v'),m3v=document.getElementById('m3v');
+const r1=document.getElementById('r1'),r2=document.getElementById('r2');
+function updateMeta(){
+  const budget=+m1s.value,cpl=+m2s.value,cr=+m3s.value/100;
+  m1v.textContent=fmt(budget)+'€';m2v.textContent=cpl+'€';m3v.textContent=cr*100+'%';
+  const leads=budget/cpl;
+  const contracts=leads*cr;
+  r1.textContent=Math.round(leads);r2.textContent=contracts.toFixed(1);
+}
+[m1s,m2s,m3s].forEach(el=>el.addEventListener('input',updateMeta));updateMeta();
+
+// Config 2: Pricing
+const p1s=document.getElementById('p1s'),p2s=document.getElementById('p2s'),p3s=document.getElementById('p3s');
+const p1v=document.getElementById('p1v'),p2v=document.getElementById('p2v'),p3v=document.getElementById('p3v');
+const rp1=document.getElementById('rp1'),rp2=document.getElementById('rp2');
+function updatePrice(){
+  const cli=+p1s.value,ticket=+p2s.value,setup=+p3s.value;
+  p1v.textContent=cli;p2v.textContent=fmt(ticket)+'€';p3v.textContent=fmt(setup)+'€';
+  const runrate=cli*ticket*12;
+  const setupTotal=cli*setup;
+  rp1.textContent='+'+fmtK(runrate);rp2.textContent=fmtK(setupTotal);
+}
+[p1s,p2s,p3s].forEach(el=>el.addEventListener('input',updatePrice));updatePrice();
+
+// Config 3: Mix
+const x1s=document.getElementById('x1s'),x2s=document.getElementById('x2s'),x3s=document.getElementById('x3s');
+const x1v=document.getElementById('x1v'),x2v=document.getElementById('x2v'),x3v=document.getElementById('x3v');
+const tot1=document.getElementById('tot1'),tot2=document.getElementById('tot2'),tot3=document.getElementById('tot3'),tot4=document.getElementById('tot4');
+function updateMix(){
+  const ref=+x1s.value,meta=+x2s.value,li=+x3s.value;
+  x1v.textContent=ref.toFixed(1);x2v.textContent=meta.toFixed(1);x3v.textContent=li.toFixed(1);
+  const totMonth=ref+meta+li;
+  const totYear=totMonth*12;
+  // weighted avg ticket
+  const tkRef=20000,tkMeta=10000,tkLi=22000;
+  const avgTk=totMonth>0?(ref*tkRef+meta*tkMeta+li*tkLi)/totMonth:0;
+  const runrate=totYear*avgTk;
+  tot1.textContent=totMonth.toFixed(1);tot2.textContent=Math.round(totYear);tot3.textContent='~'+fmtK(avgTk)+'€';tot4.textContent='+'+fmtK(runrate);
+}
+[x1s,x2s,x3s].forEach(el=>el.addEventListener('input',updateMix));updateMix();
+</script>
+
+</body>
+</html>

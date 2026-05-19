@@ -259,6 +259,91 @@ input[type="range"]::-moz-range-thumb{width:18px;height:18px;border-radius:50%;b
 .sb-b2b{background:#E5E4DC;color:#444441}
 .sb-b2b .b-dot{background:#888780}
 
+/* ===== PERSONA TOGGLE / TABS ===== */
+.persona-tabs{display:flex;gap:6px;margin-bottom:28px;border-bottom:1px solid var(--rule);padding-bottom:0;overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none;flex-wrap:nowrap}
+.persona-tabs::-webkit-scrollbar{display:none}
+.persona-tab{font-family:var(--f-m);font-size:10px;letter-spacing:.12em;text-transform:uppercase;padding:14px 18px;background:none;border:none;color:var(--ink-60);cursor:pointer;border-bottom:2px solid transparent;transition:all .25s var(--ease);white-space:nowrap;display:flex;align-items:center;gap:8px;font-weight:500;position:relative;margin-bottom:-1px}
+.persona-tab:hover{color:var(--ink)}
+.persona-tab .tab-avatar{width:22px;height:22px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;font-family:var(--f-d);font-size:11px;color:#fff;line-height:1;flex-shrink:0}
+.persona-tab[data-tab="p1"] .tab-avatar{background:var(--magenta)}
+.persona-tab[data-tab="p2"] .tab-avatar{background:var(--blue)}
+.persona-tab[data-tab="p3"] .tab-avatar{background:var(--coral)}
+.persona-tab[data-tab="compare"] .tab-icon{font-size:14px;line-height:1}
+.persona-tab.active{color:var(--ink);border-bottom-color:var(--ink)}
+.persona-tab[data-tab="p1"].active{border-bottom-color:var(--magenta)}
+.persona-tab[data-tab="p2"].active{border-bottom-color:var(--blue)}
+.persona-tab[data-tab="p3"].active{border-bottom-color:var(--coral)}
+.persona-tab[data-tab="compare"].active{border-bottom-color:var(--turquoise-dark)}
+.persona-view{display:none}
+.persona-view.active{display:block;animation:fadeIn .35s var(--ease)}
+@keyframes fadeIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+
+/* QUICK COMPARE TOP */
+.quick-compare{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;margin-bottom:24px}
+@media(max-width:760px){.quick-compare{grid-template-columns:1fr}}
+.qc-card{padding:18px 20px;background:var(--bg);border:1px solid var(--rule);border-top:3px solid;cursor:pointer;transition:background .2s,transform .2s}
+.qc-card:hover{background:var(--bg-alt);transform:translateY(-2px)}
+.qc-card.p1{border-top-color:var(--magenta)}
+.qc-card.p2{border-top-color:var(--blue)}
+.qc-card.p3{border-top-color:var(--coral)}
+.qc-header{display:flex;align-items:center;gap:12px;margin-bottom:10px}
+.qc-avatar{width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:var(--f-d);font-size:16px;color:#fff;line-height:1}
+.qc-card.p1 .qc-avatar{background:var(--magenta)}
+.qc-card.p2 .qc-avatar{background:var(--blue)}
+.qc-card.p3 .qc-avatar{background:var(--coral)}
+.qc-name{font-size:14px;font-weight:600;color:var(--ink);line-height:1.2}
+.qc-role{font-family:var(--f-m);font-size:9px;letter-spacing:.08em;color:var(--ink-60);text-transform:uppercase;margin-top:3px}
+.qc-stats{display:grid;grid-template-columns:1fr 1fr;gap:10px;padding-top:12px;border-top:1px solid var(--rule)}
+.qc-stat strong{display:block;font-family:var(--f-d);font-size:18px;color:var(--ink);letter-spacing:-.01em;line-height:1}
+.qc-stat span{font-family:var(--f-m);font-size:8.5px;color:var(--ink-40);letter-spacing:.06em;text-transform:uppercase;margin-top:3px;display:block;line-height:1.3}
+.qc-tagline{font-size:12px;color:var(--ink-60);line-height:1.5;margin-top:10px;font-style:italic;padding-top:10px;border-top:1px solid var(--rule)}
+
+/* COMPARISON MATRIX */
+.compare-intro{padding:24px 28px;background:var(--ink);color:#fff;border-radius:4px;margin-bottom:28px;position:relative;overflow:hidden}
+.compare-intro::before{content:"";position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--magenta),var(--blue),var(--coral))}
+.compare-intro-h{font-family:var(--f-m);font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:var(--turquoise);margin-bottom:8px;font-weight:500}
+.compare-intro-t{font-family:var(--f-d);font-size:clamp(22px,2.6vw,30px);font-weight:400;line-height:1.1;letter-spacing:-.01em;text-transform:uppercase;margin-bottom:12px}
+.compare-intro-b{font-size:13.5px;color:rgba(255,255,255,.65);line-height:1.7;max-width:780px}
+.compare-intro-b strong{color:#fff;font-weight:500}
+
+.compare-matrix{width:100%;border-collapse:collapse;font-size:13px;overflow-x:auto;display:block}
+.compare-matrix thead,.compare-matrix tbody{display:table;width:100%;min-width:760px}
+.compare-matrix th{text-align:left;font-family:var(--f-m);font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-60);padding:14px 16px 14px 0;border-bottom:1px solid var(--ink-20);font-weight:500;vertical-align:bottom;line-height:1.4}
+.compare-matrix th:first-child{width:170px;color:var(--ink)}
+.compare-matrix th.p1-col{color:var(--magenta-dark)}
+.compare-matrix th.p2-col{color:var(--blue)}
+.compare-matrix th.p3-col{color:var(--coral-dark)}
+.compare-matrix th .h-mini{display:flex;align-items:center;gap:8px}
+.compare-matrix th .h-mini .h-dot{width:22px;height:22px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;font-family:var(--f-d);font-size:11px;color:#fff;line-height:1}
+.compare-matrix th.p1-col .h-dot{background:var(--magenta)}
+.compare-matrix th.p2-col .h-dot{background:var(--blue)}
+.compare-matrix th.p3-col .h-dot{background:var(--coral)}
+.compare-matrix td{padding:16px 16px 16px 0;border-bottom:1px solid var(--rule);vertical-align:top;line-height:1.55;color:var(--ink-60);font-size:12.5px}
+.compare-matrix td:first-child{font-weight:600;color:var(--ink);font-family:var(--f-s);font-size:12.5px}
+.compare-matrix td strong{color:var(--ink);font-weight:500}
+.compare-matrix tr.common td{background:var(--turquoise-soft)}
+.compare-matrix tr.common td:first-child{color:var(--turquoise-dark);position:relative;padding-left:24px}
+.compare-matrix tr.common td:first-child::before{content:"●";position:absolute;left:8px;top:14px;color:var(--turquoise-dark);font-size:11px}
+
+/* PATTERN INSIGHTS */
+.pattern-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;margin-top:32px}
+@media(max-width:880px){.pattern-grid{grid-template-columns:1fr}}
+.pattern-card{padding:24px;background:var(--bg);border:1px solid var(--rule);position:relative;overflow:hidden}
+.pattern-card::before{content:"";position:absolute;top:0;left:0;right:0;height:3px;background:var(--turquoise-dark)}
+.pattern-icon{font-size:24px;line-height:1;margin-bottom:12px}
+.pattern-h{font-family:var(--f-m);font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:var(--turquoise-dark);margin-bottom:8px;font-weight:500}
+.pattern-t{font-size:16px;font-weight:600;color:var(--ink);line-height:1.3;margin-bottom:10px}
+.pattern-b{font-size:13px;color:var(--ink-60);line-height:1.65}
+.pattern-b strong{color:var(--ink);font-weight:500}
+
+/* MESSAGGI COMUNI */
+.core-msg-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;margin-top:32px}
+@media(max-width:680px){.core-msg-grid{grid-template-columns:1fr}}
+.core-msg-card{padding:24px;background:var(--bg);border-left:3px solid var(--turquoise-dark);border-radius:0 4px 4px 0;background:var(--bg-alt)}
+.core-msg-cat{font-family:var(--f-m);font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:var(--turquoise-dark);margin-bottom:8px;font-weight:500}
+.core-msg-title{font-size:14px;font-weight:600;color:var(--ink);margin-bottom:10px;line-height:1.3}
+.core-msg-body{font-size:13px;color:var(--ink-60);line-height:1.7;font-style:italic}
+.core-msg-body strong{color:var(--ink);font-weight:500;font-style:normal}
 /* ===== BUYER PERSONA ===== */
 .persona-wrap{display:flex;flex-direction:column;gap:2px;margin-top:0}
 .persona-card{background:var(--bg);border:1px solid var(--rule);border-radius:4px;overflow:hidden;border-top:4px solid var(--magenta)}
@@ -633,7 +718,53 @@ body.nav-open{overflow:hidden}
       </div>
     </div>
 
+    <!-- QUICK COMPARE -->
+    <div class="quick-compare">
+      <div class="qc-card p1" onclick="switchPersona('p1')">
+        <div class="qc-header">
+          <div class="qc-avatar">M</div>
+          <div><div class="qc-name">Marco R.</div><div class="qc-role">Founder · PMI 5-25M€</div></div>
+        </div>
+        <div class="qc-stats">
+          <div class="qc-stat"><strong>44 anni</strong><span>età media</span></div>
+          <div class="qc-stat"><strong>18-30k€</strong><span>ticket annuo</span></div>
+        </div>
+        <p class="qc-tagline">"Mi entusiasma come mi stai seguendo." Decide diretto.</p>
+      </div>
+      <div class="qc-card p2" onclick="switchPersona('p2')">
+        <div class="qc-header">
+          <div class="qc-avatar">C</div>
+          <div><div class="qc-name">Claudia M.</div><div class="qc-role">MM · PMI strutturata</div></div>
+        </div>
+        <div class="qc-stats">
+          <div class="qc-stat"><strong>38 anni</strong><span>età media</span></div>
+          <div class="qc-stat"><strong>30-50k€</strong><span>ticket annuo</span></div>
+        </div>
+        <p class="qc-tagline">"Non aggiungere riunioni alla mia settimana." Filtra opzioni.</p>
+      </div>
+      <div class="qc-card p3" onclick="switchPersona('p3')">
+        <div class="qc-header">
+          <div class="qc-avatar">R</div>
+          <div><div class="qc-name">Roberto F.</div><div class="qc-role">Founder · brand nicchia</div></div>
+        </div>
+        <div class="qc-stats">
+          <div class="qc-stat"><strong>42 anni</strong><span>età media</span></div>
+          <div class="qc-stat"><strong>18-36k€</strong><span>ticket annuo</span></div>
+        </div>
+        <p class="qc-tagline">"Voglio un partner, non un fornitore." Chimica prima dei dati.</p>
+      </div>
+    </div>
+
+    <!-- TAB NAVIGATION -->
+    <div class="persona-tabs" role="tablist">
+      <button class="persona-tab active" data-tab="p1" onclick="switchPersona('p1')" role="tab"><span class="tab-avatar">M</span>Marco · Founder</button>
+      <button class="persona-tab" data-tab="p2" onclick="switchPersona('p2')" role="tab"><span class="tab-avatar">C</span>Claudia · MM</button>
+      <button class="persona-tab" data-tab="p3" onclick="switchPersona('p3')" role="tab"><span class="tab-avatar">R</span>Roberto · Builder</button>
+      <button class="persona-tab" data-tab="compare" onclick="switchPersona('compare')" role="tab" style="margin-left:auto"><span class="tab-icon">⊞</span>Pattern comuni</button>
+    </div>
+
     <!-- PERSONA 1 — IL FOUNDER PMI -->
+    <div class="persona-view active" id="view-p1">
     <div class="persona-wrap">
       <div class="persona-card">
         <div class="persona-header">
@@ -707,8 +838,12 @@ body.nav-open{overflow:hidden}
 
         </div>
       </div>
+    </div>
+    </div>
 
-      <!-- PERSONA 2 — IL MM DI AZIENDA STRUTTURATA -->
+    <!-- PERSONA 2 — IL MM DI AZIENDA STRUTTURATA -->
+    <div class="persona-view" id="view-p2">
+    <div class="persona-wrap">
       <div class="persona-card p2">
         <div class="persona-header">
           <div class="p-avatar">C</div>
@@ -781,8 +916,12 @@ body.nav-open{overflow:hidden}
 
         </div>
       </div>
+    </div>
+    </div>
 
-      <!-- PERSONA 3 — IL FOUNDER DI NICCHIA -->
+    <!-- PERSONA 3 — IL FOUNDER DI NICCHIA -->
+    <div class="persona-view" id="view-p3">
+    <div class="persona-wrap">
       <div class="persona-card p3">
         <div class="persona-header">
           <div class="p-avatar">R</div>
@@ -853,6 +992,185 @@ body.nav-open{overflow:hidden}
             <p style="font-size:13px;color:var(--ink-60);line-height:1.7">Roberto arriva tipicamente da <strong style="color:var(--ink)">referral caldissimo</strong> — un amico gli ha mandato un link diretto. La landing verticale del suo settore deve mostrare <strong style="color:var(--ink)">empatia per la sua scala</strong> (non è una multinazionale ma neanche un freelance) + storia di un cliente simile cresciuto con Ribrain. La connessione umana arriva dopo, nella call. La landing serve a non far morire il referral prima della prima telefonata.</p>
           </div>
 
+        </div>
+      </div>
+    </div>
+    </div>
+
+    <!-- VIEW COMPARE — PATTERN COMUNI -->
+    <div class="persona-view" id="view-compare">
+      <div class="compare-intro">
+        <div class="compare-intro-h">Vista pattern · cosa hanno in comune Marco · Claudia · Roberto</div>
+        <div class="compare-intro-t">3 profili diversi.<br>Un unico messaggio core.</div>
+        <p class="compare-intro-b">Le 3 persona decidono diversamente — il founder firma per fiducia, il MM filtra per non sbagliare, il builder cerca un partner di lungo periodo. Ma <strong>4 pattern li attraversano tutti</strong> e diventano il <strong>messaggio core Ribrain</strong> da declinare nei contenuti, nelle proposte, nel pitch in discovery. Le righe evidenziate in <strong style="color:var(--turquoise)">turchese</strong> nella matrice sotto sono i punti di convergenza: <em>dove fai leva qui, fai leva su tutti e 3.</em></p>
+      </div>
+
+      <!-- COMPARISON MATRIX -->
+      <div style="overflow-x:auto">
+        <table class="compare-matrix">
+          <thead>
+            <tr>
+              <th>Dimensione</th>
+              <th class="p1-col"><div class="h-mini"><span class="h-dot">M</span>Marco · Founder</div></th>
+              <th class="p2-col"><div class="h-mini"><span class="h-dot">C</span>Claudia · MM</div></th>
+              <th class="p3-col"><div class="h-mini"><span class="h-dot">R</span>Roberto · Builder</div></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="common">
+              <td>Età decisore</td>
+              <td>44 anni · 40-50</td>
+              <td>38 anni · 35-45</td>
+              <td>42 anni · 40-50</td>
+            </tr>
+            <tr class="common">
+              <td>Canale di arrivo</td>
+              <td><strong>Referral/Ribrain direct</strong></td>
+              <td>Referral + LinkedIn</td>
+              <td><strong>Referral caldo</strong></td>
+            </tr>
+            <tr>
+              <td>Chi firma</td>
+              <td><strong>Lui stesso, diretto</strong></td>
+              <td>CEO con sua sponsorship</td>
+              <td><strong>Lui stesso, diretto</strong></td>
+            </tr>
+            <tr>
+              <td>Ticket annuo</td>
+              <td>18-30k€</td>
+              <td>30-50k€</td>
+              <td>18-36k€</td>
+            </tr>
+            <tr>
+              <td>Bandiera in awareness</td>
+              <td>Trigger di business specifico (lancio, GDO, vendite)</td>
+              <td>Post LinkedIn founder con dati + metodologia</td>
+              <td>Passaparola da imprenditore stimato</td>
+            </tr>
+            <tr class="common">
+              <td>Cosa lo fa firmare</td>
+              <td><strong>Si sente guidato, non spiegato</strong></td>
+              <td><strong>La proposta la fa brillare al CEO</strong></td>
+              <td><strong>Chimica umana + caso studio simile</strong></td>
+            </tr>
+            <tr>
+              <td>Tempo per decidere</td>
+              <td>2-4 settimane</td>
+              <td>4-12 settimane (passa al CEO)</td>
+              <td>2-6 settimane</td>
+            </tr>
+            <tr>
+              <td>Esempi reali (CRM)</td>
+              <td>Hamlet · American Uncle · Imperatore · Latte Berna · Wear The Time · Domus</td>
+              <td>Multibit · Nuvola Ortodonzia · ATC Design · IUC · 3MAEC · Webim</td>
+              <td>Lemon Appeal · Surf Therapy · Climando · Robynails · Wear The Time</td>
+            </tr>
+            <tr class="common">
+              <td>Pain comune</td>
+              <td><strong>Bruciato budget con agenzia passata</strong></td>
+              <td><strong>Paura di fare brutta figura davanti al CEO</strong></td>
+              <td><strong>Agenzie grandi lo trattano da cliente piccolo</strong></td>
+            </tr>
+            <tr>
+              <td>Settori più frequenti</td>
+              <td>Food, Eventi, Luxury, Servizi, Turismo</td>
+              <td>Sanità, Immobiliare, Servizi B2B, Formazione</td>
+              <td>Food specialty, SaaS, Beauty, Sport, Servizi nicchia</td>
+            </tr>
+            <tr class="common">
+              <td>Cosa lo fa sparire</td>
+              <td><strong>Prezzo (commodity)</strong> o struttura troppo grande</td>
+              <td><strong>Prezzo</strong> o agenzia che non rispetta tempi</td>
+              <td><strong>Account junior in call</strong> o rigidità rigida</td>
+            </tr>
+            <tr>
+              <td>Touchpoint primario</td>
+              <td>Landing verticale settore + 1 caso studio</td>
+              <td>Proposta PDF presentabile in CDA</td>
+              <td>Discovery call diretta col CEO Ribrain</td>
+            </tr>
+            <tr>
+              <td>Retention key</td>
+              <td>Iniziativa proattiva primi 90 gg</td>
+              <td>Report mensile chiaro + risposta 4 ore</td>
+              <td>Check-in strategici trimestrali col CEO</td>
+            </tr>
+            <tr>
+              <td>Probabilità di upsell</td>
+              <td>Medio-alta · su nuovi lanci</td>
+              <td>Alta · multi-canale e budget Q1</td>
+              <td>Molto alta · cresce con loro</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- 4 PATTERN INSIGHTS -->
+      <div style="margin-top:40px">
+        <div style="font-family:var(--f-m);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--turquoise-dark);margin-bottom:16px;display:flex;align-items:center;gap:10px;font-weight:500">I 4 pattern che attraversano tutte e 3 le persona<span style="flex:1;height:1px;background:var(--rule);display:block"></span></div>
+        <div class="pattern-grid">
+          <div class="pattern-card">
+            <div class="pattern-icon">🎯</div>
+            <div class="pattern-h">Pattern 1</div>
+            <div class="pattern-t">Età decisore: 40-50 anni</div>
+            <p class="pattern-b">Nessuno è sotto i 35 e nessuno sopra i 55. È il <strong>boomer-tardo / gen X early</strong> che gestisce PMI italiane. Implicazione: <strong>LinkedIn sì, TikTok no</strong>, contenuti seri non hype, fiducia su persone reali non su loghi.</p>
+          </div>
+          <div class="pattern-card">
+            <div class="pattern-icon">🤝</div>
+            <div class="pattern-h">Pattern 2</div>
+            <div class="pattern-t">Arrivano da relazioni, non da Google</div>
+            <p class="pattern-b">Tutti e 3 — referral, passaparola, LinkedIn founder. Nessuno scrolla agenzie su Google Ads. Implicazione: <strong>il vero motore di lead gen è la rete di relazioni del CEO Ribrain</strong>, non il SEO. LinkedIn content settimanale &gt; tutto il resto.</p>
+          </div>
+          <div class="pattern-card">
+            <div class="pattern-icon">💔</div>
+            <div class="pattern-h">Pattern 3</div>
+            <div class="pattern-t">Tutti hanno bruciato soldi prima</div>
+            <p class="pattern-b">Tutti e 3 hanno avuto un'agenzia precedente che li ha delusi. Implicazione: <strong>la proposta deve esplicitamente affrontare la paura del bis</strong> — case study con numeri reali, metodologia chiara, scadenze contrattuali brevi (no lock-in 12 mesi).</p>
+          </div>
+          <div class="pattern-card">
+            <div class="pattern-icon">⚡</div>
+            <div class="pattern-h">Pattern 4</div>
+            <div class="pattern-t">Decidono per fiducia, non per dati</div>
+            <p class="pattern-b">"Mi entusiasma come mi stai seguendo" (Marco), "fa brillare la mia proposta" (Claudia), "ci siamo capiti" (Roberto). Tutti firmano per <strong>sensazione di rapporto giusto</strong>. I dati confermano l'istinto. Implicazione: <strong>la discovery è il prodotto</strong>.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- MESSAGGIO CORE -->
+      <div style="margin-top:40px">
+        <div style="font-family:var(--f-m);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--turquoise-dark);margin-bottom:16px;display:flex;align-items:center;gap:10px;font-weight:500">Messaggio core Ribrain · derivato dai pattern · funziona per tutti e 3<span style="flex:1;height:1px;background:var(--rule);display:block"></span></div>
+        <div class="core-msg-grid">
+          <div class="core-msg-card">
+            <div class="core-msg-cat">Headline · landing principale</div>
+            <div class="core-msg-title">"L'agenzia che ti guida, non quella che ti fa report"</div>
+            <p class="core-msg-body">Funziona per Marco (vuole essere guidato), per Claudia (vuole risposte, non riunioni), per Roberto (vuole un partner di pensiero). <strong>Anti-promessa</strong> verso il pain comune: "non siamo come l'agenzia che ti ha deluso".</p>
+          </div>
+          <div class="core-msg-card">
+            <div class="core-msg-cat">Sub-head · sotto la headline</div>
+            <div class="core-msg-title">"10 anni con imprenditori italiani · ticket multi-anno · zero discorsi sul reach"</div>
+            <p class="core-msg-body">3 argomenti in una riga: <strong>storia</strong> (10 anni), <strong>prova sociale</strong> (clienti che restano), <strong>anti-vanity-metrics</strong> (parliamo di business, non di follower). Pattern bruciati-prima è risposto.</p>
+          </div>
+          <div class="core-msg-card">
+            <div class="core-msg-cat">Hook · primi 30 secondi della discovery</div>
+            <div class="core-msg-title">"Dimmi cosa ti sta succedendo. Poi vediamo se possiamo davvero aiutarti."</div>
+            <p class="core-msg-body">Anti-pitch. Inverte la dinamica: <strong>chi parla è il cliente</strong>, Ribrain ascolta e poi qualifica. Toglie la pressione di vendita, fa sentire guidati (pattern 4), filtra commodity buyers che vogliono solo un preventivo.</p>
+          </div>
+          <div class="core-msg-card">
+            <div class="core-msg-cat">Closing · fine della prima discovery</div>
+            <div class="core-msg-title">"Ti preparo una proposta che puoi portare in CDA. Niente impegni."</div>
+            <p class="core-msg-body">Risponde a Claudia (proposta presentabile), a Marco (zero pressione), a Roberto (rapporto sopra il contratto). <strong>Zero lock-in nel linguaggio</strong> — risponde al pattern "ho già bruciato soldi".</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- COSA NON DIRE -->
+      <div style="margin-top:32px;padding:28px 32px;background:#FFF0F0;border-left:3px solid #C53030;border-radius:0 4px 4px 0">
+        <div style="font-family:var(--f-m);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:#C53030;margin-bottom:10px;font-weight:500">Cosa NON dire · funziona contro tutti e 3</div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px">
+          <div style="font-size:13px;color:var(--ink-60);line-height:1.7"><strong style="color:var(--ink)">"Aumentiamo il tuo reach del 300%"</strong> · vanity metric, attiva il pattern "bruciato-prima" in negativo</div>
+          <div style="font-size:13px;color:var(--ink-60);line-height:1.7"><strong style="color:var(--ink)">"Siamo specializzati nella vostra industria"</strong> · vuoto, Roberto e Marco non ci credono se non lo dimostri subito</div>
+          <div style="font-size:13px;color:var(--ink-60);line-height:1.7"><strong style="color:var(--ink)">"Iniziamo con un test pilota di 1-2 mesi"</strong> · attiva il pattern "non ho tempo da perdere"</div>
+          <div style="font-size:13px;color:var(--ink-60);line-height:1.7"><strong style="color:var(--ink)">"Vi mandiamo un team dedicato"</strong> · Marco e Roberto vogliono te, non un team</div>
         </div>
       </div>
     </div>
@@ -1421,6 +1739,16 @@ function closeNav(){document.getElementById('navOverlay').classList.remove('open
 document.addEventListener('keydown',e=>{if(e.key==='Escape')closeNav()});
 
 gsap.registerPlugin(ScrollTrigger);
+
+// ===== PERSONA TAB SWITCHER =====
+function switchPersona(tabId){
+  document.querySelectorAll('.persona-tab').forEach(t=>t.classList.remove('active'));
+  document.querySelectorAll('.persona-view').forEach(v=>v.classList.remove('active'));
+  const tab=document.querySelector('.persona-tab[data-tab="'+tabId+'"]');
+  const view=document.getElementById('view-'+tabId);
+  if(tab)tab.classList.add('active');
+  if(view)view.classList.add('active');
+}
 
 // Hero animations
 gsap.to('#he',{opacity:1,y:0,duration:.8,ease:'power3.out',delay:.2});

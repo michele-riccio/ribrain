@@ -93,6 +93,19 @@ body.nav-open{overflow:hidden}
 .cfg-controls{display:grid;grid-template-columns:1fr 1fr 1fr;gap:24px;margin-bottom:28px}
 @media(max-width:760px){.cfg-controls{grid-template-columns:1fr;gap:16px}}
 .cfg-slider{padding:18px 20px;background:var(--bg-alt);border-radius:4px}
+.cfg-range-band{position:relative;height:18px;margin-top:12px}
+.cfg-range-dashed{position:absolute;top:6px;height:6px;border:1.5px dashed var(--turquoise-dark);background:rgba(70,255,221,.12);border-radius:3px;box-sizing:border-box}
+.cfg-big.t2 .cfg-range-dashed{border-color:var(--blue);background:rgba(0,107,255,.08)}
+.cfg-big.t3 .cfg-range-dashed{border-color:var(--turquoise-dark);background:rgba(13,171,142,.1)}
+.cfg-range-mark-label{position:absolute;top:13px;font-family:var(--f-m);font-size:8.5px;color:var(--ink-40);letter-spacing:.04em;white-space:nowrap;transform:translateX(-50%)}
+.cfg-range-mark-label.right{transform:translateX(-50%)}
+.cfg-range-note{font-family:var(--f-m);font-size:10px;color:var(--ink-60);margin-top:38px;letter-spacing:.02em;display:flex;align-items:center;gap:6px;line-height:1.4;flex-wrap:wrap}
+.cfg-range-note .badge-italy{display:inline-flex;align-items:center;gap:4px;font-size:8.5px;letter-spacing:.1em;padding:3px 8px;border-radius:10px;background:var(--turquoise-soft);color:var(--turquoise-dark);text-transform:uppercase;font-weight:500;flex-shrink:0}
+.cfg-big.t2 .cfg-range-note .badge-italy{background:var(--blue-soft);color:var(--blue)}
+.cfg-status{display:inline-flex;align-items:center;gap:4px;font-family:var(--f-m);font-size:9px;letter-spacing:.06em;text-transform:uppercase;padding:2px 8px;border-radius:10px;margin-left:6px}
+.cfg-status.in-range{background:var(--turquoise-soft);color:var(--turquoise-dark)}
+.cfg-status.below-range{background:var(--ink-05);color:var(--ink-60)}
+.cfg-status.above-range{background:var(--coral-soft);color:var(--coral-dark)}
 .cfg-row{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px;font-size:12.5px;color:var(--ink-80);gap:8px}
 .cfg-row span{flex:1}
 .cfg-row strong{font-family:var(--f-d);font-size:22px;color:var(--coral-dark);font-weight:400;letter-spacing:-.01em;white-space:nowrap}
@@ -219,6 +232,19 @@ input[type="range"]::-moz-range-thumb{width:18px;height:18px;border-radius:50%;b
   <p class="h-sub" id="hs">Punto di partenza reale: <strong>fatturato 2025 chiuso a €440k</strong>, contrattualizzato 2026 a oggi €283k (Tab2 del CRM + una-tantum maggio/luglio). <strong>Gap da generare: €217-237k entro dicembre 2026</strong>. Tre configuratori interattivi (Meta · Pricing · Mix canali) tarati su <strong>dati Ribrain reali</strong>: ticket medio €2.256/mese, retention media 1.16 anni, fonte dominante Ribrain self-acquisition 82%. Sotto, le proiezioni 18 mesi (giugno 2026 → novembre 2027) divise in tre scenari + break-even budget + 3 scenari a confronto.</p>
 </section>
 
+<!-- BENCHMARK SOURCES BOX -->
+<section style="padding:32px 56px;background:var(--bg-alt);border-top:1px solid var(--rule);border-bottom:1px solid var(--rule)">
+  <div class="wrap" style="padding:0;max-width:1280px">
+    <div style="display:grid;grid-template-columns:auto 1fr;gap:24px;align-items:start">
+      <div style="font-family:var(--f-d);font-size:36px;color:var(--coral);line-height:1;letter-spacing:-.01em;flex-shrink:0">🇮🇹</div>
+      <div>
+        <div style="font-family:var(--f-m);font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:var(--coral-dark);margin-bottom:8px;font-weight:500">Benchmark di mercato · agenzie marketing Italia 2026</div>
+        <p style="font-size:13.5px;color:var(--ink-60);line-height:1.7;margin:0">I <strong style="color:var(--ink)">range tratteggiati</strong> sotto ogni slider mostrano i valori tipici per agenzie italiane simili a Ribrain. Quando muovi lo slider, lo <strong style="color:var(--ink)">status badge</strong> (verde "in range", grigio "sotto", coral "sopra") ti dice dove sei rispetto al mercato. Fonti dichiarate: <strong style="color:var(--ink)">Tready Soluzioni Digitali 2026</strong>, <strong style="color:var(--ink)">migliore-agenzia.com 2026</strong>, <strong style="color:var(--ink)">Bliss Agency 2026</strong>, <strong style="color:var(--ink)">Galtarossa 2026</strong>, <strong style="color:var(--ink)">CULT ADV 2026</strong>, <strong style="color:var(--ink)">HTT B2B 2026</strong> + dati interni CRM Ribrain 2016-2026. <em>Sotto-range non significa sbagliato</em> — significa che stai sotto-utilizzando una leva. Sopra-range significa che stai puntando in alto: verifica fattibilità su delivery e team.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- §1 CONFIGURATORE 1 -->
 <section class="section">
   <div class="wrap">
@@ -235,16 +261,34 @@ input[type="range"]::-moz-range-thumb{width:18px;height:18px;border-radius:50%;b
 
       <div class="cfg-controls">
         <div class="cfg-slider">
-          <div class="cfg-row"><span>Budget mensile</span><strong id="m1v">1.500€</strong></div>
+          <div class="cfg-row"><span>Budget mensile <span class="cfg-status in-range" id="m1status">in range</span></span><strong id="m1v">1.500€</strong></div>
           <input type="range" id="m1s" min="500" max="3000" value="1500" step="100">
+          <div class="cfg-range-band">
+            <div class="cfg-range-dashed" style="left:4%;width:48%"></div>
+            <span class="cfg-range-mark-label" style="left:4%">600€</span>
+            <span class="cfg-range-mark-label" style="left:52%">1.800€</span>
+          </div>
+          <div class="cfg-range-note"><span class="badge-italy">🇮🇹 Italia</span>Range tipico PMI B2B Italia 2026: <strong>600-1.800€/mese</strong> · sotto 600€ scarsa significatività · sopra 1.800€ servono creative dedicate</div>
         </div>
         <div class="cfg-slider">
-          <div class="cfg-row"><span>CPL Meta (€/lead)</span><strong id="m2v">100€</strong></div>
+          <div class="cfg-row"><span>CPL Meta (€/lead) <span class="cfg-status in-range" id="m2status">in range</span></span><strong id="m2v">100€</strong></div>
           <input type="range" id="m2s" min="50" max="250" value="100" step="10">
+          <div class="cfg-range-band">
+            <div class="cfg-range-dashed" style="left:15%;width:35%"></div>
+            <span class="cfg-range-mark-label" style="left:15%">80€</span>
+            <span class="cfg-range-mark-label" style="left:50%">150€</span>
+          </div>
+          <div class="cfg-range-note"><span class="badge-italy">🇮🇹 Italia</span>CPL B2B servizi Italia 2026: <strong>80-150€</strong> · manifatturiero arriva a 250€ · Meta più basso di Google/LinkedIn</div>
         </div>
         <div class="cfg-slider">
-          <div class="cfg-row"><span>Close rate post-discovery</span><strong id="m3v">25%</strong></div>
+          <div class="cfg-row"><span>Close rate post-discovery <span class="cfg-status in-range" id="m3status">in range</span></span><strong id="m3v">25%</strong></div>
           <input type="range" id="m3s" min="10" max="50" value="25" step="1">
+          <div class="cfg-range-band">
+            <div class="cfg-range-dashed" style="left:25%;width:25%"></div>
+            <span class="cfg-range-mark-label" style="left:25%">20%</span>
+            <span class="cfg-range-mark-label" style="left:50%">30%</span>
+          </div>
+          <div class="cfg-range-note"><span class="badge-italy">🇮🇹 Italia</span>Close rate post-discovery B2B mid-market: <strong>20-30%</strong> · referral chiudono 35-45% · cold Meta 12-18%</div>
         </div>
       </div>
 
@@ -276,16 +320,34 @@ input[type="range"]::-moz-range-thumb{width:18px;height:18px;border-radius:50%;b
 
       <div class="cfg-controls">
         <div class="cfg-slider">
-          <div class="cfg-row"><span>Nuovi clienti netti · H2 2026</span><strong id="p1v">9</strong></div>
+          <div class="cfg-row"><span>Nuovi clienti netti · H2 2026 <span class="cfg-status in-range" id="p1status">in range</span></span><strong id="p1v">9</strong></div>
           <input type="range" id="p1s" min="3" max="20" value="9" step="1">
+          <div class="cfg-range-band">
+            <div class="cfg-range-dashed" style="left:17.6%;width:35.3%"></div>
+            <span class="cfg-range-mark-label" style="left:17.6%">6</span>
+            <span class="cfg-range-mark-label" style="left:52.9%">12</span>
+          </div>
+          <div class="cfg-range-note"><span class="badge-italy">🇮🇹 Italia</span>Range realistico agenzie 8-12 persone: <strong>6-12 nuovi/semestre</strong> · sotto 6 sotto-utilizzo team · sopra 12 stress delivery</div>
         </div>
         <div class="cfg-slider">
-          <div class="cfg-row"><span>Ticket medio mensile</span><strong id="p2v">2.000€</strong></div>
+          <div class="cfg-row"><span>Ticket medio mensile <span class="cfg-status in-range" id="p2status">in range</span></span><strong id="p2v">2.000€</strong></div>
           <input type="range" id="p2s" min="800" max="5000" value="2000" step="100">
+          <div class="cfg-range-band">
+            <div class="cfg-range-dashed" style="left:16.7%;width:40.5%"></div>
+            <span class="cfg-range-mark-label" style="left:16.7%">1.500€</span>
+            <span class="cfg-range-mark-label" style="left:57.1%">3.200€</span>
+          </div>
+          <div class="cfg-range-note"><span class="badge-italy">🇮🇹 Sud Italia</span>Retainer mensile Sud Italia 2026: <strong>1.500-3.200€/mese</strong> · Centro 2.000-3.800€ · Nord 2.500-4.500€ · Ribrain (Napoli) parte alta del range Sud realistica</div>
         </div>
         <div class="cfg-slider">
-          <div class="cfg-row"><span>Setup fee iniziale</span><strong id="p3v">5.000€</strong></div>
+          <div class="cfg-row"><span>Setup fee iniziale <span class="cfg-status in-range" id="p3status">in range</span></span><strong id="p3v">5.000€</strong></div>
           <input type="range" id="p3s" min="0" max="15000" value="5000" step="500">
+          <div class="cfg-range-band">
+            <div class="cfg-range-dashed" style="left:20%;width:33.3%"></div>
+            <span class="cfg-range-mark-label" style="left:20%">3.000€</span>
+            <span class="cfg-range-mark-label" style="left:53.3%">8.000€</span>
+          </div>
+          <div class="cfg-range-note"><span class="badge-italy">🇮🇹 Italia</span>Setup fee agenzie mid-tier: <strong>3.000-8.000€</strong> · sotto 3k segnale commodity · sopra 8k richiede metodo dimostrato (brand book, audit, strategia)</div>
         </div>
       </div>
 
@@ -317,16 +379,34 @@ input[type="range"]::-moz-range-thumb{width:18px;height:18px;border-radius:50%;b
 
       <div class="cfg-controls">
         <div class="cfg-slider">
-          <div class="cfg-row"><span>Referral partner (~12-15k€/anno)</span><strong id="x1v">0.5</strong></div>
+          <div class="cfg-row"><span>Referral partner <span class="cfg-status in-range" id="x1status">in range</span></span><strong id="x1v">0.5</strong></div>
           <input type="range" id="x1s" min="0" max="3" value="0.5" step="0.1">
+          <div class="cfg-range-band">
+            <div class="cfg-range-dashed" style="left:10%;width:23.3%"></div>
+            <span class="cfg-range-mark-label" style="left:10%">0.3</span>
+            <span class="cfg-range-mark-label" style="left:33.3%">1.0</span>
+          </div>
+          <div class="cfg-range-note"><span class="badge-italy">🇮🇹 Italia</span>Contratti/mese da partner attivi: <strong>0.3-1.0</strong> · ticket annuo €12-15k · retention storica Caffeina 8 mesi</div>
         </div>
         <div class="cfg-slider">
-          <div class="cfg-row"><span>Meta Ads (~10-12k€/anno)</span><strong id="x2v">0.4</strong></div>
+          <div class="cfg-row"><span>Meta Ads <span class="cfg-status in-range" id="x2status">in range</span></span><strong id="x2v">0.4</strong></div>
           <input type="range" id="x2s" min="0" max="3" value="0.4" step="0.1">
+          <div class="cfg-range-band">
+            <div class="cfg-range-dashed" style="left:10%;width:40%"></div>
+            <span class="cfg-range-mark-label" style="left:10%">0.3</span>
+            <span class="cfg-range-mark-label" style="left:50%">1.5</span>
+          </div>
+          <div class="cfg-range-note"><span class="badge-italy">🇮🇹 Italia</span>Contratti/mese da Meta (1-1.5k€/mese budget): <strong>0.3-1.5</strong> · ticket annuo €10-12k · qualità lead variabile</div>
         </div>
         <div class="cfg-slider">
-          <div class="cfg-row"><span>Ribrain direct (~24-30k€/anno)</span><strong id="x3v">0.6</strong></div>
+          <div class="cfg-row"><span>Ribrain direct <span class="cfg-status in-range" id="x3status">in range</span></span><strong id="x3v">0.6</strong></div>
           <input type="range" id="x3s" min="0" max="3" value="0.6" step="0.1">
+          <div class="cfg-range-band">
+            <div class="cfg-range-dashed" style="left:13.3%;width:26.7%"></div>
+            <span class="cfg-range-mark-label" style="left:13.3%">0.4</span>
+            <span class="cfg-range-mark-label" style="left:40%">1.2</span>
+          </div>
+          <div class="cfg-range-note"><span class="badge-italy">🇮🇹 Ribrain</span>Pattern storico Ribrain self-acquisition: <strong>0.4-1.2 contratti/mese</strong> · ticket annuo €24-30k · 82% dei contratti 2026</div>
         </div>
       </div>
 
@@ -471,11 +551,21 @@ function fmtK(n){return n>=1000?(n/1000).toFixed(0)+'k':Math.round(n)}
 
 // CFG 1: Meta
 const m1s=document.getElementById('m1s'),m2s=document.getElementById('m2s'),m3s=document.getElementById('m3s');
+function setStatus(id,val,min,max){
+  const el=document.getElementById(id);
+  if(!el)return;
+  if(val<min){el.textContent='sotto range';el.className='cfg-status below-range';}
+  else if(val>max){el.textContent='sopra range';el.className='cfg-status above-range';}
+  else{el.textContent='in range';el.className='cfg-status in-range';}
+}
 function uM(){
   const b=+m1s.value,c=+m2s.value,cr=+m3s.value/100;
   document.getElementById('m1v').textContent=fmt(b)+'€';
   document.getElementById('m2v').textContent=c+'€';
   document.getElementById('m3v').textContent=m3s.value+'%';
+  setStatus('m1status',b,600,1800);
+  setStatus('m2status',c,80,150);
+  setStatus('m3status',+m3s.value,20,30);
   const leads=b/c,contr=leads*cr,cac=contr>0?b/contr:0;
   document.getElementById('r1').textContent=Math.round(leads);
   document.getElementById('r2').textContent=contr.toFixed(1);
@@ -491,6 +581,9 @@ function uP(){
   document.getElementById('p1v').textContent=cl;
   document.getElementById('p2v').textContent=fmt(tk)+'€';
   document.getElementById('p3v').textContent=fmt(su)+'€';
+  setStatus('p1status',cl,6,12);
+  setStatus('p2status',tk,1500,3200);
+  setStatus('p3status',su,3000,8000);
   const rr=cl*tk*12,st=cl*su,ann=tk*12,ltv=tk*12*3+su;
   document.getElementById('rp1').textContent='+'+fmtK(rr);
   document.getElementById('rp2').textContent=fmtK(st);
@@ -506,6 +599,9 @@ function uX(){
   document.getElementById('x1v').textContent=r.toFixed(1);
   document.getElementById('x2v').textContent=m.toFixed(1);
   document.getElementById('x3v').textContent=l.toFixed(1);
+  setStatus('x1status',r,0.3,1.0);
+  setStatus('x2status',m,0.3,1.5);
+  setStatus('x3status',l,0.4,1.2);
   const tot=r+m+l,year=tot*12;
   const tkR=14000,tkM=11000,tkL=27000;
   const avg=tot>0?(r*tkR+m*tkM+l*tkL)/tot:0;

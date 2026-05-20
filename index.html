@@ -427,6 +427,64 @@ input[type="range"]::-moz-range-thumb{width:18px;height:18px;border-radius:50%;b
 .bc-table td:first-child{font-weight:600;color:var(--ink);white-space:nowrap}
 .bc-table tr.main td{background:var(--magenta-soft)}
 .bc-table tr.main td:first-child{color:var(--magenta-dark)}
+/* ===== M1 MARKET LANDSCAPE WIDGET ===== */
+.mkt-wrap{margin-top:48px;position:relative}
+.mkt-header{display:flex;align-items:baseline;justify-content:space-between;margin-bottom:28px;flex-wrap:wrap;gap:12px}
+.mkt-title-group .mkt-sup{font-family:var(--f-m);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--blue);margin-bottom:8px;font-weight:500}
+.mkt-title-group .mkt-h{font-family:var(--f-d);font-size:clamp(28px,3.6vw,42px);font-weight:400;line-height:1.05;letter-spacing:-.01em;text-transform:uppercase;color:var(--ink)}
+.mkt-total{text-align:right}
+.mkt-total-n{font-family:var(--f-d);font-size:clamp(36px,5vw,64px);color:var(--blue);line-height:1;letter-spacing:-.02em}
+.mkt-total-l{font-family:var(--f-m);font-size:9.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-60);margin-top:4px}
+.mkt-body{display:grid;grid-template-columns:1fr 220px;gap:24px;align-items:stretch}
+@media(max-width:840px){.mkt-body{grid-template-columns:1fr}}
+.mkt-layers{display:flex;flex-direction:column;gap:0;border-radius:6px;overflow:hidden;position:relative}
+.ml{position:relative;display:flex;align-items:stretch;transition:all .3s var(--ease)}
+.ml-inner{flex:1;padding:18px 22px;display:flex;flex-direction:column;justify-content:center;border:1px solid var(--rule);border-bottom:none;position:relative;min-height:var(--h)}
+.ml:last-child .ml-inner{border-bottom:1px solid var(--rule);border-radius:0 0 6px 6px}
+.ml:first-child .ml-inner{border-radius:6px 6px 0 0}
+.ml--large .ml-inner{background:var(--blue);border-color:var(--blue-dark);min-height:56px}
+.ml--midsize .ml-inner{background:var(--blue-soft);border-color:rgba(0,107,255,.25);min-height:72px}
+.ml--smallmid .ml-inner{background:var(--ink);border-color:var(--turquoise);border-width:2px;min-height:160px}
+.ml--micro .ml-inner{background:var(--bg-alt);border-color:var(--rule);min-height:120px}
+.ml-tier{font-family:var(--f-m);font-size:8.5px;letter-spacing:.14em;text-transform:uppercase;font-weight:600;margin-bottom:6px}
+.ml--large .ml-tier,.ml--large .ml-name,.ml--large .ml-detail{color:#fff}
+.ml--midsize .ml-tier,.ml--midsize .ml-name,.ml--midsize .ml-detail{color:var(--blue-dark)}
+.ml--smallmid .ml-tier{color:var(--turquoise);letter-spacing:.18em}
+.ml--smallmid .ml-name{color:#fff;font-size:clamp(16px,2.4vw,22px)}
+.ml--smallmid .ml-detail{color:rgba(255,255,255,.55)}
+.ml--micro .ml-tier{color:var(--ink-60)}
+.ml--micro .ml-name{color:var(--ink-40);font-size:clamp(14px,1.8vw,18px)}
+.ml--micro .ml-detail{color:var(--ink-40)}
+.ml-name{font-family:var(--f-d);font-size:clamp(14px,2vw,20px);font-weight:400;letter-spacing:-.01em;text-transform:uppercase;line-height:1.1;margin-bottom:4px}
+.ml-detail{font-family:var(--f-m);font-size:10.5px;letter-spacing:.04em;line-height:1.55}
+.ml-pct{position:absolute;top:50%;right:20px;transform:translateY(-50%);font-family:var(--f-d);font-size:clamp(24px,3.8vw,44px);font-weight:400;letter-spacing:-.02em;line-height:1;opacity:.25}
+.ml--large .ml-pct{color:#fff;opacity:.5}
+.ml--midsize .ml-pct{color:var(--blue)}
+.ml--smallmid .ml-pct{color:var(--turquoise);opacity:.4}
+.ml--micro .ml-pct{color:var(--ink-40)}
+/* Ribrain marker */
+.ribrain-marker{display:inline-flex;align-items:center;gap:10px;margin-top:14px;background:var(--turquoise);color:var(--ink);padding:8px 14px;border-radius:4px;font-family:var(--f-m);font-size:10px;letter-spacing:.06em;font-weight:500;position:relative;z-index:1}
+.ribrain-marker .rm-dot{width:8px;height:8px;border-radius:50%;background:var(--ink);flex-shrink:0}
+.ribrain-progress{position:absolute;bottom:0;left:0;height:3px;background:var(--turquoise);width:88%;border-radius:0 3px 3px 0}
+.ribrain-progress-label{position:absolute;bottom:8px;right:16px;font-family:var(--f-m);font-size:9px;color:rgba(255,255,255,.4);letter-spacing:.06em}
+/* Frecce pressione */
+.squeeze-arrow{display:flex;align-items:center;gap:8px;font-family:var(--f-m);font-size:9px;letter-spacing:.1em;text-transform:uppercase;font-weight:600;padding:8px 12px;position:absolute;right:72px;z-index:2}
+.squeeze-arrow--down{color:var(--coral);bottom:-1px;background:linear-gradient(135deg,rgba(247,97,67,.12),transparent);border:1px solid rgba(247,97,67,.2);border-radius:4px;font-size:8.5px}
+.squeeze-arrow--up{color:var(--coral);top:-1px;background:linear-gradient(135deg,rgba(247,97,67,.12),transparent);border:1px solid rgba(247,97,67,.2);border-radius:4px;font-size:8.5px}
+/* Sidebar stats */
+.mkt-sidebar{display:flex;flex-direction:column;gap:14px}
+@media(max-width:840px){.mkt-sidebar{display:grid;grid-template-columns:1fr 1fr;gap:10px}}
+.mkt-stat{padding:18px 16px;background:var(--bg);border:1px solid var(--rule);border-radius:4px}
+.mkt-stat-v{font-family:var(--f-d);font-size:28px;color:var(--turquoise-dark);line-height:1;letter-spacing:-.01em;margin-bottom:6px}
+.mkt-stat-l{font-family:var(--f-m);font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-60);line-height:1.5}
+.mkt-stat-note{font-size:11.5px;color:var(--ink-60);margin-top:6px;line-height:1.5;padding-top:6px;border-top:1px solid var(--rule)}
+.mkt-geo-box{padding:18px 16px;background:var(--bg-alt);border:1px solid var(--rule);border-radius:4px;border-left:3px solid var(--blue)}
+.mkt-geo-box .geo-title{font-family:var(--f-m);font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:var(--blue);margin-bottom:10px;font-weight:500}
+.mkt-geo-box .geo-item{display:flex;justify-content:space-between;font-size:12px;margin-bottom:6px;color:var(--ink-60)}
+.mkt-geo-box .geo-item strong{color:var(--ink);font-weight:500}
+.mkt-bottom-note{margin-top:20px;padding:20px 24px;background:linear-gradient(135deg,var(--turquoise-soft),rgba(0,107,255,.04));border-left:3px solid var(--turquoise-dark);border-radius:0 4px 4px 0}
+.mkt-bottom-note p{font-size:13.5px;color:var(--ink-60);line-height:1.75}
+.mkt-bottom-note strong{color:var(--ink);font-weight:500}
 /* ===== M4B · DECISIONE PAID ===== */
 .pasquale-box{padding:36px 40px;background:linear-gradient(135deg,#0A0A0A 0%,#1A1A1A 100%);color:#fff;border-radius:6px;margin-bottom:32px;position:relative;overflow:hidden}
 @media(max-width:760px){.pasquale-box{padding:28px 24px}}
@@ -762,10 +820,111 @@ body.nav-open{overflow:hidden}
         <div class="ic-stat"><strong>79%</strong>adv spend AI-driven entro 2027</div>
       </div>
     </div>
+
+    <!-- MARKET LANDSCAPE WIDGET -->
+    <div class="mkt-wrap">
+      <div class="mkt-header">
+        <div class="mkt-title-group">
+          <div class="mkt-sup">Dove gioca Ribrain · mappa strutturale del mercato italiano 2025</div>
+          <div class="mkt-h">La terra di mezzo.<br>Schiacciata da entrambi i lati.</div>
+        </div>
+        <div class="mkt-total">
+          <div class="mkt-total-n">43.453</div>
+          <div class="mkt-total-l">agenzie marketing attive in Italia</div>
+        </div>
+      </div>
+
+      <div class="mkt-body">
+        <!-- 4 LAYER STACK -->
+        <div class="mkt-layers">
+
+          <!-- TIER 4 · LARGE -->
+          <div class="ml ml--large">
+            <div class="ml-inner">
+              <div class="ml-tier">Tier 4 · Large &amp; Network</div>
+              <div class="ml-name">Grandi agenzie e holding</div>
+              <div class="ml-detail">Fatturato >5M€ · >50 persone · network internazionali<br>~1.700 agenzie · WPP, Publicis, boutique Milano-Roma</div>
+              <div class="ml-pct">4%</div>
+              <div class="squeeze-arrow squeeze-arrow--down">↓ scendono sul mid-market con offerte nazionali</div>
+            </div>
+          </div>
+
+          <!-- TIER 3 · MID-SIZE -->
+          <div class="ml ml--midsize">
+            <div class="ml-inner">
+              <div class="ml-tier">Tier 3 · Mid-Size Structured</div>
+              <div class="ml-name">Agenzie strutturate</div>
+              <div class="ml-detail">Fatturato 500k-5M€ · 10-30 persone · processi, specializzazioni<br>~3.500 agenzie · obiettivo Ribrain 2026-2027</div>
+              <div class="ml-pct">8%</div>
+              <div class="squeeze-arrow squeeze-arrow--down">↓ competono sullo stesso target PMI di Ribrain</div>
+            </div>
+          </div>
+
+          <!-- TIER 2 · SMALL-MID · RIBRAIN -->
+          <div class="ml ml--smallmid">
+            <div class="ml-inner">
+              <div class="ml-tier">★ Tier 2 · Boutique Small-Mid · QUI STA RIBRAIN</div>
+              <div class="ml-name">Agenzie boutique</div>
+              <div class="ml-detail">Fatturato 120k-500k€ · 4-10 persone · specializzazione verticale<br>~15.200 agenzie · la fascia più competitiva d'Italia</div>
+              <div class="ml-pct">35%</div>
+              <div class="ribrain-marker">
+                <span class="rm-dot"></span>
+                RIBRAIN · €440k · 9 persone · Napoli · top 12% nazionale
+              </div>
+              <div class="ribrain-progress"></div>
+              <div class="ribrain-progress-label">→ €500k entra nel Tier 3</div>
+              <div class="squeeze-arrow squeeze-arrow--up">↑ commodity pricing dal basso</div>
+            </div>
+          </div>
+
+          <!-- TIER 1 · MICRO -->
+          <div class="ml ml--micro">
+            <div class="ml-inner">
+              <div class="ml-tier">Tier 1 · Micro</div>
+              <div class="ml-name">Freelancer e micro-team</div>
+              <div class="ml-detail">Fatturato &lt;120k€ · 1-3 persone · regime di sussistenza<br>~23.000 agenzie · alta mortalità · social a 500€/mese<br>Competono sul prezzo puro, distruggono la percezione di valore</div>
+              <div class="ml-pct">53%</div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- SIDEBAR -->
+        <div class="mkt-sidebar">
+          <div class="mkt-stat">
+            <div class="mkt-stat-v">Top 12%</div>
+            <div class="mkt-stat-l">Posizionamento Ribrain · per fatturato nazionale</div>
+            <div class="mkt-stat-note">Il 53% sta sotto €120k. Un altro 35% sotto €500k. Ribrain è nell'8% superiore per soglia di ingresso al Tier 3.</div>
+          </div>
+
+          <div class="mkt-stat">
+            <div class="mkt-stat-v">1.874</div>
+            <div class="mkt-stat-l">Agenzie italiane sopra 1M€ di fatturato</div>
+            <div class="mkt-stat-note">Meno del 5% del totale. La prossima soglia simbolica di Ribrain.</div>
+          </div>
+
+          <div class="mkt-geo-box">
+            <div class="geo-title">🗺 Contesto geografico</div>
+            <div class="geo-item"><span>Polo 1 · Lombardia</span><strong>~8.000 agenzie</strong></div>
+            <div class="geo-item"><span>Polo 2 · Lazio</span><strong>~5.000 agenzie</strong></div>
+            <div class="geo-item"><span>Polo 3 · Campania</span><strong>~2.500 agenzie</strong></div>
+            <div style="font-size:11.5px;color:var(--ink-60);margin-top:10px;line-height:1.6;border-top:1px solid var(--rule);padding-top:8px">Il 90% dei competitor locali campani è <strong>Tier 1 Micro</strong>. Ribrain compete a livello nazionale pur essendo basata al Sud — e questo è già eccezionale.</div>
+          </div>
+
+          <div class="mkt-stat" style="background:var(--turquoise-soft);border-color:var(--turquoise-dark)">
+            <div class="mkt-stat-v" style="color:var(--turquoise-dark)">€5.5B</div>
+            <div class="mkt-stat-l" style="color:var(--turquoise-dark)">Investimenti digitali italiani 2024</div>
+            <div class="mkt-stat-note">Il mercato cresce. La torta è grande. Il problema non è la dimensione del mercato — è il posizionamento dentro di esso.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="mkt-bottom-note">
+        <p>Ribrain a €440k di fatturato si trova <strong>all'88% della soglia del Tier 3</strong> (€500k). Con 9 persone, è tra le poche agenzie italiane che operano a questo livello fuori dai poli di Milano e Roma. La pressione competitiva è doppia: le micro-agenzie campane attaccano dal basso con prezzi stracciati, le agenzie strutturate del Nord scendono con offerte nazionali per i clienti PMI. <strong>Sopravvivere in questo sandwich per 11 anni, costruendo un €3.7M cumulato, è la dimostrazione concreta del posizionamento difendibile.</strong></p>
+      </div>
+    </div>
   </div>
 </section>
-
-<!-- ===== PULL QUOTE 1 ===== -->
 <section class="section section--alt">
   <div class="wrap">
     <div class="pq" id="pq1">

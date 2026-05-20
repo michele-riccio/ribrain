@@ -1,0 +1,605 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Radiografia Ribrain · 11 anni di dati</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Anton&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+<style>
+:root{--bg:#FFFFFF;--bg-alt:#FAFAF8;--bg-dark:#0A0A0A;--ink:#0A0A0A;--ink-80:#2C2C2A;--ink-60:rgba(10,10,10,.6);--ink-40:rgba(10,10,10,.4);--ink-20:rgba(10,10,10,.18);--ink-10:rgba(10,10,10,.08);--ink-05:rgba(10,10,10,.04);--rule:rgba(10,10,10,.1);--turquoise:#46FFDD;--turquoise-soft:#D4FFF7;--turquoise-dark:#0DAB8E;--blue:#006BFF;--blue-soft:#D6E7FF;--blue-dark:#0047B3;--magenta:#DE2BD9;--magenta-soft:#FBDDFA;--coral:#F76143;--coral-soft:#FED9CF;--coral-dark:#B33A1F;--warn:#F0AB18;--warn-soft:#FFF4D9;--f-d:'Anton',Impact,sans-serif;--f-s:'Inter',system-ui,-apple-system,sans-serif;--f-m:'JetBrains Mono',monospace;--ease:cubic-bezier(0.16,1,0.3,1)}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{font-size:16px;scroll-behavior:smooth}
+body{background:var(--bg);color:var(--ink);font-family:var(--f-s);font-weight:400;line-height:1.6;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1280px;margin:0 auto;padding:0 56px}
+@media(max-width:760px){.wrap{padding:0 24px}}
+.topbar{display:flex;align-items:center;justify-content:space-between;padding:18px 56px;border-bottom:1px solid var(--rule);position:sticky;top:0;z-index:100;background:rgba(255,255,255,.94);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px)}
+@media(max-width:760px){.topbar{padding:14px 24px}}
+.tb-left{display:flex;align-items:center;gap:18px}
+.tb-logo{font-family:var(--f-s);font-weight:700;font-size:15px;letter-spacing:-.02em;color:var(--ink);text-decoration:none}
+.tb-logo .dot{color:var(--turquoise)}
+.tb-sep{width:1px;height:14px;background:var(--ink-20)}
+.tb-label{font-family:var(--f-m);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-60)}
+@media(max-width:680px){.tb-label{display:none}}
+.tb-back{font-family:var(--f-m);font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-60);text-decoration:none;display:flex;align-items:center;gap:6px;transition:color .2s}
+.tb-back:hover{color:var(--ink)}
+
+.hero{padding:88px 56px 56px;border-bottom:1px solid var(--rule);position:relative;overflow:hidden}
+@media(max-width:760px){.hero{padding:56px 24px 40px}}
+.h-eyebrow{display:flex;align-items:center;gap:14px;margin-bottom:24px}
+.h-line{width:36px;height:2px;background:var(--coral)}
+.h-tag{font-family:var(--f-m);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-60)}
+.h-h1{font-family:var(--f-d);font-weight:400;font-size:clamp(48px,7.5vw,108px);line-height:.96;margin-bottom:16px;letter-spacing:-.02em;text-transform:uppercase}
+.h-h1 .accent{color:var(--coral)}
+.h-sub{font-size:15.5px;line-height:1.75;max-width:780px;color:var(--ink-60)}
+.h-sub strong{color:var(--ink);font-weight:500}
+
+.section{padding:64px 0;border-top:1px solid var(--rule)}
+.section--alt{background:var(--bg-alt)}
+@media(max-width:760px){.section{padding:48px 0}}
+.s-head{margin-bottom:32px;max-width:920px}
+.s-num{font-family:var(--f-m);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--coral-dark);margin-bottom:10px;display:flex;align-items:center;gap:10px}
+.s-num::after{content:"";flex:1;height:1px;background:var(--rule);max-width:100px}
+.s-h2{font-family:var(--f-d);font-weight:400;font-size:clamp(28px,4vw,48px);line-height:1.05;letter-spacing:-.01em;text-transform:uppercase;margin-bottom:8px}
+.s-intro{font-size:14px;color:var(--ink-60);line-height:1.7;margin-top:12px}
+.s-intro strong{color:var(--ink);font-weight:500}
+
+/* KPI BIG GRID */
+.kpi-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:2px;border:1px solid var(--rule);border-radius:4px;overflow:hidden;margin-top:16px}
+@media(max-width:880px){.kpi-grid{grid-template-columns:1fr 1fr}}
+.kpi{padding:24px 22px;background:var(--bg);position:relative}
+.kpi-v{font-family:var(--f-d);font-size:38px;font-weight:400;line-height:1;letter-spacing:-.01em;margin-bottom:8px;color:var(--ink)}
+.kpi-v.cor{color:var(--coral-dark)}
+.kpi-v.tq{color:var(--turquoise-dark)}
+.kpi-v.bl{color:var(--blue)}
+.kpi-v.warn{color:var(--warn)}
+.kpi-l{font-family:var(--f-m);font-size:9.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-60);line-height:1.5;font-weight:500}
+.kpi-sub{font-size:11.5px;color:var(--ink-40);margin-top:6px;line-height:1.45;font-style:italic}
+
+/* CHART CONTAINER */
+.chart-box{padding:28px;background:var(--bg);border:1px solid var(--rule);border-radius:4px;margin-top:16px}
+@media(max-width:680px){.chart-box{padding:18px}}
+.chart-h{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:18px;gap:16px;flex-wrap:wrap}
+.chart-t{font-family:var(--f-d);font-size:22px;font-weight:400;color:var(--ink);letter-spacing:-.01em;text-transform:uppercase;line-height:1.05}
+.chart-s{font-size:12.5px;color:var(--ink-60);line-height:1.55;max-width:600px;margin-top:6px}
+.chart-c{position:relative;height:300px;margin-top:12px}
+.chart-c.tall{height:380px}
+
+/* TWO-COL */
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:16px}
+@media(max-width:880px){.two-col{grid-template-columns:1fr}}
+
+/* RETENTION CURVE BLOCK */
+.surv-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:2px;margin-top:16px;border:1px solid var(--rule);border-radius:4px;overflow:hidden}
+@media(max-width:760px){.surv-grid{grid-template-columns:1fr 1fr}}
+.surv{padding:18px 16px;background:var(--bg);text-align:center;position:relative}
+.surv-v{font-family:var(--f-d);font-size:34px;font-weight:400;line-height:1;letter-spacing:-.01em;color:var(--coral-dark);margin-bottom:4px}
+.surv-v.warn{color:var(--coral-dark)}
+.surv-v.bad{color:#C53030}
+.surv-l{font-family:var(--f-m);font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-60);line-height:1.4}
+.surv-n{font-size:11px;color:var(--ink-40);margin-top:6px;font-style:italic}
+
+/* COHORT MATRIX */
+.cohort-table{width:100%;border-collapse:collapse;font-size:12px;margin-top:16px;overflow-x:auto;display:block}
+.cohort-table thead,.cohort-table tbody{display:table;width:100%;min-width:780px}
+.cohort-table th{font-family:var(--f-m);font-size:9px;letter-spacing:.1em;text-transform:uppercase;font-weight:500;color:var(--ink-60);padding:12px 8px;text-align:right;border-bottom:1px solid var(--ink-20)}
+.cohort-table th:first-child{text-align:left}
+.cohort-table td{padding:11px 8px;border-bottom:1px solid var(--rule);text-align:right;font-family:var(--f-m);font-size:12px;color:var(--ink)}
+.cohort-table td:first-child{text-align:left;font-weight:600;color:var(--ink)}
+.cohort-table td.cell{position:relative}
+.cohort-table tr.bad td{background:#FFEBE6}
+.cohort-table tr.good td{background:var(--turquoise-soft)}
+
+/* TOP CLIENTS */
+.top-clients{margin-top:16px}
+.tc-row{display:grid;grid-template-columns:30px 1fr 100px 100px;gap:12px;padding:14px 16px;border:1px solid var(--rule);border-radius:4px;margin-bottom:6px;align-items:center;background:var(--bg)}
+@media(max-width:760px){.tc-row{grid-template-columns:24px 1fr auto;gap:8px;padding:12px}.tc-source{display:none}}
+.tc-rank{font-family:var(--f-d);font-size:22px;color:var(--ink-40);line-height:1;letter-spacing:-.01em}
+.tc-name{font-weight:600;font-size:14px;color:var(--ink);line-height:1.3}
+.tc-detail{font-size:11px;color:var(--ink-60);margin-top:3px;font-family:var(--f-m);letter-spacing:.04em}
+.tc-source{font-family:var(--f-m);font-size:10px;letter-spacing:.06em;text-transform:uppercase;padding:4px 10px;border-radius:14px;text-align:center}
+.tc-source.ribrain{background:var(--turquoise-soft);color:var(--turquoise-dark)}
+.tc-source.caffeina{background:var(--magenta-soft);color:var(--magenta)}
+.tc-source.wmi{background:var(--blue-soft);color:var(--blue-dark)}
+.tc-source.global{background:var(--coral-soft);color:var(--coral-dark)}
+.tc-source.other{background:var(--ink-05);color:var(--ink-60)}
+.tc-value{font-family:var(--f-d);font-size:22px;color:var(--coral-dark);text-align:right;letter-spacing:-.01em;line-height:1}
+
+/* INSIGHT CARD */
+.insight-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin-top:16px}
+@media(max-width:760px){.insight-grid{grid-template-columns:1fr}}
+.insight{padding:24px;border-radius:4px;border-left:3px solid;background:var(--bg)}
+.insight.good{border-left-color:var(--turquoise-dark);background:var(--turquoise-soft)}
+.insight.bad{border-left-color:var(--coral-dark);background:var(--coral-soft)}
+.insight.warn{border-left-color:var(--warn);background:var(--warn-soft)}
+.insight.neutral{border-left-color:var(--ink-40);background:var(--bg-alt)}
+.insight-tag{font-family:var(--f-m);font-size:9px;letter-spacing:.12em;text-transform:uppercase;margin-bottom:8px;font-weight:600}
+.insight.good .insight-tag{color:var(--turquoise-dark)}
+.insight.bad .insight-tag{color:var(--coral-dark)}
+.insight.warn .insight-tag{color:var(--warn)}
+.insight.neutral .insight-tag{color:var(--ink-60)}
+.insight-t{font-size:15px;font-weight:600;color:var(--ink);margin-bottom:8px;line-height:1.35}
+.insight-b{font-size:13px;color:var(--ink-60);line-height:1.65}
+.insight-b strong{color:var(--ink);font-weight:500}
+
+/* WARN BOX (discrepancy) */
+.warn-box{padding:28px 32px;background:var(--warn-soft);border:1px solid var(--warn);border-radius:4px;margin-top:24px;border-left:3px solid var(--warn)}
+.warn-box-h{font-family:var(--f-m);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--warn);margin-bottom:10px;font-weight:600;display:flex;align-items:center;gap:8px}
+.warn-box-t{font-size:15px;font-weight:600;color:var(--ink);margin-bottom:10px;line-height:1.4}
+.warn-box-b{font-size:13.5px;color:var(--ink-60);line-height:1.75}
+.warn-box-b strong{color:var(--ink);font-weight:500}
+
+.footer{padding:32px 0 24px;border-top:1px solid var(--rule);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px}
+.f-left{display:flex;align-items:center;gap:12px;font-weight:700;font-size:15px}
+.f-tag{font-family:var(--f-m);font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-40)}
+</style>
+</head>
+<body>
+
+<header class="topbar">
+  <div class="tb-left">
+    <a href="index.html" class="tb-logo">ribrain<span class="dot">.</span></a>
+    <span class="tb-sep"></span>
+    <span class="tb-label">📊 Radiografia · 11 anni di dati</span>
+  </div>
+  <div>
+    <a href="index.html" class="tb-back">← Torna a M0</a>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="h-eyebrow">
+    <span class="h-line"></span>
+    <span class="h-tag">Cruscotto dati · CRM Ribrain · 2016-2026</span>
+  </div>
+  <h1 class="h-h1">11 anni.<br>143 clienti.<br><span class="accent">€3.7M cumulato.</span></h1>
+  <p class="h-sub">Radiografia completa di Ribrain · <strong>tutti i KPI strategici incrociati e granulari</strong>. Trend fatturato anno per anno, retention per coorte, concentrazione clienti, evoluzione fonti acquisizione. Nessuna media drogata: dove c'è un outlier, è dichiarato. Dove c'è un gap nei dati, è segnalato.</p>
+</section>
+
+<!-- SEZIONE 1 · KPI BIG NUMBERS -->
+<section class="section">
+  <div class="wrap">
+    <div class="s-head">
+      <div class="s-num">§1 · KPI di sintesi</div>
+      <h2 class="s-h2">I numeri chiave a colpo d'occhio.</h2>
+    </div>
+
+    <div class="kpi-grid">
+      <div class="kpi"><div class="kpi-v">143</div><div class="kpi-l">Clienti storici totali</div><div class="kpi-sub">acquisiti tra 2016 e 2026</div></div>
+      <div class="kpi"><div class="kpi-v tq">27</div><div class="kpi-l">Clienti attivi oggi</div><div class="kpi-sub">19% del totale storico</div></div>
+      <div class="kpi"><div class="kpi-v cor">€3.7M</div><div class="kpi-l">Fatturato cumulato</div><div class="kpi-sub">somma 11 anni · CRM</div></div>
+      <div class="kpi"><div class="kpi-v">13</div><div class="kpi-l">Settori coperti</div><div class="kpi-sub">food, sanità, eventi, luxury…</div></div>
+      <div class="kpi"><div class="kpi-v bl">€2.256</div><div class="kpi-l">Ticket medio mensile</div><div class="kpi-sub">mediana €1.500/mese</div></div>
+      <div class="kpi"><div class="kpi-v">8 mesi</div><div class="kpi-l">Durata mediana cliente</div><div class="kpi-sub">media 1.16 anni (gonfiata da outlier)</div></div>
+      <div class="kpi"><div class="kpi-v warn">17%</div><div class="kpi-l">Clienti che durano 2+ anni</div><div class="kpi-sub">25 su 143 · pattern partner</div></div>
+      <div class="kpi"><div class="kpi-v cor">88%</div><div class="kpi-l">Primo margine medio</div><div class="kpi-sub">2° margine orario mediano €103/h</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- SEZIONE 2 · TREND FATTURATO -->
+<section class="section section--alt">
+  <div class="wrap">
+    <div class="s-head">
+      <div class="s-num">§2 · Trend storico · 2016-2026</div>
+      <h2 class="s-h2">Come è cresciuto e poi sceso il fatturato.</h2>
+      <p class="s-intro">Il <strong>picco è stato il 2022 a €564k</strong>. Da lì un declino di 3 anni consecutivi: -7.5% (2023), -16% (2024), -29% (2025). Il 2026 è ancora in formazione. <em>Nota: i dati 2025 della tab CRM differiscono dal dato di chiusura €440k che hai dichiarato. Vedi box gap a fondo pagina.</em></p>
+    </div>
+
+    <div class="chart-box">
+      <div class="chart-h">
+        <div>
+          <div class="chart-t">Fatturato annuo · €/anno</div>
+          <div class="chart-s">Da €138k (2016) → picco €564k (2022) → €312k (2025, dato CRM). Trend a U con declino post-2022 da indagare.</div>
+        </div>
+      </div>
+      <div class="chart-c tall"><canvas id="fatturatoChart"></canvas></div>
+    </div>
+
+    <div class="two-col">
+      <div class="chart-box">
+        <div class="chart-h">
+          <div>
+            <div class="chart-t">Clienti attivi · fine anno</div>
+            <div class="chart-s">Net = nuovi acquisiti − chiusi. 2022 anno nero (-5).</div>
+          </div>
+        </div>
+        <div class="chart-c"><canvas id="activeClientsChart"></canvas></div>
+      </div>
+
+      <div class="chart-box">
+        <div class="chart-h">
+          <div>
+            <div class="chart-t">Flusso clienti · nuovi vs chiusi</div>
+            <div class="chart-s">Quanti entrano e quanti escono ogni anno. 2019/2022/2023 sotto zero.</div>
+          </div>
+        </div>
+        <div class="chart-c"><canvas id="flowChart"></canvas></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SEZIONE 3 · RETENTION CURVE -->
+<section class="section">
+  <div class="wrap">
+    <div class="s-head">
+      <div class="s-num">§3 · La curva di retention · il problema sistemico</div>
+      <h2 class="s-h2">Il vero problema strategico di Ribrain.</h2>
+      <p class="s-intro">Su <strong>113 clienti delle coorti 2016-2023</strong> (escludendo i recenti che non hanno avuto tempo): solo il <strong>46% supera i 12 mesi</strong>, solo il <strong>22% supera i 24 mesi</strong>. C'è un <strong>"churn cliff" tra il 6° e il 12° mese</strong> dove si perde quasi metà dei clienti. Questo è il vero problema da risolvere — non l'acquisizione, ma il <strong>passaggio dalla fase setup alla fase partnership</strong>.</p>
+    </div>
+
+    <div class="surv-grid">
+      <div class="surv"><div class="surv-v" style="color:var(--turquoise-dark)">96%</div><div class="surv-l">arriva a 3 mesi</div><div class="surv-n">109 su 113</div></div>
+      <div class="surv"><div class="surv-v" style="color:var(--turquoise-dark)">69%</div><div class="surv-l">arriva a 6 mesi</div><div class="surv-n">78 su 113</div></div>
+      <div class="surv"><div class="surv-v warn">56%</div><div class="surv-l">arriva a 9 mesi</div><div class="surv-n">63 su 113</div></div>
+      <div class="surv"><div class="surv-v warn">46%</div><div class="surv-l">arriva a 12 mesi</div><div class="surv-n">52 su 113</div></div>
+      <div class="surv"><div class="surv-v bad">22%</div><div class="surv-l">arriva a 24 mesi</div><div class="surv-n">25 su 113</div></div>
+    </div>
+
+    <div class="chart-box" style="margin-top:24px">
+      <div class="chart-h">
+        <div>
+          <div class="chart-t">Curva di sopravvivenza clienti · 3 → 60 mesi</div>
+          <div class="chart-s">Cala bruscamente tra mese 6 e mese 12. Dopo 12 mesi si stabilizza ma rimane bassa.</div>
+        </div>
+      </div>
+      <div class="chart-c"><canvas id="retentionCurveChart"></canvas></div>
+    </div>
+  </div>
+</section>
+
+<!-- SEZIONE 4 · COHORT ANALYSIS -->
+<section class="section section--alt">
+  <div class="wrap">
+    <div class="s-head">
+      <div class="s-num">§4 · Cohort analysis · è migliorata o peggiorata?</div>
+      <h2 class="s-h2">Come è cambiata la retention nel tempo.</h2>
+      <p class="s-intro">Per coorte di acquisizione · % clienti che hanno superato 12 mesi. <strong>2017 fu l'anno migliore (75%)</strong>, <strong>2022 fu il peggiore (25%)</strong>. Il trend non è monotono — ci sono oscillazioni significative. Le coorti recenti (2025-2026) sono in formazione: meglio non leggerle ancora.</p>
+    </div>
+
+    <div style="overflow-x:auto;margin-top:16px">
+      <table class="cohort-table">
+        <thead>
+          <tr>
+            <th>Coorte</th>
+            <th>N acquisiti</th>
+            <th>% &gt; 6m</th>
+            <th>% &gt; 12m</th>
+            <th>% &gt; 24m</th>
+            <th>% attivi oggi</th>
+            <th>LTV mediano</th>
+            <th>LTV medio</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>2016</td><td>15</td><td>87%</td><td>47%</td><td>20%</td><td>0%</td><td>€14.667</td><td>€35.934</td></tr>
+          <tr class="good"><td>2017</td><td>12</td><td>83%</td><td><strong>75%</strong></td><td>33%</td><td>0%</td><td>€23.766</td><td>€27.319</td></tr>
+          <tr><td>2018</td><td>13</td><td>62%</td><td>39%</td><td>23%</td><td>15%</td><td>€9.070</td><td>€20.958</td></tr>
+          <tr><td>2019</td><td>13</td><td>69%</td><td>46%</td><td>31%</td><td>0%</td><td>€12.000</td><td>€50.690</td></tr>
+          <tr><td>2020</td><td>17</td><td>71%</td><td>47%</td><td>18%</td><td>6%</td><td>€18.626</td><td>€32.664</td></tr>
+          <tr><td>2021</td><td>18</td><td>56%</td><td>39%</td><td>22%</td><td>0%</td><td>€5.085</td><td>€14.966</td></tr>
+          <tr class="bad"><td>2022</td><td>12</td><td>67%</td><td><strong>25%</strong></td><td>0%</td><td>0%</td><td>€11.930</td><td>€21.449</td></tr>
+          <tr><td>2023</td><td>13</td><td>62%</td><td>54%</td><td>31%</td><td>23%</td><td>€11.000</td><td>€32.581</td></tr>
+          <tr><td>2024</td><td>14</td><td>50%</td><td>36%</td><td>—</td><td>43%</td><td>€13.800</td><td>€17.344</td></tr>
+          <tr style="opacity:.5"><td>2025</td><td>11</td><td>55%</td><td>—</td><td>—</td><td>91%</td><td>€6.600</td><td>€12.078</td></tr>
+          <tr style="opacity:.5"><td>2026</td><td>4</td><td>—</td><td>—</td><td>—</td><td>100%</td><td>—</td><td>—</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="insight-grid" style="margin-top:24px">
+      <div class="insight good">
+        <div class="insight-tag">✅ Insight positivo</div>
+        <div class="insight-t">La coorte 2017 fu eccezionale</div>
+        <p class="insight-b">75% dei clienti acquisiti nel 2017 superò i 12 mesi. È il <strong>massimo storico</strong> di Ribrain. Cosa fu fatto di diverso quell'anno? Vale la pena indagare per replicare le condizioni di onboarding/delivery.</p>
+      </div>
+      <div class="insight bad">
+        <div class="insight-tag">⚠️ Insight critico</div>
+        <div class="insight-t">2022 fu il peggior anno di sempre per retention</div>
+        <p class="insight-b">Solo il 25% dei nuovi clienti del 2022 ha superato i 12 mesi. <strong>Zero hanno superato i 24 mesi.</strong> Era anche l'anno del picco di fatturato (€564k) — segno che si stava "facendo cassa" sui clienti senza costruire relazioni durature.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SEZIONE 5 · CONCENTRAZIONE -->
+<section class="section">
+  <div class="wrap">
+    <div class="s-head">
+      <div class="s-num">§5 · Concentrazione del fatturato</div>
+      <h2 class="s-h2">Quanto siamo dipendenti dai top clienti.</h2>
+      <p class="s-intro">Su 11 anni e 143 clienti, <strong>il 28% del fatturato totale arriva da soli 5 clienti</strong>. I top 20 fanno il 60%. È una concentrazione media — non drammatica, ma significativa: se i top 5 saltano, salta un quarto del fatturato cumulato storico.</p>
+    </div>
+
+    <div class="kpi-grid">
+      <div class="kpi"><div class="kpi-v cor">28%</div><div class="kpi-l">Top 5 clienti / totale</div><div class="kpi-sub">€1.03M su €3.7M</div></div>
+      <div class="kpi"><div class="kpi-v cor">43%</div><div class="kpi-l">Top 10 clienti / totale</div><div class="kpi-sub">€1.57M su €3.7M</div></div>
+      <div class="kpi"><div class="kpi-v warn">60%</div><div class="kpi-l">Top 20 clienti / totale</div><div class="kpi-sub">€2.21M su €3.7M</div></div>
+      <div class="kpi"><div class="kpi-v">70%</div><div class="kpi-l">Top 30 clienti / totale</div><div class="kpi-sub">€2.57M su €3.7M</div></div>
+    </div>
+
+    <div class="s-head" style="margin-top:48px;margin-bottom:0">
+      <div class="s-num">Top 10 clienti di sempre</div>
+    </div>
+
+    <div class="top-clients">
+      <div class="tc-row">
+        <div class="tc-rank">01</div>
+        <div><div class="tc-name">Sacco S.r.l.</div><div class="tc-detail">Food · 2019-2025 · 5.4 anni durata</div></div>
+        <div class="tc-source global">Global Summit</div>
+        <div class="tc-value">€374k</div>
+      </div>
+      <div class="tc-row">
+        <div class="tc-rank">02</div>
+        <div><div class="tc-name">Imperatore Travel World</div><div class="tc-detail">Turismo · 2016-2019 · 3.75 anni</div></div>
+        <div class="tc-source ribrain">Ribrain</div>
+        <div class="tc-value">€208k</div>
+      </div>
+      <div class="tc-row">
+        <div class="tc-rank">03</div>
+        <div><div class="tc-name">Zoetis</div><div class="tc-detail">Pharma · 2020-2023 · 3.4 anni</div></div>
+        <div class="tc-source other">3 Ways</div>
+        <div class="tc-value">€190k</div>
+      </div>
+      <div class="tc-row">
+        <div class="tc-rank">04</div>
+        <div><div class="tc-name">Beautilicious Delights</div><div class="tc-detail">Beauty · 2019-2024 · 5.1 anni</div></div>
+        <div class="tc-source wmi">WMI</div>
+        <div class="tc-value">€132k</div>
+      </div>
+      <div class="tc-row">
+        <div class="tc-rank">05</div>
+        <div><div class="tc-name">Uncle Food S.r.l.</div><div class="tc-detail">Food · 2019-attivo · 7.25 anni · soci</div></div>
+        <div class="tc-source ribrain">Ribrain</div>
+        <div class="tc-value">€130k</div>
+      </div>
+      <div class="tc-row">
+        <div class="tc-rank">06</div>
+        <div><div class="tc-name">Parmalat / Latte Berna</div><div class="tc-detail">Food · 2023-attivo · 2.5 anni</div></div>
+        <div class="tc-source caffeina">Caffeina</div>
+        <div class="tc-value">€128k</div>
+      </div>
+      <div class="tc-row">
+        <div class="tc-rank">07</div>
+        <div><div class="tc-name">G.E.O / Nuvola Ortodonzia</div><div class="tc-detail">Sanità · 2023-attivo · 2.67 anni</div></div>
+        <div class="tc-source caffeina">Caffeina</div>
+        <div class="tc-value">€120k</div>
+      </div>
+      <div class="tc-row">
+        <div class="tc-rank">08</div>
+        <div><div class="tc-name">Safe Plus S.r.l.</div><div class="tc-detail">Servizi · 2021-2024 · 3 anni</div></div>
+        <div class="tc-source caffeina">Caffeina</div>
+        <div class="tc-value">€112k</div>
+      </div>
+      <div class="tc-row">
+        <div class="tc-rank">09</div>
+        <div><div class="tc-name">Giuseppe Di Natale / Modimò</div><div class="tc-detail">Cartoleria · 2020-attivo · 5.67 anni</div></div>
+        <div class="tc-source other">Passaparola</div>
+        <div class="tc-value">€94k</div>
+      </div>
+      <div class="tc-row">
+        <div class="tc-rank">10</div>
+        <div><div class="tc-name">Gorilla S.r.l.</div><div class="tc-detail">ND · 2022-2023 · 1.5 anni</div></div>
+        <div class="tc-source caffeina">Caffeina</div>
+        <div class="tc-value">€82k</div>
+      </div>
+    </div>
+
+    <div class="insight-grid">
+      <div class="insight warn">
+        <div class="insight-tag">⚠️ Da osservare</div>
+        <div class="insight-t">Caffeina ha portato 4 dei top 10 clienti</div>
+        <p class="insight-b">Parmalat (€128k), G.E.O/Nuvola (€120k), Safe Plus (€112k), Gorilla (€82k). <strong>Insieme fanno €442k</strong> — più del Top 1 Sacco. La narrativa "Caffeina porta clienti piccoli" era sbagliata: <strong>Caffeina ha una distribuzione bimodale</strong> — molti piccoli + alcuni colpi grossi.</p>
+      </div>
+      <div class="insight neutral">
+        <div class="insight-tag">📊 Da notare</div>
+        <div class="insight-t">5 dei top 10 sono ancora attivi</div>
+        <p class="insight-b">Uncle Food, Parmalat, G.E.O/Nuvola, Modimò. <strong>Sono lo zoccolo duro</strong> del fatturato corrente. Se uno solo di questi salta, il 2026 va a remi.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SEZIONE 6 · GAP DATI -->
+<section class="section section--alt">
+  <div class="wrap">
+    <div class="s-head">
+      <div class="s-num">§6 · Discrepanze nei dati · da chiarire</div>
+      <h2 class="s-h2">Cosa il file NON sta dicendo.</h2>
+      <p class="s-intro">Nel costruire questa radiografia ho trovato delle discrepanze tra i dati del CRM e i dati di chiusura che hai dichiarato. Sono <strong>cose da chiarire prima di prendere decisioni operative</strong>.</p>
+    </div>
+
+    <div class="warn-box">
+      <div class="warn-box-h">⚠️ Gap #1 · Fatturato 2025</div>
+      <div class="warn-box-t">CRM dice €312k · tu dici €440k · gap €128k (29%)</div>
+      <p class="warn-box-b">La tab "Fatturato All Time" del CRM somma i fatturati dei 143 clienti elencati per il 2025 a <strong>€311.679</strong>. Tu hai dichiarato <strong>€440.155</strong> come chiusura 2025. <strong>Mancano €128.476</strong>.<br><br>Possibili spiegazioni: (1) ci sono entrate da clienti non mappati nel CRM (consulenze spot, eventi, formazione, progetti una-tantum), (2) il CRM è incompleto su alcuni clienti, (3) hai entrate "non clienti" tipo ricavi finanziari, rimborsi, contributi. <strong>Da chiarire prima del piano operativo</strong> perché impatta il calcolo del gap reale 2026.</p>
+    </div>
+
+    <div class="warn-box">
+      <div class="warn-box-h">⚠️ Gap #2 · Fatturato 2026 a oggi</div>
+      <div class="warn-box-t">Tab Fatturato 2026: €33k · Contrattualizzato Tab 2: €283k</div>
+      <p class="warn-box-b">Questa è probabilmente <strong>differenza tra fatturato emesso e contratti firmati</strong> — il 2026 è iniziato 5 mesi fa, non tutto è ancora stato fatturato. Va verificato che le 2 tab siano coerenti.</p>
+    </div>
+
+    <div class="warn-box">
+      <div class="warn-box-h">⚠️ Gap #3 · 5 clienti senza categoria settoriale</div>
+      <div class="warn-box-t">Webim · Sinergy/Climando · Robynails · CMS · 3MAEC</div>
+      <p class="warn-box-b">Sono i 5 nuovi clienti 2026 ma <strong>non hanno settore assegnato</strong> nel CRM. Senza categoria, perdi il pattern strategico (a quale buyer persona appartengono? quale landing verticale?).<br><br><strong>Da categorizzare</strong> per chiudere il loop dei dati.</p>
+    </div>
+  </div>
+</section>
+
+<!-- SEZIONE 7 · INSIGHT FINALI -->
+<section class="section">
+  <div class="wrap">
+    <div class="s-head">
+      <div class="s-num">§7 · Insight strategici · cosa dice davvero la radiografia</div>
+      <h2 class="s-h2">5 cose che cambiano il piano.</h2>
+    </div>
+
+    <div class="insight-grid">
+      <div class="insight bad">
+        <div class="insight-tag">🚨 Insight 1 · IL VERO PROBLEMA</div>
+        <div class="insight-t">Il problema strategico non è acquisire. È trattenere oltre l'anno.</div>
+        <p class="insight-b">Su 113 clienti delle coorti stabili, <strong>solo 46% supera i 12 mesi</strong>. C'è un churn cliff tra mese 6 e mese 12 dove si perde metà del parco. <strong>Acquisire 9 nuovi in H2 2026 non basta</strong> se 4-5 di loro a fine 2027 saranno già fuori.</p>
+      </div>
+
+      <div class="insight warn">
+        <div class="insight-tag">📉 Insight 2 · IL DECLINO</div>
+        <div class="insight-t">Fatturato in calo da 3 anni consecutivi (-45% dal picco 2022)</div>
+        <p class="insight-b">2022 €564k → 2025 €312k (-45%). Tre anni di declino non sono una "stagionalità" — sono un <strong>problema strutturale</strong>. Le cause possibili: meno acquisizione (Ribrain self in calo), churn alto su clienti del 2022, fine cicli con clienti top come Sacco.</p>
+      </div>
+
+      <div class="insight neutral">
+        <div class="insight-tag">📊 Insight 3 · LA SCOPERTA</div>
+        <div class="insight-t">Caffeina è il canale che ha portato i top clienti del 2023-2025</div>
+        <p class="insight-b">4 dei top 10 clienti vengono da Caffeina (Parmalat, G.E.O/Nuvola, Safe Plus, Gorilla). Hanno generato €442k in 4-5 anni. <strong>La narrativa "Caffeina = volume e basso valore" era sbagliata</strong>. Caffeina ha una distribuzione bimodale: molti piccoli + 4 colpi grossi.</p>
+      </div>
+
+      <div class="insight good">
+        <div class="insight-tag">✅ Insight 4 · LA BASE</div>
+        <div class="insight-t">5 dei top 10 sono ancora attivi e sostengono il 2026</div>
+        <p class="insight-b">Uncle Food (soci, 7.25 anni), Parmalat (2.5 anni, in scadenza giugno?), G.E.O/Nuvola, Modimò, Lemon. <strong>Sono lo zoccolo duro</strong>. Se rinnovano e cresce uno dei piccoli, il piano regge. Se ne perdi 2, va in difficoltà.</p>
+      </div>
+
+      <div class="insight warn">
+        <div class="insight-tag">🎯 Insight 5 · LA PRIORITÀ</div>
+        <div class="insight-t">Il primo problema non è Meta · è il piano di onboarding</div>
+        <p class="insight-b">Anche se Meta porta 9 nuovi clienti in H2 2026, <strong>statisticamente 5 di loro saranno fuori entro 18 mesi</strong>. Serve un protocollo di onboarding nei primi 90 giorni dedicato a portare il maggior numero possibile oltre la soglia critica del mese 6-12 (il "churn cliff"). <strong>Senza retention, l'acquisizione è un secchio bucato</strong>.</p>
+      </div>
+
+      <div class="insight neutral">
+        <div class="insight-tag">⚖️ Insight 6 · LO ZOOM SUI 2024-2026</div>
+        <div class="insight-t">La coorte 2025 sembra promettente (91% ancora attivo)</div>
+        <p class="insight-b">Dei 11 clienti acquisiti nel 2025, 10 sono ancora attivi a maggio 2026. È presto per dire se è un miglioramento strutturale o solo "non ha avuto tempo di churn", ma <strong>è un segnale debole positivo</strong>. Da monitorare a settembre.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<div class="wrap">
+  <div class="footer">
+    <div class="f-left">ribrain<span style="color:var(--turquoise)">.</span></div>
+    <div class="f-tag">Radiografia · maggio 2026 · confidenziale soci</div>
+  </div>
+</div>
+
+<script>
+// COLORS
+const C={ink:'#0A0A0A',inkLight:'rgba(10,10,10,.6)',inkGrid:'rgba(10,10,10,.06)',coral:'#F76143',coralDark:'#B33A1F',turq:'#0DAB8E',blue:'#006BFF',warn:'#F0AB18',bad:'#C53030'};
+
+// CHART 1 · FATTURATO ANNUO
+new Chart(document.getElementById('fatturatoChart'),{
+  type:'bar',
+  data:{
+    labels:['2016','2017','2018','2019','2020','2021','2022','2023','2024','2025','2026*'],
+    datasets:[{
+      label:'Fatturato €/anno',
+      data:[138,270,314,327,369,394,564,522,438,312,33],
+      backgroundColor:(ctx)=>{
+        const v=ctx.parsed.y;
+        if(v>=500)return C.coralDark;
+        if(v>=400)return C.coral;
+        if(v>=300)return '#F89A82';
+        return '#FBC9B8';
+      },
+      borderRadius:4,
+      barThickness:'flex'
+    }]
+  },
+  options:{
+    responsive:true,maintainAspectRatio:false,
+    plugins:{legend:{display:false},tooltip:{backgroundColor:'#0A0A0A',padding:12,callbacks:{label:c=>'€'+c.parsed.y+'k'}}},
+    scales:{
+      y:{beginAtZero:true,ticks:{font:{family:'JetBrains Mono',size:10},color:C.inkLight,callback:v=>'€'+v+'k'},grid:{color:C.inkGrid},border:{display:false}},
+      x:{ticks:{font:{family:'JetBrains Mono',size:11},color:C.inkLight},grid:{display:false},border:{color:'rgba(10,10,10,.1)'}}
+    }
+  }
+});
+
+// CHART 2 · ACTIVE CLIENTS
+new Chart(document.getElementById('activeClientsChart'),{
+  type:'line',
+  data:{
+    labels:['2016','2017','2018','2019','2020','2021','2022','2023','2024','2025','2026*'],
+    datasets:[{
+      label:'Clienti attivi (fine anno)',
+      data:[10,12,15,14,20,24,19,16,20,26,30],
+      borderColor:C.turq,
+      backgroundColor:'rgba(13,171,142,.12)',
+      borderWidth:3,
+      fill:true,
+      tension:.3,
+      pointRadius:5,
+      pointHoverRadius:7,
+      pointBackgroundColor:C.turq,
+      pointBorderColor:'#fff',
+      pointBorderWidth:2
+    }]
+  },
+  options:{
+    responsive:true,maintainAspectRatio:false,
+    plugins:{legend:{display:false},tooltip:{backgroundColor:'#0A0A0A',padding:12}},
+    scales:{
+      y:{beginAtZero:true,ticks:{font:{family:'JetBrains Mono',size:10},color:C.inkLight},grid:{color:C.inkGrid},border:{display:false}},
+      x:{ticks:{font:{family:'JetBrains Mono',size:10},color:C.inkLight},grid:{display:false}}
+    }
+  }
+});
+
+// CHART 3 · FLOW
+new Chart(document.getElementById('flowChart'),{
+  type:'bar',
+  data:{
+    labels:['2016','2017','2018','2019','2020','2021','2022','2023','2024','2025','2026*'],
+    datasets:[
+      {label:'Nuovi acquisiti',data:[15,12,13,13,17,18,12,13,14,11,4],backgroundColor:C.turq,borderRadius:3},
+      {label:'Chiusi',data:[-5,-10,-10,-14,-11,-14,-17,-16,-10,-5,0],backgroundColor:C.coral,borderRadius:3}
+    ]
+  },
+  options:{
+    responsive:true,maintainAspectRatio:false,
+    plugins:{legend:{display:true,labels:{font:{family:'JetBrains Mono',size:10},color:C.inkLight,boxWidth:14,boxHeight:14,padding:14}},tooltip:{backgroundColor:'#0A0A0A',padding:12,callbacks:{label:c=>c.dataset.label+': '+Math.abs(c.parsed.y)}}},
+    scales:{
+      y:{stacked:true,ticks:{font:{family:'JetBrains Mono',size:10},color:C.inkLight,callback:v=>Math.abs(v)},grid:{color:C.inkGrid},border:{display:false}},
+      x:{stacked:true,ticks:{font:{family:'JetBrains Mono',size:10},color:C.inkLight},grid:{display:false}}
+    }
+  }
+});
+
+// CHART 4 · RETENTION CURVE
+new Chart(document.getElementById('retentionCurveChart'),{
+  type:'line',
+  data:{
+    labels:['3m','6m','9m','12m','18m','24m','36m','48m','60m'],
+    datasets:[{
+      label:'% clienti sopravvissuti',
+      data:[96.5,69.0,55.8,46.0,31.9,22.1,13.3,8.0,6.2],
+      borderColor:C.coral,
+      backgroundColor:'rgba(247,97,67,.12)',
+      borderWidth:3,
+      fill:true,
+      tension:.25,
+      pointRadius:6,
+      pointHoverRadius:8,
+      pointBackgroundColor:C.coral,
+      pointBorderColor:'#fff',
+      pointBorderWidth:2
+    }]
+  },
+  options:{
+    responsive:true,maintainAspectRatio:false,
+    plugins:{legend:{display:false},tooltip:{backgroundColor:'#0A0A0A',padding:12,callbacks:{label:c=>c.parsed.y+'% dei 113 clienti'}}},
+    scales:{
+      y:{min:0,max:100,ticks:{font:{family:'JetBrains Mono',size:10},color:C.inkLight,callback:v=>v+'%'},grid:{color:C.inkGrid},border:{display:false}},
+      x:{ticks:{font:{family:'JetBrains Mono',size:11},color:C.inkLight},grid:{display:false}}
+    }
+  }
+});
+</script>
+</body>
+</html>

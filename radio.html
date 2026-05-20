@@ -185,7 +185,7 @@ body{background:var(--bg);color:var(--ink);font-family:var(--f-s);font-weight:40
     <div class="s-head">
       <div class="s-num">§2 · Trend storico · 2016-2026</div>
       <h2 class="s-h2">Come è cresciuto e poi sceso il fatturato.</h2>
-      <p class="s-intro">Il <strong>picco è stato il 2022 a €564k</strong>. Da lì un declino di 3 anni consecutivi: -7.5% (2023), -16% (2024), -29% (2025). Il 2026 è ancora in formazione. <em>Nota: i dati 2025 della tab CRM differiscono dal dato di chiusura €440k che hai dichiarato. Vedi box gap a fondo pagina.</em></p>
+      <p class="s-intro">Il <strong>picco apparente è stato il 2022 a €564k</strong>. Ma attenzione alla lettura: nei picchi 2022-2023, Ribrain faceva anche da <strong>tramite per i budget ADV dei clienti</strong> (pass-through senza margine). La scelta di smettere dal 2024 ha abbassato il fatturato ma non il margine reale. Il dato 2025 da CRM è €312k; il <strong>fatturato 2025 reale dichiarato è €440k</strong> (confermato — gap da trascrizione CRM). Il dato 2026 contrattualizzato (€268k) non coincide con il fatturato emesso (€33k) perché sono 2 misure diverse: vedi §6.</p>
     </div>
 
     <div class="chart-box">
@@ -392,7 +392,7 @@ body{background:var(--bg);color:var(--ink);font-family:var(--f-s);font-weight:40
       <div class="insight warn">
         <div class="insight-tag">⚠️ Da osservare</div>
         <div class="insight-t">Caffeina ha portato 4 dei top 10 clienti</div>
-        <p class="insight-b">Parmalat (€128k), G.E.O/Nuvola (€120k), Safe Plus (€112k), Gorilla (€82k). <strong>Insieme fanno €442k</strong> — più del Top 1 Sacco. La narrativa "Caffeina porta clienti piccoli" era sbagliata: <strong>Caffeina ha una distribuzione bimodale</strong> — molti piccoli + alcuni colpi grossi.</p>
+        <p class="insight-b">Parmalat (€128k), G.E.O/Nuvola (€120k), Safe Plus (€112k), Gorilla (€82k). <strong>Insieme fanno €442k</strong> — più del Top 1 Sacco. La narrativa "Caffeina porta clienti piccoli e bassa retention" era sbagliata: <strong>Caffeina ha una distribuzione bimodale</strong> — molti piccoli (mediana €8.400) + 4 colpi grossi che cambiano i numeri. Da rivedere la strategia su Caffeina: non è un canale da abbandonare, è un canale da qualificare meglio in entrata.</p>
       </div>
       <div class="insight neutral">
         <div class="insight-tag">📊 Da notare</div>
@@ -419,15 +419,21 @@ body{background:var(--bg);color:var(--ink);font-family:var(--f-s);font-weight:40
     </div>
 
     <div class="warn-box">
-      <div class="warn-box-h">⚠️ Gap #2 · Fatturato 2026 a oggi</div>
-      <div class="warn-box-t">Tab Fatturato 2026: €33k · Contrattualizzato Tab 2: €283k</div>
-      <p class="warn-box-b">Questa è probabilmente <strong>differenza tra fatturato emesso e contratti firmati</strong> — il 2026 è iniziato 5 mesi fa, non tutto è ancora stato fatturato. Va verificato che le 2 tab siano coerenti.</p>
+      <div class="warn-box-h" style="color:var(--turquoise-dark)">✅ Gap #2 · Fatturato 2026 · RISOLTO</div>
+      <div class="warn-box-t">€33k emessi · €268k contrattualizzati · Sono due misure diverse</div>
+      <p class="warn-box-b">I €33.000 della Tab "Fatturato All Time" sono le fatture <strong>già emesse fisicamente</strong> nel 2026 (solo 3 clienti: Rossetti €10.500, Arte In Stile €15.300, Dimorra €7.200). I <strong>€268.497</strong> nella Tab2 sono il valore <strong>contrattualizzato per il 2026</strong> — i contratti firmati la cui quota di competenza è il 2026. Non è una discrepanza: è semplicemente la differenza tra fatturato emesso e valore contrattuale. A dicembre 2026 i due numeri dovranno coincidere.</p>
     </div>
 
     <div class="warn-box">
-      <div class="warn-box-h">⚠️ Gap #3 · 5 clienti senza categoria settoriale</div>
-      <div class="warn-box-t">Webim · Sinergy/Climando · Robynails · CMS · 3MAEC</div>
-      <p class="warn-box-b">Sono i 5 nuovi clienti 2026 ma <strong>non hanno settore assegnato</strong> nel CRM. Senza categoria, perdi il pattern strategico (a quale buyer persona appartengono? quale landing verticale?).<br><br><strong>Da categorizzare</strong> per chiudere il loop dei dati.</p>
+      <div class="warn-box-h" style="color:var(--turquoise-dark)">✅ Gap #3 · 5 clienti ora categorizzati</div>
+      <div class="warn-box-t">Webim · Climando · Robynails · CMS · 3MAEC · ora con settore e contesto</div>
+      <p class="warn-box-b" style="line-height:1.9">
+        <strong>Webim</strong> → B2B Servizi/Tecnologia · BIM (Building Information Modeling, digitale edilizia) · Fonte: Secret Key · Persona: probabilmente Claudia<br>
+        <strong>Climando</strong> → Ecommerce HVAC/condizionatori · Fonte: Lead Gen Test AI · <span style="color:var(--coral-dark);font-weight:600">⚠️ IN CAUSA: vuole recedere contratto prima dei 6 mesi pattuiti</span> · Non usare come case study<br>
+        <strong>Robynails</strong> → Ecommerce B2B prodotti nail/saloni · Fonte: landing Ribrain · Persona: Roberto · Settore: Beauty B2B<br>
+        <strong>CMS</strong> → B2B Industria/Macchinari pesanti (la benna — attrezzatura per escavatori/gru) · Fonte: Caffeina · Persona: Marco PMI industriale<br>
+        <strong>3MAEC (PS Rappresentanze)</strong> → Fonte: Ribrain · Valore 2026 €12.400 · Settore da confermare con il team
+      </p>
     </div>
   </div>
 </section>
@@ -447,10 +453,10 @@ body{background:var(--bg);color:var(--ink);font-family:var(--f-s);font-weight:40
         <p class="insight-b">Su 113 clienti delle coorti stabili, <strong>solo 46% supera i 12 mesi</strong>. C'è un churn cliff tra mese 6 e mese 12 dove si perde metà del parco. <strong>Acquisire 9 nuovi in H2 2026 non basta</strong> se 4-5 di loro a fine 2027 saranno già fuori.</p>
       </div>
 
-      <div class="insight warn">
-        <div class="insight-tag">📉 Insight 2 · IL DECLINO</div>
-        <div class="insight-t">Fatturato in calo da 3 anni consecutivi (-45% dal picco 2022)</div>
-        <p class="insight-b">2022 €564k → 2025 €312k (-45%). Tre anni di declino non sono una "stagionalità" — sono un <strong>problema strutturale</strong>. Le cause possibili: meno acquisizione (Ribrain self in calo), churn alto su clienti del 2022, fine cicli con clienti top come Sacco.</p>
+      <div class="insight neutral">
+        <div class="insight-tag">💡 Insight 2 · SCELTA STRATEGICA (non declino)</div>
+        <div class="insight-t">Il calo del fatturato dal 2022 è in larga parte un riposizionamento volontario</div>
+        <p class="insight-b">Negli anni del picco (2022-2023, €564k e €522k), Ribrain passava anche i <strong>budget ADV dei clienti</strong> come voce di fatturato — una movimentazione pass-through che gonfiava i numeri ma non portava margine. Dal 2024 Ribrain ha smesso di fare da tramite, gestendo solo la parte consulenza. <strong>Il confronto anno/anno va letto in questa chiave</strong>: non è un calo del business, è una scelta di pulizia. Rimane reale il calo dei nuovi clienti self-acquisition e la fine di contratti top come Sacco.</p>
       </div>
 
       <div class="insight neutral">

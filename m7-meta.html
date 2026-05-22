@@ -1,0 +1,1011 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Piano Meta H2 2026 · Ribrain</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Anton&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#FFFFFF;--bg-alt:#FAFAF8;--bg-dark:#0A0A0A;
+  --ink:#0A0A0A;--ink-80:#2C2C2A;--ink-60:rgba(10,10,10,.6);--ink-40:rgba(10,10,10,.4);--ink-20:rgba(10,10,10,.18);--ink-10:rgba(10,10,10,.08);--ink-05:rgba(10,10,10,.04);--rule:rgba(10,10,10,.1);
+  --tq:#46FFDD;--tq-soft:#D4FFF7;--tq-dark:#0DAB8E;
+  --blue:#006BFF;--blue-soft:#D6E7FF;--blue-dark:#0047B3;
+  --coral:#F76143;--coral-soft:#FED9CF;--coral-dark:#B33A1F;
+  --magenta:#DE2BD9;--magenta-soft:#FBDDFA;
+  --warn:#F0AB18;--warn-soft:#FFF4D9;
+  --food:#2D7A3A;--food-soft:#D4F0D9;--food-mid:#4CAF57;
+  --life:#7B3FA0;--life-soft:#EDD9FA;--life-mid:#A855C8;
+  --f-d:'Anton',Impact,sans-serif;--f-s:'Inter',system-ui,sans-serif;--f-m:'JetBrains Mono',monospace;
+  --ease:cubic-bezier(.16,1,.3,1);
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{font-size:16px;scroll-behavior:smooth}
+body{background:var(--bg);color:var(--ink);font-family:var(--f-s);-webkit-font-smoothing:antialiased;overflow-x:hidden}
+.wrap{max-width:1320px;margin:0 auto;padding:0 56px}
+@media(max-width:760px){.wrap{padding:0 22px}}
+
+/* TOPBAR */
+.topbar{display:flex;align-items:center;justify-content:space-between;padding:16px 56px;border-bottom:1px solid var(--rule);position:sticky;top:0;z-index:100;background:rgba(255,255,255,.96);backdrop-filter:blur(20px)}
+@media(max-width:760px){.topbar{padding:14px 22px}}
+.tb-logo{font-weight:700;font-size:15px;letter-spacing:-.02em;text-decoration:none;color:var(--ink)}
+.tb-logo span{color:var(--tq-dark)}
+.tb-sep{width:1px;height:14px;background:var(--ink-20);margin:0 16px}
+.tb-label{font-family:var(--f-m);font-size:9.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-60)}
+.tb-back{font-family:var(--f-m);font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-60);text-decoration:none;transition:color .2s}
+.tb-back:hover{color:var(--ink)}
+
+/* HERO */
+.hero{padding:80px 56px 56px;position:relative;overflow:hidden}
+@media(max-width:760px){.hero{padding:52px 22px 40px}}
+.hero::before{content:"";position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--food),var(--life))}
+.h-eyebrow{display:flex;align-items:center;gap:14px;margin-bottom:22px}
+.h-tag{font-family:var(--f-m);font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-60)}
+.h-line{width:40px;height:2px;background:var(--ink-20)}
+.h-h1{font-family:var(--f-d);font-size:clamp(52px,8vw,120px);line-height:.92;letter-spacing:-.02em;text-transform:uppercase;margin-bottom:20px}
+.h-h1 .v-food{color:var(--food)}
+.h-h1 .v-life{color:var(--life)}
+.h-sub{font-size:15.5px;line-height:1.75;max-width:820px;color:var(--ink-60);margin-bottom:32px}
+.h-sub strong{color:var(--ink);font-weight:500}
+.hero-meta{display:flex;gap:32px;flex-wrap:wrap}
+.hm-kpi{padding:16px 20px;border:1px solid var(--rule);border-radius:4px;background:var(--bg-alt)}
+.hm-kpi-v{font-family:var(--f-d);font-size:26px;color:var(--ink);letter-spacing:-.01em;line-height:1}
+.hm-kpi-l{font-family:var(--f-m);font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-60);margin-top:4px}
+
+/* TAB SWITCHER VERTICALE */
+.vtab-wrap{padding:0 0 0;border-bottom:1px solid var(--rule);position:sticky;top:57px;z-index:90;background:rgba(255,255,255,.96);backdrop-filter:blur(20px)}
+.vtabs{display:flex;max-width:1320px;margin:0 auto;padding:0 56px}
+@media(max-width:760px){.vtabs{padding:0 22px}}
+.vtab{flex:1;max-width:360px;padding:18px 20px;border:none;background:none;cursor:pointer;text-align:left;transition:all .25s;border-bottom:3px solid transparent;margin-bottom:-1px;display:flex;align-items:center;gap:14px}
+.vtab:hover{background:var(--bg-alt)}
+.vtab.active-food{border-bottom-color:var(--food);background:var(--food-soft)}
+.vtab.active-life{border-bottom-color:var(--life);background:var(--life-soft)}
+.vtab-icon{width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0}
+.vtab-food .vtab-icon{background:var(--food-soft);color:var(--food)}
+.vtab-life .vtab-icon{background:var(--life-soft);color:var(--life)}
+.vtab.active-food .vtab-icon{background:var(--food);color:#fff}
+.vtab.active-life .vtab-icon{background:var(--life);color:#fff}
+.vtab-text .vt-head{font-family:var(--f-m);font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-40);margin-bottom:3px}
+.vtab.active-food .vtab-text .vt-head{color:var(--food)}
+.vtab.active-life .vtab-text .vt-head{color:var(--life)}
+.vtab-text .vt-name{font-size:14px;font-weight:600;color:var(--ink);letter-spacing:-.02em}
+.vtab-text .vt-budget{font-family:var(--f-m);font-size:10px;color:var(--ink-40);margin-top:3px;letter-spacing:.04em}
+
+/* VIEWS */
+.v-panel{display:none}
+.v-panel.active{display:block}
+
+/* MONTH HEADER */
+.month-intro{padding:52px 0 32px;border-top:2px solid var(--rule);margin-top:48px}
+.month-intro:first-child{margin-top:0;padding-top:40px;border-top:none}
+.mi-top{display:flex;align-items:flex-start;justify-content:space-between;gap:24px;flex-wrap:wrap;margin-bottom:28px}
+.mi-left{display:flex;align-items:center;gap:22px}
+.mi-num{font-family:var(--f-d);font-size:72px;color:var(--ink-10);line-height:1;letter-spacing:-.02em;user-select:none;flex-shrink:0}
+.mi-text .mi-month{font-family:var(--f-d);font-size:clamp(36px,5vw,60px);font-weight:400;letter-spacing:-.02em;text-transform:uppercase;line-height:1;margin-bottom:4px}
+.v-food .mi-text .mi-month{color:var(--food)}
+.v-life .mi-text .mi-month{color:var(--life)}
+.mi-text .mi-label{font-family:var(--f-m);font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-60)}
+.mi-right{display:flex;flex-direction:column;align-items:flex-end;gap:10px}
+.temp-badge{display:inline-flex;align-items:center;gap:7px;padding:8px 14px;border-radius:20px;font-family:var(--f-m);font-size:9.5px;letter-spacing:.1em;text-transform:uppercase;font-weight:500}
+.temp-hot{background:#FFF0E8;color:var(--coral-dark)}
+.temp-very-hot{background:var(--coral-soft);color:var(--coral-dark);font-weight:700}
+.temp-mid{background:var(--warn-soft);color:#8A6200}
+.temp-low{background:var(--bg-alt);color:var(--ink-60)}
+.budget-pill{font-family:var(--f-m);font-size:10px;letter-spacing:.08em;padding:6px 14px;border-radius:20px;background:var(--bg-alt);color:var(--ink-60);border:1px solid var(--rule)}
+
+/* GRID 2 COL */
+.month-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+@media(max-width:900px){.month-grid{grid-template-columns:1fr}}
+.month-grid-3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px}
+@media(max-width:1100px){.month-grid-3{grid-template-columns:1fr 1fr}}
+@media(max-width:680px){.month-grid-3{grid-template-columns:1fr}}
+
+/* CARD BASE */
+.card{padding:24px;border-radius:4px;border:1px solid var(--rule);background:var(--bg)}
+.card-h{font-family:var(--f-m);font-size:9px;letter-spacing:.14em;text-transform:uppercase;font-weight:600;margin-bottom:10px;display:flex;align-items:center;gap:8px}
+.card-icon{font-size:16px}
+.card-title{font-size:16px;font-weight:600;color:var(--ink);margin-bottom:10px;line-height:1.35}
+.card-body{font-size:13.5px;color:var(--ink-60);line-height:1.75}
+.card-body strong{color:var(--ink);font-weight:500}
+
+/* TRIGGER CARD */
+.trigger-card{background:var(--bg-dark);border-color:transparent}
+.trigger-card .card-h{color:var(--tq)}
+.trigger-card .card-title{color:#fff}
+.trigger-card .card-body{color:rgba(255,255,255,.65)}
+.trigger-card .card-body strong{color:var(--tq)}
+.trigger-split{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+@media(max-width:680px){.trigger-split{grid-template-columns:1fr}}
+.ti-block{padding:18px;background:rgba(255,255,255,.04);border-radius:4px}
+.ti-label{font-family:var(--f-m);font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.4);margin-bottom:8px}
+.ti-text{font-size:13px;color:rgba(255,255,255,.8);line-height:1.65}
+.ti-text em{color:var(--tq);font-style:normal;font-weight:500}
+
+/* COPY CARDS */
+.copy-variants{display:flex;flex-direction:column;gap:12px;margin-top:16px}
+.copy-card{padding:20px;background:var(--bg-alt);border:1px solid var(--rule);border-radius:4px;position:relative}
+.cv-variant{font-family:var(--f-m);font-size:8.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-40);margin-bottom:8px;font-weight:600}
+.cv-headline{font-size:15px;font-weight:700;color:var(--ink);line-height:1.35;margin-bottom:8px}
+.cv-body{font-size:13px;color:var(--ink-60);line-height:1.65;margin-bottom:10px}
+.cv-cta{display:inline-flex;align-items:center;gap:6px;font-family:var(--f-m);font-size:9.5px;letter-spacing:.1em;text-transform:uppercase;font-weight:600;padding:7px 14px;border-radius:20px}
+.v-food .cv-cta{background:var(--food-soft);color:var(--food)}
+.v-life .cv-cta{background:var(--life-soft);color:var(--life)}
+.cv-badge{position:absolute;top:12px;right:12px;font-family:var(--f-m);font-size:8px;letter-spacing:.1em;text-transform:uppercase;padding:4px 9px;border-radius:10px;font-weight:500}
+.cv-badge-a{background:var(--tq-soft);color:var(--tq-dark)}
+.cv-badge-b{background:var(--blue-soft);color:var(--blue-dark)}
+.cv-badge-c{background:var(--coral-soft);color:var(--coral-dark)}
+
+/* CREATIVE CARD */
+.creative-card{background:var(--bg-dark);border-color:transparent}
+.creative-card .card-h{color:var(--magenta)}
+.creative-card .card-title{color:#fff}
+.creative-card .card-body{color:rgba(255,255,255,.65)}
+.creative-card .card-body strong{color:#fff}
+.format-pills{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}
+.fpill{font-family:var(--f-m);font-size:9px;letter-spacing:.1em;text-transform:uppercase;padding:5px 12px;border-radius:12px;background:rgba(255,255,255,.06);color:rgba(255,255,255,.65);font-weight:500}
+.visual-box{margin-top:16px;padding:16px;background:rgba(255,255,255,.04);border-radius:4px;border:1px dashed rgba(255,255,255,.12)}
+.vb-label{font-family:var(--f-m);font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.3);margin-bottom:8px}
+.vb-desc{font-size:12.5px;color:rgba(255,255,255,.75);line-height:1.6}
+.vb-desc .hook{color:var(--tq);font-weight:500}
+
+/* BUDGET ROW */
+.budget-row{margin-top:40px;padding:24px 28px;background:var(--ink);border-radius:4px;display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap}
+.br-label{font-family:var(--f-m);font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.4)}
+.br-value{font-family:var(--f-d);font-size:32px;color:var(--tq);line-height:1;letter-spacing:-.01em}
+.br-note{font-size:12px;color:rgba(255,255,255,.5);margin-top:4px;line-height:1.5}
+
+/* LOW MONTH (luglio/agosto) */
+.low-month{padding:24px 28px;background:var(--bg-alt);border:1px solid var(--rule);border-radius:4px;border-left:3px solid var(--warn);margin-top:48px}
+.lm-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px;flex-wrap:wrap;gap:12px}
+.lm-title{font-family:var(--f-d);font-size:28px;color:var(--ink);letter-spacing:-.01em;text-transform:uppercase}
+.lm-body{font-size:13.5px;color:var(--ink-60);line-height:1.7}
+.lm-body strong{color:var(--ink)}
+.lm-copy{margin-top:16px;padding:16px;background:var(--bg);border:1px solid var(--rule);border-radius:4px;border-left:3px solid var(--warn)}
+.lmc-label{font-family:var(--f-m);font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:#8A6200;margin-bottom:8px;font-weight:600}
+.lmc-text{font-size:13.5px;color:var(--ink-60);line-height:1.65;font-style:italic}
+.lmc-text em{font-style:normal;font-weight:600;color:var(--ink)}
+
+/* NOTE OPERATIVE */
+.operative{padding:56px 0}
+.op-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:24px}
+@media(max-width:900px){.op-grid{grid-template-columns:1fr 1fr}}
+@media(max-width:560px){.op-grid{grid-template-columns:1fr}}
+.op-card{padding:22px;border:1px solid var(--rule);border-radius:4px;background:var(--bg)}
+.op-h{font-family:var(--f-m);font-size:9px;letter-spacing:.12em;text-transform:uppercase;font-weight:600;color:var(--ink-60);margin-bottom:10px}
+.op-title{font-size:14px;font-weight:600;color:var(--ink);margin-bottom:8px;line-height:1.3}
+.op-body{font-size:12.5px;color:var(--ink-60);line-height:1.65}
+.op-body strong{color:var(--ink);font-weight:500}
+
+/* SECTION HEADER */
+.s-head{padding:56px 0 32px}
+.s-num{font-family:var(--f-m);font-size:9.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-60);margin-bottom:10px;display:flex;align-items:center;gap:10px}
+.s-num::after{content:"";flex:1;height:1px;background:var(--rule);max-width:120px}
+.s-h2{font-family:var(--f-d);font-size:clamp(28px,4vw,48px);font-weight:400;letter-spacing:-.01em;text-transform:uppercase;line-height:1.05;margin-bottom:8px}
+.s-intro{font-size:14px;color:var(--ink-60);line-height:1.7;max-width:760px}
+.s-intro strong{color:var(--ink);font-weight:500}
+
+/* FOOTER */
+.footer{padding:28px 0;border-top:1px solid var(--rule);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:14px}
+.f-logo{font-weight:700;font-size:14px;letter-spacing:-.02em}
+.f-tag{font-family:var(--f-m);font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-40)}
+</style>
+</head>
+<body>
+
+<header class="topbar">
+  <div style="display:flex;align-items:center">
+    <a href="index.html" class="tb-logo">ribrain<span>.</span></a>
+    <span class="tb-sep"></span>
+    <span class="tb-label">M7 · Piano campagne Meta · H2 2026</span>
+  </div>
+  <a href="index.html" class="tb-back">← Torna a M0</a>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="wrap">
+    <div class="h-eyebrow"><span class="h-line"></span><span class="h-tag">Calendario × Persona × Copy × Creatività · Giugno-Dicembre 2026</span></div>
+    <h1 class="h-h1">Il messaggio<br>giusto.<br><span class="v-food">Al momento</span><br><span class="v-life">giusto.</span></h1>
+    <p class="h-sub">Ogni mese ha un trigger diverso. Ogni trigger chiede un messaggio diverso. Questo documento incrocia il <strong>calendario commerciale</strong> con le <strong>2 buyer persona Meta-ready</strong> (Marco Food · Roberto Lifestyle) producendo copy e concept operativi da usare direttamente in campagna — non generici, non "ispirazionali", <strong>pronti da testare</strong>.</p>
+    <div class="hero-meta">
+      <div class="hm-kpi"><div class="hm-kpi-v">€1.500-2.000</div><div class="hm-kpi-l">Budget mensile Meta</div></div>
+      <div class="hm-kpi"><div class="hm-kpi-v">60% / 40%</div><div class="hm-kpi-l">Food B2C / Lifestyle-Beauty</div></div>
+      <div class="hm-kpi"><div class="hm-kpi-v">7 mesi</div><div class="hm-kpi-l">Giugno → Dicembre 2026</div></div>
+      <div class="hm-kpi"><div class="hm-kpi-v">3 varianti</div><div class="hm-kpi-l">Per ogni mese (A/B/C test)</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- TAB SWITCHER -->
+<div class="vtab-wrap">
+  <div class="vtabs">
+    <button class="vtab vtab-food active-food" onclick="switchV('food')">
+      <div class="vtab-icon">🍝</div>
+      <div class="vtab-text">
+        <div class="vt-head">Verticale 1 · 60% del budget</div>
+        <div class="vt-name">Food B2C · Persona Marco</div>
+        <div class="vt-budget">€900-1.200/mese · Founder PMI food italiano</div>
+      </div>
+    </button>
+    <button class="vtab vtab-life" onclick="switchV('life')">
+      <div class="vtab-icon">✨</div>
+      <div class="vtab-text">
+        <div class="vt-head">Verticale 2 · 40% del budget</div>
+        <div class="vt-name">Lifestyle-Beauty · Persona Roberto</div>
+        <div class="vt-budget">€600-800/mese · Founder brand specialty nicchia</div>
+      </div>
+    </button>
+  </div>
+</div>
+
+<!-- PANEL FOOD -->
+<div class="v-panel v-food active" id="panel-food">
+  <div class="wrap">
+
+    <!-- §1 FOOD INTRO -->
+    <div class="s-head">
+      <div class="s-num">Verticale 1 · Food B2C · Persona Marco R.</div>
+      <h2 class="s-h2">Il produttore food che vuole<br>uscire dalla guerra di scaffale.</h2>
+      <p class="s-intro">Marco ha 44 anni, guida una PMI food da 5-25M€ (spesso familiare, con lui al timone della seconda generazione). Il suo prodotto è già buono — il problema è che <strong>nessuno lo sa abbastanza</strong>. Arriva da referral o dalla rete del CEO, non da Google. Firma quando <strong>si sente guidato</strong>, non quando vede una presentazione. Bruciato da agenzie precedenti che facevano report invece di risultati.</p>
+    </div>
+
+    <!-- ===== GIUGNO ===== -->
+    <div class="month-intro">
+      <div class="mi-top">
+        <div class="mi-left">
+          <div class="mi-num">01</div>
+          <div class="mi-text">
+            <div class="mi-month">Giugno 2026</div>
+            <div class="mi-label">Estate piena · GDO promuove BBQ, aperitivo, freschi</div>
+          </div>
+        </div>
+        <div class="mi-right">
+          <span class="temp-badge temp-mid">🌤 Temperatura media</span>
+          <span class="budget-pill">Budget: €900 · awareness + seeding</span>
+        </div>
+      </div>
+
+      <!-- Trigger block -->
+      <div class="card trigger-card">
+        <div class="card-h"><span class="card-icon">⚡</span><span style="color:var(--tq)">Trigger di mercato + stato mentale Marco</span></div>
+        <div class="trigger-split">
+          <div class="ti-block">
+            <div class="ti-label">Cosa sta succedendo nel mercato</div>
+            <div class="ti-text">Estate piena = picco consumi food stagionali. La GDO mette in vetrina BBQ, aperitivo, prodotti freschi. I brand più attivi <em>stanno già facendo campagne</em> che occupano spazio mentale nel consumatore. Chi non fa nulla cede terreno silenziosamente.</div>
+          </div>
+          <div class="ti-block">
+            <div class="ti-label">Cosa pensa Marco in questo momento</div>
+            <div class="ti-text">"Le vendite estive vanno bene, ma non sto facendo niente per sostenere la rotazione a scaffale. <em>I miei competitor spingono su Instagram e io guardo.</em> Forse dopo l'estate faccio qualcosa." → È il momento per seminare, non per chiudere.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Copy variants -->
+      <div style="margin-top:16px">
+        <div class="card-h"><span class="card-icon">✍️</span>Copy Meta · 3 varianti da testare in A/B/C</div>
+        <div class="copy-variants">
+          <div class="copy-card">
+            <div class="cv-badge cv-badge-a">Variante A</div>
+            <div class="cv-variant">Angolo: "i competitor ti stanno passando davanti"</div>
+            <div class="cv-headline">Mentre la tua estate vende, qualcuno sta costruendo il suo brand.</div>
+            <div class="cv-body">Ogni weekend di luglio, 10 brand food occupano spazio mentale nel tuo consumatore. Quanti sono tuoi? Aiutiamo produttori food italiani a non cedere terreno quando il mercato è caldo. Parliamoci.</div>
+            <div class="cv-cta">Scopri come lavoriamo →</div>
+          </div>
+          <div class="copy-card">
+            <div class="cv-badge cv-badge-b">Variante B</div>
+            <div class="cv-variant">Angolo: domanda dirompente</div>
+            <div class="cv-headline">Il problema non è la distribuzione. È che la gente non ricorda il tuo brand fuori dallo scaffale.</div>
+            <div class="cv-body">Un prodotto ottimo che nessuno cerca è un'opportunità sprecata. Ribrain lavora con produttori food italiani per trasformare la qualità del prodotto in una storia che si racconta da sola.</div>
+            <div class="cv-cta">Vediamo il tuo caso →</div>
+          </div>
+          <div class="copy-card">
+            <div class="cv-badge cv-badge-c">Variante C · educativa / awareness</div>
+            <div class="cv-variant">Angolo: case study + prova</div>
+            <div class="cv-headline">Come un molino campano ha triplicato la visibilità sui social senza spendere in TV.</div>
+            <div class="cv-body">Molino Casillo (o simile). Zero budget pubblicitario. Solo strategia di contenuto, packaging rivisto e Meta Ads mirate. In 8 mesi: +340% engagement, +22% vendite su canali digitali. Ti mostriamo come.</div>
+            <div class="cv-cta">Leggi il caso studio →</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Creative -->
+      <div class="card creative-card" style="margin-top:16px">
+        <div class="card-h"><span class="card-icon">🎬</span><span style="color:var(--magenta)">Concept creativo</span></div>
+        <div class="format-pills">
+          <span class="fpill">Reel 15 sec</span><span class="fpill">Feed video 1:1</span><span class="fpill">Stories 9:16</span>
+        </div>
+        <div class="visual-box">
+          <div class="vb-label">Visual concept · Variante A</div>
+          <div class="vb-desc"><span class="hook">Hook (0-2 sec):</span> Split screen veloce. Sinistra: scaffale GDO con prodotto food ben posizionato, colori saturi. Destra: lo stesso scaffale con il prodotto quasi nascosto. Testo overlay: "Il tuo brand — quello di sinistra o quello di destra?" — pausa 1 sec. <br><br>Poi dissolve sul logo Ribrain + CTA "Dimmi cosa ti sta succedendo".</div>
+        </div>
+        <div class="visual-box" style="margin-top:10px">
+          <div class="vb-label">Visual concept · Variante C (case study)</div>
+          <div class="vb-desc"><span class="hook">Hook:</span> Foto del prodotto food (packaging ben fatto) + testo sovrapposto con numeri reali: "+340% engagement · 8 mesi · 0€ investiti in TV". Stile editoriale — NON stile da agenzia. Sembra un post del fondatore del brand, non una pubblicità. <br><br>Tono: autentico, quasi amatoriale nel formato ma professionale nei contenuti.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== LUGLIO/AGOSTO ===== -->
+    <div class="low-month">
+      <div class="lm-head">
+        <div class="lm-title">Luglio · Agosto</div>
+        <span class="temp-badge temp-low">🌙 Temperatura bassa · awareness only</span>
+      </div>
+      <p class="lm-body">Marco è in ferie o in modalità operativa ridotta. <strong>Non si prendono decisioni d'acquisto in agosto.</strong> Il budget Meta in questi 2 mesi scende a €400-500/mese totale e si fa solo awareness/retargeting su chi ha già interagito. Niente conversion campaign. Si pianta il seme che germoglia a settembre.</p>
+      <div class="lm-copy">
+        <div class="lmc-label">Unico messaggio del periodo · da usare come post organico + dark post retargeting</div>
+        <div class="lmc-text">"<em>Il marketing food che funziona a settembre si prepara ad agosto.</em> Non aspettare il rientro per capire cosa cambiare. Mentre sei in pausa, i tuoi competitor no. Un'email quando vuoi — ti rispondiamo in 24 ore anche ad agosto."</div>
+      </div>
+    </div>
+
+    <!-- ===== SETTEMBRE ===== -->
+    <div class="month-intro">
+      <div class="mi-top">
+        <div class="mi-left">
+          <div class="mi-num">02</div>
+          <div class="mi-text">
+            <div class="mi-month">Settembre 2026</div>
+            <div class="mi-label">Il mese più caldo dell'anno per le decisioni food · rientro + pianificazione Q4</div>
+          </div>
+        </div>
+        <div class="mi-right">
+          <span class="temp-badge temp-very-hot">🔥 Temperatura MASSIMA · chiudere qui</span>
+          <span class="budget-pill">Budget: €1.200 · conversion focus</span>
+        </div>
+      </div>
+
+      <div class="card trigger-card">
+        <div class="card-h"><span class="card-icon">⚡</span><span style="color:var(--tq)">Trigger di mercato + stato mentale Marco</span></div>
+        <div class="trigger-split">
+          <div class="ti-block">
+            <div class="ti-label">Cosa sta succedendo nel mercato</div>
+            <div class="ti-text">Rientro dalle ferie. Tutti riaprono e riplanning. La GDO inizia a pianificare il <em>Natale e il Q4</em>. I budget non ancora assegnati vengono decisi proprio in questo mese. È la finestra più preziousa dell'anno per chi vende servizi B2B a imprenditori food.</div>
+          </div>
+          <div class="ti-block">
+            <div class="ti-label">Cosa pensa Marco in questo momento</div>
+            <div class="ti-text">"<em>Non voglio arrivare impreparato a Natale.</em> Ho 90 giorni. Se non sistemo il marketing adesso, non lo sistemo più quest'anno. Devo capire cosa ha funzionato e cosa cambiare prima che sia troppo tardi." → È in modalità acquisto.</div>
+          </div>
+        </div>
+      </div>
+
+      <div style="margin-top:16px">
+        <div class="card-h"><span class="card-icon">✍️</span>Copy Meta · varianti settembre</div>
+        <div class="copy-variants">
+          <div class="copy-card">
+            <div class="cv-badge cv-badge-a">Variante A · urgenza data</div>
+            <div class="cv-headline">90 giorni a Natale. Il tuo brand food è pronto per gli scaffali?</div>
+            <div class="cv-body">La GDO fa le ultime chiamate per il posizionamento natalizio. I produttori food che arrivano preparati in ottobre hanno già vinto. Noi aiutiamo brand italiani a non arrivare impreparati: strategia, contenuti, ADV — in 3 settimane sei operativo. Parliamoci questa settimana.</div>
+            <div class="cv-cta">Parla con noi →</div>
+          </div>
+          <div class="copy-card">
+            <div class="cv-badge cv-badge-b">Variante B · provocatoria</div>
+            <div class="cv-headline">Il fatturato di dicembre si costruisce a settembre. Non a novembre.</div>
+            <div class="cv-body">Ogni anno la stessa storia: ci si muove quando è già tardi. Noi lavoriamo con produttori food che vogliono smettere di inseguire e iniziare a pianificare. Tre settimane per costruire una macchina di marketing food che funziona anche senza di te.</div>
+            <div class="cv-cta">Scopri come →</div>
+          </div>
+          <div class="copy-card">
+            <div class="cv-badge cv-badge-c">Variante C · empatica</div>
+            <div class="cv-headline">Scommetto che anche tu hai una lista di cose da fare al marketing che rimanda da giugno.</div>
+            <div class="cv-body">Non è pigrizia. È che gestire un'azienda food e il marketing insieme è impossibile. Ribrain lavora fianco a fianco con imprenditori food italiani per toglierti il peso della comunicazione e darti quello che ti interessa: risultati a scaffale.</div>
+            <div class="cv-cta">Dimmi cosa ti sta succedendo →</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card creative-card" style="margin-top:16px">
+        <div class="card-h"><span class="card-icon">🎬</span><span style="color:var(--magenta)">Concept creativo · settembre</span></div>
+        <div class="format-pills">
+          <span class="fpill">Carosello feed 4 slide</span><span class="fpill">Reel 30 sec countdown</span><span class="fpill">Feed statico urgency</span>
+        </div>
+        <div class="visual-box">
+          <div class="vb-label">Carosello urgency · 4 slide</div>
+          <div class="vb-desc">
+            <span class="hook">Slide 1:</span> Sfondo nero. Testo grande bianco: "90 giorni a Natale." Sotto in turchese piccolo: "Cosa stai facendo per il tuo brand food?"<br><br>
+            <span class="hook">Slide 2:</span> Foto autentica di uno scaffale GDO con molti prodotti. Freccia rossa che indica uno spazio vuoto. Testo: "Questo è il tuo spazio. Qualcuno lo sta già occupando."<br><br>
+            <span class="hook">Slide 3:</span> Screenshot-style (non troppo patinato) di un risultato reale — engagement, vendite, visibilità — con client food Ribrain.<br><br>
+            <span class="hook">Slide 4:</span> Sfondo turchese. Testo: "20 minuti di call. Ti diciamo onestamente se possiamo aiutarti." CTA: "Scrivici adesso →"
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== OTTOBRE ===== -->
+    <div class="month-intro">
+      <div class="mi-top">
+        <div class="mi-left">
+          <div class="mi-num">03</div>
+          <div class="mi-text">
+            <div class="mi-month">Ottobre 2026</div>
+            <div class="mi-label">SIAL Paris · GDO pianifica Natale · lancio nuove referenze autunno</div>
+          </div>
+        </div>
+        <div class="mi-right">
+          <span class="temp-badge temp-hot">🔥 Temperatura alta · SIAL trigger</span>
+          <span class="budget-pill">Budget: €1.200 · lead gen focus</span>
+        </div>
+      </div>
+
+      <div class="card trigger-card">
+        <div class="card-h"><span class="card-icon">⚡</span><span style="color:var(--tq)">Trigger di mercato + stato mentale Marco</span></div>
+        <div class="trigger-split">
+          <div class="ti-block">
+            <div class="ti-label">Cosa sta succedendo nel mercato</div>
+            <div class="ti-text">Il SIAL Paris (fiera internazionale food) <em>ridefinisce i trend del settore</em>. La GDO fa gli ordini natalizi. Chi ha un nuovo prodotto da lanciare lo lancia adesso. L'autunno food è denso di decisioni commerciali che si prendono in 4-6 settimane.</div>
+          </div>
+          <div class="ti-block">
+            <div class="ti-label">Cosa pensa Marco in questo momento</div>
+            <div class="ti-text">"Al SIAL ho visto cosa stanno facendo i miei competitor. <em>Ho paura di restare indietro.</em> Ho anche qualcosa di nuovo da lanciare ma non so come comunicarlo. Se non mi muovo adesso perdo Natale." → FOMO + urgenza di azione.</div>
+          </div>
+        </div>
+      </div>
+
+      <div style="margin-top:16px">
+        <div class="card-h"><span class="card-icon">✍️</span>Copy Meta · varianti ottobre</div>
+        <div class="copy-variants">
+          <div class="copy-card">
+            <div class="cv-badge cv-badge-a">Variante A · SIAL hook</div>
+            <div class="cv-headline">Sai cosa hanno deciso i buyer GDO questa settimana? Perché loro sì.</div>
+            <div class="cv-body">Il SIAL non è solo una fiera. È il momento in cui il mercato food europeo decide chi cresce e chi rimane fermo. Ribrain aiuta produttori italiani a tradurre quei trend in campagne concrete — packaging, social, ADV — senza aspettare che sia troppo tardi.</div>
+            <div class="cv-cta">Vediamo il tuo prodotto →</div>
+          </div>
+          <div class="copy-card">
+            <div class="cv-badge cv-badge-b">Variante B · lancio prodotto</div>
+            <div class="cv-headline">Hai un prodotto nuovo da lanciare entro Natale. Hai anche una strategia?</div>
+            <div class="cv-body">Il lancio di una nuova referenza food non è solo packaging e punto vendita. Serve una storia da raccontare, un pubblico da raggiungere, una campagna che spinge la rotazione. Noi lo facciamo da 11 anni con brand food italiani. Parliamoci questa settimana.</div>
+            <div class="cv-cta">Parliamo del tuo lancio →</div>
+          </div>
+          <div class="copy-card">
+            <div class="cv-badge cv-badge-c">Variante C · ingresso GDO</div>
+            <div class="cv-headline">Entrare in GDO è il sogno di ogni produttore food. Restarci è la sfida vera.</div>
+            <div class="cv-body">La GDO ti dà uno spazio. Il marketing determina se lo tieni. Abbiamo aiutato brand food italiani a supportare la rotazione a scaffale con contenuti e ADV mirati — senza budget da multinazionale. Vuoi vedere come?</div>
+            <div class="cv-cta">Guarda i risultati →</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card creative-card" style="margin-top:16px">
+        <div class="card-h"><span class="card-icon">🎬</span><span style="color:var(--magenta)">Concept creativo · ottobre</span></div>
+        <div class="format-pills"><span class="fpill">Feed immagine statica</span><span class="fpill">Reel 15 sec</span></div>
+        <div class="visual-box">
+          <div class="vb-label">Visual concept</div>
+          <div class="vb-desc"><span class="hook">Hook:</span> Immagine di un prodotto food italiano ben fotografato — packaging pulito, luce calda. Sopra, testo editoriale stile report: "Ottobre 2026. I brand food italiani che crescono hanno già un piano." Sotto: Logo Ribrain + "Il tuo ce l'hai?" <br><br>Tono: <strong>editoriale, non pubblicitario</strong>. Sembra un post di settore, non un ad. Questo abbassa il CPL perché non attiva i filtri mentali anti-pubblicità.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== NOVEMBRE ===== -->
+    <div class="month-intro">
+      <div class="mi-top">
+        <div class="mi-left">
+          <div class="mi-num">04</div>
+          <div class="mi-text">
+            <div class="mi-month">Novembre 2026</div>
+            <div class="mi-label">Pre-Natale · GDO chiude gli ordini · urgenza massima</div>
+          </div>
+        </div>
+        <div class="mi-right">
+          <span class="temp-badge temp-hot">🔥 Alta · urgency + last call</span>
+          <span class="budget-pill">Budget: €1.200 · conversione</span>
+        </div>
+      </div>
+
+      <div class="card trigger-card">
+        <div class="card-h"><span class="card-icon">⚡</span><span style="color:var(--tq)">Trigger + stato mentale</span></div>
+        <div class="trigger-split">
+          <div class="ti-block">
+            <div class="ti-label">Cosa sta succedendo</div>
+            <div class="ti-text">La GDO chiude gli ultimi ordini natalizi. Le decisioni di posizionamento a scaffale per Natale si prendono nelle prime 3 settimane di novembre. <em>Chi non è pronto adesso perde dicembre.</em></div>
+          </div>
+          <div class="ti-block">
+            <div class="ti-label">Cosa pensa Marco</div>
+            <div class="ti-text">"Cavolo, avrei dovuto muovermi prima. Adesso è tardi per Natale? <em>No, mi dicono che c'è ancora qualcosa da fare</em> — ma devo decidermi subito." → Classico pain del rimpianto + urgenza di recupero.</div>
+          </div>
+        </div>
+      </div>
+
+      <div style="margin-top:16px">
+        <div class="card-h"><span class="card-icon">✍️</span>Copy Meta · novembre</div>
+        <div class="copy-variants">
+          <div class="copy-card">
+            <div class="cv-badge cv-badge-a">Variante A · last call</div>
+            <div class="cv-headline">Non è troppo tardi per il Natale del tuo brand food. Ma lo sarà tra 10 giorni.</div>
+            <div class="cv-body">Chi inizia adesso può ancora fare la differenza sugli scaffali di dicembre. Chi aspetta novembre inoltrato, no. Abbiamo supportato lanci last-minute per brand food italiani in tempi che sembravano impossibili. Scrivici oggi — ti diciamo se ce la facciamo.</div>
+            <div class="cv-cta">Scrivici adesso →</div>
+          </div>
+          <div class="copy-card">
+            <div class="cv-badge cv-badge-b">Variante B · empatica</div>
+            <div class="cv-headline">Il brand food che viene ricordato a Natale non si costruisce a Natale.</div>
+            <div class="cv-body">Lo sappiamo, lo dici anche tu. Però il punto non è rimpiangere settembre — è capire cosa puoi ancora fare adesso. Anche 3 settimane di campagna ben fatta fanno la differenza. Parliamoci, anche solo 20 minuti.</div>
+            <div class="cv-cta">20 minuti di call →</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card creative-card" style="margin-top:16px">
+        <div class="card-h"><span class="card-icon">🎬</span><span style="color:var(--magenta)">Concept creativo · novembre</span></div>
+        <div class="format-pills"><span class="fpill">Stories countdown</span><span class="fpill">Feed urgency</span></div>
+        <div class="visual-box">
+          <div class="vb-label">Stories urgency con countdown</div>
+          <div class="vb-desc"><span class="hook">Visual:</span> Sfondo rosso caldo. Al centro: "Mancano 10 settimane a Natale." Sotto in bianco piccolo: "Stai ancora aspettando?" — Swipe up / CTA pulsante. <br><br>Per il feed: packaging natalizio di un prodotto food premium (luce bassa, atmosfera calda) con overlay testo: <strong>"Ultimi posti disponibili — dicembre 2026."</strong> Funziona perché crea scarcity reale (Ribrain ha capacità limitata).</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== DICEMBRE ===== -->
+    <div class="month-intro">
+      <div class="mi-top">
+        <div class="mi-left">
+          <div class="mi-num">05</div>
+          <div class="mi-text">
+            <div class="mi-month">Dicembre 2026</div>
+            <div class="mi-label">Fine anno · pianificazione 2027 · Marca (gennaio) si prepara</div>
+          </div>
+        </div>
+        <div class="mi-right">
+          <span class="temp-badge temp-mid">🌤 Media · seme per il 2027</span>
+          <span class="budget-pill">Budget: €700 · awareness + nurture</span>
+        </div>
+      </div>
+
+      <div class="card trigger-card">
+        <div class="card-h"><span class="card-icon">⚡</span><span style="color:var(--tq)">Trigger + stato mentale</span></div>
+        <div class="trigger-split">
+          <div class="ti-block">
+            <div class="ti-label">Cosa sta succedendo</div>
+            <div class="ti-text">Fine anno. La fiera <em>Marca (Private Label) a Bologna</em> si prepara per gennaio 2027. Marco è in modalità "bilancio" — guarda cosa ha funzionato, cosa no, e inizia a pensare al prossimo anno. Budget 2027 quasi definito ma ancora modificabile.</div>
+          </div>
+          <div class="ti-block">
+            <div class="ti-label">Cosa pensa Marco</div>
+            <div class="ti-text">"Quest'anno ho lasciato opportunità sul tavolo. <em>Il prossimo anno voglio avere un piano vero</em> — non improvvisare. Voglio arrivare a Marca con le idee chiare, non con speranze vaghe." → Pianificatore sereno, non urgente.</div>
+          </div>
+        </div>
+      </div>
+
+      <div style="margin-top:16px">
+        <div class="card-h"><span class="card-icon">✍️</span>Copy Meta · dicembre</div>
+        <div class="copy-variants">
+          <div class="copy-card">
+            <div class="cv-badge cv-badge-a">Variante A · pianificazione 2027</div>
+            <div class="cv-headline">Il 2027 delle aziende food italiane che crescono si pianifica a dicembre. Non a gennaio.</div>
+            <div class="cv-body">Non aspettare Marca per capire dove vuoi essere. Vieni alla fiera con un piano, non con speranze. Noi aiutiamo produttori food a costruire la strategia di marketing per il nuovo anno — packaging, social, ADV — in ordine prima che il mercato riparta.</div>
+            <div class="cv-cta">Pianifica il 2027 con noi →</div>
+          </div>
+          <div class="copy-card">
+            <div class="cv-badge cv-badge-b">Variante B · retrospettiva</div>
+            <div class="cv-headline">Cosa ricordi del tuo marketing food nel 2026? Cosa vuoi che ricordino gli altri nel 2027?</div>
+            <div class="cv-body">Fine anno. Il momento in cui gli imprenditori food più ambiziosi smettono di improvvisare e iniziano a costruire. Una call di 20 minuti per capire come possiamo lavorare insieme nel 2027 — nessun impegno, solo una conversazione onesta.</div>
+            <div class="cv-cta">Parla con noi →</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card creative-card" style="margin-top:16px">
+        <div class="card-h"><span class="card-icon">🎬</span><span style="color:var(--magenta)">Concept creativo · dicembre</span></div>
+        <div class="format-pills"><span class="fpill">Carosello "checklist anno"</span><span class="fpill">Feed warm retrospective</span></div>
+        <div class="visual-box">
+          <div class="vb-label">Carosello "checklist 2026 del tuo brand food"</div>
+          <div class="vb-desc"><span class="hook">Slide 1:</span> Titolo: "Il tuo brand food nel 2026: come è andata davvero?" — sfondo bianco caldo.<br><br><span class="hook">Slide 2-4:</span> Checklist items: "Packaging aggiornato? Sì/No · Social media coerenti? · ADV con ROI misurabile? · Nuova GDO conquistata?" — ogni No è un'opportunità nel 2027.<br><br><span class="hook">Slide 5:</span> "Noi ti aiutiamo a chiudere le caselle nel 2027." CTA caldo, non urgente. <strong>Tono: riflessivo, non allarmistico.</strong> Dicembre è mese lento — il messaggio deve essere invitante, non pressante.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- BUDGET RIEPILOGO FOOD -->
+    <div class="budget-row">
+      <div>
+        <div class="br-label">Budget totale Meta · Verticale Food B2C · H2 2026</div>
+        <div class="br-value">€5.500-7.000</div>
+        <div class="br-note">Picco settembre-ottobre-novembre. Luglio/agosto budget ridotto a awareness only.</div>
+      </div>
+      <div style="display:flex;gap:24px;flex-wrap:wrap">
+        <div><div class="br-label">Mese più caldo</div><div style="font-family:var(--f-d);font-size:22px;color:#fff;letter-spacing:-.01em">Settembre</div></div>
+        <div><div class="br-label">Copy da testare</div><div style="font-family:var(--f-d);font-size:22px;color:#fff;letter-spacing:-.01em">13 varianti</div></div>
+        <div><div class="br-label">Case study da usare</div><div style="font-family:var(--f-d);font-size:22px;color:#fff;letter-spacing:-.01em">Berna · Molino · Uncle</div></div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- PANEL LIFESTYLE -->
+<div class="v-panel v-life" id="panel-life">
+  <div class="wrap">
+
+    <div class="s-head">
+      <div class="s-num">Verticale 2 · Lifestyle-Beauty · Persona Roberto F.</div>
+      <h2 class="s-h2">Il founder di brand specialty<br>che vuole smettere di improvvisare.</h2>
+      <p class="s-intro">Roberto ha 42 anni, è il fondatore di un brand specialty o di nicchia (beauty, nail, lifestyle, ecom export). È il più "consumer-side" delle 3 persona — vive di più su Instagram, compra via social, è abituato a vedere ads. Decide su <strong>chimica e visione condivisa</strong> prima dei dati. Il suo problema: ha un prodotto ottimo ma lo racconta male — o lo racconta lui da solo senza una strategia dietro.</p>
+    </div>
+
+    <!-- ===== GIUGNO ===== -->
+    <div class="month-intro">
+      <div class="mi-top">
+        <div class="mi-left">
+          <div class="mi-num">01</div>
+          <div class="mi-text">
+            <div class="mi-month">Giugno 2026</div>
+            <div class="mi-label">Picco lifestyle estivo · beauty summer · sport e outdoor</div>
+          </div>
+        </div>
+        <div class="mi-right">
+          <span class="temp-badge temp-hot">🔥 Alta · stagione Roberto</span>
+          <span class="budget-pill">Budget: €600 · discovery</span>
+        </div>
+      </div>
+
+      <div class="card trigger-card">
+        <div class="card-h"><span class="card-icon">⚡</span><span style="color:var(--tq)">Trigger + stato mentale Roberto</span></div>
+        <div class="trigger-split">
+          <div class="ti-block">
+            <div class="ti-label">Cosa sta succedendo nel mercato</div>
+            <div class="ti-text">Estate = picco del lifestyle B2C. Beauty estivo, sport, outdoor, benessere. I brand specialty che sanno comunicare <em>esplodono in estate</em>. Chi non ha una strategia di contenuto vede i competitor crescere sui social senza capire perché.</div>
+          </div>
+          <div class="ti-block">
+            <div class="ti-label">Cosa pensa Roberto</div>
+            <div class="ti-text">"Il mio brand ha fan affezionati, ma non si converte abbastanza. <em>Sto facendo tutto da solo e non basta.</em> I brand che vedo crescere sui social hanno qualcosa che io non ho — non il prodotto, la narrazione." → Riconosce il gap, cerca una soluzione.</div>
+          </div>
+        </div>
+      </div>
+
+      <div style="margin-top:16px">
+        <div class="card-h"><span class="card-icon">✍️</span>Copy Meta · giugno · persona Roberto</div>
+        <div class="copy-variants">
+          <div class="copy-card">
+            <div class="cv-badge cv-badge-a">Variante A</div>
+            <div class="cv-headline">Il tuo brand lifestyle ha un'estate. La stai usando per costruire o solo per vendere?</div>
+            <div class="cv-body">C'è differenza tra fare vendite d'estate e costruire un brand che dura tutto l'anno. Ribrain lavora con founder di brand specialty italiani per trasformare la stagione di picco in un asset di lungo termine — contenuti, ADV, posizionamento.</div>
+            <div class="cv-cta">Scopri come lavoriamo →</div>
+          </div>
+          <div class="copy-card">
+            <div class="cv-badge cv-badge-b">Variante B</div>
+            <div class="cv-headline">Non basta avere un prodotto bello. Serve che qualcuno lo sappia — e che lo racconti meglio di te.</div>
+            <div class="cv-body">Hai già fatto la parte difficile: il prodotto funziona, i clienti tornano. Adesso serve la parte che in pochi fanno bene: costruire la storia intorno. Noi ci occupiamo esattamente di questo per brand specialty italiani.</div>
+            <div class="cv-cta">Parliamoci →</div>
+          </div>
+          <div class="copy-card">
+            <div class="cv-badge cv-badge-c">Variante C · UGC style</div>
+            <div class="cv-headline">Come un brand nail B2B italiano ha moltiplicato x3 gli ordini in 6 mesi senza aumentare il team.</div>
+            <div class="cv-body">Robynails. Prodotto già amato dai saloni. Zero strategia di comunicazione. In 6 mesi: contenuto sistematico, landing ottimizzata, Meta Ads B2B mirati. +180% lead qualificati. Ti mostriamo il metodo.</div>
+            <div class="cv-cta">Leggi il caso →</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card creative-card" style="margin-top:16px">
+        <div class="card-h"><span class="card-icon">🎬</span><span style="color:var(--magenta)">Concept creativo · giugno</span></div>
+        <div class="format-pills"><span class="fpill">Reel UGC 15-30 sec</span><span class="fpill">Feed lifestyle 1:1</span><span class="fpill">Stories aspirational</span></div>
+        <div class="visual-box">
+          <div class="vb-label">Visual concept · stile UGC autentico</div>
+          <div class="vb-desc"><span class="hook">Hook:</span> Video quasi amatoriale — prodotto del brand in contesto lifestyle estivo reale (non uno studio). Potrebbe essere Robynails in un salone, o un prodotto beauty su un banco mare. Testo overlay minimalista: <strong>"Questo brand faceva tutto da solo. Poi ha smesso."</strong><br><br>Il segreto del formato UGC per Roberto: <strong>non sembra un ad, sembra un post del founder</strong>. È esattamente il contenuto che Roberto vede già e capisce. Lo fermo perché parla la sua lingua.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- LUGLIO/AGOSTO LIFESTYLE -->
+    <div class="low-month">
+      <div class="lm-head">
+        <div class="lm-title">Luglio · Agosto</div>
+        <span class="temp-badge temp-mid">🌤 Media · lifestyle in peak ma Roberto è distratto</span>
+      </div>
+      <p class="lm-body">A differenza di Marco, <strong>Roberto vive l'estate come il suo momento clou</strong> — è operativamente impegnato. Non è il momento per una decisione d'acquisto di un'agenzia. Budget ridotto a €300-400/mese, solo contenuti ispiranti e retargeting su chi ha già cliccato. Semina per settembre.</p>
+      <div class="lm-copy">
+        <div class="lmc-label">Messaggio awareness · agosto</div>
+        <div class="lmc-text">"<em>I brand specialty che esplodono in autunno iniziano a costruire la strategia in agosto.</em> Noi siamo aperti anche ad agosto — se stai pensando al tuo brand per i prossimi 6 mesi, possiamo parlarti già adesso."</div>
+      </div>
+    </div>
+
+    <!-- ===== SETTEMBRE LIFESTYLE ===== -->
+    <div class="month-intro">
+      <div class="mi-top">
+        <div class="mi-left">
+          <div class="mi-num">02</div>
+          <div class="mi-text">
+            <div class="mi-month">Settembre 2026</div>
+            <div class="mi-label">Milano Beauty Week (17-21 sett) · rientro · Roberto vede i trend</div>
+          </div>
+        </div>
+        <div class="mi-right">
+          <span class="temp-badge temp-very-hot">🔥 MASSIMA · il mese di Roberto</span>
+          <span class="budget-pill">Budget: €800 · conversione</span>
+        </div>
+      </div>
+
+      <div class="card trigger-card">
+        <div class="card-h"><span class="card-icon">⚡</span><span style="color:var(--tq)">Trigger + stato mentale Roberto</span></div>
+        <div class="trigger-split">
+          <div class="ti-block">
+            <div class="ti-label">Cosa sta succedendo</div>
+            <div class="ti-text">La <em>Milano Beauty Week (17-21 settembre)</em> è il momento in cui il beauty e il lifestyle italiano si mostrano al mondo. Roberto vede i brand che crescono, i contenuti che funzionano, i posizionamenti vincenti. Torna dall'estate con la testa piena di idee e la voglia di cambiare qualcosa.</div>
+          </div>
+          <div class="ti-block">
+            <div class="ti-label">Cosa pensa Roberto</div>
+            <div class="ti-text">"Ho visto cosa stanno facendo i brand che stanno crescendo. <em>Non è il prodotto — è come lo raccontano.</em> Devo aggiornare il mio approccio. Q4 è il trimestre più importante dell'anno per me — non posso arrivare senza una strategia." → FOMO da settore + urgenza costruttiva.</div>
+          </div>
+        </div>
+      </div>
+
+      <div style="margin-top:16px">
+        <div class="card-h"><span class="card-icon">✍️</span>Copy Meta · settembre · Roberto</div>
+        <div class="copy-variants">
+          <div class="copy-card">
+            <div class="cv-badge cv-badge-a">Variante A · Milano Beauty Week hook</div>
+            <div class="cv-headline">Dopo la Milano Beauty Week, i brand che crescono hanno già un piano per Q4. Il tuo ce l'hai?</div>
+            <div class="cv-body">Non si tratta di ispirazione — si tratta di esecuzione. I founder di brand beauty e lifestyle che lavorano con noi arrivano a Natale con una macchina di comunicazione funzionante, non con buone intenzioni. Parliamoci questa settimana — posti limitati per Q4.</div>
+            <div class="cv-cta">Parliamoci →</div>
+          </div>
+          <div class="copy-card">
+            <div class="cv-badge cv-badge-b">Variante B · posizionamento brand</div>
+            <div class="cv-headline">Dal brand di nicchia al brand desiderabile: non è questione di prodotto. È di posizionamento.</div>
+            <div class="cv-body">Il tuo prodotto è già buono. Il problema è che non abbastanza persone lo sanno — e quelle che lo sanno non lo raccontano nel modo giusto. Ribrain trasforma brand specialty italiani in marchi che le persone scelgono senza doversi giustificare.</div>
+            <div class="cv-cta">Vedi come lavoriamo →</div>
+          </div>
+          <div class="copy-card">
+            <div class="cv-badge cv-badge-c">Variante C · empatica / diretta</div>
+            <div class="cv-headline">Stai gestendo da solo il marketing del tuo brand specialty. E lo sai che non basta.</div>
+            <div class="cv-body">Non è colpa tua. Fare il fondatore e il content creator e il responsabile ads insieme è impossibile. Ribrain prende questa parte — social, contenuti, ADV — e la porta a un livello che da solo non potresti raggiungere. Senza complicare la tua vita.</div>
+            <div class="cv-cta">Dimmi cosa ti sta succedendo →</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card creative-card" style="margin-top:16px">
+        <div class="card-h"><span class="card-icon">🎬</span><span style="color:var(--magenta)">Concept creativo · settembre · Roberto</span></div>
+        <div class="format-pills"><span class="fpill">Reel "before/after brand"</span><span class="fpill">Feed case study visual</span></div>
+        <div class="visual-box">
+          <div class="vb-label">Reel before/after · formato risonante per Roberto</div>
+          <div class="vb-desc"><span class="hook">Struttura 30 sec:</span> Prima metà: feed Instagram di un brand specialty "prima" — post improvvisati, engagement basso, nessuna coerenza visiva. Audio: musica neutra. Testo: "Prima di Ribrain."<br><br>Seconda metà: stesso brand dopo — feed coerente, contenuti professionali ma autentici, engagement alto, vendite cresciute. Audio: stessa musica, più intensa. Testo: "6 mesi dopo."<br><br><span class="hook">Regola chiave:</span> <strong>NON mostrare il logo Ribrain nei primi 20 secondi</strong>. Roberto deve identificarsi nel brand "prima" prima di capire chi ha fatto la trasformazione. L'hook funziona se produce empatia, non se vende subito.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== OTTOBRE LIFESTYLE ===== -->
+    <div class="month-intro">
+      <div class="mi-top">
+        <div class="mi-left">
+          <div class="mi-num">03</div>
+          <div class="mi-text">
+            <div class="mi-month">Ottobre 2026</div>
+            <div class="mi-label">Beautyworld ME · lancio collezioni autunno · pre-Natale gifting</div>
+          </div>
+        </div>
+        <div class="mi-right">
+          <span class="temp-badge temp-hot">🔥 Alta · gifting trigger</span>
+          <span class="budget-pill">Budget: €800 · lead gen</span>
+        </div>
+      </div>
+
+      <div class="card trigger-card">
+        <div class="card-h"><span class="card-icon">⚡</span><span style="color:var(--tq)">Trigger + stato mentale Roberto</span></div>
+        <div class="trigger-split">
+          <div class="ti-block">
+            <div class="ti-label">Cosa sta succedendo</div>
+            <div class="ti-text">I brand beauty e lifestyle iniziano a preparare i <em>gift set natalizi</em>. Chi ha un prodotto di qualità vuole che venga scelto come regalo. È il momento in cui la comunicazione fa la differenza: stesso prodotto, raccontato bene = regalo premium; raccontato male = prodotto ignoto.</div>
+          </div>
+          <div class="ti-block">
+            <div class="ti-label">Cosa pensa Roberto</div>
+            <div class="ti-text">"Voglio che il mio prodotto venga scelto come regalo di Natale. <em>Ma come lo faccio sapere alle persone giuste?</em> Potrei fare un gift set — ma senza una strategia di comunicazione è solo una spesa in più." → Cerca un partner, non un fornitore.</div>
+          </div>
+        </div>
+      </div>
+
+      <div style="margin-top:16px">
+        <div class="card-h"><span class="card-icon">✍️</span>Copy Meta · ottobre · Roberto</div>
+        <div class="copy-variants">
+          <div class="copy-card">
+            <div class="cv-badge cv-badge-a">Variante A · gifting angle</div>
+            <div class="cv-headline">Chi regala il tuo prodotto a Natale sta regalando un'esperienza. Stai comunicando quell'esperienza?</div>
+            <div class="cv-body">I brand specialty che diventano "il regalo perfetto" non ci arrivano per caso. Costruiscono la narrativa intorno al prodotto mesi prima. Ribrain aiuta founder di brand italiani a fare esattamente questo — senza perdere l'anima del brand che li rende unici.</div>
+            <div class="cv-cta">Parla con noi →</div>
+          </div>
+          <div class="copy-card">
+            <div class="cv-badge cv-badge-b">Variante B · scarcity + esclusività</div>
+            <div class="cv-headline">I brand specialty che crescono a Natale hanno un unico segreto: si sono fatti ricordare prima.</div>
+            <div class="cv-body">Non è il prodotto migliore che vince le vendite natalizie. È quello più presente nella mente delle persone giuste al momento giusto. Abbiamo ancora 3 slot disponibili per accompagnare brand specialty nel Q4 2026. Parliamoci questa settimana.</div>
+            <div class="cv-cta">Controlla la disponibilità →</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card creative-card" style="margin-top:16px">
+        <div class="card-h"><span class="card-icon">🎬</span><span style="color:var(--magenta)">Concept creativo · ottobre</span></div>
+        <div class="format-pills"><span class="fpill">Carosello premium</span><span class="fpill">Feed editoriale</span></div>
+        <div class="visual-box">
+          <div class="vb-label">Carosello "il regalo che fa la differenza"</div>
+          <div class="vb-desc"><span class="hook">Slide 1:</span> Prodotto specialty in confezione gift. Luce morbida, sfondo neutro. Testo minimalista: "Il tuo brand è un regalo da fare. O da dare?"<br><br><span class="hook">Slide 2:</span> Due packaging side by side — uno visivamente anonimo, uno costruito con cura. Stesso prodotto, percezione completamente diversa.<br><br><span class="hook">Slide 3:</span> Risultati reali di un brand specialty Ribrain (engagement, vendite, reach).<br><br><span class="hook">Slide 4:</span> CTA. <strong>Tono: aspirational ma concreto</strong>. Roberto compra con gli occhi — il visual deve essere bello prima ancora di leggere il testo.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== NOVEMBRE LIFESTYLE ===== -->
+    <div class="month-intro">
+      <div class="mi-top">
+        <div class="mi-left">
+          <div class="mi-num">04</div>
+          <div class="mi-text">
+            <div class="mi-month">Novembre 2026</div>
+            <div class="mi-label">Natale imminente · picco assoluto per beauty-lifestyle B2C</div>
+          </div>
+        </div>
+        <div class="mi-right">
+          <span class="temp-badge temp-very-hot">🔥 PICCO MASSIMO per Roberto</span>
+          <span class="budget-pill">Budget: €800 · conversione</span>
+        </div>
+      </div>
+
+      <div class="card trigger-card">
+        <div class="card-h"><span class="card-icon">⚡</span><span style="color:var(--tq)">Trigger + stato mentale Roberto</span></div>
+        <div class="trigger-split">
+          <div class="ti-block">
+            <div class="ti-label">Cosa sta succedendo</div>
+            <div class="ti-text">Novembre è il <em>mese d'oro per beauty e lifestyle</em>. Il consumatore pensa già ai regali. Le piattaforme social sono al massimo dell'engagement per categorie lifestyle. Chi è presente adesso conquista Natale. Chi aspetta dicembre ha già perso.</div>
+          </div>
+          <div class="ti-block">
+            <div class="ti-label">Cosa pensa Roberto</div>
+            <div class="ti-text">"Sto vendendo — ma <em>potrei vendere molto di più</em> se avessi qualcuno che sistematizza la comunicazione. Questo Natale è la prova: se funziona bene, investirò in comunicazione seria per tutto il 2027." → Pronto a firmare se gli dai fiducia.</div>
+          </div>
+        </div>
+      </div>
+
+      <div style="margin-top:16px">
+        <div class="card-h"><span class="card-icon">✍️</span>Copy Meta · novembre · Roberto</div>
+        <div class="copy-variants">
+          <div class="copy-card">
+            <div class="cv-badge cv-badge-a">Variante A · massima urgenza</div>
+            <div class="cv-headline">Non lasciare che il Natale capiti al tuo brand. Fallo succedere.</div>
+            <div class="cv-body">C'è differenza tra vendere a Natale per fortuna e costruire un Natale che dura. Ribrain lavora con founder di brand specialty per trasformare il Q4 in un trampolino per il 2027 — non solo un picco stagionale.</div>
+            <div class="cv-cta">Parliamoci questa settimana →</div>
+          </div>
+          <div class="copy-card">
+            <div class="cv-badge cv-badge-b">Variante B · reale + diretto</div>
+            <div class="cv-headline">Un brand specialty ben raccontato vende 3× rispetto a uno ben prodotto ma mal comunicato.</div>
+            <div class="cv-body">Non è un'opinione — è quello che vediamo con i brand che seguiamo. Il tuo prodotto è già ottimo. Quello che manca è la storia intorno. E novembre è l'ultimo momento utile per costruirla prima che Natale finisca.</div>
+            <div class="cv-cta">Vedi i nostri risultati →</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card creative-card" style="margin-top:16px">
+        <div class="card-h"><span class="card-icon">🎬</span><span style="color:var(--magenta)">Concept creativo · novembre</span></div>
+        <div class="format-pills"><span class="fpill">Reel UGC unboxing</span><span class="fpill">Stories gifting</span></div>
+        <div class="visual-box">
+          <div class="vb-label">Reel "unboxing" empatico</div>
+          <div class="vb-desc"><span class="hook">Concept:</span> Video di qualcuno che riceve il prodotto specialty come regalo. NON staging professionale — reazione autentica, telefono tenuto in mano. Testo overlay: <strong>"Questo è quello che prova chi riceve il tuo brand. Quante persone lo sanno?"</strong><br><br>Poi cut al founder Ribrain (o testo): "Noi lo facciamo sapere alle persone giuste." CTA.<br><br>Perché funziona: <strong>Roberto si immedesima nel ricevente</strong>. Vede la sua visione realizzata. Non è un ad che vende servizi — è uno specchio di ciò che vuole ottenere.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== DICEMBRE LIFESTYLE ===== -->
+    <div class="month-intro">
+      <div class="mi-top">
+        <div class="mi-left">
+          <div class="mi-num">05</div>
+          <div class="mi-text">
+            <div class="mi-month">Dicembre 2026</div>
+            <div class="mi-label">Picco vendite · pianificazione 2027 · salto di livello</div>
+          </div>
+        </div>
+        <div class="mi-right">
+          <span class="temp-badge temp-mid">🌤 Media · aspira al 2027</span>
+          <span class="budget-pill">Budget: €400 · nurture</span>
+        </div>
+      </div>
+
+      <div class="card trigger-card">
+        <div class="card-h"><span class="card-icon">⚡</span><span style="color:var(--tq)">Trigger + stato mentale Roberto</span></div>
+        <div class="trigger-split">
+          <div class="ti-block">
+            <div class="ti-label">Cosa sta succedendo</div>
+            <div class="ti-text">Dicembre = picco vendite + riflessione strategica. Roberto è felice delle vendite natalizie ma sa che <em>il 2027 non può essere improvvisato come il 2026</em>. Sta pensando a come scalare — e alla prima persona con cui parlarne seriamente.</div>
+          </div>
+          <div class="ti-block">
+            <div class="ti-label">Cosa pensa Roberto</div>
+            <div class="ti-text">"Quest'anno ho imparato cosa funziona per il mio brand. Il prossimo anno voglio farlo con qualcuno che capisce davvero la mia visione — <em>non un'agenzia generica</em>. Voglio un partner." → Pronto per un rapporto di lungo periodo.</div>
+          </div>
+        </div>
+      </div>
+
+      <div style="margin-top:16px">
+        <div class="card-h"><span class="card-icon">✍️</span>Copy Meta · dicembre · Roberto</div>
+        <div class="copy-variants">
+          <div class="copy-card">
+            <div class="cv-badge cv-badge-a">Variante unica · vision 2027</div>
+            <div class="cv-headline">Fine anno. Il momento in cui i founder di brand specialty smettono di improvvisare e iniziano a costruire.</div>
+            <div class="cv-body">Hai già dimostrato che il prodotto funziona. Adesso è il momento di costruire il brand intorno — strategia, contenuti, ADV — con qualcuno che condivide la tua visione, non solo il tuo budget. Noi lavoriamo così con brand specialty italiani dal 2016. Parliamoci.</div>
+            <div class="cv-cta">Inizia il 2027 con noi →</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card creative-card" style="margin-top:16px">
+        <div class="card-h"><span class="card-icon">🎬</span><span style="color:var(--magenta)">Concept creativo · dicembre · Roberto</span></div>
+        <div class="format-pills"><span class="fpill">Feed brand retrospective</span><span class="fpill">Stories aspirational</span></div>
+        <div class="visual-box">
+          <div class="vb-label">Visual "salto di livello" · tono sognante e concreto insieme</div>
+          <div class="vb-desc"><span class="hook">Visual:</span> Moodboard del brand specialty — prodotto, packaging, contenuti social, numeri. Luce calda, stile editoriale. Testo: <strong>"Questo è quello che puoi avere nel 2027. Se smetti di fare tutto da solo."</strong><br><br>NON vendere l'agenzia — vendere la <strong>visione di dove potrebbe essere il suo brand</strong>. Roberto firma per fiducia e visione condivisa, non per tariffe e deliverable.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- BUDGET RIEPILOGO LIFESTYLE -->
+    <div class="budget-row">
+      <div>
+        <div class="br-label">Budget totale Meta · Verticale Lifestyle-Beauty · H2 2026</div>
+        <div class="br-value">€3.400-4.200</div>
+        <div class="br-note">Picco settembre-ottobre-novembre. Dicembre ridotto — Roberto già in conversazione se luglio/agosto ha seminato bene.</div>
+      </div>
+      <div style="display:flex;gap:24px;flex-wrap:wrap">
+        <div><div class="br-label">Mese più caldo</div><div style="font-family:var(--f-d);font-size:22px;color:#fff;letter-spacing:-.01em">Settembre</div></div>
+        <div><div class="br-label">Copy da testare</div><div style="font-family:var(--f-d);font-size:22px;color:#fff;letter-spacing:-.01em">10 varianti</div></div>
+        <div><div class="br-label">Case study da usare</div><div style="font-family:var(--f-d);font-size:22px;color:#fff;letter-spacing:-.01em">Robynails · Lemon Appeal</div></div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- NOTE OPERATIVE -->
+<section class="operative" style="background:var(--bg-alt);border-top:1px solid var(--rule)">
+  <div class="wrap">
+    <div class="s-head" style="padding-top:0">
+      <div class="s-num">Note operative</div>
+      <h2 class="s-h2">Come eseguire questo piano.</h2>
+    </div>
+    <div class="op-grid">
+      <div class="op-card">
+        <div class="op-h">A/B Test logic</div>
+        <div class="op-title">Ogni mese lancia max 2 varianti in parallelo</div>
+        <div class="op-body">Non testare tutte e 3 le copy insieme — non avrai budget sufficiente per dati statisticamente significativi. Lancia A vs B il primo giorno del mese. Dopo 10 giorni (o 50+ click per variante), spegni quella che performa peggio e metti tutto il budget sulla vincente. La variante C è la riserva se A e B non funzionano.</div>
+      </div>
+      <div class="op-card">
+        <div class="op-h">Formati per fase</div>
+        <div class="op-title">Non tutti i formati per tutti i momenti</div>
+        <div class="op-body"><strong>Awareness (giu/lug/ago):</strong> Reel UGC, feed video corto — massima reach, basso costo.<br><strong>Consideration (set/ott):</strong> Carosello con case study, feed statico con numeri reali — qualifica il lead.<br><strong>Conversion (nov):</strong> Stories con urgency, feed con scarcity ("ultimi posti") — spinge l'azione.<br><strong>Nurture (dic):</strong> Feed aspirational, video lungo — coltiva chi non ha ancora firmato.</div>
+      </div>
+      <div class="op-card">
+        <div class="op-h">Placement</div>
+        <div class="op-title">Instagram prima, Facebook come amplificazione</div>
+        <div class="op-body">Marco e Roberto sono su Instagram (feed + stories + reels). Facebook rimane attivo per il remarketing. <strong>Non usare Audience Network</strong> — troppo dispersivo per i nostri CPL. Per le campagne settembre/ottobre/novembre, attiva <strong>Instagram Reels placement</strong> separato con budget dedicato — il CPM è più basso e raggiunge audience fredda più efficacemente.</div>
+      </div>
+      <div class="op-card">
+        <div class="op-h">Tono da non perdere mai</div>
+        <div class="op-title">Niente linguaggio da agenzia</div>
+        <div class="op-body">Le parole da non usare mai in copy Meta: "strategia omnichannel", "ecosistema digitale", "funnel ottimizzato", "KPI misurabili", "content marketing". <strong>Marco e Roberto non parlano così.</strong> Parlano di scaffale, di rotazione, di brand che funziona, di clienti che tornano, di crescita vera. Il copy deve sembrare scritto da un imprenditore per un imprenditore.</div>
+      </div>
+      <div class="op-card">
+        <div class="op-h">Landing page</div>
+        <div class="op-title">Ogni verticale ha la sua landing</div>
+        <div class="op-body">Non mandare traffico Meta alla homepage generica di Ribrain. Ogni verticale (Food B2C · Lifestyle) ha una landing page dedicata con: headline specifica per il settore, 2-3 case study pertinenti, CTA "dimmi cosa ti sta succedendo" + form semplice (nome + azienda + telefono). La landing food usa casi Berna/Molino/Uncle. Quella lifestyle usa Robynails/Lemon.</div>
+      </div>
+      <div class="op-card">
+        <div class="op-h">Budget e aggiustamenti</div>
+        <div class="op-title">Non distribuire flat — concentra quando il mercato è caldo</div>
+        <div class="op-body">Il budget mensile non è fisso a €1.500. Si abbassa a <strong>€400-600</strong> in luglio/agosto/dicembre (mercato freddo) e si alza a <strong>€1.800-2.000</strong> in settembre/ottobre/novembre (mercato caldo). Lo stesso budget totale H2 produce risultati molto diversi se concentrato nelle finestre giuste invece di spalmato uniformemente.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="wrap">
+  <div class="footer">
+    <div class="f-logo">ribrain<span style="color:var(--tq-dark)">.</span></div>
+    <div class="f-tag">Piano Meta H2 2026 · Riservato · Versione operativa</div>
+  </div>
+</div>
+
+<script>
+function switchV(v){
+  document.querySelectorAll('.vtab').forEach(t=>t.classList.remove('active-food','active-life'));
+  document.querySelectorAll('.v-panel').forEach(p=>p.classList.remove('active'));
+  if(v==='food'){
+    document.querySelector('.vtab-food').classList.add('active-food');
+    document.getElementById('panel-food').classList.add('active');
+  } else {
+    document.querySelector('.vtab-life').classList.add('active-life');
+    document.getElementById('panel-life').classList.add('active');
+  }
+  window.scrollTo({top:160,behavior:'smooth'});
+}
+</script>
+</body>
+</html>

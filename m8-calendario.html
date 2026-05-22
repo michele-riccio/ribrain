@@ -1,0 +1,1034 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Calendario Meta · Ribrain H2 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Anton&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#FFFFFF;--bg-alt:#F7F7F5;--ink:#0A0A0A;--ink-60:rgba(10,10,10,.6);--ink-40:rgba(10,10,10,.4);--ink-20:rgba(10,10,10,.18);--ink-10:rgba(10,10,10,.08);--rule:rgba(10,10,10,.1);
+  --tq:#46FFDD;--tq-soft:#D4FFF7;--tq-dark:#0DAB8E;
+  --coral:#F76143;--coral-soft:#FED9CF;--coral-dark:#B33A1F;
+  --food:#2A7D40;--food-soft:#D6F0DC;--food-light:#4CAF5F;
+  --life:#7B3FA0;--life-soft:#EDD9FA;--life-light:#A855C8;
+  --warn:#E5920A;--warn-soft:#FFF3DC;
+  --hot:#E5300A;--hot-soft:#FFE0D9;
+  --f-d:'Anton',Impact,sans-serif;--f-s:'Inter',system-ui,sans-serif;--f-m:'JetBrains Mono',monospace;
+  --r:6px;--ease:cubic-bezier(.16,1,.3,1);
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{font-size:16px;scroll-behavior:smooth}
+body{background:var(--bg);color:var(--ink);font-family:var(--f-s);-webkit-font-smoothing:antialiased;overflow-x:hidden;min-height:100vh}
+
+/* TOPBAR */
+.tb{display:flex;align-items:center;justify-content:space-between;padding:14px 48px;border-bottom:1px solid var(--rule);position:sticky;top:0;z-index:200;background:rgba(255,255,255,.96);backdrop-filter:blur(20px)}
+@media(max-width:700px){.tb{padding:12px 20px}}
+.tb-l{display:flex;align-items:center;gap:14px}
+.tb-logo{font-weight:700;font-size:14px;text-decoration:none;color:var(--ink);letter-spacing:-.02em}
+.tb-logo em{font-style:normal;color:var(--tq-dark)}
+.tb-divider{width:1px;height:14px;background:var(--ink-20)}
+.tb-title{font-family:var(--f-m);font-size:9px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-40)}
+@media(max-width:600px){.tb-title{display:none}}
+.tb-back{font-family:var(--f-m);font-size:9.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-60);text-decoration:none;border:1px solid var(--rule);padding:7px 14px;border-radius:20px;transition:all .2s}
+.tb-back:hover{background:var(--bg-alt);color:var(--ink)}
+
+/* HERO MINIMAL */
+.hero{padding:48px 48px 32px;border-bottom:1px solid var(--rule)}
+@media(max-width:700px){.hero{padding:32px 20px 24px}}
+.hero-top{display:flex;align-items:flex-start;justify-content:space-between;gap:24px;flex-wrap:wrap}
+.hero-h1{font-family:var(--f-d);font-size:clamp(36px,6vw,72px);line-height:.95;letter-spacing:-.02em;text-transform:uppercase;color:var(--ink)}
+.hero-h1 .g{color:var(--food)}.hero-h1 .p{color:var(--life)}
+.hero-meta{display:flex;gap:10px;margin-top:16px;flex-wrap:wrap}
+.hm{font-family:var(--f-m);font-size:9.5px;letter-spacing:.1em;text-transform:uppercase;padding:6px 14px;border-radius:16px;background:var(--bg-alt);color:var(--ink-60);border:1px solid var(--rule)}
+.hm.hl{background:var(--ink);color:var(--tq)}
+
+/* CONTROLS BAR */
+.cbar{padding:16px 48px;border-bottom:1px solid var(--rule);display:flex;align-items:center;gap:16px;flex-wrap:wrap;position:sticky;top:49px;z-index:190;background:rgba(255,255,255,.97);backdrop-filter:blur(20px)}
+@media(max-width:700px){.cbar{padding:12px 20px;gap:10px;top:47px}}
+.cbar-label{font-family:var(--f-m);font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-40)}
+.toggle-group{display:flex;background:var(--bg-alt);border:1px solid var(--rule);border-radius:20px;padding:3px;gap:2px}
+.tg-btn{font-family:var(--f-m);font-size:9.5px;letter-spacing:.1em;text-transform:uppercase;border:none;background:none;padding:7px 16px;border-radius:16px;cursor:pointer;color:var(--ink-60);transition:all .22s var(--ease);white-space:nowrap;font-weight:500}
+.tg-btn:hover{color:var(--ink);background:rgba(255,255,255,.7)}
+.tg-btn.active{background:var(--ink);color:#fff}
+.tg-btn.active.food{background:var(--food);color:#fff}
+.tg-btn.active.life{background:var(--life);color:#fff}
+.cbar-sep{width:1px;height:20px;background:var(--rule)}
+
+/* VIEW TOGGLE */
+.vtg-btn{font-family:var(--f-m);font-size:9.5px;letter-spacing:.1em;text-transform:uppercase;border:1px solid var(--rule);background:none;padding:7px 16px;border-radius:20px;cursor:pointer;color:var(--ink-60);transition:all .22s;display:flex;align-items:center;gap:6px;white-space:nowrap}
+.vtg-btn.active{background:var(--ink);color:#fff;border-color:var(--ink)}
+.vtg-icon{font-size:12px}
+
+/* ===== SECTION AUDIT ===== */
+.section{padding:48px}
+@media(max-width:700px){.section{padding:32px 20px}}
+.section-hidden{display:none}
+.sec-eyebrow{display:flex;align-items:center;gap:12px;margin-bottom:20px}
+.sec-line{width:32px;height:2px;background:var(--coral-dark)}
+.sec-tag{font-family:var(--f-m);font-size:9px;letter-spacing:.16em;text-transform:uppercase;color:var(--coral-dark)}
+.sec-h{font-family:var(--f-d);font-size:clamp(28px,4vw,48px);line-height:1;letter-spacing:-.01em;text-transform:uppercase;margin-bottom:10px}
+.sec-sub{font-size:14px;color:var(--ink-60);line-height:1.7;max-width:800px;margin-bottom:32px}
+.sec-sub strong{color:var(--ink);font-weight:500}
+
+/* AUDIT GRID */
+.audit-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;border:1px solid var(--rule);border-radius:var(--r);overflow:hidden;margin-bottom:24px}
+@media(max-width:900px){.audit-grid{grid-template-columns:1fr 1fr}}
+@media(max-width:560px){.audit-grid{grid-template-columns:1fr}}
+.ag-card{padding:22px;background:var(--bg-alt);position:relative}
+.ag-card.dark{background:var(--ink);color:#fff}
+.ag-rank{font-family:var(--f-d);font-size:48px;color:var(--rule);line-height:1;position:absolute;top:14px;right:16px;letter-spacing:-.02em}
+.ag-card.dark .ag-rank{color:rgba(255,255,255,.06)}
+.ag-tag{font-family:var(--f-m);font-size:8.5px;letter-spacing:.14em;text-transform:uppercase;margin-bottom:8px;font-weight:600}
+.ag-card:nth-child(1) .ag-tag{color:var(--coral-dark)}
+.ag-card:nth-child(2) .ag-tag{color:var(--food)}
+.ag-card:nth-child(3) .ag-tag{color:var(--life)}
+.ag-card:nth-child(4) .ag-tag{color:var(--warn)}
+.ag-card:nth-child(5) .ag-tag{color:var(--tq-dark)}
+.ag-card.dark .ag-tag{color:var(--tq)}
+.ag-title{font-size:15px;font-weight:600;line-height:1.35;margin-bottom:8px}
+.ag-card.dark .ag-title{color:#fff}
+.ag-body{font-size:12.5px;color:var(--ink-60);line-height:1.65}
+.ag-card.dark .ag-body{color:rgba(255,255,255,.6)}
+.ag-body strong{color:var(--ink);font-weight:500}
+.ag-card.dark .ag-body strong{color:#fff}
+.ag-stat{font-family:var(--f-d);font-size:28px;color:var(--tq-dark);line-height:1;margin-top:10px;letter-spacing:-.01em}
+.ag-card.dark .ag-stat{color:var(--tq)}
+
+/* BENCHMARK TABLE */
+.bench-table{width:100%;border-collapse:collapse;font-size:12.5px;margin-bottom:24px}
+.bench-table th{font-family:var(--f-m);font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-60);padding:12px 14px;text-align:left;border-bottom:2px solid var(--ink-20);font-weight:500}
+.bench-table td{padding:12px 14px;border-bottom:1px solid var(--rule);color:var(--ink-60);vertical-align:top;line-height:1.5}
+.bench-table td:first-child{font-weight:600;color:var(--ink)}
+.bench-table tr:hover td{background:var(--bg-alt)}
+.bench-bar-wrap{width:120px;height:8px;background:var(--ink-10);border-radius:4px;display:inline-block;vertical-align:middle;margin-left:8px}
+.bench-bar{height:8px;border-radius:4px}
+.bar-hot{background:var(--coral)}
+.bar-warm{background:var(--warn)}
+.bar-ok{background:var(--food-light)}
+
+/* PERSONA INSIGHT BOX */
+.pi-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:32px}
+@media(max-width:760px){.pi-grid{grid-template-columns:1fr}}
+.pi-card{padding:24px;border-radius:var(--r);border:2px solid}
+.pi-card.food{border-color:var(--food);background:var(--food-soft)}
+.pi-card.life{border-color:var(--life);background:var(--life-soft)}
+.pi-tag{font-family:var(--f-m);font-size:9px;letter-spacing:.14em;text-transform:uppercase;font-weight:600;margin-bottom:8px}
+.pi-card.food .pi-tag{color:var(--food)}
+.pi-card.life .pi-tag{color:var(--life)}
+.pi-title{font-size:15px;font-weight:600;margin-bottom:10px;color:var(--ink);line-height:1.3}
+.pi-hook{padding:14px;background:rgba(255,255,255,.7);border-radius:4px;font-size:13px;line-height:1.6;color:var(--ink-60);margin-bottom:8px;border-left:3px solid}
+.pi-card.food .pi-hook{border-left-color:var(--food)}
+.pi-card.life .pi-hook{border-left-color:var(--life)}
+.pi-hook strong{color:var(--ink);font-weight:600}
+.pi-why{font-size:11.5px;color:var(--ink-60);line-height:1.55;font-style:italic}
+
+/* ===== CALENDARIO ===== */
+.cal-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;padding:48px}
+@media(max-width:1100px){.cal-grid{grid-template-columns:repeat(3,1fr)}}
+@media(max-width:760px){.cal-grid{grid-template-columns:1fr 1fr;padding:24px 20px;gap:8px}}
+@media(max-width:480px){.cal-grid{grid-template-columns:1fr}}
+
+.month-card{border-radius:var(--r);border:1.5px solid var(--rule);cursor:pointer;transition:all .25s var(--ease);position:relative;overflow:hidden;background:var(--bg)}
+.month-card:hover{border-color:var(--ink-40);transform:translateY(-2px);box-shadow:0 8px 24px rgba(0,0,0,.07)}
+.month-card.expanded{border-color:var(--ink);box-shadow:0 12px 40px rgba(0,0,0,.12)}
+.month-card.food-card{border-left:4px solid var(--food)}
+.month-card.life-card{border-left:4px solid var(--life)}
+.month-card.both-card{border-image:linear-gradient(180deg,var(--food),var(--life)) 1}
+
+.mc-header{padding:18px 18px 14px}
+.mc-month{font-family:var(--f-d);font-size:24px;font-weight:400;letter-spacing:-.01em;text-transform:uppercase;line-height:1;color:var(--ink);margin-bottom:6px}
+.mc-top{display:flex;align-items:center;justify-content:space-between}
+.temp{font-family:var(--f-m);font-size:8.5px;letter-spacing:.1em;text-transform:uppercase;padding:4px 10px;border-radius:12px;font-weight:600}
+.t-max{background:var(--hot-soft);color:var(--hot)}
+.t-high{background:var(--coral-soft);color:var(--coral-dark)}
+.t-mid{background:var(--warn-soft);color:var(--warn)}
+.t-low{background:var(--bg-alt);color:var(--ink-40)}
+.mc-cats{display:flex;gap:6px;margin-top:8px;flex-wrap:wrap}
+.mc-cat{font-family:var(--f-m);font-size:8px;letter-spacing:.1em;text-transform:uppercase;padding:3px 9px;border-radius:10px;font-weight:500}
+.mc-cat.food{background:var(--food-soft);color:var(--food)}
+.mc-cat.life{background:var(--life-soft);color:var(--life)}
+.mc-trigger{padding:0 18px 14px;font-size:12px;color:var(--ink-60);line-height:1.5;border-bottom:1px solid var(--rule)}
+.mc-trigger strong{color:var(--ink);font-weight:500}
+.mc-footer{padding:12px 18px;display:flex;align-items:center;justify-content:space-between}
+.mc-budget{font-family:var(--f-m);font-size:9px;letter-spacing:.06em;color:var(--ink-40)}
+.mc-expand{font-family:var(--f-m);font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:var(--tq-dark);font-weight:600;display:flex;align-items:center;gap:4px;transition:gap .2s}
+.month-card.expanded .mc-expand-icon{transform:rotate(90deg)}
+.mc-expand-icon{display:inline-block;transition:transform .25s var(--ease)}
+
+/* MONTH DETAIL PANEL */
+.detail-panel{display:none;border-top:1px solid var(--rule);background:var(--bg-alt);border-radius:0 0 var(--r) var(--r)}
+.month-card.expanded .detail-panel{display:block;animation:slideDown .3s var(--ease)}
+@keyframes slideDown{from{opacity:0;transform:translateY(-10px)}to{opacity:1;transform:translateY(0)}}
+
+/* INNER TAB */
+.inner-tabs{display:flex;border-bottom:1px solid var(--rule);padding:0 18px}
+.it-btn{font-family:var(--f-m);font-size:9px;letter-spacing:.12em;text-transform:uppercase;border:none;background:none;padding:12px 14px;cursor:pointer;color:var(--ink-40);border-bottom:2px solid transparent;margin-bottom:-1px;transition:all .2s;font-weight:500}
+.it-btn.active{color:var(--ink);border-bottom-color:var(--ink)}
+.inner-content{padding:18px}
+
+/* MESSAGES VIEW */
+.msg-item{margin-bottom:16px;padding:16px;background:var(--bg);border-radius:4px;border-left:3px solid}
+.msg-item.food-msg{border-left-color:var(--food)}
+.msg-item.life-msg{border-left-color:var(--life)}
+.msg-variant{font-family:var(--f-m);font-size:8px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-40);margin-bottom:6px;font-weight:600;display:flex;align-items:center;gap:8px}
+.var-dot{width:6px;height:6px;border-radius:50%}
+.vd-a{background:var(--coral)}
+.vd-b{background:var(--food-light)}
+.vd-c{background:var(--life-light)}
+.msg-headline{font-size:14px;font-weight:700;color:var(--ink);line-height:1.35;margin-bottom:6px}
+.msg-body{font-size:12px;color:var(--ink-60);line-height:1.6;margin-bottom:8px}
+.msg-cta{display:inline-flex;align-items:center;gap:5px;font-family:var(--f-m);font-size:8.5px;letter-spacing:.1em;text-transform:uppercase;font-weight:600}
+.food-msg .msg-cta{color:var(--food)}
+.life-msg .msg-cta{color:var(--life)}
+.msg-angle{font-family:var(--f-m);font-size:9px;color:var(--ink-40);margin-bottom:10px;letter-spacing:.04em}
+
+/* CREATIVE VIEW */
+.cr-item{background:var(--ink);border-radius:4px;padding:16px;margin-bottom:14px}
+.cr-tag{font-family:var(--f-m);font-size:8.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--tq);margin-bottom:8px;font-weight:600}
+.cr-formats{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:12px}
+.cr-fmt{font-family:var(--f-m);font-size:8px;letter-spacing:.1em;text-transform:uppercase;padding:4px 10px;border-radius:10px;background:rgba(255,255,255,.06);color:rgba(255,255,255,.6)}
+.cr-hook{font-size:13px;color:#fff;font-weight:600;line-height:1.3;margin-bottom:8px}
+.cr-desc{font-size:12px;color:rgba(255,255,255,.6);line-height:1.6}
+.cr-desc em{color:var(--tq);font-style:normal;font-weight:500}
+
+/* LOW MONTH */
+.month-card.low .mc-month{color:var(--ink-40)}
+.month-card.low{opacity:.75}
+
+/* HIDDEN BY FILTER */
+.month-card.filtered-out{display:none}
+
+/* ===== MESSAGGI FULL VIEW ===== */
+.msgs-section{padding:48px}
+@media(max-width:700px){.msgs-section{padding:32px 20px}}
+.msgs-header{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px;margin-bottom:28px}
+.msgs-h{font-family:var(--f-d);font-size:clamp(24px,3.5vw,40px);font-weight:400;letter-spacing:-.01em;text-transform:uppercase}
+.msgs-sub{font-size:13px;color:var(--ink-60);line-height:1.65;max-width:700px;margin-bottom:28px}
+.full-msg-grid{display:grid;gap:16px}
+.fm-card{border:1px solid var(--rule);border-radius:var(--r);overflow:hidden;background:var(--bg)}
+.fm-header{display:grid;grid-template-columns:auto 1fr auto;gap:16px;padding:18px 20px;border-bottom:1px solid var(--rule);align-items:center;cursor:pointer;transition:background .2s}
+.fm-header:hover{background:var(--bg-alt)}
+.fm-month-badge{font-family:var(--f-d);font-size:22px;color:var(--ink-40);letter-spacing:-.01em;text-transform:uppercase;line-height:1;min-width:80px}
+.fm-info{display:flex;flex-direction:column;gap:4px}
+.fm-cats{display:flex;gap:6px}
+.fm-title-row{font-size:14px;font-weight:600;color:var(--ink);line-height:1.3}
+.fm-intent{font-size:12px;color:var(--ink-60);font-style:italic}
+.fm-chevron{font-size:14px;color:var(--ink-40);transition:transform .25s var(--ease)}
+.fm-card.open .fm-chevron{transform:rotate(180deg)}
+.fm-body{display:none;padding:0 20px 20px}
+.fm-card.open .fm-body{display:block;animation:slideDown .25s var(--ease)}
+
+/* FOOTER */
+footer{padding:24px 48px;border-top:1px solid var(--rule);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px}
+@media(max-width:700px){footer{padding:20px}}
+.foot-logo{font-weight:700;font-size:13px;letter-spacing:-.02em}
+.foot-tag{font-family:var(--f-m);font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-40)}
+</style>
+</head>
+<body>
+
+<!-- TOPBAR -->
+<header class="tb">
+  <div class="tb-l">
+    <a href="index.html" class="tb-logo">ribrain<em>.</em></a>
+    <span class="tb-divider"></span>
+    <span class="tb-title">M8 · Calendario Meta · H2 2026</span>
+  </div>
+  <a href="index.html" class="tb-back">← M0</a>
+</header>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-top">
+    <div>
+      <h1 class="hero-h1">Calendario<br><span class="g">×</span> Messaggi<br><span class="p">× Creatività</span></h1>
+    </div>
+  </div>
+  <div class="hero-meta">
+    <span class="hm hl">H2 2026 · Giugno-Dicembre</span>
+    <span class="hm">Food B2C · Persona Marco</span>
+    <span class="hm">Lifestyle-Beauty · Persona Roberto</span>
+    <span class="hm">1.500-2.000€/mese</span>
+  </div>
+</div>
+
+<!-- CONTROLS -->
+<div class="cbar">
+  <span class="cbar-label">Verticale</span>
+  <div class="toggle-group">
+    <button class="tg-btn active" onclick="filterV('all',this)">Tutti</button>
+    <button class="tg-btn food" onclick="filterV('food',this)">🍝 Food B2C</button>
+    <button class="tg-btn life" onclick="filterV('life',this)">✨ Lifestyle</button>
+  </div>
+  <span class="cbar-sep"></span>
+  <span class="cbar-label">Vista</span>
+  <button class="vtg-btn active" onclick="switchView('cal',this)"><span class="vtg-icon">📅</span>Calendario</button>
+  <button class="vtg-btn" onclick="switchView('audit',this)"><span class="vtg-icon">📊</span>Audit Primo Impatto</button>
+  <button class="vtg-btn" onclick="switchView('msgs',this)"><span class="vtg-icon">✍️</span>Tutti i Messaggi</button>
+</div>
+
+<!-- ======================== VIEW: AUDIT ======================== -->
+<div id="view-audit" class="section section-hidden">
+  <div class="sec-eyebrow"><span class="sec-line"></span><span class="sec-tag">Dati 2026 da 12.000+ campagne analizzate</span></div>
+  <h2 class="sec-h">Cosa ferma lo scroll.<br>Prima volta.</h2>
+  <p class="sec-sub">Dati verificati su Meta Ads 2026 — non opinioni, non tendenze. <strong>Il 90% delle creatività Meta muore nei primi 3 secondi.</strong> I pattern che seguono sono quelli che statisticamente sopravvivono, con hook rate e dati di conversione.</p>
+
+  <!-- KPI HOOK RATE -->
+  <div class="audit-grid">
+    <div class="ag-card">
+      <div class="ag-rank">1</div>
+      <div class="ag-tag">Warning / Loss Aversion</div>
+      <div class="ag-title">Attiva il bias della perdita</div>
+      <div class="ag-body">Il cervello reagisce 2× più forte alla perdita che al guadagno. "Stai cedendo terreno" colpisce più di "potresti crescere". Tra i top hook 2026.</div>
+      <div class="ag-stat">~45% HR</div>
+    </div>
+    <div class="ag-card">
+      <div class="ag-rank">2</div>
+      <div class="ag-tag">Pattern Interrupt visivo</div>
+      <div class="ag-title">Viola il pattern del feed</div>
+      <div class="ag-body">Il cervello fa pattern-matching per decidere cosa skippare. Un elemento inatteso nei primi 2 secondi forza l'attenzione cosciente. Es: prodotto nella spazzatura + "butteremo via 10.000 pezzi. Ecco perché."</div>
+      <div class="ag-stat">~51% HR</div>
+    </div>
+    <div class="ag-card">
+      <div class="ag-rank">3</div>
+      <div class="ag-tag">Open Loop / Curiosity Gap</div>
+      <div class="ag-title">Apri una domanda che il cervello chiuderà</div>
+      <div class="ag-body">Il cervello odia le domande aperte. "Dopo 11 anni nel food marketing, ho capito una cosa sola" obbliga a continuare. L'hook non informa — <em>guadagna i prossimi 5 secondi</em>.</div>
+      <div class="ag-stat">~38% HR</div>
+    </div>
+    <div class="ag-card">
+      <div class="ag-rank">4</div>
+      <div class="ag-tag">Testimonial UGC autentico</div>
+      <div class="ag-title">Video selfie-style da clienti reali</div>
+      <div class="ag-body">Per beauty e lifestyle, UGC autentico converte 3-4× meglio della fotografia in studio. Non sembra un ad → bypass del filtro mentale anti-pubblicità. La bassa produzione non è un difetto — è il vantaggio.</div>
+      <div class="ag-stat">3-4× conv.</div>
+    </div>
+    <div class="ag-card">
+      <div class="ag-rank">5</div>
+      <div class="ag-tag">Before/After + Numero specifico</div>
+      <div class="ag-title">Specificità sempre. Vaghezza mai.</div>
+      <div class="ag-body">"Ridotto il tempo di produzione del 34%" batte "migliorata l'efficienza" in CTR e conversion. Stessa struttura: "+180% lead qualificati in 6 mesi" non "più visibilità". I numeri specifici creano credibilità immediata.</div>
+      <div class="ag-stat">+89% eng.</div>
+    </div>
+    <div class="ag-card dark">
+      <div class="ag-rank">↯</div>
+      <div class="ag-tag">La regola del 3 secondi</div>
+      <div class="ag-title">Hook rate &gt;40% = scala libera. &lt;25% = spegni.</div>
+      <div class="ag-body">Benchmark sano 25-45%. B2B specificamente: 18-22% è già eccellente (pubblico più selettivo). Testa 3-5 hook per ogni corpo dell'ad. La differenza tra hook migliore e peggiore è 300-500% di performance.</div>
+      <div class="ag-stat">×3.2 ROI</div>
+    </div>
+  </div>
+
+  <!-- BENCHMARK TABLE -->
+  <h3 style="font-family:var(--f-d);font-size:22px;text-transform:uppercase;letter-spacing:-.01em;margin-bottom:14px;margin-top:40px">Cosa funziona per ogni tipo di contenuto</h3>
+  <table class="bench-table">
+    <thead>
+      <tr>
+        <th>Formato</th>
+        <th>Funnel stage</th>
+        <th>Hook rate tipico</th>
+        <th>Note per Ribrain</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Reel 15-30 sec · UGC</td>
+        <td>TOFU · primo impatto</td>
+        <td>Alto <span class="bench-bar-wrap"><span class="bench-bar bar-hot" style="width:80%"></span></span></td>
+        <td>Formato prioritario per Roberto. NON mostrare logo Ribrain nei primi 20 sec — l'hook deve produrre empatia prima che il viewer capisca chi parla.</td>
+      </tr>
+      <tr>
+        <td>Reel 60-90 sec · case study</td>
+        <td>MOFU · consideration B2B</td>
+        <td>Medio-alto <span class="bench-bar-wrap"><span class="bench-bar bar-warm" style="width:60%"></span></span></td>
+        <td>Per B2B ad alto ticket (>€10k/anno come Ribrain), il video lungo con numeri specifici batte il video breve di awareness. I B2B buyers guardano video più lunghi se c'è proof concreto.</td>
+      </tr>
+      <tr>
+        <td>Carosello feed 4-5 slide</td>
+        <td>MOFU · educazione</td>
+        <td>Medio <span class="bench-bar-wrap"><span class="bench-bar bar-warn" style="width:50%"></span></span></td>
+        <td>Ideale per narrativa progressiva: slide 1 = hook, slide 2-3 = proof, slide 4 = CTA. Per Marco in settembre: "90 giorni a Natale → il tuo brand è pronto? → case study → call."</td>
+      </tr>
+      <tr>
+        <td>Feed statico · numero grande</td>
+        <td>TOFU · stop scroll</td>
+        <td>Dipende dall'immagine</td>
+        <td>La prima frame è la thumbnail. Se è una foto prodotto generica, l'hook rate è cappato dal tasso di thumbnail. Design first frame come immagine standalone: numeri enormi, contrasto, movimento.</td>
+      </tr>
+      <tr>
+        <td>Stories verticale · urgency</td>
+        <td>BOFU · conversione</td>
+        <td>Variabile per placement</td>
+        <td>Usare solo in novembre (pre-Natale) con scarcity reale: "Ultimi 3 slot disponibili per dicembre 2026." Ribrain ha capacità limitata — questa scarcity è vera, non artificiosa.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- PERSONA SPECIFIC -->
+  <h3 style="font-family:var(--f-d);font-size:22px;text-transform:uppercase;letter-spacing:-.01em;margin-bottom:14px;margin-top:40px">Hook specifici per le 2 persona Ribrain</h3>
+  <div class="pi-grid">
+    <div class="pi-card food">
+      <div class="pi-tag">🍝 Marco · Founder PMI Food · 44 anni</div>
+      <div class="pi-title">I 3 hook che statisticamente lo fermano</div>
+      <div class="pi-hook food">
+        <strong>Hook 1 · Warning + scaffale</strong><br>
+        "Ogni settimana che passa, il tuo brand food cede terreno a scaffale senza che tu lo sappia." — Loss aversion su qualcosa che Marco vede fisicamente ogni giorno.
+      </div>
+      <div class="pi-hook food">
+        <strong>Hook 2 · Numero sorprendente</strong><br>
+        "Il 53% delle agenzie italiane non supera €120k. Abbiamo portato Latte Berna a +340% di engagement. Ecco come." — Pattern interrupt + credibilità immediata.
+      </div>
+      <div class="pi-hook food">
+        <strong>Hook 3 · Founder talking head</strong><br>
+        CEO Ribrain a camera: "Dopo 11 anni nel food marketing, ho capito che il problema non è mai il prodotto." — Autenticità > produzione per B2B. Marco si fida delle persone, non dei brand.
+      </div>
+      <div class="pi-why">Regola per Marco: evitare gergo da agenzia. Parla di scaffale, rotazione, GDO, vendite, Natale — non di "ecosistema digitale" o "funnel ottimizzato".</div>
+    </div>
+    <div class="pi-card life">
+      <div class="pi-tag">✨ Roberto · Founder Brand Specialty · 42 anni</div>
+      <div class="pi-title">I 3 hook che statisticamente lo fermano</div>
+      <div class="pi-hook life">
+        <strong>Hook 1 · Before/after brand</strong><br>
+        Reel: 15 sec primo metà = feed Instagram disorganizzato "prima". Seconda metà = stesso brand dopo, feed coerente, engagement alto. NON mostrare logo Ribrain nei primi 20 sec. Roberto si deve identificare nel "prima" prima.
+      </div>
+      <div class="pi-hook life">
+        <strong>Hook 2 · Pattern interrupt + cifra</strong><br>
+        "Questo brand aveva 2.000 follower e vendeva 30 pezzi al mese. Dopo 6 mesi..." — apre un loop che Roberto vuole chiudere. Poi rivela i numeri (con credibilità case study Robynails).
+      </div>
+      <div class="pi-hook life">
+        <strong>Hook 3 · Empatico diretto</strong><br>
+        "Stai gestendo da solo il marketing del tuo brand specialty. E lo sai che non basta." — Roberto si riconosce immediatamente. Non si sente giudicato — si sente capito.
+      </div>
+      <div class="pi-why">Regola per Roberto: tono aspirational ma concreto. Lui compra con gli occhi — il visual deve essere bello prima ancora del testo. E lui firma per chimica, non per deliverable.</div>
+    </div>
+  </div>
+</div>
+
+<!-- ======================== VIEW: CALENDARIO ======================== -->
+<div id="view-cal" class="cal-grid">
+
+  <!-- GIUGNO -->
+  <div class="month-card both-card food-card life-card" data-v="both" onclick="toggleMonth(this)">
+    <div class="mc-header">
+      <div class="mc-top">
+        <div class="mc-month">Giu '26</div>
+        <span class="temp t-high">🔥 Alta</span>
+      </div>
+      <div class="mc-cats">
+        <span class="mc-cat food">Food B2C</span>
+        <span class="mc-cat life">Lifestyle</span>
+      </div>
+    </div>
+    <div class="mc-trigger">Estate piena. <strong>GDO spinge BBQ e aperitivo.</strong> Roberto vede i competitor crescere su Instagram. È il momento di seminare — non di chiudere.</div>
+    <div class="mc-footer">
+      <span class="mc-budget">€900 food · €600 life</span>
+      <span class="mc-expand"><span class="mc-expand-icon">›</span> Dettagli</span>
+    </div>
+    <div class="detail-panel">
+      <div class="inner-tabs">
+        <button class="it-btn active" onclick="innerTab(event,'msgs')">✍️ Messaggi</button>
+        <button class="it-btn" onclick="innerTab(event,'crea')">🎬 Creatività</button>
+      </div>
+      <div class="inner-content msgs-tab">
+        <div class="msg-item food-msg">
+          <div class="msg-variant"><span class="var-dot vd-a"></span>Variante A · Food · Warning</div>
+          <div class="msg-angle">Angolo: competitor ti stanno passando avanti</div>
+          <div class="msg-headline">Mentre la tua estate vende, qualcuno sta costruendo il suo brand.</div>
+          <div class="msg-body">Ogni weekend di luglio, 10 brand food occupano spazio mentale nel tuo consumatore. Quanti sono tuoi? Ribrain aiuta produttori food italiani a non cedere terreno quando il mercato è caldo.</div>
+          <span class="msg-cta">Scopri come lavoriamo →</span>
+        </div>
+        <div class="msg-item food-msg">
+          <div class="msg-variant"><span class="var-dot vd-b"></span>Variante B · Food · Case study</div>
+          <div class="msg-angle">Angolo: proof con numero specifico</div>
+          <div class="msg-headline">Come un molino campano ha triplicato la visibilità social senza investire in TV.</div>
+          <div class="msg-body">Zero budget pubblicitario. Solo strategia di contenuto e Meta Ads mirate. In 8 mesi: +340% engagement, +22% vendite digitali.</div>
+          <span class="msg-cta">Leggi il caso studio →</span>
+        </div>
+        <div class="msg-item life-msg">
+          <div class="msg-variant"><span class="var-dot vd-a"></span>Variante A · Lifestyle · Empatica</div>
+          <div class="msg-angle">Angolo: costruire vs solo vendere</div>
+          <div class="msg-headline">Il tuo brand lifestyle ha un'estate. La stai usando per costruire o solo per vendere?</div>
+          <div class="msg-body">Ribrain trasforma la stagione di picco in un asset di lungo termine per brand specialty italiani — contenuti, ADV, posizionamento.</div>
+          <span class="msg-cta">Scopri come lavoriamo →</span>
+        </div>
+        <div class="msg-item life-msg">
+          <div class="msg-variant"><span class="var-dot vd-c"></span>Variante C · Lifestyle · UGC Case study</div>
+          <div class="msg-angle">Angolo: proof + numero</div>
+          <div class="msg-headline">Come un brand nail B2B italiano ha moltiplicato ×3 gli ordini in 6 mesi senza aumentare il team.</div>
+          <div class="msg-body">Robynails. Prodotto già amato dai saloni. Zero strategia di comunicazione. Poi: contenuto sistematico, landing ottimizzata, Meta Ads B2B. +180% lead qualificati.</div>
+          <span class="msg-cta">Leggi il caso →</span>
+        </div>
+      </div>
+      <div class="inner-content crea-tab" style="display:none">
+        <div class="cr-item">
+          <div class="cr-tag">🍝 Food · Concept</div>
+          <div class="cr-formats"><span class="cr-fmt">Reel 15 sec</span><span class="cr-fmt">Feed video 1:1</span></div>
+          <div class="cr-hook">Split screen: scaffale con prodotto ben posizionato VS prodotto quasi nascosto.</div>
+          <div class="cr-desc">Testo overlay: <em>"Il tuo brand — quello di sinistra o quello di destra?"</em> — pausa 1 sec. Dissolve su logo Ribrain + CTA. <em>NON sembra un ad.</em> Sembra una domanda di settore.</div>
+        </div>
+        <div class="cr-item">
+          <div class="cr-tag">✨ Lifestyle · Concept</div>
+          <div class="cr-formats"><span class="cr-fmt">Reel UGC 30 sec</span><span class="cr-fmt">Stories</span></div>
+          <div class="cr-hook">Video quasi amatoriale — prodotto in contesto lifestyle estivo reale. Testo overlay: "Questo brand faceva tutto da solo. Poi ha smesso."</div>
+          <div class="cr-desc"><em>Regola critica:</em> NON mostrare logo Ribrain nei primi 20 sec. Roberto deve identificarsi nel brand "prima". L'hook funziona solo se produce empatia, non se vende subito.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- LUGLIO + AGOSTO (LOW) -->
+  <div class="month-card low" data-v="both" onclick="toggleMonth(this)">
+    <div class="mc-header">
+      <div class="mc-top">
+        <div class="mc-month">Lug · Ago</div>
+        <span class="temp t-low">🌙 Bassa</span>
+      </div>
+      <div class="mc-cats">
+        <span class="mc-cat food">Food</span>
+        <span class="mc-cat life">Lifestyle</span>
+      </div>
+    </div>
+    <div class="mc-trigger">Ferie. Niente decisioni d'acquisto. <strong>Budget ridotto al 30%.</strong> Solo awareness e retargeting su chi ha già interagito. Si semina per settembre.</div>
+    <div class="mc-footer">
+      <span class="mc-budget">€400-500 totale · awareness only</span>
+      <span class="mc-expand"><span class="mc-expand-icon">›</span> Dettagli</span>
+    </div>
+    <div class="detail-panel">
+      <div class="inner-tabs">
+        <button class="it-btn active" onclick="innerTab(event,'msgs')">✍️ Messaggi</button>
+        <button class="it-btn" onclick="innerTab(event,'crea')">🎬 Creatività</button>
+      </div>
+      <div class="inner-content msgs-tab">
+        <div class="msg-item food-msg">
+          <div class="msg-variant"><span class="var-dot vd-a"></span>Unico messaggio · tutti i verticali · awareness</div>
+          <div class="msg-angle">Semina per settembre — niente urgenza, niente conversion</div>
+          <div class="msg-headline">Il marketing che funziona a settembre si prepara ad agosto.</div>
+          <div class="msg-body">Non aspettare il rientro per capire cosa cambiare. Mentre sei in pausa, i tuoi competitor no. Un'email quando vuoi — ti rispondiamo in 24 ore anche ad agosto.</div>
+          <span class="msg-cta food-msg">Scrivici →</span>
+        </div>
+      </div>
+      <div class="inner-content crea-tab" style="display:none">
+        <div class="cr-item">
+          <div class="cr-tag">Luglio · Agosto · Solo retargeting</div>
+          <div class="cr-formats"><span class="cr-fmt">Feed statico</span><span class="cr-fmt">Dark post</span></div>
+          <div class="cr-hook">Immagine editoriale semplice. Testo grande: "La prossima stagione si costruisce adesso."</div>
+          <div class="cr-desc">Target: <em>solo chi ha già interagito con Ribrain</em> (pagina Instagram, sito, video precedenti). Nessuna campagna fredda in agosto — spreco di budget. Costo obiettivo: impression economiche per rimanere nella mente.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SETTEMBRE -->
+  <div class="month-card food-card life-card" data-v="both" onclick="toggleMonth(this)">
+    <div class="mc-header">
+      <div class="mc-top">
+        <div class="mc-month">Set '26</div>
+        <span class="temp t-max">🔥🔥 Picco</span>
+      </div>
+      <div class="mc-cats">
+        <span class="mc-cat food">Food · Pianificazione Q4</span>
+        <span class="mc-cat life">Lifestyle · Milano Beauty Week</span>
+      </div>
+    </div>
+    <div class="mc-trigger"><strong>Il mese più caldo dell'anno.</strong> Marco pianifica Q4. Roberto vede la Milano Beauty Week (17-21 sett). Budget non ancora assegnato. Le decisioni d'agenzia si prendono qui.</div>
+    <div class="mc-footer">
+      <span class="mc-budget">€1.200 food · €800 life</span>
+      <span class="mc-expand"><span class="mc-expand-icon">›</span> Dettagli</span>
+    </div>
+    <div class="detail-panel">
+      <div class="inner-tabs">
+        <button class="it-btn active" onclick="innerTab(event,'msgs')">✍️ Messaggi</button>
+        <button class="it-btn" onclick="innerTab(event,'crea')">🎬 Creatività</button>
+      </div>
+      <div class="inner-content msgs-tab">
+        <div class="msg-item food-msg">
+          <div class="msg-variant"><span class="var-dot vd-a"></span>Variante A · Food · Urgenza data</div>
+          <div class="msg-headline">90 giorni a Natale. Il tuo brand food è pronto per gli scaffali?</div>
+          <div class="msg-body">La GDO fa le ultime chiamate per il posizionamento natalizio. I produttori food che arrivano preparati in ottobre hanno già vinto. In 3 settimane sei operativo. Parliamoci questa settimana.</div>
+          <span class="msg-cta">Parla con noi →</span>
+        </div>
+        <div class="msg-item food-msg">
+          <div class="msg-variant"><span class="var-dot vd-b"></span>Variante B · Food · Provocatoria</div>
+          <div class="msg-headline">Il fatturato di dicembre si costruisce a settembre. Non a novembre.</div>
+          <div class="msg-body">Ogni anno la stessa storia. Ribrain lavora con produttori food che vogliono smettere di inseguire e iniziare a pianificare. Tre settimane per una macchina di marketing food che funziona anche senza di te.</div>
+          <span class="msg-cta">Scopri come →</span>
+        </div>
+        <div class="msg-item food-msg">
+          <div class="msg-variant"><span class="var-dot vd-c"></span>Variante C · Food · Empatica</div>
+          <div class="msg-headline">Scommetto che hai una lista di cose da fare al marketing che rimandi da giugno.</div>
+          <div class="msg-body">Non è pigrizia. Gestire un'azienda food e il marketing insieme è impossibile. Ribrain si occupa della comunicazione — tu ti occupi del prodotto.</div>
+          <span class="msg-cta">Dimmi cosa ti sta succedendo →</span>
+        </div>
+        <div class="msg-item life-msg">
+          <div class="msg-variant"><span class="var-dot vd-a"></span>Variante A · Lifestyle · Milano Beauty</div>
+          <div class="msg-headline">Dopo la Milano Beauty Week, i brand che crescono hanno già un piano per Q4. Il tuo ce l'hai?</div>
+          <div class="msg-body">Non si tratta di ispirazione — si tratta di esecuzione. I founder di brand specialty che lavorano con noi arrivano a Natale con una macchina funzionante. Posti limitati per Q4.</div>
+          <span class="msg-cta">Parliamoci →</span>
+        </div>
+        <div class="msg-item life-msg">
+          <div class="msg-variant"><span class="var-dot vd-c"></span>Variante C · Lifestyle · Diretta</div>
+          <div class="msg-headline">Stai gestendo da solo il marketing del tuo brand specialty. E lo sai che non basta.</div>
+          <div class="msg-body">Ribrain prende questa parte — social, contenuti, ADV — e la porta a un livello che da solo non potresti raggiungere. Senza complicare la tua vita.</div>
+          <span class="msg-cta">Dimmi cosa ti sta succedendo →</span>
+        </div>
+      </div>
+      <div class="inner-content crea-tab" style="display:none">
+        <div class="cr-item">
+          <div class="cr-tag">🍝 Food · Carosello urgency 4 slide</div>
+          <div class="cr-formats"><span class="cr-fmt">Carosello feed</span><span class="cr-fmt">Reel 30 sec</span></div>
+          <div class="cr-hook">Slide 1: sfondo nero, testo grande bianco "90 giorni a Natale." Sotto in turchese: "Cosa stai facendo per il tuo brand food?"</div>
+          <div class="cr-desc">Slide 2: scaffale GDO con spazio vuoto + freccia rossa. Slide 3: screenshot risultato reale cliente food. Slide 4: <em>sfondo turchese + "20 minuti di call. Ti diciamo onestamente se possiamo aiutarti."</em></div>
+        </div>
+        <div class="cr-item">
+          <div class="cr-tag">✨ Lifestyle · Reel before/after brand</div>
+          <div class="cr-formats"><span class="cr-fmt">Reel 30 sec</span><span class="cr-fmt">Feed video</span></div>
+          <div class="cr-hook">Prima metà: feed Instagram brand "prima" — post improvvisati, zero coerenza. Audio neutro. Testo: "Prima di Ribrain." Seconda metà: stesso brand dopo — feed coerente, engagement alto. Testo: "6 mesi dopo."</div>
+          <div class="cr-desc"><em>Regola critica:</em> NON mostrare il logo Ribrain nei primi 20 secondi. Roberto deve identificarsi nel brand "prima" prima di capire chi ha fatto la trasformazione. L'hook funziona solo se produce empatia.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- OTTOBRE -->
+  <div class="month-card food-card life-card" data-v="both" onclick="toggleMonth(this)">
+    <div class="mc-header">
+      <div class="mc-top">
+        <div class="mc-month">Ott '26</div>
+        <span class="temp t-high">🔥 Alta</span>
+      </div>
+      <div class="mc-cats">
+        <span class="mc-cat food">Food · SIAL Paris</span>
+        <span class="mc-cat life">Lifestyle · Beautyworld ME</span>
+      </div>
+    </div>
+    <div class="mc-trigger">SIAL Paris ridefinisce il food europeo. Beautyworld Dubai (27-29 ott). <strong>GDO fa gli ordini natalizi.</strong> FOMO + trigger di settore per entrambe le persona.</div>
+    <div class="mc-footer">
+      <span class="mc-budget">€1.200 food · €800 life</span>
+      <span class="mc-expand"><span class="mc-expand-icon">›</span> Dettagli</span>
+    </div>
+    <div class="detail-panel">
+      <div class="inner-tabs">
+        <button class="it-btn active" onclick="innerTab(event,'msgs')">✍️ Messaggi</button>
+        <button class="it-btn" onclick="innerTab(event,'crea')">🎬 Creatività</button>
+      </div>
+      <div class="inner-content msgs-tab">
+        <div class="msg-item food-msg">
+          <div class="msg-variant"><span class="var-dot vd-a"></span>Food · SIAL hook</div>
+          <div class="msg-headline">Sai cosa hanno deciso i buyer GDO questa settimana? Perché loro sì.</div>
+          <div class="msg-body">Il SIAL non è solo una fiera — è il momento in cui il mercato food europeo decide chi cresce. Ribrain traduce quei trend in campagne concrete. Senza aspettare che sia troppo tardi.</div>
+          <span class="msg-cta">Vediamo il tuo prodotto →</span>
+        </div>
+        <div class="msg-item food-msg">
+          <div class="msg-variant"><span class="var-dot vd-b"></span>Food · Lancio prodotto</div>
+          <div class="msg-headline">Hai un prodotto nuovo da lanciare entro Natale. Hai anche una strategia?</div>
+          <div class="msg-body">Il lancio di una nuova referenza food non è solo packaging e punto vendita. Serve una storia, un pubblico, una campagna. Noi lo facciamo da 11 anni.</div>
+          <span class="msg-cta">Parliamo del lancio →</span>
+        </div>
+        <div class="msg-item life-msg">
+          <div class="msg-variant"><span class="var-dot vd-a"></span>Lifestyle · Gifting angle</div>
+          <div class="msg-headline">Chi regala il tuo prodotto a Natale sta regalando un'esperienza. Stai comunicando quell'esperienza?</div>
+          <div class="msg-body">I brand specialty che diventano "il regalo perfetto" non ci arrivano per caso. Costruiscono la narrativa mesi prima. Ribrain aiuta founder di brand italiani a fare esattamente questo.</div>
+          <span class="msg-cta">Parla con noi →</span>
+        </div>
+        <div class="msg-item life-msg">
+          <div class="msg-variant"><span class="var-dot vd-b"></span>Lifestyle · Scarcity</div>
+          <div class="msg-headline">I brand specialty che crescono a Natale hanno un unico segreto: si sono fatti ricordare prima.</div>
+          <div class="msg-body">Abbiamo ancora 3 slot disponibili per accompagnare brand specialty nel Q4 2026. Parliamoci questa settimana.</div>
+          <span class="msg-cta">Controlla la disponibilità →</span>
+        </div>
+      </div>
+      <div class="inner-content crea-tab" style="display:none">
+        <div class="cr-item">
+          <div class="cr-tag">🍝 Food · Feed editoriale SIAL</div>
+          <div class="cr-formats"><span class="cr-fmt">Feed statico</span><span class="cr-fmt">Reel 15 sec</span></div>
+          <div class="cr-hook">Immagine prodotto food italiano fotografato bene. Testo overlay stile report: "Ottobre 2026. I brand food italiani che crescono hanno già un piano."</div>
+          <div class="cr-desc">Sotto: Logo Ribrain + <em>"Il tuo ce l'hai?"</em> — tono editoriale, NON pubblicitario. Sembra un post di settore. Questo abbassa il CPL perché non attiva i filtri anti-pubblicità.</div>
+        </div>
+        <div class="cr-item">
+          <div class="cr-tag">✨ Lifestyle · Carosello gifting premium</div>
+          <div class="cr-formats"><span class="cr-fmt">Carosello 4 slide</span><span class="cr-fmt">Feed editoriale</span></div>
+          <div class="cr-hook">Slide 1: prodotto specialty in confezione gift, luce morbida, sfondo neutro. Testo: "Il tuo brand è un regalo da fare. O da dare?"</div>
+          <div class="cr-desc">Slide 2: due packaging side by side — uno anonimo, uno costruito. Slide 3: risultati reali. Slide 4: CTA. <em>Tono: aspirational ma concreto</em>. Roberto compra con gli occhi.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- NOVEMBRE -->
+  <div class="month-card food-card life-card" data-v="both" onclick="toggleMonth(this)">
+    <div class="mc-header">
+      <div class="mc-top">
+        <div class="mc-month">Nov '26</div>
+        <span class="temp t-max">🔥🔥 Picco</span>
+      </div>
+      <div class="mc-cats">
+        <span class="mc-cat food">Food · Last Call Natale</span>
+        <span class="mc-cat life">Lifestyle · Peak Beauty</span>
+      </div>
+    </div>
+    <div class="mc-trigger"><strong>La GDO chiude gli ordini natalizi.</strong> Novembre è il mese d'oro per beauty e lifestyle. Urgenza massima per entrambe le persona — last call per Natale.</div>
+    <div class="mc-footer">
+      <span class="mc-budget">€1.200 food · €800 life</span>
+      <span class="mc-expand"><span class="mc-expand-icon">›</span> Dettagli</span>
+    </div>
+    <div class="detail-panel">
+      <div class="inner-tabs">
+        <button class="it-btn active" onclick="innerTab(event,'msgs')">✍️ Messaggi</button>
+        <button class="it-btn" onclick="innerTab(event,'crea')">🎬 Creatività</button>
+      </div>
+      <div class="inner-content msgs-tab">
+        <div class="msg-item food-msg">
+          <div class="msg-variant"><span class="var-dot vd-a"></span>Food · Last call</div>
+          <div class="msg-headline">Non è troppo tardi per il Natale del tuo brand food. Ma lo sarà tra 10 giorni.</div>
+          <div class="msg-body">Abbiamo supportato lanci last-minute per brand food italiani in tempi che sembravano impossibili. Scrivici oggi — ti diciamo se ce la facciamo.</div>
+          <span class="msg-cta">Scrivici adesso →</span>
+        </div>
+        <div class="msg-item food-msg">
+          <div class="msg-variant"><span class="var-dot vd-b"></span>Food · Empatica rimpianto</div>
+          <div class="msg-headline">Il brand food che viene ricordato a Natale non si costruisce a Natale.</div>
+          <div class="msg-body">Lo sappiamo. Il punto non è rimpiangere settembre — è capire cosa puoi ancora fare adesso. Anche 3 settimane di campagna ben fatta fanno la differenza. 20 minuti di call.</div>
+          <span class="msg-cta">20 minuti di call →</span>
+        </div>
+        <div class="msg-item life-msg">
+          <div class="msg-variant"><span class="var-dot vd-a"></span>Lifestyle · Urgenza massima</div>
+          <div class="msg-headline">Non lasciare che il Natale capiti al tuo brand. Fallo succedere.</div>
+          <div class="msg-body">C'è differenza tra vendere a Natale per fortuna e costruire un Natale che dura. Ribrain trasforma il Q4 in un trampolino per il 2027.</div>
+          <span class="msg-cta">Parliamoci questa settimana →</span>
+        </div>
+        <div class="msg-item life-msg">
+          <div class="msg-variant"><span class="var-dot vd-b"></span>Lifestyle · Prova concreta</div>
+          <div class="msg-headline">Un brand specialty ben raccontato vende 3× rispetto a uno ben prodotto ma mal comunicato.</div>
+          <div class="msg-body">Non è un'opinione — è quello che vediamo. Novembre è l'ultimo momento utile per costruire la storia del tuo brand prima che Natale finisca.</div>
+          <span class="msg-cta">Vedi i nostri risultati →</span>
+        </div>
+      </div>
+      <div class="inner-content crea-tab" style="display:none">
+        <div class="cr-item">
+          <div class="cr-tag">🍝 Food · Stories countdown urgency</div>
+          <div class="cr-formats"><span class="cr-fmt">Stories verticale</span><span class="cr-fmt">Feed urgency</span></div>
+          <div class="cr-hook">Sfondo rosso caldo. Al centro: "Mancano 10 settimane a Natale." Sotto in bianco piccolo: "Stai ancora aspettando?"</div>
+          <div class="cr-desc">Per il feed: packaging natalizio di un prodotto food premium con overlay: <em>"Ultimi posti disponibili — dicembre 2026."</em> Scarcity reale — Ribrain ha capacità limitata. Non è artificiosa.</div>
+        </div>
+        <div class="cr-item">
+          <div class="cr-tag">✨ Lifestyle · Reel unboxing empatico</div>
+          <div class="cr-formats"><span class="cr-fmt">Reel UGC</span><span class="cr-fmt">Stories gifting</span></div>
+          <div class="cr-hook">Video di qualcuno che riceve il prodotto specialty come regalo. NON staging professionale — reazione autentica, telefono in mano. Testo: "Questo è quello che prova chi riceve il tuo brand. Quante persone lo sanno?"</div>
+          <div class="cr-desc">Poi cut a testo: <em>"Noi lo facciamo sapere alle persone giuste."</em> CTA. Roberto si immedesima nel ricevente — vede la sua visione realizzata. Non è un ad che vende servizi.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- DICEMBRE -->
+  <div class="month-card food-card life-card" data-v="both" onclick="toggleMonth(this)">
+    <div class="mc-header">
+      <div class="mc-top">
+        <div class="mc-month">Dic '26</div>
+        <span class="temp t-mid">🌤 Media</span>
+      </div>
+      <div class="mc-cats">
+        <span class="mc-cat food">Food · Pianif. 2027</span>
+        <span class="mc-cat life">Lifestyle · Vision 2027</span>
+      </div>
+    </div>
+    <div class="mc-trigger">Fine anno. Marco prepara Marca (gennaio 2027). Roberto riflette su cosa ha imparato. <strong>Budget ridotto — messaggi ispiranti e orientati al 2027,</strong> non urgenti.</div>
+    <div class="mc-footer">
+      <span class="mc-budget">€700 food · €400 life</span>
+      <span class="mc-expand"><span class="mc-expand-icon">›</span> Dettagli</span>
+    </div>
+    <div class="detail-panel">
+      <div class="inner-tabs">
+        <button class="it-btn active" onclick="innerTab(event,'msgs')">✍️ Messaggi</button>
+        <button class="it-btn" onclick="innerTab(event,'crea')">🎬 Creatività</button>
+      </div>
+      <div class="inner-content msgs-tab">
+        <div class="msg-item food-msg">
+          <div class="msg-variant"><span class="var-dot vd-a"></span>Food · Pianificazione 2027</div>
+          <div class="msg-headline">Il 2027 delle aziende food italiane che crescono si pianifica a dicembre. Non a gennaio.</div>
+          <div class="msg-body">Non aspettare Marca per capire dove vuoi essere. Vieni alla fiera con un piano, non con speranze. Packaging, social, ADV — in ordine prima che il mercato riparta.</div>
+          <span class="msg-cta">Pianifica il 2027 →</span>
+        </div>
+        <div class="msg-item life-msg">
+          <div class="msg-variant"><span class="var-dot vd-a"></span>Lifestyle · Salto di livello</div>
+          <div class="msg-headline">Fine anno. Il momento in cui i founder di brand specialty smettono di improvvisare e iniziano a costruire.</div>
+          <div class="msg-body">Hai già dimostrato che il prodotto funziona. Adesso costruisci il brand intorno — con qualcuno che condivide la tua visione, non solo il tuo budget. Dal 2016.</div>
+          <span class="msg-cta">Inizia il 2027 con noi →</span>
+        </div>
+      </div>
+      <div class="inner-content crea-tab" style="display:none">
+        <div class="cr-item">
+          <div class="cr-tag">Dicembre · Entrambi i verticali · Retrospettiva</div>
+          <div class="cr-formats"><span class="cr-fmt">Carosello "checklist"</span><span class="cr-fmt">Feed warm</span></div>
+          <div class="cr-hook">Carosello "Il tuo brand nel 2026: come è andata davvero?" — checklist con sì/no su packaging, social, ADV, GDO.</div>
+          <div class="cr-desc">Ogni risposta "No" diventa un'opportunità nel 2027. Slide finale: <em>"Noi ti aiutiamo a chiudere le caselle."</em> Tono: riflessivo, non allarmistico. <em>Dicembre è mese lento — il messaggio deve essere invitante, non pressante.</em></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div><!-- end cal-grid -->
+
+<!-- ======================== VIEW: TUTTI I MESSAGGI ======================== -->
+<div id="view-msgs" class="msgs-section section-hidden">
+  <h2 class="msgs-h">Tutti i messaggi.<br>Per mese.</h2>
+  <p class="msgs-sub">Vista lineare di tutti i copy organizzati per mese. Usa i toggle sopra per filtrare per verticale. Clicca una riga per vedere il dettaglio.</p>
+
+  <!-- Righe mese x mese -->
+  <div class="full-msg-grid">
+
+    <div class="fm-card" onclick="toggleFm(this)">
+      <div class="fm-header">
+        <div class="fm-month-badge">Giu</div>
+        <div class="fm-info">
+          <div class="fm-cats"><span class="mc-cat food">Food</span><span class="mc-cat life">Lifestyle</span></div>
+          <div class="fm-title-row">Estate · Seeding · Awareness</div>
+          <div class="fm-intent">Inclini a: costruire brand, case study, differenziarsi dai competitor</div>
+        </div>
+        <span class="fm-chevron">▼</span>
+      </div>
+      <div class="fm-body">
+        <div class="msg-item food-msg">
+          <div class="msg-variant"><span class="var-dot vd-a"></span>Food A</div>
+          <div class="msg-headline">Mentre la tua estate vende, qualcuno sta costruendo il suo brand.</div>
+          <div class="msg-body">Ogni weekend di luglio, 10 brand food occupano spazio mentale nel tuo consumatore.</div>
+          <span class="msg-cta">Scopri come →</span>
+        </div>
+        <div class="msg-item food-msg">
+          <div class="msg-variant"><span class="var-dot vd-b"></span>Food B · Case study</div>
+          <div class="msg-headline">Come un molino campano ha triplicato la visibilità social senza investire in TV.</div>
+          <div class="msg-body">+340% engagement, +22% vendite digitali in 8 mesi. Zero budget ADV classico.</div>
+          <span class="msg-cta">Leggi il caso →</span>
+        </div>
+        <div class="msg-item life-msg">
+          <div class="msg-variant"><span class="var-dot vd-a"></span>Lifestyle A</div>
+          <div class="msg-headline">Il tuo brand lifestyle ha un'estate. La stai usando per costruire o solo per vendere?</div>
+          <div class="msg-body">Ribrain trasforma la stagione di picco in un asset di lungo termine.</div>
+          <span class="msg-cta">Scopri come →</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="fm-card" onclick="toggleFm(this)">
+      <div class="fm-header">
+        <div class="fm-month-badge" style="color:var(--ink-20)">Lug<br>Ago</div>
+        <div class="fm-info">
+          <div class="fm-cats"><span class="mc-cat food">Food</span><span class="mc-cat life">Lifestyle</span></div>
+          <div class="fm-title-row">Ferie · Awareness only · Budget ridotto</div>
+          <div class="fm-intent">Un solo messaggio · solo retargeting di chi ha già interagito</div>
+        </div>
+        <span class="fm-chevron">▼</span>
+      </div>
+      <div class="fm-body">
+        <div class="msg-item food-msg">
+          <div class="msg-variant"><span class="var-dot vd-a"></span>Unico messaggio</div>
+          <div class="msg-headline">Il marketing che funziona a settembre si prepara ad agosto.</div>
+          <div class="msg-body">Siamo aperti — ti rispondiamo in 24 ore anche ad agosto.</div>
+          <span class="msg-cta">Scrivici →</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="fm-card" onclick="toggleFm(this)">
+      <div class="fm-header">
+        <div class="fm-month-badge" style="color:var(--coral-dark)">Set</div>
+        <div class="fm-info">
+          <div class="fm-cats"><span class="mc-cat food">Food · Q4</span><span class="mc-cat life">Life · Beauty Week</span></div>
+          <div class="fm-title-row">🔥 PICCO — Conversione · Urgenza · Budget massimo</div>
+          <div class="fm-intent">Inclini a: pianificazione Q4, urgenza Natale, smettere di improvvisare</div>
+        </div>
+        <span class="fm-chevron">▼</span>
+      </div>
+      <div class="fm-body">
+        <div class="msg-item food-msg">
+          <div class="msg-variant"><span class="var-dot vd-a"></span>Food A · Urgenza data</div>
+          <div class="msg-headline">90 giorni a Natale. Il tuo brand food è pronto per gli scaffali?</div>
+          <span class="msg-cta">Parla con noi →</span>
+        </div>
+        <div class="msg-item food-msg">
+          <div class="msg-variant"><span class="var-dot vd-b"></span>Food B · Provocatoria</div>
+          <div class="msg-headline">Il fatturato di dicembre si costruisce a settembre. Non a novembre.</div>
+          <span class="msg-cta">Scopri come →</span>
+        </div>
+        <div class="msg-item food-msg">
+          <div class="msg-variant"><span class="var-dot vd-c"></span>Food C · Empatica</div>
+          <div class="msg-headline">Scommetto che hai una lista di cose da fare al marketing che rimandi da giugno.</div>
+          <span class="msg-cta">Dimmi cosa ti sta succedendo →</span>
+        </div>
+        <div class="msg-item life-msg">
+          <div class="msg-variant"><span class="var-dot vd-a"></span>Lifestyle A · Beauty Week</div>
+          <div class="msg-headline">Dopo la Milano Beauty Week, i brand che crescono hanno già un piano per Q4. Il tuo ce l'hai?</div>
+          <span class="msg-cta">Parliamoci →</span>
+        </div>
+        <div class="msg-item life-msg">
+          <div class="msg-variant"><span class="var-dot vd-c"></span>Lifestyle C · Diretta</div>
+          <div class="msg-headline">Stai gestendo da solo il marketing del tuo brand. E lo sai che non basta.</div>
+          <span class="msg-cta">Dimmi cosa ti sta succedendo →</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="fm-card" onclick="toggleFm(this)">
+      <div class="fm-header">
+        <div class="fm-month-badge" style="color:var(--food)">Ott</div>
+        <div class="fm-info">
+          <div class="fm-cats"><span class="mc-cat food">Food · SIAL</span><span class="mc-cat life">Life · Beautyworld</span></div>
+          <div class="fm-title-row">SIAL + Ordini GDO · Lead generation focus</div>
+          <div class="fm-intent">Inclini a: aggiornarsi dopo la fiera, lanciare prodotti, entrare in GDO, gifting Natale</div>
+        </div>
+        <span class="fm-chevron">▼</span>
+      </div>
+      <div class="fm-body">
+        <div class="msg-item food-msg">
+          <div class="msg-variant"><span class="var-dot vd-a"></span>Food A · SIAL</div>
+          <div class="msg-headline">Sai cosa hanno deciso i buyer GDO questa settimana? Perché loro sì.</div>
+          <span class="msg-cta">Vediamo il tuo prodotto →</span>
+        </div>
+        <div class="msg-item food-msg">
+          <div class="msg-variant"><span class="var-dot vd-b"></span>Food B · Lancio</div>
+          <div class="msg-headline">Hai un prodotto nuovo da lanciare entro Natale. Hai anche una strategia?</div>
+          <span class="msg-cta">Parliamo del lancio →</span>
+        </div>
+        <div class="msg-item life-msg">
+          <div class="msg-variant"><span class="var-dot vd-a"></span>Lifestyle A · Gifting</div>
+          <div class="msg-headline">Chi regala il tuo prodotto a Natale sta regalando un'esperienza. La stai comunicando?</div>
+          <span class="msg-cta">Parla con noi →</span>
+        </div>
+        <div class="msg-item life-msg">
+          <div class="msg-variant"><span class="var-dot vd-b"></span>Lifestyle B · Scarcity</div>
+          <div class="msg-headline">I brand specialty che crescono a Natale si sono fatti ricordare prima. 3 slot Q4 rimasti.</div>
+          <span class="msg-cta">Controlla disponibilità →</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="fm-card" onclick="toggleFm(this)">
+      <div class="fm-header">
+        <div class="fm-month-badge" style="color:var(--hot)">Nov</div>
+        <div class="fm-info">
+          <div class="fm-cats"><span class="mc-cat food">Food · Last call</span><span class="mc-cat life">Life · Peak beauty</span></div>
+          <div class="fm-title-row">🔥🔥 PICCO — Last call Natale · Urgenza massima</div>
+          <div class="fm-intent">Inclini a: rimpianto di non essersi mossi prima, urgenza di recuperare, decisione rapida</div>
+        </div>
+        <span class="fm-chevron">▼</span>
+      </div>
+      <div class="fm-body">
+        <div class="msg-item food-msg">
+          <div class="msg-variant"><span class="var-dot vd-a"></span>Food A · Last call</div>
+          <div class="msg-headline">Non è troppo tardi per il Natale del tuo brand food. Ma lo sarà tra 10 giorni.</div>
+          <span class="msg-cta">Scrivici adesso →</span>
+        </div>
+        <div class="msg-item food-msg">
+          <div class="msg-variant"><span class="var-dot vd-b"></span>Food B · Rimpianto empatico</div>
+          <div class="msg-headline">Il brand food che viene ricordato a Natale non si costruisce a Natale.</div>
+          <span class="msg-cta">20 minuti di call →</span>
+        </div>
+        <div class="msg-item life-msg">
+          <div class="msg-variant"><span class="var-dot vd-a"></span>Lifestyle A</div>
+          <div class="msg-headline">Non lasciare che il Natale capiti al tuo brand. Fallo succedere.</div>
+          <span class="msg-cta">Parliamoci questa settimana →</span>
+        </div>
+        <div class="msg-item life-msg">
+          <div class="msg-variant"><span class="var-dot vd-b"></span>Lifestyle B · Prova</div>
+          <div class="msg-headline">Un brand specialty ben raccontato vende 3× rispetto a uno ben prodotto ma mal comunicato.</div>
+          <span class="msg-cta">Vedi i nostri risultati →</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="fm-card" onclick="toggleFm(this)">
+      <div class="fm-header">
+        <div class="fm-month-badge">Dic</div>
+        <div class="fm-info">
+          <div class="fm-cats"><span class="mc-cat food">Food · 2027</span><span class="mc-cat life">Life · Vision</span></div>
+          <div class="fm-title-row">Fine anno · Pianificazione 2027 · Budget ridotto</div>
+          <div class="fm-intent">Inclini a: fare un bilancio, pianificare meglio il prossimo anno, trovare un partner serio</div>
+        </div>
+        <span class="fm-chevron">▼</span>
+      </div>
+      <div class="fm-body">
+        <div class="msg-item food-msg">
+          <div class="msg-variant"><span class="var-dot vd-a"></span>Food</div>
+          <div class="msg-headline">Il 2027 delle aziende food italiane che crescono si pianifica a dicembre. Non a gennaio.</div>
+          <span class="msg-cta">Pianifica il 2027 →</span>
+        </div>
+        <div class="msg-item life-msg">
+          <div class="msg-variant"><span class="var-dot vd-a"></span>Lifestyle</div>
+          <div class="msg-headline">Fine anno. Il momento in cui i founder di brand specialty smettono di improvvisare.</div>
+          <span class="msg-cta">Inizia il 2027 con noi →</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<footer>
+  <div class="foot-logo">ribrain<span style="color:var(--tq-dark)">.</span></div>
+  <div class="foot-tag">Calendario Meta H2 2026 · Riservato · Versione operativa</div>
+</footer>
+
+<script>
+// VIEW SWITCHER
+const views={cal:'view-cal',audit:'view-audit',msgs:'view-msgs'};
+function switchView(v,btn){
+  Object.values(views).forEach(id=>{
+    const el=document.getElementById(id);
+    if(el) el.classList.add('section-hidden');
+  });
+  const cal=document.getElementById('view-cal');
+  if(cal) cal.style.display='none';
+  const target=document.getElementById(views[v]);
+  if(target){
+    target.classList.remove('section-hidden');
+    if(v==='cal') target.style.display='grid'; else target.style.display='';
+  }
+  document.querySelectorAll('.vtg-btn').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+}
+// init
+document.getElementById('view-cal').style.display='grid';
+
+// VERTICALE FILTER
+function filterV(v,btn){
+  document.querySelectorAll('.tg-btn').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  document.querySelectorAll('.month-card').forEach(card=>{
+    const dv=card.dataset.v||'both';
+    if(v==='all'||dv===v||dv==='both') card.classList.remove('filtered-out');
+    else card.classList.add('filtered-out');
+  });
+  // msgs view: filtra anche i messaggi
+  document.querySelectorAll('.msg-item').forEach(m=>{
+    if(v==='all'){m.style.display='';}
+    else if(v==='food'){m.style.display=m.classList.contains('food-msg')?'':'none';}
+    else{m.style.display=m.classList.contains('life-msg')?'':'none';}
+  });
+}
+
+// MONTH CARD TOGGLE
+function toggleMonth(card){
+  const wasExpanded=card.classList.contains('expanded');
+  document.querySelectorAll('.month-card.expanded').forEach(c=>c.classList.remove('expanded'));
+  if(!wasExpanded) card.classList.add('expanded');
+}
+
+// INNER TABS
+function innerTab(e,tab){
+  e.stopPropagation();
+  const panel=e.target.closest('.detail-panel');
+  panel.querySelectorAll('.it-btn').forEach(b=>b.classList.remove('active'));
+  e.target.classList.add('active');
+  panel.querySelector('.msgs-tab').style.display=tab==='msgs'?'':'none';
+  panel.querySelector('.crea-tab').style.display=tab==='crea'?'':'none';
+}
+
+// FULL MSG CARDS
+function toggleFm(card){
+  const isOpen=card.classList.contains('open');
+  document.querySelectorAll('.fm-card.open').forEach(c=>c.classList.remove('open'));
+  if(!isOpen) card.classList.add('open');
+}
+</script>
+</body>
+</html>
